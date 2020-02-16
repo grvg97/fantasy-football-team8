@@ -24,16 +24,13 @@ Although knowledge in football or the league involved does not affect the usabil
 
 Below we have given the basic rules of the game which are necessary in order for the user to participate and in order for the game to work:
 
-1. 1)A team must consist of at least 1 goalkeeper, 4 defenders, 3 midfielders and 3 forwards.
-2. 2)Team must have at least 11 (starting) players and may have no more than 16 total players
-3. 3)All players must  be placed in their corresponding positions
-4. 4)Teams can no longer be modified when the deadline(Friday 7pm) reaches.
-
-After Monday 6pm the users can edit their teams again.
-
-1. 5)Teams will be given an initial credit of 100, the user may spend the 100 credits as they wish
-2. 6)Each team is given 1 free transfer every week, further transfers will cost 4 points from the accumulated team points, the user may make any number of transfers as long as it does not violate credit limit and team points.
-3. 7)Bench players will receive half points, captains will receive double points.
+1. A team must consist of at least 1 goalkeeper, 4 defenders, 3 midfielders and 3 forwards.
+2. Team must have at least 11 (starting) players and may have no more than 16 total players
+3. All players must  be placed in their corresponding positions
+4. Teams can no longer be modified when the deadline(Friday 7pm) reaches. After Monday 6pm the users can edit their teams again.
+5. Teams will be given an initial credit of 100, the user may spend the 100 credits as they wish
+6. Each team is given 1 free transfer every week, further transfers will cost 4 points from the accumulated team points, the user may make any number of transfers as long as it does not violate credit limit and team points.
+7. Bench players will receive half points, captains will receive double points.
 
 
 
@@ -110,10 +107,7 @@ Furthermore, multiplayer support can be added to the original game in order for 
 | F9 | Captain assignment | The system shall force the user to assign exactly one captain and vice captain for their team. The system shall allow the user to pick a captain and vice captain of their choice. |
 | F10 | Vice captain promotion | The system shall promote the vice captain automatically to captain in the case that the captain of the team is injured |
 | F11 | Player trading | Users shall be able to trade a maximum of one player per week on the market. |
-| F12 | Create or join a league | The user shall be able to create/join a league of their choice. During creation the user can choose out of two different league types.
-1. Classic scoring: Users score points each week. At the end of the season the player with the highest score wins.
-2. Head to Head: Each week two players in a league play against each other. Whoever gets the most points wins. The player at the end with the most wins; wins the league.
- |
+| F12 | Create or join a league | The user shall be able to create/join a league of their choice. During creation the user can choose out of two different league types.  Classic scoring: Users score points each week. At the end of the season the player with the highest score wins. Head to Head: Each week two players in a league play against each other. Whoever gets the most points wins. The player at the end with the most wins; wins the league. |
 | F13 | League tournament | Users shall be able to play tournaments in a league with other teams. |
 | F14 | League winner | The Game shall be able to compute the winner in a league based on points. This is done by comparing the points between each teams with the highest points being the winner of the league |
 | F15 | Print league results | The Game shall display the league results to the user upon request from the user. The league results will consist of the names of different teams in order of their standing, the current matchweek and the points of each team. |
