@@ -119,5 +119,3 @@ Authors: Gilbert van Gerven, Sunny Dairam, Ricardo Burgos, Mehmet Cetin
 | [JavaFX](https://openjfx.io/)   | We will be using this library as our main GUI. We have chosen this above the others due to the fact that the design of the GUI is clean and very clear to navigate around as well as the extensive number of resources online. |
 | [FXGL](https://almasb.github.io/FXGL/) | Potential extension to our JavaFX GUI, we can use this library to give a better display of the team contents, i.e. the players in a football field view with their respective real life jerseys, positioning and names. |
 | [JFoenix](http://www.jfoenix.com/) | We will use JFoenix to construct a basic GUI for our game. We have chosen this GUI as a contingency plan. This is because the GUI provides clear and concise instruction on how to implement the necessary buttons, windows etc. However, we believe that JAVAFX has more useful materials online. |
-
-**Github pull request URL:**
