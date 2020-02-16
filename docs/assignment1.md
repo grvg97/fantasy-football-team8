@@ -1,6 +1,6 @@
-### **Assignment 1**
+# **Assignment 1**
 
-### Introduction
+# Introduction
 
 **Authors:** Gilbert van Gerven, Sunny Dairam, Ricardo Burgos, Mehmet Cetin
 
@@ -27,29 +27,7 @@ Below we have given the basic rules of the game which are necessary in order for
 1. 1)A team must consist of at least 1 goalkeeper, 4 defenders, 3 midfielders and 3 forwards.
 2. 2)Team must have at least 11 (starting) players and may have no more than 16 total players
 3. 3)All players must  be placed in their corresponding positions
-4.
-4)
-#
-[ANNOTATION:
-
-BY &#39;Mehmet Berk Cetin&#39;
-ON &#39;2020-02-16T18:36:08&#39;
-NOTE: &#39;let em do it.&#39;]
-
-#
-[ANNOTATION:
-
-BY &#39;Gilbert Van Gerven&#39;
-ON &#39;2020-02-16T16:26:29&#39;
-NOTE: &#39;But then they can just switch in between matches and cheat? Can you give me a reason why you dont think its necessary? :/&#39;]
-
-#
-[ANNOTATION:
-
-BY &#39;Mehmet Berk Cetin&#39;
-ON &#39;2020-02-16T15:07:58&#39;
-NOTE: &#39;I don&#39;t think these two are necessary.&#39;]
-Teams can no longer be modified when the deadline(Friday 7pm) reaches.
+4. 4)Teams can no longer be modified when the deadline(Friday 7pm) reaches.
 
 After Monday 6pm the users can edit their teams again.
 
@@ -79,7 +57,7 @@ Furthermore, multiplayer support can be added to the original game in order for 
 
 
 
-### Features
+# Features
 
 **Authors:** Gilbert van Gerven, Sunny Dairam, Ricardo Burgos, Mehmet Cetin
 
@@ -90,23 +68,7 @@ Furthermore, multiplayer support can be added to the original game in order for 
 | F1 | Login User | The System shall ask for the username and password and will grant access upon verification or reject access to the game. |
 | F2 | Create Teams | Users shall be able to one or more teams choosing players from different teams and/or leagues. |
 | F2.1 | Add player stats | Users shall be able to manually add players&#39; statistics and their values based on live games played by the real players. [https://fantasy.premierleague.com/statistics](https://fantasy.premierleague.com/statistics) |
-|
-
-#
-[ANNOTATION:
-
-BY &#39;Mehmet Berk Cetin&#39;
-ON &#39;2020-02-16T15:10:06&#39;
-NOTE: &#39;We can say when the user enters the game data will be fetched?&#39;]
-
-#
-[ANNOTATION:
-
-BY &#39;Ricardo Burgos Lara&#39;
-ON &#39;2020-02-15T19:31:04&#39;
-NOTE: &#39;2.2: at boot time and on-demand instead? (the command is run once when the program starts and when the user issues the command) Scores don&#39;t change that often&#39;]
-F2.2
- | Fetch player stats from API | The System shall fetch player statistics from the premier league fantasy API. |
+| F2.2 | Fetch player stats from API | The System shall fetch player statistics from the premier league fantasy API. |
 | F3 | Modification Deadline | The game shall restrict the user from making any further changes (transfers, subtitutions, captain assignments) after the deadline of 7pm has been reached. |
 | F4 | Points computation | System shall compute points based on the statistics of the players that the user has manually entered or that the system fetched from the API. Taking into account if the player is a starter, bench or a captain. In the table below, we have listed all the possible ways in which a player of a team can receive their points:
 
