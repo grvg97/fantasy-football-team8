@@ -50,23 +50,6 @@ In addition, we will also adjust the price of the players weekly, based on the n
 
 Furthermore, multiplayer support can be added to the original game in order for multiple users to compete against each other by creating their own personal teams and joining private leagues.
 
-
-
-| **Event** | **Points awarded** |
-| --- | --- |
-| Player plays at least 45 minutes in a match | +1 |
-| Player plays more than 60 minutes in a match | +2 |
-| Forward Scores a goal | +3 |
-| Midfielder scores a goal | +4 |
-| Defender or Goalkeeper scores a goal | +5 |
-| Goalkeeper makes 3 saves | +1 |
-| Goalkeeper saves penalty | +5 |
-| Penalty miss | -2 |
-| Clean Sheet by a defender or goalkeeper | +4 |
-| Own goal | -3 |
-| Player receives yellow card | -1 |
-| Player receives red card | -3 |
-
 # Features
 
 **Authors:** Gilbert van Gerven, Sunny Dairam, Ricardo Burgos, Mehmet Cetin
