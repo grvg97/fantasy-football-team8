@@ -55,7 +55,20 @@ Furthermore, multiplayer support can be added to the original game in order for 
 
 
 
-
+| **Event** | **Points awarded** |
+| --- | --- |
+| Player plays at least 45 minutes in a match | +1 |
+| Player plays more than 60 minutes in a match | +2 |
+| Forward Scores a goal | +3 |
+| Midfielder scores a goal | +4 |
+| Defender or Goalkeeper scores a goal | +5 |
+| Goalkeeper makes 3 saves | +1 |
+| Goalkeeper saves penalty | +5 |
+| Penalty miss | -2 |
+| Clean Sheet by a defender or goalkeeper | +4 |
+| Own goal | -3 |
+| Player receives yellow card | -1 |
+| Player receives red card | -3 |
 
 # Features
 
@@ -70,7 +83,7 @@ Furthermore, multiplayer support can be added to the original game in order for 
 | F2.1 | Add player stats | Users shall be able to manually add players&#39; statistics and their values based on live games played by the real players. [https://fantasy.premierleague.com/statistics](https://fantasy.premierleague.com/statistics) |
 | F2.2 | Fetch player stats from API | The System shall fetch player statistics from the premier league fantasy API. |
 | F3 | Modification Deadline | The game shall restrict the user from making any further changes (transfers, subtitutions, captain assignments) after the deadline of 7pm has been reached. |
-| F4 | Points computation | System shall compute points based on the statistics of the players that the user has manually entered or that the system fetched from the API. Taking into account if the player is a starter, bench or a captain. In the table below, we have listed all the possible ways in which a player of a team can receive their points:
+| F4 | Points computation | System shall compute points based on the statistics of the players that the user has manually entered or that the system fetched from the API. Taking into account if the player is a starter, bench or a captain. In the table below, we have listed all the possible ways in which a player of a team can receive their points: |
 
 | **Event** | **Points awarded** |
 | --- | --- |
@@ -87,8 +100,10 @@ Furthermore, multiplayer support can be added to the original game in order for 
 | Player receives yellow card | -1 |
 | Player receives red card | -3 |
 
-  |
+
+
 | F5 | Initial credits | The game shall assign a fixed initial number of credits; which is 100 credits. This holds for all the new teams the user creates. |
+| --- | --- | --- |
 | F6 | Transfer Players | Users shall be able to buy and sell players as long as it does not violate conditions such as credit limit, and points limit (see rule 6 for reference) |
 | F7 | Squad quantity restriction | The system shall restrict the player to having a squad that consists of a minimum of 11 players and a maximum of 16 players. |
 | F8 | Team quantity restriction | The system shall restrict the user to having a team of at least 1 goalkeeper, 4 defenders, 4 midfielders and 3 forwards. |
