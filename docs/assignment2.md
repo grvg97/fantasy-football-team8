@@ -125,8 +125,8 @@ From all the associations, generalizations and derivations of the class diagram 
 | _viceCaptain: Player_ | This attribute stores the second captain of the team. The second captain becomes the primary captain if the captain gets injured. The vice captain is selected in the same manner as the captain. |
 | _totalPoints: Integer_ | Stores the total points of all the players combined. This attribute is used when constructing the ranking of the league. |
 | **Operations** |
-| _addPlayer(__player: Player)_ | Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. |
-| _removePlayer(__player: Player)_ | Removes the player from the players list. This function is used in combination with sellPlayer. In order for the user to sell the player, the player first has to be removed from the team. |
+| _addPlayer(__player: Player)_ : Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. |
+| _removePlayer(__player: Player)_ : Removes the player from the players list. This function is used in combination with sellPlayer. In order for the user to sell the player, the player first has to be removed from the team. |
 | _assignCaptains(__in captain: Player, in viceCaptain: Player)_ | Assigns the captains, which is selected by the user, to the captain and viceCaptain attribute. |
 | _isComplete(): Boolean_ | This operation returns true if the total players in the team is at least 11. This function The system restricts the team from receiving any points unless the team has 11 players.  |
 | _changeStarters_ | This operation changes the starting lineup by replacing some of the players with the bench players. |
@@ -137,15 +137,15 @@ From all the associations, generalizations and derivations of the class diagram 
 
 This  directed association signifies that the **User** class can access the attributes and operations of the **League** class. This is necessary due to the fact that the user will be the one creating and managing a league as shown by the operations _createLeague()_and _deleteLeague()._ Moreover, the **User** must be able to access the operations of **League** because when _createLeague()_ is executed, it will need to access _setEndDate()_ of the **League** class in order for a user to set the duration of the league tournament that they have created. Moreover, since the user is the manager of the league as shown by the _manager_ attribute of the type **User** in league, the user must be able to add and kick other users who are also participating in the league, thus strengthening the justification of this chosen association between the two classes.
 
-1. **2)****Team composite to User:**
+2)*Team composite to User:**
 
 This association between the **User** and **Team** class signifies that a team in our game cannot exist without a user. Therefore the **User** class will have access to all the operations and attributes of the **Team** class and a **Team** type object cannot exist without a **User** object. We have shown this in our implementation by placing **Team**  as a private class of the class **User.** Similarly to the first association mentioned, it is important for this association to be a composite as auser should be the one who creates a team, deletes a team and  manages the team in which they are a manager of.
 
-1. **3)****Shared aggregation between Team and Player:**
+3)*Shared aggregation between Team and Player:**
 
 This association between the **Team** and **Player** class signifies that a player may exist without a team (not in a team) and that a team may exist without any players. This is shown by the fact that when the **User** class calls the operation _createTeam()_ an instant of the **Team** is created and that instant has yet to contain any players . Moreover, a justification for this association to exist would be the fact that when a **Player** object is in the attribut _players_ or _bench_ in the **Team** class (signifying players being part of a squad in a team or a bench in the team), the **Team** must access the statistics of all of its players in order for _totalPoints_ to be computed as well as in order for the team to recognize which players are injured and which players they have as captain; this is shown through the attributes of the **Player** class.
 
-1. **4)****Directed association from MarketPlace to player:**
+4)*Directed association from MarketPlace to player:**
 
 This association signifies that the **MarketPlace** class has access to all the attributes and operations of the **Player** class. This is very important due to the fact that a market place within our game must display all of the available players and their stats in order for a **User** to purchase (_buyPLayer()_ operation_)_  the player once they are satisfied with the statistics of the player.
 
@@ -153,7 +153,7 @@ The significance of this association is shown by the operations of the **MarketP
 
 
 
-1. **5)****Directed association from MarketPlace to GSON library:**
+5)*Directed association from MarketPlace to GSON library:**
 
 The directed association means that the **MarketPlace** class has access to the json object which is provided by the **Gson** library. The **Gson** library parses the response, provided by the function fromJson() inside the **Gson** library, received from the api.
 
@@ -196,7 +196,7 @@ Author(s): Ricardo Burgos Lara, Gilbert van Gerven
 
 **User Behavior:**
 
- ![Image description](https://i.imgur.com/i0pe2SL.png)
+ ![Image description](https://i.imgur.com/M7tLq29.png)
 **Figure3 -** User Behavioural State-Machine Diagram
 
 The Following state machine diagram represents the different states that a **User** class object can take during the tasks of creating a new team and a new league. For this state machine we have emphasized more on the states that the **User** object can take when a new user has joined the game and creates a new team. Thus, the user object essentially represents a stakeholder of our system (the user). This is due to the fact that this is a required feature for our first minimal implementation of the Fantasy Soccer Game. The entry activity of this User state machine is to show the main menu of the game as well as load the values of the attributes of the **User** type object, where the user will be displayed with the choice of buttons linked to the operations _createLeague() , createTeam(), displayTeam() and deleteTeam()_  as well as having the attribute values loaded or initialized if the **User** object is new_._ However, due to technical issues related to the papyrus software, we were unable to display the Entry, Do and Exit activities of the state machine we represent.
