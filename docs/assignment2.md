@@ -39,9 +39,9 @@ From all the associations, generalizations and derivations of the class diagram 
 | --- |
 | **User** | The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself. |
 | **Attributes** |
-| _id : int_ | Stores the id of the user. |
-| _username :String_ | Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team. |
-| _password : String_ | If the username and the password matches a specific user the  user will be granted access to the game with that specific user. |
+| id : int : Stores the id of the user. |
+| username :String : Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team. |
+| password : String : If the username and the password matches a specific user the  user will be granted access to the game with that specific user. |
 | _team: Team_ | This attribute holds the team object of the user so the user can access any attribute of its team using public functions. Every user can have only one team. |
 | _competedLeagues: League[\*]_ | This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute. |
 | _hasTransferred: int_ | This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. |
