@@ -162,7 +162,7 @@ The directed association means that the **MarketPlace** class has access to the 
 **Object diagram**
 
 Author(s): Mehmet Cetin, Sunny Dairam
-//IMAGE
+![Image description](https://i.imgur.com/sSJklWs.png)
 
 **Figure2 -** Fantasy Football Object Diagram
 
@@ -196,7 +196,7 @@ Author(s): Ricardo Burgos Lara, Gilbert van Gerven
 
 **User Behavior:**
 
- // IMAGE
+ ![Image description](https://i.imgur.com/M7tLq29.png)
 **Figure3 -** User Behavioural State-Machine Diagram
 
 The Following state machine diagram represents the different states that a **User** class object can take during the tasks of creating a new team and a new league. For this state machine we have emphasized more on the states that the **User** object can take when a new user has joined the game and creates a new team. Thus, the user object essentially represents a stakeholder of our system (the user). This is due to the fact that this is a required feature for our first minimal implementation of the Fantasy Soccer Game. The entry activity of this User state machine is to show the main menu of the game as well as load the values of the attributes of the **User** type object, where the user will be displayed with the choice of buttons linked to the operations _createLeague() , createTeam(), displayTeam() and deleteTeam()_  as well as having the attribute values loaded or initialized if the **User** object is new_._ However, due to technical issues related to the papyrus software, we were unable to display the Entry, Do and Exit activities of the state machine we represent.
@@ -213,7 +213,7 @@ Overall, the **User** state machine is responsible for the initial steps that a 
 
 **Team Management Behavior:**
 
- //IMAGE
+![Image description](https://i.imgur.com/uRhVxAM.png)
 ** **
 
 **Figure 4 -** Team management Behavioural State-Machine Diagram
@@ -248,7 +248,8 @@ Author(s): Gilbert Van Gerven &amp; Ricardo Burgos Lara:
 
 **Sequence Diagram: Team Creation**
 
-// IMAGE
+![Image description](https://i.imgur.com/fcO0nsR.png)
+
 This diagram shows the interaction between the game main class and the classes User, Team, Market and Player (represented by their corresponding lifelines). After user authentication and on successful login, an instance of User is created. The first action the user must perform is to create a new team by calling the &#39;createTeam&#39; method. An empty team is created for the user with no players and 1000 initial credits are awarded to the newly created team; this team is stored as one of the class attributes. To populate a team with players, a request message from the user to the team is executed (buyPlayer with the player&#39;s id as argument), a validation of the user&#39;s credits takes place and if the credit&#39;s are enough to buy the requested player (this is represented by combined fragment with label &#39;alt&#39;), then the transaction is granted; otherwise a message is returned to inform the user of insufficient credits (lower fragment) and user state returns to idle.
 
 The transaction takes place between the classes Team, Market and Player. Once the transaction is validated, credits are deducted and the instance of Team sends a message to the Market class (addPlayer), which is populated with all the players from all teams in the league. From its side, the Market instance uses its method getPlayer(playerID) to retrieve the requested player based on its unique identification code from a list of available instances of the class Player which were automatically fetched from the Premier League&#39;s website API, this list is stored as an instance attribute list named &#39;players&#39;. The Market finally returns the requested player object to the team, where it is stored as one element in an array list of either active (on field) or bench players.
@@ -259,7 +260,7 @@ Lastly, the user can also delete their own team by calling the &#39;deleteTeam()
 
 **Sequence Diagram: User - League Interaction**
 
-//IMAGE
+![Image description](https://i.imgur.com/ZvHHmi8.png)
 
 This sequence diagram represents the interaction between the classes User, League, Team and Player (represented by their corresponding lifelines). The user can join a specific league by providing the name of the league they want to join (This calls the method &#39;joinLeague&#39; from User class). The League instance then executes its &#39;addUser&#39; method which stores the requesting user object in an ArrayList object attribute. In this way an user becomes a member of a league.
 
