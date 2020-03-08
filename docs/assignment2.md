@@ -57,7 +57,7 @@ From all the associations, generalizations and derivations of the class diagram 
 7. *credits: int* - The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
 
 
-###**User Operations:**
+### **User Operations:**
 
 1. *createTeam(): Team* - This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
 
