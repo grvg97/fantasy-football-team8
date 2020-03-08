@@ -42,12 +42,6 @@ Below we have given the basic rules of the game which are necessary in order for
 
 
 
-
-
-
-
-
-
 **Player Market system:**
 
 We will assign the initial pricing of the players available in the game marketplace based on Fantasy Premier League&#39;s market. Initially we will manually assign all values ourselves. Eventually, we&#39;ll use the Fantasy Premier League API for bonus.
