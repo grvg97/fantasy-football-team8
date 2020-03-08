@@ -87,7 +87,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 ### **MarketPlace Attributes:**
 
-1. *players: Player[\*] * - This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. 
+1. *players: Player[\*]* - This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. 
 
 ### **MarketPlace Operations:**
 
