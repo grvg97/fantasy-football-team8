@@ -1,7 +1,7 @@
 #
 # Assignment 2
 
-**Implemented features**
+**Implemented features:**
 
 The following table consists of all the feature requirements that we will be implementing in this stage of our development. To assist us in making a decision of which features to implement we have utilised the **MoSCoW**  methodology and have categorized our features into different levels of priorities. Furthermore, the features that are listed below includes all of the &quot;must have&quot; **(M)** features that are highly necessary in order to shape the foundation of our system and give the user and the developers a definite idea of how the final product of our game would look visually. Additionally, we have added some of the &quot;should have&quot; features **(S),** in order for us to test the functionalities that our game would have when it is at a minimal working stage. The features below are sorted in the level of priority in which we will implement them.
 
@@ -13,17 +13,17 @@ The following table consists of all the feature requirements that we will be imp
 | F11.1 | League tournament | The system shall automatically add teams to the Global League upon the team&#39;s creation. All teams joining a league start off with zero points for that league.   **Motivation:** This is the process in which teams can receive points based on the performance of the players in their team, thus allowing the system to rank each team in the global league and in separate outside leagues. Moreover, since every team is automatically in a global league, this allows for the global league to accumulate the points of each team from the point of creation to the end of season. These accumulated points will be the value of the team&#39;s overall points. |
 | F12 | Display league rankings | The Game shall display the league ranking to the user upon request from the user. The league ranking will consist of the names of different teams in order of their standing, the current match week and the points of each team.  **Motivation:** This allows the user to see how their  team is ranked against other teams in their respective league. |
 
-**Used modeling tool**
+**Used modeling tool:**
 
 For our UML diagrams we have used Papyrus, although we faced numerous technical difficulties with the software due to instability involving the graphics, it was still much prefered than draw.io due to the completeness of the nodes and edges that the software provides. We have briefly mentioned every limitations caused by the technical difficulties from papyrus in our UML diagrams that prevented us from expressing the correct UML notations that we wanted to express.
 
 [Link to Papyrus](https://www.eclipse.org/papyrus/download.html)
 
-**Class diagram**
+**Class diagram:**
 
 Authors: Mehmet Cetin, Gilbert van Gerven, Sunny Dairam
 
-**Introduction**
+**Introduction:**
 
 The class diagram that we have shown in the figure above represents the associations between all of the classes that our game system comprises. Through the associations of the classes we have a clearer picture on how the operations and attributes connect with one another. Moreover, we can also see the dependencies that some classes have to another class. For instance, the fact that the **Team** class has a shared aggregation with the player class as the team class requires instants of the **Player** class in order to buy players and fill the team with players.
 
@@ -35,116 +35,123 @@ From all the associations, generalizations and derivations of the class diagram 
 
 **Figure1 -** Fantasy Soccer Class Diagram
 
-| <center>**Class**</center> |
-| --- | --- |
-| **User** | The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself. |
-| <center>**Attributes**</center> |
-| *id : int* = Stores the id of the user. |
-| username :String = Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team. |
-| *password : String* = If the username and the password matches a specific user the  user will be granted access to the game with that specific user. |
-| *team: Team* = This attribute holds the team object of the user so the user can access any attribute of its team using public functions. Every user can have only one team. |
-| *competedLeagues: League[\*]* = This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute. |
-| *hasTransferred: int* = This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. |
-| *credits: int* = The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. |
-| <center>**Operations**</center> |
-| *createTeam(): Team* = This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.** |
-| *deleteTeam()* = Deletes the team in the _team_ attribute of the User, given that there is one. |
-| *createLeague( name: String, manager: User, start: Date): League* = This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. The operation adds the created league to the competedLeagues list returns the created league. |
-| *deleteLeague(league: League)* = The user can delete the specified league if the user is the manager of that league. |
-| *joinLeague(league: League)* = The user can join the specified league and add it to its competedLeagues list. In this operation, the specified league adds the user to its &quot;competingUsers&quot; list. |
-| *exitLeague(league: League)* = This operation allows the user to exit the league that is specified by the parameter. |
-| *buyPlayer (player: Player)* = User buys the player if there are enough credits and then the user calls the addPlayer() operation of the team class, which adds the player to the team. |
-| *sellPlayer (player: Player)* = User sells the player after the team removes the player from the &quot;bench&quot; or &quot;players&quot; list. The user gains credits based on the sold player&#39;s credit attribute. |
-| *pickCaptains (Captain:Player, viceCaptain:Player)* = User picks the captain and the vice captain of the team and passes those values to the Team class so the team can assign the captains. |
-| *displayTeam()* = This allows the user to display its whole team. |
-|   |
+**Class:**
+**User:** - The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself.
+
+**User Attributes:**
+*id : int* = Stores the id of the user. 
+username :String = Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team. 
+*password : String* = If the username and the password matches a specific user the  user will be granted access to the game with that specific user. 
+*team: Team* = This attribute holds the team object of the user so the user can access any attribute of its team using public functions. Every user can have only one team. 
+*competedLeagues: League[\*]* = This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute. 
+*hasTransferred: int* = This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. 
+*credits: int* = The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
+
+**User Operations:**
+*createTeam(): Team* = This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
+*deleteTeam()* = Deletes the team in the _team_ attribute of the User, given that there is one. 
+*createLeague( name: String, manager: User, start: Date): League* = This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. The operation adds the created league to the competedLeagues list returns the created league. 
+*deleteLeague(league: League)* = The user can delete the specified league if the user is the manager of that league. 
+*joinLeague(league: League)* = The user can join the specified league and add it to its competedLeagues list. In this operation, the specified league adds the user to its &quot;competingUsers&quot; list. 
+*exitLeague(league: League)* = This operation allows the user to exit the league that is specified by the parameter. 
+*buyPlayer (player: Player)* = User buys the player if there are enough credits and then the user calls the addPlayer() operation of the team class, which adds the player to the team. 
+*sellPlayer (player: Player)* = User sells the player after the team removes the player from the &quot;bench&quot; or &quot;players&quot; list. The user gains credits based on the sold player&#39;s credit attribute. 
+*pickCaptains (Captain:Player, viceCaptain:Player)* = User picks the captain and the vice captain of the team and passes those values to the Team class so the team can assign the captains. 
+*displayTeam()* = This allows the user to display its whole team. 
+ 
 
 
 
 
-| <center>**Class**</center> |
-| --- |
-| **MarketPlace** | This class stores the players fetched from the api using Gson. It enables the user to buy and add the players to its team by showing the players with certain specifications. |
-| <center>**Attributes**</center> |
-| *players: Player[\*] *= This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. |
-| <center>**Operations**</center> |
-| *showPlayers()* = This operation displays the players no matter which position they are from. This function is specifically used when constructing the bench players because the bench players don&#39;t have any restrictions for positions. |
-| *showPlayersWithPosition (position : int)* = This operation only displays the players with the specified position. |
-| *getPlayer (id: int)* = This operation loops through all the players and returns the player with the specified id. |
+**Class:**
+
+**MarketPlace**- This class stores the players fetched from the api using Gson. It enables the user to buy and add the players to its team by showing the players with certain specifications.
+
+**MarketPlace Attributes:**
+*players: Player[\*] *= This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. 
+**MarketPlace Operations:**
+*showPlayers()* = This operation displays the players no matter which position they are from. This function is specifically used when constructing the bench players because the bench players don&#39;t have any restrictions for positions. 
+*showPlayersWithPosition (position : int)* = This operation only displays the players with the specified position. 
+*getPlayer (id: int)* = This operation loops through all the players and returns the player with the specified id. 
 
 
 
 
 
 
-| <center>**Class**</center> |
-| --- |
-| **League** | This class represents a league that holds the different users who are competing in the league with their teams. Within the league class, the points of each Teams that every user owns is stored. Through this we are able to compute the ranking and display every user (manager) involved in the league in order of the total points they have attained in between the time they have joined the league to the end date of the league. |
-| <center>**Attributes**</center> |
-| *id*: int = Stores the id of the league and allows the created leagues to be unique. |
-| *name: String* = This attribute holds the name of the league. It is assigned when the league is created via a constructor. |
-| *manager: User* = This attribute stores the manager of the league. The manager has the ability to delete and modify the end date of this league. |
-| *teamPoints:HashMap\&lt;String,Integer\&gt;* = This stores the team names as keys and the total points of the team as values. It is used when displaying the league ranking. |
-| *startDate: Date* = Stores the creation date and time of the league. It is assigned when the league is first created by the user. |
-| *endDate: Date* = Stores the end of the league. |
-| *competingUsers: User[\*]* = Stores the users that are participating/competing in the league. |
-| <center>**Operations**</center>|
-| *addUser(In user: User)* = This operation adds the user to the &quot;competingUsers&quot; list and adds the user&#39;s team and team points to the teamPoints HashMap. |
-| *removeUser(In user: User)* = This operation removes the user (if the user exists in the league) from the &quot;competingUsers&quot; list and removes the user&#39;s team and team points to the teamPoints HashMap.  |
-| *howRanking()* = This function displays the ranking of the teams by printing the team name and the points of that team. |
-| *setEndDate(endDate: Date)* = This function sets the end date of the league based on the desire of the league manager. |
+**Class:**
+
+**League:** - This class represents a league that holds the different users who are competing in the league with their teams. Within the league class, the points of each Teams that every user owns is stored. Through this we are able to compute the ranking and display every user (manager) involved in the league in order of the total points they have attained in between the time they have joined the league to the end date of the league. 
+
+**League Attributes:**
+*id*: int = Stores the id of the league and allows the created leagues to be unique. 
+*name: String* = This attribute holds the name of the league. It is assigned when the league is created via a constructor. 
+*manager: User* = This attribute stores the manager of the league. The manager has the ability to delete and modify the end date of this league. 
+*teamPoints:HashMap\&lt;String,Integer\&gt;* = This stores the team names as keys and the total points of the team as values. It is used when displaying the league ranking. 
+*startDate: Date* = Stores the creation date and time of the league. It is assigned when the league is first created by the user. 
+*endDate: Date* = Stores the end of the league. 
+*competingUsers: User[\*]* = Stores the users that are participating/competing in the league. 
+<center>**Operations**</center>
+*addUser(In user: User)* = This operation adds the user to the &quot;competingUsers&quot; list and adds the user&#39;s team and team points to the teamPoints HashMap. 
+*removeUser(In user: User)* = This operation removes the user (if the user exists in the league) from the &quot;competingUsers&quot; list and removes the user&#39;s team and team points to the teamPoints HashMap.  
+*howRanking()* = This function displays the ranking of the teams by printing the team name and the points of that team. 
+*setEndDate(endDate: Date)* = This function sets the end date of the league based on the desire of the league manager. 
 
 
 
 
-| <center>**Class**</center> |
-| --- |
-| **Player** | This class represents a player. A player has many attributes and stats based on football games played every week. All of the player attributes are fetched from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) and dependent on live games. |
-| <center>**Attributes**</center> |
-| *id: int* = A unique integer is assigned to this attribute with the data that was fetched from the api. |
-| *firstName: String, lastName: String* = A real life player&#39;s first name  and last name is assigned to this attribute with the data that was fetched from the api. |
-| *position: int* = The position of the player is stored in this attribute as an integer. The representation of the integers: 1 Goalkeeper, 2 Defenders, 3 Midfielders, 4 Forwards |
-| *isAvailable: String* = This attribute stores if the player is available -\&gt; &quot;a&quot; or not available(injured) -\&gt; &quot;i&quot;. An injured player can&#39;t play in a game. Therefore the injured player can&#39;t obtain points. |
-| *realLifeTeam: int* = This attribute stores the team(one of the teams in the English Premier League) of the player in real life.   |
-| *statistics: String, int* = The statistics are the attributes that are fetched from the api and assigned to the attributes. All of them are private and almost all of them are used in the &quot;getStats()&quot; function. |
-| <center>**Operations**</center> |
-| *getStats(): HashMap \&lt; String, Integer\&gt;* = This function allows the client code to retrieve the statistics of the player in a structural manner. These stats can be used to calculate the points that the player has obtained so far. |
+**Class:**
+
+**Player**- This class represents a player. A player has many attributes and stats based on football games played every week. All of the player attributes are fetched from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) and dependent on live games. 
+
+**Player Attributes:**
+*id: int* = A unique integer is assigned to this attribute with the data that was fetched from the api.
+*firstName: String, lastName: String* = A real life player&#39;s first name  and last name is assigned to this attribute with the data that was fetched from the api. 
+*position: int* = The position of the player is stored in this attribute as an integer. The representation of the integers: 1 Goalkeeper, 2 Defenders, 3 Midfielders, 4 Forwards 
+*isAvailable: String* = This attribute stores if the player is available -\&gt; &quot;a&quot; or not available(injured) -\&gt; &quot;i&quot;. An injured player can&#39;t play in a game. Therefore the injured player can&#39;t obtain points. 
+*realLifeTeam: int* = This attribute stores the team(one of the teams in the English Premier League) of the player in real life.   
+*statistics: String, int* = The statistics are the attributes that are fetched from the api and assigned to the attributes. All of them are private and almost all of them are used in the &quot;getStats()&quot; function. 
+
+**Player Operations:**
+*getStats(): HashMap \&lt; String, Integer\&gt;* = This function allows the client code to retrieve the statistics of the player in a structural manner. These stats can be used to calculate the points that the player has obtained so far. 
 
 
 
-| <center>**Class**</center> |
-| --- |
-| **-Team** | This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. |
-| <center>**Attributes**</center> |
-| id: int = Stores unique integer |
-| name: String = Stores the name of the team given by the user. |
-| players: Player[11] = Stores the starting lineup of 11 players. 1 goalkeeper, 4 defenders, 3 midfielders, 3 forwards. |
-| bench: Player[4] = Currently consists 4 players of any position. Later on there may be additional restrictions on the positions of the players. |
-| captain: Player = Stores the captain of the team picked by the user and assigned by the team. |
-| viceCaptain: Player = This attribute stores the second captain of the team. The second captain becomes the primary captain if the captain gets injured. The vice captain is selected in the same manner as the captain. |
-| totalPoints: Integer = Stores the total points of all the players combined. This attribute is used when constructing the ranking of the league. |
-| <center>**Operations**</center> |
-| addPlayer(player: Player) = Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. |
-| removePlayer(player: Player) = Removes the player from the players list. This function is used in combination with sellPlayer. In order for the user to sell the player, the player first has to be removed from the team. |
-| assignCaptains(in captain: Player, in viceCaptain: Player) = Assigns the captains, which is selected by the user, to the captain and viceCaptain attribute. |
-| isComplete(): Boolean = This operation returns true if the total players in the team is at least 11. This function The system restricts the team from receiving any points unless the team has 11 players.  |
-| changeStartingLineup() = This operation changes the starting lineup by replacing some of the players with the bench players. |
+**Class**
 
-**Associations**
+**-Team:** This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. 
 
-1. 1)*Directed Association from User class to League class:**
+**Team Attributes:**
+id: int = Stores unique integer
+name: String = Stores the name of the team given by the user.
+players: Player[11] = Stores the starting lineup of 11 players. 1 goalkeeper, 4 defenders, 3 midfielders, 3 forwards. 
+bench: Player[4] = Currently consists 4 players of any position. Later on there may be additional restrictions on the positions of the players. 
+captain: Player = Stores the captain of the team picked by the user and assigned by the team. 
+viceCaptain: Player = This attribute stores the second captain of the team. The second captain becomes the primary captain if the captain gets injured. The vice captain is selected in the same manner as the captain. 
+totalPoints: Integer = Stores the total points of all the players combined. This attribute is used when constructing the ranking of the league. 
+
+**Team Operations:** 
+addPlayer(player: Player) = Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. 
+removePlayer(player: Player) = Removes the player from the players list. This function is used in combination with sellPlayer. In order for the user to sell the player, the player first has to be removed from the team. 
+assignCaptains(in captain: Player, in viceCaptain: Player) = Assigns the captains, which is selected by the user, to the captain and viceCaptain attribute. 
+isComplete(): Boolean = This operation returns true if the total players in the team is at least 11. This function The system restricts the team from receiving any points unless the team has 11 players.  
+changeStartingLineup() = This operation changes the starting lineup by replacing some of the players with the bench players.
+
+**Associations:**
+
+1. 1)*Directed Association from User class to League class:*
 
 This  directed association signifies that the **User** class can access the attributes and operations of the **League** class. This is necessary due to the fact that the user will be the one creating and managing a league as shown by the operations _createLeague()_and _deleteLeague()._ Moreover, the **User** must be able to access the operations of **League** because when _createLeague()_ is executed, it will need to access _setEndDate()_ of the **League** class in order for a user to set the duration of the league tournament that they have created. Moreover, since the user is the manager of the league as shown by the _manager_ attribute of the type **User** in league, the user must be able to add and kick other users who are also participating in the league, thus strengthening the justification of this chosen association between the two classes.
 
-2)*Team composite to User:**
+2)*Team composite to User:*
 
 This association between the **User** and **Team** class signifies that a team in our game cannot exist without a user. Therefore the **User** class will have access to all the operations and attributes of the **Team** class and a **Team** type object cannot exist without a **User** object. We have shown this in our implementation by placing **Team**  as a private class of the class **User.** Similarly to the first association mentioned, it is important for this association to be a composite as auser should be the one who creates a team, deletes a team and  manages the team in which they are a manager of.
 
-3)*Shared aggregation between Team and Player:**
+3)*Shared aggregation between Team and Player:*
 
 This association between the **Team** and **Player** class signifies that a player may exist without a team (not in a team) and that a team may exist without any players. This is shown by the fact that when the **User** class calls the operation _createTeam()_ an instant of the **Team** is created and that instant has yet to contain any players . Moreover, a justification for this association to exist would be the fact that when a **Player** object is in the attribut _players_ or _bench_ in the **Team** class (signifying players being part of a squad in a team or a bench in the team), the **Team** must access the statistics of all of its players in order for _totalPoints_ to be computed as well as in order for the team to recognize which players are injured and which players they have as captain; this is shown through the attributes of the **Player** class.
 
-4)*Directed association from MarketPlace to player:**
+4)*Directed association from MarketPlace to player:*
 
 This association signifies that the **MarketPlace** class has access to all the attributes and operations of the **Player** class. This is very important due to the fact that a market place within our game must display all of the available players and their stats in order for a **User** to purchase (_buyPLayer()_ operation_)_  the player once they are satisfied with the statistics of the player.
 
@@ -152,7 +159,7 @@ The significance of this association is shown by the operations of the **MarketP
 
 
 
-5)*Directed association from MarketPlace to GSON library:**
+5)*Directed association from MarketPlace to GSON library:*
 
 The directed association means that the **MarketPlace** class has access to the json object which is provided by the **Gson** library. The **Gson** library parses the response, provided by the function fromJson() inside the **Gson** library, received from the api.
 
