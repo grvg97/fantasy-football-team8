@@ -39,25 +39,31 @@ From all the associations, generalizations and derivations of the class diagram 
 **User:** - The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself.
 
 **User Attributes:**
-*id : int* = Stores the id of the user. 
-username :String = Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team. 
-*password : String* = If the username and the password matches a specific user the  user will be granted access to the game with that specific user. 
-*team: Team* = This attribute holds the team object of the user so the user can access any attribute of its team using public functions. Every user can have only one team. 
-*competedLeagues: League[\*]* = This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute. 
-*hasTransferred: int* = This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. 
-*credits: int* = The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
+
+**id : int* = Stores the id of the user. 
+username :String = Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team.
+
+**password : String* = If the username and the password matches a specific user the  user will be granted access to the game with that specific user. 
+
+**team: Team* = This attribute holds the team object of the user so the user can access any attribute of its team using public functions. Every user can have only one team. 
+
+**competedLeagues: League[\*]* = This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute.
+
+**hasTransferred: int* = This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. 
+
+**credits: int* = The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
 
 **User Operations:**
-*createTeam(): Team* = This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
-*deleteTeam()* = Deletes the team in the _team_ attribute of the User, given that there is one. 
-*createLeague( name: String, manager: User, start: Date): League* = This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. The operation adds the created league to the competedLeagues list returns the created league. 
-*deleteLeague(league: League)* = The user can delete the specified league if the user is the manager of that league. 
-*joinLeague(league: League)* = The user can join the specified league and add it to its competedLeagues list. In this operation, the specified league adds the user to its &quot;competingUsers&quot; list. 
-*exitLeague(league: League)* = This operation allows the user to exit the league that is specified by the parameter. 
-*buyPlayer (player: Player)* = User buys the player if there are enough credits and then the user calls the addPlayer() operation of the team class, which adds the player to the team. 
-*sellPlayer (player: Player)* = User sells the player after the team removes the player from the &quot;bench&quot; or &quot;players&quot; list. The user gains credits based on the sold player&#39;s credit attribute. 
-*pickCaptains (Captain:Player, viceCaptain:Player)* = User picks the captain and the vice captain of the team and passes those values to the Team class so the team can assign the captains. 
-*displayTeam()* = This allows the user to display its whole team. 
+**createTeam(): Team* = This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
+**deleteTeam()* = Deletes the team in the _team_ attribute of the User, given that there is one. 
+**createLeague( name: String, manager: User, start: Date): League* = This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. The operation adds the created league to the competedLeagues list returns the created league. 
+**deleteLeague(league: League)* = The user can delete the specified league if the user is the manager of that league. 
+**joinLeague(league: League)* = The user can join the specified league and add it to its competedLeagues list. In this operation, the specified league adds the user to its &quot;competingUsers&quot; list. 
+**exitLeague(league: League)* = This operation allows the user to exit the league that is specified by the parameter. 
+**buyPlayer (player: Player)* = User buys the player if there are enough credits and then the user calls the addPlayer() operation of the team class, which adds the player to the team. 
+**sellPlayer (player: Player)* = User sells the player after the team removes the player from the &quot;bench&quot; or &quot;players&quot; list. The user gains credits based on the sold player&#39;s credit attribute. 
+**pickCaptains (Captain:Player, viceCaptain:Player)* = User picks the captain and the vice captain of the team and passes those values to the Team class so the team can assign the captains. 
+**displayTeam()* = This allows the user to display its whole team. 
  
 
 
@@ -280,6 +286,13 @@ Lastly, The user can issue the &#39;exitLeague&#39; with reference to the league
 
 Author(s): Mehmet Cetin, Sunny Dairam
 
+- the strategy that you followed when moving from the UML models to the implementation code;
+- the key solutions that you applied when implementing your system (for example, how you implemented the syntax highlighting feature of your code snippet manager, how you manage fantasy soccer matches, etc.);
+- the location of the main Java class needed for executing your system in your source code;
+- the location of the Jar file for directly executing your system;
+- the 30-seconds video showing the execution of your system (you can embed the video directly in your md file on GitHub).
+
+In this chapter you will describe the following aspects of your project:
 
 **The strategy we followed when moving the UML models to the implementation code**
 
