@@ -42,19 +42,19 @@ From all the associations, generalizations and derivations of the class diagram 
 
 **User Attributes:**
 
-1.*id : int* - Stores the id of the user. 
+1. *id : int* - Stores the id of the user. 
 
-2.*username :String* - Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team.
+2. *username :String* - Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team.
 
-3.*password : String* - If the username and the password matches a specific user the  user will be granted access to the game with that specific user. 
+3. *password : String* - If the username and the password matches a specific user the  user will be granted access to the game with that specific user. 
 
-4.*team: Team* - This attribute holds the team object of the user so the user can access any attribute of its team using public functions. Every user can have only one team. 
+4. *team: Team* - This attribute holds the team object of the user so the user can access any attribute of its team using public functions. Every user can have only one team. 
 
-5.*competedLeagues: League[\*]* - This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute.
+5. *competedLeagues: League[\*]* - This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute.
 
-6.*hasTransferred: int* - This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. 
+6. *hasTransferred: int* - This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. 
 
-7.*credits: int* - The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
+7. *credits: int* - The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
 
 
 **User Operations:**
@@ -200,19 +200,19 @@ From all the associations, generalizations and derivations of the class diagram 
 
 **Associations:**
 
-1)*Directed Association from User class to League class:*
+1. *Directed Association from User class to League class:*
 
 This  directed association signifies that the **User** class can access the attributes and operations of the **League** class. This is necessary due to the fact that the user will be the one creating and managing a league as shown by the operations _createLeague()_and _deleteLeague()._ Moreover, the **User** must be able to access the operations of **League** because when _createLeague()_ is executed, it will need to access _setEndDate()_ of the **League** class in order for a user to set the duration of the league tournament that they have created. Moreover, since the user is the manager of the league as shown by the _manager_ attribute of the type **User** in league, the user must be able to add and kick other users who are also participating in the league, thus strengthening the justification of this chosen association between the two classes.
 
-2)*Team composite to User:*
+2. *Team composite to User:*
 
 This association between the **User** and **Team** class signifies that a team in our game cannot exist without a user. Therefore the **User** class will have access to all the operations and attributes of the **Team** class and a **Team** type object cannot exist without a **User** object. We have shown this in our implementation by placing **Team**  as a private class of the class **User.** Similarly to the first association mentioned, it is important for this association to be a composite as auser should be the one who creates a team, deletes a team and  manages the team in which they are a manager of.
 
-3)*Shared aggregation between Team and Player:*
+3. *Shared aggregation between Team and Player:*
 
 This association between the **Team** and **Player** class signifies that a player may exist without a team (not in a team) and that a team may exist without any players. This is shown by the fact that when the **User** class calls the operation _createTeam()_ an instant of the **Team** is created and that instant has yet to contain any players . Moreover, a justification for this association to exist would be the fact that when a **Player** object is in the attribut _players_ or _bench_ in the **Team** class (signifying players being part of a squad in a team or a bench in the team), the **Team** must access the statistics of all of its players in order for _totalPoints_ to be computed as well as in order for the team to recognize which players are injured and which players they have as captain; this is shown through the attributes of the **Player** class.
 
-4)*Directed association from MarketPlace to player:*
+4. *Directed association from MarketPlace to player:*
 
 This association signifies that the **MarketPlace** class has access to all the attributes and operations of the **Player** class. This is very important due to the fact that a market place within our game must display all of the available players and their stats in order for a **User** to purchase (_buyPLayer()_ operation_)_  the player once they are satisfied with the statistics of the player.
 
@@ -220,7 +220,7 @@ The significance of this association is shown by the operations of the **MarketP
 
 
 
-5)*Directed association from MarketPlace to GSON library:*
+5. *Directed association from MarketPlace to GSON library:*
 
 The directed association means that the **MarketPlace** class has access to the json object which is provided by the **Gson** library. The **Gson** library parses the response, provided by the function fromJson() inside the **Gson** library, received from the api.
 
