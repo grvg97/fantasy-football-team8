@@ -39,6 +39,7 @@ public class Player {
     public boolean isInjured() {
         return isAvailable.equals("i");
     }
+
     public String getPositionName() {
         String position = "NaN";
         switch(this.position) {

@@ -18,10 +18,13 @@ public class User {
 
     public String getUsername() {return this.username;}
     public String getPassword() {return this.password; }
+    public String getTeamName() { return this.team.getName(); }
+
 
     public void createTeam(String name)   {
         this.team = new Team(name, this.id);
     }
+    public boolean hasTeam() { return this.team != null; }
 
     public void deleteTeam() {
         // after this, if there is no reference to the object,
@@ -29,23 +32,7 @@ public class User {
         this.team = null;
     }
 
-    public boolean hasTeam() {
-        return this.team != null;
-    }
-
-    public void setId(int id) { this.id = id;}
-    // Buy player <-> there are enough credits(user's credits don't exceed to negative)
-    public void buyPlayer(Player player) {
-        if ((this.credits - player.getCost()) >= 0) {
-            this.team.addPlayer(player);
-            this.credits -= player.getCost();
-        }
-        else {
-            System.out.println("Not enough credits to buy player");
-        }
-        System.out.println("Credits: " + this.credits);
-    }
-
+    // This function shows a list of all players currently in the user's team.
     public void displayTeam() {
         System.out.println("Starting line up 4-3-3: ");
         for(Player player : this.team.players)
@@ -60,18 +47,31 @@ public class User {
         return this.team.getTotalPoints();
     }
 
-    public void pickCaptains(Player captain, Player viceCaptain) {
-        this.team.assignCaptains(captain, viceCaptain);
+    // This function handles the buying of players off the market. Credits may not go below 0.
+    public void buyPlayer(Player player) {
+        if ((this.credits - player.getCost()) >= 0) {
+            this.team.addPlayer(player);
+            this.credits -= player.getCost();
+        }
+        else {
+            System.out.println("Not enough credits to buy player");
+        }
+        System.out.println("Credits: " + this.credits);
     }
 
-    public String getTeamName() { return this.team.getName(); }
-
-    // Remove player from team and sell it
+    // This function handles the selling of players and removes it from the User's team.
     public void sellPlayer(Player player) {
         this.team.removePlayer(player);
         this.credits += player.getCost();
     }
 
+    public void pickCaptains(Player captain, Player viceCaptain) {
+        this.team.assignCaptains(captain, viceCaptain);
+    }
+
+    public void setId(int id) { this.id = id;}
+
+    // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
     // User can set the end date of any league as long as that user is
     // the manager of the specified league
     public void setEndOfLeague(Date endDate, League league) { }

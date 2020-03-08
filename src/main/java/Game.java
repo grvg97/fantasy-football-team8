@@ -16,8 +16,10 @@ public class Game {
 
     Game() throws IOException {
         this.marketPlace = new Gson().fromJson(this.getResponseBody("https://fantasy.premierleague.com/api/bootstrap-static/"), MarketPlace.class);
+
         String userFileName = "DatabaseUser.json";
         String leagueFileName = "DatabaseLeague.json";
+
         try {
             userDatabase = new Gson().fromJson(new FileReader(userFileName), UserDatabase.class);
             leagueDatabase = new Gson().fromJson(new FileReader(leagueFileName), LeagueDatabase.class);
@@ -37,7 +39,7 @@ public class Game {
     }
 
 
-    // Implemented for bonus
+    // This function handles the API call to get all the player data. Also for the bonus.
     private String getResponseBody(String apiURL) throws IOException {
         BufferedReader reader;
         String line;
@@ -54,6 +56,7 @@ public class Game {
         return responseBody.toString();
     }
 
+    // This function finds the players in the MarketPlace.
     private void choosePlayers(User user, int amount, int position) {
         this.marketPlace.showPlayersWithPosition(position);
         System.out.println("Choose the players at position " + position + ". Choose exactly " + amount + " players.");
@@ -62,7 +65,8 @@ public class Game {
         }
     }
 
-    public void constructTeam(User user) {
+    // This constructs a generic 1-4-3-3 formation team for the tutorial.
+    private void constructTeam(User user) {
         int DEF = 4; int MID = 3; int FOR = 3; // Formation: 4-3-3
         int BENCH = 4; int GK = 1;
 
@@ -85,7 +89,8 @@ public class Game {
         }
     }
 
-    public User authenticateUser() throws IOException {
+    // This function handles the user login/register functionality.
+    public User authenticateUser() {
         System.out.println("Welcome to Fantasy Football!");
         System.out.println("Please enter a username: ");
         String username = this.scanner.next();
@@ -103,32 +108,34 @@ public class Game {
         return user;
     }
 
-    public void beginTutorial(User user) {
+    // This function handles the tutorial. If the user just registered he gets guided through a "tutorial".
+    private void beginTutorial(User user) {
         // Creation of team start of the game
         System.out.println("Please give your team a name: ");
         user.createTeam(this.scanner.next());
 
         // Select players and add them to the team
-        constructTeam(user);
+        this.constructTeam(user);
 
         League globalLeague = this.leagueDatabase.getGlobalLeague();
         globalLeague.addUser(user);
     }
 
-    public void start(User user) throws IOException, InterruptedException {
+    public void start(User user) throws IOException {
         if(!user.hasTeam())
-            beginTutorial(user);
+            this.beginTutorial(user);
 
-        // Final Team
+        // Final Team and display the Global League ranking.
         user.displayTeam();
         System.out.println("\n");
 
         League globalLeague = this.leagueDatabase.getGlobalLeague();
         globalLeague.showRanking();
-        end(user);
+        this.end(user);
     }
 
-    public void end(User user) throws IOException {
+    // This function handles the saving of changes that occurred during the program.
+    private void end(User user) throws IOException {
         // At exit save userDB
         BufferedWriter writer = new BufferedWriter(new FileWriter("DatabaseUser.json"));
         writer.write(new Gson().toJson(this.userDatabase));

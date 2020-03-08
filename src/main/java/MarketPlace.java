@@ -10,6 +10,7 @@ public class MarketPlace {
         this.players = players;
     }
 
+    // The function prints all players in a list.
     public void showPlayers() {
         for(Player player : players) {
             System.out.println(player.getId() + " " + player.getFullName() + " " + player.getCost());
