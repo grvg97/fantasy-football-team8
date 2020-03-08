@@ -36,7 +36,7 @@ From all the associations, generalizations and derivations of the class diagram 
 **Figure1 -** Fantasy Soccer Class Diagram
 
 | <center>**Class**</center> |
-| --- |
+| --- | --- |
 | **User** | The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself. |
 | <center>**Attributes**</center> |
 | *id : int* = Stores the id of the user. |
