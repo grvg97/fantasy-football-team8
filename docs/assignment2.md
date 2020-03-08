@@ -322,13 +322,13 @@ Author(s): Gilbert Van Gerven &amp; Ricardo Burgos Lara:
 
 **Figure 5 -** Sequence diagram of the task *Team Creation*
 
-This diagram shows the interaction between the game main class and the classes User, Team, Market and Player (represented by their corresponding lifelines). After user authentication and on successful login, an instance of User is created. The first action the user must perform is to create a new team by calling the &#39;createTeam&#39; method. An empty team is created for the user with no players and 1000 initial credits are awarded to the newly created team; this team is stored as one of the class attributes. To populate a team with players, a request message from the user to the team is executed (buyPlayer with the player&#39;s id as argument), a validation of the user&#39;s credits takes place and if the credit&#39;s are enough to buy the requested player (this is represented by combined fragment with label &#39;alt&#39;), then the transaction is granted; otherwise a message is returned to inform the user of insufficient credits (lower fragment) and user state returns to idle.
+This diagram shows the interaction between the game main class and the classes **User**, **Team**, **Market** and **Player** (represented by their corresponding lifelines). After user authentication and on successful login, an instance of User is created. The first action the user must perform is to create a new team by calling the *createTeam* method. An empty team is created for the user with no players and 1000 initial credits are awarded to the newly created team; this team is stored as one of the class attributes. To populate a team with players, a request message from the user to the team is executed (*buyPlayer* with the player&#39;s id as argument), a validation of the user&#39;s credits takes place and if the credit&#39;s are enough to buy the requested player (this is represented by combined fragment with label &#39;alt&#39;), then the transaction is granted; otherwise a message is returned to inform the user of insufficient credits (lower fragment) and user state returns to idle.
 
-The transaction takes place between the classes Team, Market and Player. Once the transaction is validated, credits are deducted and the instance of Team sends a message to the Market class (addPlayer), which is populated with all the players from all teams in the league. From its side, the Market instance uses its method getPlayer(playerID) to retrieve the requested player based on its unique identification code from a list of available instances of the class Player which were automatically fetched from the Premier League&#39;s website API, this list is stored as an instance attribute list named &#39;players&#39;. The Market finally returns the requested player object to the team, where it is stored as one element in an array list of either active (on field) or bench players.
+The transaction takes place between the classes **Team**, **Market** and **Player**. Once the transaction is validated, credits are deducted and the instance of Team sends a message to the Market class (*addPlayer*), which is populated with all the players from all teams in the league. From its side, the **Market** instance uses its method *getPlayer(playerID)* to retrieve the requested player based on its unique identification code from a list of available instances of the class **Player** which were automatically fetched from the Premier League&#39;s website API, this list is stored as an instance attribute list named &#39;players&#39;. The Market finally returns the requested player object to the team, where it is stored as one element in an array list of either active (on field) or bench players.
 
-Moreover, the user is also capable of requesting a total point count to the team, by sending the message &#39;getTeamTotalPoints&#39;. The team instance, in turn, forwards this message to all of its players (by iterating the players and bench Array Lists and asking them to report their points (using the getTotalPoints method) and adding them together. The result is returned back to the user from the team instance since it is the return value for the first called method &#39;getTeamTotalPoints&#39;.
+Moreover, the user is also capable of requesting a total point count to the team, by sending the message *getTeamTotalPoints()*. The team instance, in turn, forwards this message to all of its players (by iterating the players and bench Array Lists and asking them to report their points (using the getTotalPoints method) and adding them together. The result is returned back to the user from the team instance since it is the return value for the first called method *getTeamTotalPoints*.
 
-Lastly, the user can also delete their own team by calling the &#39;deleteTeam()&#39; method. The selected players and total points won by the team are lost.
+Lastly, the user can also delete their own team by calling the *deleteTeam()* method. The selected players and total points won by the team are lost.
 
 ### **Sequence Diagram: League Competition**
 
@@ -338,13 +338,13 @@ Lastly, the user can also delete their own team by calling the &#39;deleteTeam()
 **Figure 6 -** Sequence diagram of the task *League Competition*
 
 
-This sequence diagram represents the interaction between the classes User, League, Team and Player (represented by their corresponding lifelines). The user can join a specific league by providing the name of the league they want to join (This calls the method &#39;joinLeague&#39; from User class). The League instance then executes its &#39;addUser&#39; method which stores the requesting user object in an ArrayList object attribute. In this way an user becomes a member of a league.
+This sequence diagram represents the interaction between the classes **User**, **League**, **Team** and **Player** (represented by their corresponding lifelines). The user can join a specific league by providing the name of the league they want to join (This calls the method *joinLeague&* from **User** class). The **League** instance then executes its *addUser* method which stores the requesting user object in an ArrayList object attribute. In this way an user becomes a member of a league.
 
-Users can also start their own leagues by issuing the User class method &#39;createLeague&#39; which takes as arguments a string with the name of the league and an instance of the class User as league manager. A new instance of the class League is returned to the user for which he is the manager. The newly created League instance is stored in the &#39;competedList&#39; array list which is an attribute of the User class.
+Users can also start their own leagues by issuing the **User** class method *createLeague* which takes as arguments a string with the name of the league and an instance of the class **User** as league manager. A new instance of the class **League** is returned to the user for which he is the manager. The newly created **League** instance is stored in the *competedList* array list which is an attribute of the **User** class.
 
-The &#39;computeRanking&#39; method of the League class computes the League rankings based on the total points won by each team on the league. It relies on &#39;getTotalPoints&#39; method to retrieve the total team points. After the rankings are computed, they are reported to the user on display.
+The *computeRanking* method of the League class computes the League rankings based on the total points won by each team on the league. It relies on *getTotalPoints* method to retrieve the total team points. After the rankings are computed, they are reported to the user on display.
 
-Lastly, The user can issue the &#39;exitLeague&#39; with reference to the league name to be withdrawn from. Once the League instance receives this message, it executes the method named &#39;removeUser&#39; with an User object argument. This action will remove the specified User object from the array list attribute &#39;users&#39;.
+Lastly, The user can issue the *exitLeague* with reference to the league name to be withdrawn from. Once the League instance receives this message, it executes the method named *removeUser* with an User object argument. This action will remove the specified User object from the array list attribute *users*.
 
 ## **Implementation**
 
@@ -362,17 +362,17 @@ In this chapter you will describe the following aspects of your project:
 
 We started off making the models of the classes and the associated class diagram. We then implemented them in Java adjusting our models iteratively along the way.
 
-### **Class User**
+**Class User**
 
 We implemented the class user first and added all the attributes and operations that were already in the class diagram. After that we implemented the operations that were connected in order to implement the feature that was given from the first assignment (feature 2). After that we implemented the features in the order of 6, 11.1, 12 and 1. The implemented features were connected to each other.
 
-### **Class League:** We have coded the private class league inside the user class.
+**Class League:** We have coded the private class league inside the user class.
 
-### **Class MarketPlace**
+**Class MarketPlace**
 
 We coded the MarketPlace class and added the attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We have also converted the json string to a json object and stored it in the marketplace class in the &quot;players&quot; list. We used that list for the user to store
 
-### **Class League**
+**Class League**
 
 The League class was implemented by adding attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We add users to the global league using the addUser() function which is one of the core functions that we have used when implementing the features.
 
