@@ -57,7 +57,7 @@ From all the associations, generalizations and derivations of the class diagram 
 7. *credits: int* - The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
 
 
-### **User Operations:**
+###**User Operations:**
 
 1. *createTeam(): Team* - This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
 
@@ -87,7 +87,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 ### **MarketPlace Attributes:**
 
-1. *players: Player[\*]* - This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. 
+1. *players: Player[\*] * - This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. 
 
 ### **MarketPlace Operations:**
 
@@ -381,6 +381,8 @@ The League class was implemented by adding attributes and the operations that we
 ### **Logging in/ registering the user**
 
 The user can login and register by inputting a username and password. If the username is not presented in the User Database the user instead gets added and registered. This problem was solved by the _key solution_ of converting an object to a json file using the fromJson() from the **Gson** library and storing that file locally inside the database directory.
+
+In a class called **Game**, a classs with the main purpose of launching all the necessary class operations in order, when the user enters the game for the first time, a new Json file is instantiated in a specific directory. In order to identify someone as a new user we have a class under the name of **UserDatabase** which contains a setter and getter method *addUser(user)* and *authUser(String Username,String Password)*, *authUser* will attempt to get a an entry in the Json file with the matching User name and password, as it finds out that no such entry exists, the *addUser()* method will be run and adds a User object in Json form to Json object that is in a specified path (created dynamically at the first runtime of the system). If the user have already logged in previously, it will authenticate the user upon the confirmation of an existing (user,password) entry in the created Json file.
 
 ### **Getting the list of Premier League Players from the API**
 
