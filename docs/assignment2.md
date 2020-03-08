@@ -47,16 +47,16 @@ From all the associations, generalizations and derivations of the class diagram 
 | hasTransferred: int = This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. |
 | credits: int = The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. |
 | **Operations** |
-| createTeam(): Team = This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.** |
-| deleteTeam() = Deletes the team in the _team_ attribute of the User, given that there is one. |
-| createLeague( name: String, manager: User, start: Date): League = This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. The operation adds the created league to the competedLeagues list returns the created league. |
-| deleteLeague(league: League) = The user can delete the specified league if the user is the manager of that league. |
-| joinLeague(league: League) = The user can join the specified league and add it to its competedLeagues list. In this operation, the specified league adds the user to its &quot;competingUsers&quot; list. |
-| exitLeague(league: League) = This operation allows the user to exit the league that is specified by the parameter. |
-| buyPlayer (player: Player) = User buys the player if there are enough credits and then the user calls the addPlayer() operation of the team class, which adds the player to the team. |
-| sellPlayer (player: Player) = User sells the player after the team removes the player from the &quot;bench&quot; or &quot;players&quot; list. The user gains credits based on the sold player&#39;s credit attribute. |
-| pickCaptains (Captain:Player, viceCaptain:Player) = User picks the captain and the vice captain of the team and passes those values to the Team class so the team can assign the captains. |
-| displayTeam() = This allows the user to display its whole team. |
+| *createTeam()*: Team = This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.** |
+| *deleteTeam()* = Deletes the team in the _team_ attribute of the User, given that there is one. |
+| *createLeague( name: String, manager: User, start: Date)*: League = This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. The operation adds the created league to the competedLeagues list returns the created league. |
+| *deleteLeague(league: League)* = The user can delete the specified league if the user is the manager of that league. |
+| *joinLeague(league: League)* = The user can join the specified league and add it to its competedLeagues list. In this operation, the specified league adds the user to its &quot;competingUsers&quot; list. |
+| *exitLeague(league: League)* = This operation allows the user to exit the league that is specified by the parameter. |
+| *buyPlayer (player: Player)* = User buys the player if there are enough credits and then the user calls the addPlayer() operation of the team class, which adds the player to the team. |
+| *sellPlayer (player: Player)* = User sells the player after the team removes the player from the &quot;bench&quot; or &quot;players&quot; list. The user gains credits based on the sold player&#39;s credit attribute. |
+| *pickCaptains (Captain:Player, viceCaptain:Player)* = User picks the captain and the vice captain of the team and passes those values to the Team class so the team can assign the captains. |
+| *displayTeam()* = This allows the user to display its whole team. |
 |   |
 
 
