@@ -30,17 +30,17 @@ The systems of the game we are implementing  are originally inspired by the [EPL
 
 Below we have given the basic rules of the game which are necessary in order for the user to participate and in order for the game to work:
 
-1. 1)A team must consist of at least 1 goalkeeper, 4 defenders, 3 midfielders and 3 forwards every week.
-2. 2)Team must have at least 11 (starting) players and may have no more than 15 total players.
-3. 3)All players must  be placed in their corresponding positions
-4. 4)Teams can no longer be modified when the deadline(Friday 7pm before the start of the game of the week) reaches.
+1)A team must consist of at least 1 goalkeeper, 4 defenders, 3 midfielders and 3 forwards every week.
+2)Team must have at least 11 (starting) players and may have no more than 15 total players.
+3)All players must  be placed in their corresponding positions
+4)Teams can no longer be modified when the deadline(Friday 7pm before the start of the game of the week) reaches.
 
 After Monday 6pm the users can edit their teams again.
 
-1. 5)Teams will be given an initial credit of 1000, the user may spend the 1000 credits as they wish.
-2. 6)Each team is given 1 free transfer every week, 1 transfer counts as selling/buying players from the market, selling players returns the number of credits they are valued at to your team, buying will deduct credits further transfers will cost 4 points from the accumulated team points, the user may make any number of transfers as long as it does not violate credit limit and team points.
+5)Teams will be given an initial credit of 1000, the user may spend the 1000 credits as they wish.
+6)Each team is given 1 free transfer every week, 1 transfer counts as selling/buying players from the market, selling players returns the number of credits they are valued at to your team, buying will deduct credits further transfers will cost 4 points from the accumulated team points, the user may make any number of transfers as long as it does not violate credit limit and team points.
 
-1. 7)Bench players will receive half points, captains will receive double points.
+7)Bench players will receive half points, captains will receive double points.
 
 
 
