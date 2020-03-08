@@ -262,7 +262,7 @@ Author(s): Ricardo Burgos Lara, Gilbert van Gerven
 
 ### **User Behavior:**
 
-![Image description](https://i.imgur.com/M7tLq29.png)
+![Image description](https://imgur.com/0hXM6xp)
 ** **
 
 **Figure 3 -** User Behavioural State-Machine Diagram
