@@ -1,7 +1,7 @@
 #
 # Assignment 2
 
-**Implemented features:**
+##**Implemented features:**
 
 The following table consists of all the feature requirements that we will be implementing in this stage of our development. To assist us in making a decision of which features to implement we have utilised the **MoSCoW**  methodology and have categorized our features into different levels of priorities. Furthermore, the features that are listed below includes all of the &quot;must have&quot; **(M)** features that are highly necessary in order to shape the foundation of our system and give the user and the developers a definite idea of how the final product of our game would look visually. Additionally, we have added some of the &quot;should have&quot; features **(S),** in order for us to test the functionalities that our game would have when it is at a minimal working stage. The features below are sorted in the level of priority in which we will implement them.
 
@@ -13,17 +13,17 @@ The following table consists of all the feature requirements that we will be imp
 | F11.1 | League tournament | The system shall automatically add teams to the Global League upon the team&#39;s creation. All teams joining a league start off with zero points for that league.   **Motivation:** This is the process in which teams can receive points based on the performance of the players in their team, thus allowing the system to rank each team in the global league and in separate outside leagues. Moreover, since every team is automatically in a global league, this allows for the global league to accumulate the points of each team from the point of creation to the end of season. These accumulated points will be the value of the team&#39;s overall points. |
 | F12 | Display league rankings | The Game shall display the league ranking to the user upon request from the user. The league ranking will consist of the names of different teams in order of their standing, the current match week and the points of each team.  **Motivation:** This allows the user to see how their  team is ranked against other teams in their respective league. |
 
-**Used modeling tool:**
+###**Used modeling tool:**
 
 For our UML diagrams we have used Papyrus, although we faced numerous technical difficulties with the software due to instability involving the graphics, it was still much prefered than draw.io due to the completeness of the nodes and edges that the software provides. We have briefly mentioned every limitations caused by the technical difficulties from papyrus in our UML diagrams that prevented us from expressing the correct UML notations that we wanted to express.
 
 [Link to Papyrus](https://www.eclipse.org/papyrus/download.html)
 
-**Class diagram:**
+##**Class diagram:**
 
 Authors: Mehmet Cetin, Gilbert van Gerven, Sunny Dairam
 
-**Introduction:**
+###**Introduction:**
 
 The class diagram that we have shown in the figure above represents the associations between all of the classes that our game system comprises. Through the associations of the classes we have a clearer picture on how the operations and attributes connect with one another. Moreover, we can also see the dependencies that some classes have to another class. For instance, the fact that the **Team** class has a shared aggregation with the player class as the team class requires instants of the **Player** class in order to buy players and fill the team with players.
 
@@ -35,12 +35,12 @@ From all the associations, generalizations and derivations of the class diagram 
 
 **Figure1 -** Fantasy Soccer Class Diagram
 
-**Class:**
+###**Class:**
 
 **User** - The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself.
 
 
-**User Attributes:**
+####**User Attributes:**
 
 1. *id : int* - Stores the id of the user. 
 
@@ -57,7 +57,7 @@ From all the associations, generalizations and derivations of the class diagram 
 7. *credits: int* - The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
 
 
-**User Operations:**
+###**User Operations:**
 
 1. *createTeam(): Team* - This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
 
@@ -81,15 +81,15 @@ From all the associations, generalizations and derivations of the class diagram 
  
 
 
-**Class:**
+###**Class:**
 
 **MarketPlace** - This class stores the players fetched from the api using Gson. It enables the user to buy and add the players to its team by showing the players with certain specifications.
 
-**MarketPlace Attributes:**
+###**MarketPlace Attributes:**
 
 1. *players: Player[\*] * - This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. 
 
-**MarketPlace Operations:**
+###**MarketPlace Operations:**
 
 1. *showPlayers()* - This operation displays the players no matter which position they are from. This function is specifically used when constructing the bench players because the bench players don&#39;t have any restrictions for positions.
 
@@ -100,12 +100,12 @@ From all the associations, generalizations and derivations of the class diagram 
 
 
 
-**Class:**
+###**Class:**
 
 **League:** - This class represents a league that holds the different users who are competing in the league with their teams. Within the league class, the points of each Teams that every user owns is stored. Through this we are able to compute the ranking and display every user (manager) involved in the league in order of the total points they have attained in between the time they have joined the league to the end date of the league. 
 
 
-**League Attributes:**
+###**League Attributes:**
 
 1. *id*: int = Stores the id of the league and allows the created leagues to be unique. 
 
@@ -122,7 +122,7 @@ From all the associations, generalizations and derivations of the class diagram 
 7. *competingUsers: User[\*]* - Stores the users that are participating/competing in the league. 
 
 
-**League Operations:**
+###**League Operations:**
 
 1. *addUser(In user: User)* - This operation adds the user to the &quot;competingUsers&quot; list and adds the user&#39;s team and team points to the teamPoints HashMap. 
 
@@ -135,12 +135,12 @@ From all the associations, generalizations and derivations of the class diagram 
 
 
 
-**Class:**
+###**Class:**
 
 **Player** - This class represents a player. A player has many attributes and stats based on football games played every week. All of the player attributes are fetched from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) and dependent on live games. 
 
 
-**Player Attributes:**
+###**Player Attributes:**
 
 1. *id: int* - A unique integer is assigned to this attribute with the data that was fetched from the api.
 
@@ -155,19 +155,19 @@ From all the associations, generalizations and derivations of the class diagram 
 6. *statistics: String, int* - The statistics are the attributes that are fetched from the api and assigned to the attributes. All of them are private and almost all of them are used in the &quot;getStats()&quot; function. 
 
 
-**Player Operations:**
+###**Player Operations:**
 
 *getStats(): HashMap \&lt; String, Integer\&gt;* = This function allows the client code to retrieve the statistics of the player in a structural manner. These stats can be used to calculate the points that the player has obtained so far. 
 
 
 
 
-**Class**
+###**Class**
 
 **-Team:** This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. 
 
 
-**Team Attributes:**
+###**Team Attributes:**
 
 1. *id: int* - Stores unique integer
 
@@ -184,7 +184,7 @@ From all the associations, generalizations and derivations of the class diagram 
 7. *totalPoints: Integer* - Stores the total points of all the players combined. This attribute is used when constructing the ranking of the league. 
 
 
-**Team Operations:** 
+###**Team Operations:** 
 
 1. *addPlayer(player: Player)* - Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. 
 
@@ -198,7 +198,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 
 
-**Associations:**
+###**Associations:**
 
 1) *Directed Association from User class to League class:*
 
@@ -226,7 +226,7 @@ The directed association means that the **MarketPlace** class has access to the 
 
 **       **
 
-**Object diagram**
+###**Object diagram**
 
 Author(s): Mehmet Cetin, Sunny Dairam
 ![Image description](https://i.imgur.com/M7tLq29.png)
@@ -257,11 +257,11 @@ There is also a relation between the market object and the players object. The m
 
 The market object receives the players from the api using the method of the **Gson** class. The link between the gson object and the market object specifies that the gson links the players fetched from the api call to the &quot;player&quot; list using the fromJson() method.
 
-**State machine diagrams**
+##**State machine diagrams**
 
 Author(s): Ricardo Burgos Lara, Gilbert van Gerven
 
-**User Behavior:**
+###**User Behavior:**
 
  ![Image description](https://i.imgur.com/M7tLq29.png)
 **Figure3 -** User Behavioural State-Machine Diagram
@@ -278,7 +278,7 @@ Finally from the _idle state,_ the even _createLeague()_ will trigger a transiti
 
 Overall, the **User** state machine is responsible for the initial steps that a user must take in order to reach eligibility in participating in the Fantasy Soccer game. As shown through creation of a Team and the optional step of creating a custom league. Moreover, the **User** state machine provides a platform for the user to make further modifications to the team as shown when the Userobject enters the _Team Management_ state via the event _displayTeam()._
 
-**Team Management Behavior:**
+###**Team Management Behavior:**
 
 ![Image description](https://i.imgur.com/uRhVxAM.png)
 ** **
@@ -309,11 +309,11 @@ Notice that the _Initialize_ state of this state-machine is very essential as th
 
 
 
-**Sequence diagrams**
+##**Sequence diagrams**
 
 Author(s): Gilbert Van Gerven &amp; Ricardo Burgos Lara:
 
-**Sequence Diagram: Team Creation**
+###**Sequence Diagram: Team Creation**
 
 ![Image description](https://i.imgur.com/fcO0nsR.png)
 
@@ -325,7 +325,7 @@ Moreover, the user is also capable of requesting a total point count to the team
 
 Lastly, the user can also delete their own team by calling the &#39;deleteTeam()&#39; method. The selected players and total points won by the team are lost.
 
-**Sequence Diagram: User - League Interaction**
+###**Sequence Diagram: User - League Interaction**
 
 ![Image description](https://i.imgur.com/ZvHHmi8.png)
 
@@ -337,7 +337,7 @@ The &#39;computeRanking&#39; method of the League class computes the League rank
 
 Lastly, The user can issue the &#39;exitLeague&#39; with reference to the league name to be withdrawn from. Once the League instance receives this message, it executes the method named &#39;removeUser&#39; with an User object argument. This action will remove the specified User object from the array list attribute &#39;users&#39;.
 
-**Implementation**
+##**Implementation**
 
 Author(s): Mehmet Cetin, Sunny Dairam
 
@@ -349,56 +349,56 @@ Author(s): Mehmet Cetin, Sunny Dairam
 
 In this chapter you will describe the following aspects of your project:
 
-**The strategy we followed when moving the UML models to the implementation code**
+###**The strategy we followed when moving the UML models to the implementation code**
 
 We started off making the models of the classes and the associated class diagram. We then implemented them in Java adjusting our models iteratively along the way.
 
-**Class User**
+###**Class User**
 
 We implemented the class user first and added all the attributes and operations that were already in the class diagram. After that we implemented the operations that were connected in order to implement the feature that was given from the first assignment (feature 2). After that we implemented the features in the order of 6, 11.1, 12 and 1. The implemented features were connected to each other.
 
-**Class League:** We have coded the private class league inside the user class.
+###**Class League:** We have coded the private class league inside the user class.
 
-**Class MarketPlace**
+###**Class MarketPlace**
 
 We coded the MarketPlace class and added the attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We have also converted the json string to a json object and stored it in the marketplace class in the &quot;players&quot; list. We used that list for the user to store
 
-**Class League**
+###**Class League**
 
 The League class was implemented by adding attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We add users to the global league using the addUser() function which is one of the core functions that we have used when implementing the features.
 
-**Key solutions applied when implementing the system**
+###**Key solutions applied when implementing the system**
 
-**Logging in/ registering the user**
+###**Logging in/ registering the user**
 
 The user can login and register by inputting a username and password. If the username is not presented in the User Database the user instead gets added and registered. This problem was solved by the _key solution_ of converting an object to a json file using the fromJson() from the **Gson** library and storing that file locally inside the database directory.
 
-**Getting the list of Premier League Players from the API**
+###**Getting the list of Premier League Players from the API**
 
 We get all the players and their stats from the API link: [https://fantasy.premierleague.com/api/bootstrap-static/](https://fantasy.premierleague.com/api/bootstrap-static/)
 
 We fetched the json string using a get request from the HttpUrlConnection library from java.net. After getting the json string, we used the Gson library&#39;s fromJson function to convert the given json string to a json object; which in this case is the MarketPlace class.
 
-**User creating the team**
+###**User creating the team**
 
 The user is able to create a team apon registering himself. While the team is being constructed the user is asked for a team name and then gets a list of players presented to him. Then, the user can choose between the players based on their position which is in the order of goalkeeper, defender, midfielder and forwards. After the user creates its team, the team will be added to the global league automatically.
 
-**The League and User Databases**
+###**The League and User Databases**
 
 We have 2 separate databases in our system. The purpose of this is for the information of the game to be maintainable. This makes the game a local multiplayer game so keeping track of all users and leagues is a must. In the user database we store a list of all users that are registered which are using our system. In the league database we store all created leagues of the system including the global league, which is initially inside the league database file
 
-**The location of the main Java class needed for executing our system is found at:**
+###**The location of the main Java class needed for executing our system is found at:**
 
 fantasy-football-team8\src\main\java\Main.java
 
-**The location of the jar file to directly execute the system is:** fantasy-football-team8\out\artifacts\software\_design\_vu\_2020\_jar\software-design-vu-2020.jar
+###**The location of the jar file to directly execute the system is:** fantasy-football-team8\out\artifacts\software\_design\_vu\_2020\_jar\software-design-vu-2020.jar
 
 _A 30-second video showing the execution of our system:_
 
 [https://www.youtube.com/watch?v=MtKv0an2e7c](https://www.youtube.com/watch?v=MtKv0an2e7c)
 
-**References**
 
-References, if needed.
+
+
 
 #
