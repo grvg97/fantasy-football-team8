@@ -35,7 +35,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 **Figure1 -** Fantasy Soccer Class Diagram
 
-| ->**Class**<- |
+| <center>**Class**</center> |
 | --- |
 | **User** | The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself. |
 | ->**Attributes**<- |
@@ -62,7 +62,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 
 
-| ->**Class**<- |
+| <center>**Class**</center> |
 | --- |
 | **MarketPlace** | This class stores the players fetched from the api using Gson. It enables the user to buy and add the players to its team by showing the players with certain specifications. |
 | ->**Attributes**<- |
@@ -97,7 +97,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 
 
-| ->**Class**<- |
+| <center>**Class**</center> |
 | --- |
 | **Player** | This class represents a player. A player has many attributes and stats based on football games played every week. All of the player attributes are fetched from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) and dependent on live games. |
 | ->**Attributes**<- |
@@ -112,7 +112,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 
 
-| ->**Class**<- |
+| <center>**Class**</center> |
 | --- |
 | **-Team** | This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. |
 | ->**Attributes**<- |
