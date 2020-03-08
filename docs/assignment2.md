@@ -32,6 +32,7 @@ Furthermore, through compositions, the class diagram illustrates the classes who
 From all the associations, generalizations and derivations of the class diagram we can see that there are separate components that are connected and functioning as one unit; thus the very definition of a system.
 
 ![Image](https://i.imgur.com/sSJklWs.png)
+Link to image of the diagram: [Imgur](https://imgur.com/vdm4Cxx)
 
 **Figure1 -** Fantasy Soccer Class Diagram
 
