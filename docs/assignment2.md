@@ -262,8 +262,9 @@ Author(s): Ricardo Burgos Lara, Gilbert van Gerven
 
 ### **User Behavior:**
 
-![**Figure3 -** User Behavioural State-Machine Diagram](https://i.imgur.com/M7tLq29.png)
-
+![Image description](https://i.imgur.com/M7tLq29.png)
+**Figure3 -** User Behavioural State-Machine Diagram
+** **
 
 
 The Following state machine diagram represents the different states that a **User** class object can take during the tasks of creating a new team and a new league. For this state machine we have emphasized more on the states that the **User** object can take when a new user has joined the game and creates a new team. Thus, the user object essentially represents a stakeholder of our system (the user). This is due to the fact that this is a required feature for our first minimal implementation of the Fantasy Soccer Game. The entry activity of this User state machine is to show the main menu of the game as well as load the values of the attributes of the **User** type object, where the user will be displayed with the choice of buttons linked to the operations _createLeague() , createTeam(), displayTeam() and deleteTeam()_  as well as having the attribute values loaded or initialized if the **User** object is new_._ However, due to technical issues related to the papyrus software, we were unable to display the Entry, Do and Exit activities of the state machine we represent.
