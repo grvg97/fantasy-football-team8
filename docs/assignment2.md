@@ -67,7 +67,7 @@ From all the associations, generalizations and derivations of the class diagram 
 | --- |
 | **MarketPlace** | This class stores the players fetched from the api using Gson. It enables the user to buy and add the players to its team by showing the players with certain specifications. |
 | **Attributes** |
-| players: Player[\*]_ = This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. |
+| players: Player[\*] = This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. |
 | **Operations** |
 | showPlayers() = This operation displays the players no matter which position they are from. This function is specifically used when constructing the bench players because the bench players don&#39;t have any restrictions for positions. |
 | showPlayersWithPosition (position : int) = This operation only displays the players with the specified position. |
