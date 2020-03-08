@@ -113,7 +113,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 3. *manager: User* - This attribute stores the manager of the league. The manager has the ability to delete and modify the end date of this league. 
 
-4. *teamPoints:HashMap\&lt;String,Integer\&gt;* - This stores the team names as keys and the total points of the team as values. It is used when displaying the league ranking. 
+4. *teamPoints:HashMap<String,Integer>* - This stores the team names as keys and the total points of the team as values. It is used when displaying the league ranking. 
 
 5. *startDate: Date* - Stores the creation date and time of the league. It is assigned when the league is first created by the user. 
 
