@@ -61,7 +61,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 *createTeam(): Team* - This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
 
-*deleteTeam()* - Deletes the team in the _team_ attribute of the User, given that there is one. 
+*deleteTeam()* - Deletes the team in the team attribute of the User, given that there is one. 
 
 *createLeague( name: String, manager: User, start: Date): League* - This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. The operation adds the created league to the competedLeagues list returns the created league. 
 
