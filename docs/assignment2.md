@@ -280,13 +280,6 @@ Lastly, The user can issue the &#39;exitLeague&#39; with reference to the league
 
 Author(s): Mehmet Cetin, Sunny Dairam
 
-- the strategy that you followed when moving from the UML models to the implementation code;
-- the key solutions that you applied when implementing your system (for example, how you implemented the syntax highlighting feature of your code snippet manager, how you manage fantasy soccer matches, etc.);
-- the location of the main Java class needed for executing your system in your source code;
-- the location of the Jar file for directly executing your system;
-- the 30-seconds video showing the execution of your system (you can embed the video directly in your md file on GitHub).
-
-In this chapter you will describe the following aspects of your project:
 
 **The strategy we followed when moving the UML models to the implementation code**
 
