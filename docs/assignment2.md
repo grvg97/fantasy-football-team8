@@ -122,7 +122,7 @@ From all the associations, generalizations and derivations of the class diagram 
 7. *competingUsers: User[\*]* - Stores the users that are participating/competing in the league. 
 
 
-**League Operations**
+**League Operations:**
 
 1. *addUser(In user: User)* - This operation adds the user to the &quot;competingUsers&quot; list and adds the user&#39;s team and team points to the teamPoints HashMap. 
 
