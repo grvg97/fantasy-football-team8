@@ -26,12 +26,14 @@ public class Game {
             writer.close();
             writer = new BufferedWriter(new FileWriter(leagueFileName));
             writer.close();
+        }
 
+        if(this.userDatabase == null)
             this.userDatabase = new UserDatabase();
+        if(this.leagueDatabase == null)
             this.leagueDatabase = new LeagueDatabase();
             League globalLeague = new League("GlobalLeague");
             this.leagueDatabase.addLeague(globalLeague);
-        }
     }
 
 
