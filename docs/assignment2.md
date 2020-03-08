@@ -104,7 +104,7 @@ From all the associations, generalizations and derivations of the class diagram 
 | **Attributes** |
 | id: int = A unique integer is assigned to this attribute with the data that was fetched from the api. |
 | firstName: String, lastName: String = A real life player&#39;s first name  and last name is assigned to this attribute with the data that was fetched from the api. |
-| position: int = The position of the player is stored in this attribute as an integer. The representation of the integers:1 -\&gt; Goalkeeper, 2 -\&gt; Defener, 3 -\&gt; Midfielder, 4 -\&gt; Forward |
+| position: int = The position of the player is stored in this attribute as an integer. The representation of the integers: 1 Goalkeeper, 2 Defenders, 3 Midfielders, 4 Forwards |
 | isAvailable: String = This attribute stores if the player is available -\&gt; &quot;a&quot; or not available(injured) -\&gt; &quot;i&quot;. An injured player can&#39;t play in a game. Therefore the injured player can&#39;t obtain points. |
 | realLifeTeam: int = This attribute stores the team(one of the teams in the English Premier League) of the player in real life.   |
 | statistics: String, int = The statistics are the attributes that are fetched from the api and assigned to the attributes. All of them are private and almost all of them are used in the &quot;getStats()&quot; function. |
@@ -117,23 +117,23 @@ From all the associations, generalizations and derivations of the class diagram 
 | --- |
 | **-Team** | This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. |
 | **Attributes** |
-| _id: int_ | Stores unique integer |
-| _name: String_ | Stores the name of the team given by the user. |
-| _players: Player[11]_ | Stores the starting lineup of 11 players. 1 goalkeeper, 4 defenders, 3 midfielders, 3 forwards. |
-| _bench: Player[4]_ | Currently consists 4 players of any position. Later on there may be additional restrictions on the positions of the players. |
-| _captain: Player_ | Stores the captain of the team picked by the user and assigned by the team. |
-| _viceCaptain: Player_ | This attribute stores the second captain of the team. The second captain becomes the primary captain if the captain gets injured. The vice captain is selected in the same manner as the captain. |
-| _totalPoints: Integer_ | Stores the total points of all the players combined. This attribute is used when constructing the ranking of the league. |
+| id: int = Stores unique integer |
+| name: String = Stores the name of the team given by the user. |
+| players: Player[11] = Stores the starting lineup of 11 players. 1 goalkeeper, 4 defenders, 3 midfielders, 3 forwards. |
+| bench: Player[4] = Currently consists 4 players of any position. Later on there may be additional restrictions on the positions of the players. |
+| captain: Player = Stores the captain of the team picked by the user and assigned by the team. |
+| viceCaptain: Player = This attribute stores the second captain of the team. The second captain becomes the primary captain if the captain gets injured. The vice captain is selected in the same manner as the captain. |
+| totalPoints: Integer = Stores the total points of all the players combined. This attribute is used when constructing the ranking of the league. |
 | **Operations** |
-| _addPlayer(__player: Player)_ : Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. |
-| _removePlayer(__player: Player)_ : Removes the player from the players list. This function is used in combination with sellPlayer. In order for the user to sell the player, the player first has to be removed from the team. |
-| _assignCaptains(__in captain: Player, in viceCaptain: Player)_ | Assigns the captains, which is selected by the user, to the captain and viceCaptain attribute. |
-| _isComplete(): Boolean_ | This operation returns true if the total players in the team is at least 11. This function The system restricts the team from receiving any points unless the team has 11 players.  |
-| _changeStarters_ | This operation changes the starting lineup by replacing some of the players with the bench players. |
+| addPlayer(player: Player) = Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. |
+| removePlayer(player: Player) = Removes the player from the players list. This function is used in combination with sellPlayer. In order for the user to sell the player, the player first has to be removed from the team. |
+| assignCaptains(in captain: Player, in viceCaptain: Player) = Assigns the captains, which is selected by the user, to the captain and viceCaptain attribute. |
+| isComplete(): Boolean = This operation returns true if the total players in the team is at least 11. This function The system restricts the team from receiving any points unless the team has 11 players.  |
+| changeStartingLineup() = This operation changes the starting lineup by replacing some of the players with the bench players. |
 
 **Associations**
 
-1. **1)****Directed Association from User class to League class:**
+1. 1)*Directed Association from User class to League class:**
 
 This  directed association signifies that the **User** class can access the attributes and operations of the **League** class. This is necessary due to the fact that the user will be the one creating and managing a league as shown by the operations _createLeague()_and _deleteLeague()._ Moreover, the **User** must be able to access the operations of **League** because when _createLeague()_ is executed, it will need to access _setEndDate()_ of the **League** class in order for a user to set the duration of the league tournament that they have created. Moreover, since the user is the manager of the league as shown by the _manager_ attribute of the type **User** in league, the user must be able to add and kick other users who are also participating in the league, thus strengthening the justification of this chosen association between the two classes.
 
