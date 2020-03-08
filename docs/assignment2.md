@@ -38,7 +38,6 @@ From all the associations, generalizations and derivations of the class diagram 
 | <center>**Class**</center> |
 | --- |
 | **User** | The user class represents the person who will be playing the game, once an authorized user has logged into the game. The user class provides functionalities for the user to create and delete a team, leagues, as well as allowing the user to proceed to viewing the internal structure of the team that they have created (team view with players). This class is essentially the starting point of the game or the startup menu before entering the game itself. |
-
 | <center>**Attributes**</center> |
 | *id : int* = Stores the id of the user. |
 | username :String = Stores the userName that is used to log in. When the user is logging in the user can play the game with its own team. |
@@ -47,7 +46,6 @@ From all the associations, generalizations and derivations of the class diagram 
 | *competedLeagues: League[\*]* = This attribute stores the leagues that the user competes in. When the user wants to join or exit a league, the required operations will be performed on the competedLeagues attribute. |
 | *hasTransferred: int* = This attribute is initially false and won&#39;t be changed while the user is creating its team. This attribute will prevent the user from transferring players whenever he/she wants. |
 | *credits: int* = The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. |
-
 | <center>**Operations**</center> |
 | *createTeam(): Team* = This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.** |
 | *deleteTeam()* = Deletes the team in the _team_ attribute of the User, given that there is one. |
@@ -67,10 +65,8 @@ From all the associations, generalizations and derivations of the class diagram 
 | <center>**Class**</center> |
 | --- |
 | **MarketPlace** | This class stores the players fetched from the api using Gson. It enables the user to buy and add the players to its team by showing the players with certain specifications. |
-
 | <center>**Attributes**</center> |
 | *players: Player[\*] *= This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. |
-
 | <center>**Operations**</center> |
 | *showPlayers()* = This operation displays the players no matter which position they are from. This function is specifically used when constructing the bench players because the bench players don&#39;t have any restrictions for positions. |
 | *showPlayersWithPosition (position : int)* = This operation only displays the players with the specified position. |
@@ -84,7 +80,6 @@ From all the associations, generalizations and derivations of the class diagram 
 | <center>**Class**</center> |
 | --- |
 | **League** | This class represents a league that holds the different users who are competing in the league with their teams. Within the league class, the points of each Teams that every user owns is stored. Through this we are able to compute the ranking and display every user (manager) involved in the league in order of the total points they have attained in between the time they have joined the league to the end date of the league. |
-
 | <center>**Attributes**</center> |
 | *id*: int = Stores the id of the league and allows the created leagues to be unique. |
 | *name: String* = This attribute holds the name of the league. It is assigned when the league is created via a constructor. |
@@ -93,7 +88,6 @@ From all the associations, generalizations and derivations of the class diagram 
 | *startDate: Date* = Stores the creation date and time of the league. It is assigned when the league is first created by the user. |
 | *endDate: Date* = Stores the end of the league. |
 | *competingUsers: User[\*]* = Stores the users that are participating/competing in the league. |
-
 | <center>**Operations**</center>|
 | *addUser(In user: User)* = This operation adds the user to the &quot;competingUsers&quot; list and adds the user&#39;s team and team points to the teamPoints HashMap. |
 | *removeUser(In user: User)* = This operation removes the user (if the user exists in the league) from the &quot;competingUsers&quot; list and removes the user&#39;s team and team points to the teamPoints HashMap.  |
@@ -106,7 +100,6 @@ From all the associations, generalizations and derivations of the class diagram 
 | <center>**Class**</center> |
 | --- |
 | **Player** | This class represents a player. A player has many attributes and stats based on football games played every week. All of the player attributes are fetched from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) and dependent on live games. |
-
 | <center>**Attributes**</center> |
 | *id: int* = A unique integer is assigned to this attribute with the data that was fetched from the api. |
 | *firstName: String, lastName: String* = A real life player&#39;s first name  and last name is assigned to this attribute with the data that was fetched from the api. |
@@ -122,7 +115,6 @@ From all the associations, generalizations and derivations of the class diagram 
 | <center>**Class**</center> |
 | --- |
 | **-Team** | This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. |
-
 | <center>**Attributes**</center> |
 | id: int = Stores unique integer |
 | name: String = Stores the name of the team given by the user. |
@@ -131,7 +123,6 @@ From all the associations, generalizations and derivations of the class diagram 
 | captain: Player = Stores the captain of the team picked by the user and assigned by the team. |
 | viceCaptain: Player = This attribute stores the second captain of the team. The second captain becomes the primary captain if the captain gets injured. The vice captain is selected in the same manner as the captain. |
 | totalPoints: Integer = Stores the total points of all the players combined. This attribute is used when constructing the ranking of the league. |
-
 | <center>**Operations**</center> |
 | addPlayer(player: Player) = Adds the player to the players list if the players list&#39;s size isn&#39;t 11 yet. Else, this function adds the player to the bench list. |
 | removePlayer(player: Player) = Removes the player from the players list. This function is used in combination with sellPlayer. In order for the user to sell the player, the player first has to be removed from the team. |
