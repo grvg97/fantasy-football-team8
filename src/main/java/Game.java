@@ -17,7 +17,7 @@ public class Game {
     Game() throws IOException {
         this.marketPlace = new Gson().fromJson(this.getResponseBody("https://fantasy.premierleague.com/api/bootstrap-static/"), MarketPlace.class);
         String userFileName = "DatabaseUser.json";
-        String leagueFileName = "DatabasueLeague.json";
+        String leagueFileName = "DatabaseLeague.json";
         try {
             userDatabase = new Gson().fromJson(new FileReader(userFileName), UserDatabase.class);
             leagueDatabase = new Gson().fromJson(new FileReader(leagueFileName), LeagueDatabase.class);
