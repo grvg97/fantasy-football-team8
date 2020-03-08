@@ -262,7 +262,7 @@ Author(s): Ricardo Burgos Lara, Gilbert van Gerven
 
 ### **User Behavior:**
 
-Link to image: [Imgur](https://i.imgur.com/0hXM6xp.png)
+![Imgur](https://i.imgur.com/0A5CKMH.png)
 ** **
 
 **Figure 3 -** User Behavioural State-Machine Diagram
@@ -282,7 +282,7 @@ Overall, the **User** state machine is responsible for the initial steps that a 
 
 ### **Team Management Behavior:**
 
-![Image description](https://i.imgur.com/uRhVxAM.png)
+![Imgur](https://i.imgur.com/NHARq59.png)
 ** **
 
 **Figure 4 -** Team management Behavioural State-Machine Diagram
