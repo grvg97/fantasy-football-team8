@@ -228,7 +228,7 @@ The directed association means that the **MarketPlace** class has access to the 
 ### **Object diagram**
 
 Author(s): Mehmet Cetin, Sunny Dairam
-[Imgur](https://i.imgur.com/0hXM6xp.png)
+![Image description](https://i.imgur.com/M7tLq29.png)
 
 **Figure2 -** Fantasy Football Object Diagram
 
@@ -262,7 +262,7 @@ Author(s): Ricardo Burgos Lara, Gilbert van Gerven
 
 ### **User Behavior:**
 
-![Image description](https://imgur.com/0hXM6xp)
+[Imgur](https://i.imgur.com/0hXM6xp.png)
 ** **
 
 **Figure 3 -** User Behavioural State-Machine Diagram
