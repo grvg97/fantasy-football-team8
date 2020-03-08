@@ -162,7 +162,7 @@ From all the associations, generalizations and derivations of the class diagram 
 
 
 
-### **Class**
+### **Class:**
 
 **-Team:** This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. 
 
@@ -224,7 +224,6 @@ The significance of this association is shown by the operations of the **MarketP
 
 The directed association means that the **MarketPlace** class has access to the json object which is provided by the **Gson** library. The **Gson** library parses the response, provided by the function fromJson() inside the **Gson** library, received from the api.
 
-**       **
 
 ### **Object diagram**
 
