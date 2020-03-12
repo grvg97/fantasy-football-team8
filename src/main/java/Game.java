@@ -1,4 +1,3 @@
-import UserInterface.LoginWindow;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -94,9 +93,9 @@ public class Game {
     public User authenticateUser() {
         System.out.println("Welcome to Fantasy Football!");
         System.out.println("Please enter a username: ");
-        String username = this.scanner.next(); // TODO: LoginWindow.getUsername()
+        String username = this.scanner.next(); // LoginWindow.getUsername()
         System.out.println("Please enter a password: ");
-        String password = this.scanner.next(); // TODO: LoginWindow.getPassword()
+        String password = this.scanner.next(); // LoginWindow.getPassword()
 
         User user = this.userDatabase.authUser(username, password);
         if(user != null) {
@@ -132,11 +131,11 @@ public class Game {
 
         League globalLeague = this.leagueDatabase.getGlobalLeague();
         globalLeague.showRanking();
-        this.end(user);
+//        this.end(user);
     }
 
     // This function handles the saving of changes that occurred during the program.
-    private void end(User user) throws IOException {
+    public void end(User user) throws IOException {
         // At exit save userDB
         BufferedWriter writer = new BufferedWriter(new FileWriter("DatabaseUser.json"));
         writer.write(new Gson().toJson(this.userDatabase));

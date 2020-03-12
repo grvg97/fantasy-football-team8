@@ -7,13 +7,14 @@ import javafx.stage.Stage;  // The entire window is called the stage
 import javafx.scene.layout.*; // Layout is how you want everything arranged on your screen
 
 public class StartWindow {
-
     private static Scene startScene;
     private static VBox layout = new VBox(20);;
-    private static Stage window = new Stage();
+    private static Stage window;
     private static Button startButton = new Button("Start game");
 
-    public static void display(Scene loginScene) {
+
+    public static void display(Scene loginScene, Stage primaryStage) {
+        window = primaryStage;
         startButton.setOnAction(event -> window.setScene(loginScene));
 
         Label label = new Label("Welcome to Fantasy football");
