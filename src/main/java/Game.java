@@ -1,3 +1,4 @@
+import UserInterface.LoginWindow;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -93,9 +94,9 @@ public class Game {
     public User authenticateUser() {
         System.out.println("Welcome to Fantasy Football!");
         System.out.println("Please enter a username: ");
-        String username = this.scanner.next();
+        String username = this.scanner.next(); // TODO: LoginWindow.getUsername()
         System.out.println("Please enter a password: ");
-        String password = this.scanner.next();
+        String password = this.scanner.next(); // TODO: LoginWindow.getPassword()
 
         User user = this.userDatabase.authUser(username, password);
         if(user != null) {
