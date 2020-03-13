@@ -1,5 +1,6 @@
 package UserInterface;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -8,23 +9,21 @@ import javafx.scene.layout.*; // Layout is how you want everything arranged on y
 
 public class StartWindow {
     private static Scene startScene;
-    private static VBox layout = new VBox(20);;
-    private static Stage window;
+    private static VBox layout = new VBox(20);
     private static Button startButton = new Button("Start game");
 
 
     public static void display(Scene loginScene, Stage primaryStage) {
-        window = primaryStage;
-        startButton.setOnAction(event -> window.setScene(loginScene));
+        startButton.setOnAction(event -> primaryStage.setScene(loginScene));
 
         Label label = new Label("Welcome to Fantasy football");
         layout.getChildren().addAll(label, startButton);
+        layout.setAlignment(Pos.CENTER);
         startScene = new Scene(layout, 500, 500);
 
-        window.setWidth(200);
-        window.setTitle("Fantasy Football");
-        window.setScene(startScene);
-        window.show();
+        primaryStage.setTitle("Fantasy Football");
+        primaryStage.setScene(startScene);
+        primaryStage.show();
     }
 
     public static Scene getScene() {

@@ -1,17 +1,25 @@
 
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-N
-src/main/java/MarketPlace.java,2\1\218849da6fdabb8107e473fc39bd830211399790
-I
-src/main/java/Player.java,6\e\6e82b9511465c9772497936644008abf2f008450
-O
-src/main/java/UserDatabase.java,5\c\5c2b2b170b213475deaf301c4379372aee5cefa8
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-I
-src/main/java/League.java,5/9/5926a04e72cd2a25ae64ae9e2f26e6e9732a5d09
-G
-src/main/java/Main.java,e/4/e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
+A
+DatabaseUser.json,0/9/09368edbe8da117efa89002afa5eeb5b741c258c
+C
+DatabaseLeague.json,4/9/499208642cd52706ab51c0d4e56907852354953d
+\
+,src/main/java/UserInterface/StartWindow.java,d/9/d96b6d2cea156f85a1808dd69c8c1f963b450469
+Y
+)src/main/java/UserInterface/AlertBox.java,e/3/e36140acb5866724684ffb4f44ef944781c0346a
+S
+#src/main/java/GameLogic/League.java,0/8/089cba4a85570fac4397644690adc74ed95a2ad4
+Q
+!src/main/java/GameLogic/Game.java,3/e/3eeb00e66dbe6d911aa74d930631d0de69a9d072
+_
+/src/main/java/UserInterface/TutorialWindow.java,1/c/1ceb13b1641901197f4695703238ebfeac14d265
+Q
+!src/main/java/GameLogic/Main.java,4/e/4e871907dd76875f43ff372bd72f049933b02b72
+\
+,src/main/java/UserInterface/LoginWindow.java,e/0/e093ef83bbb28ec059c737fa02aba24946f9c506

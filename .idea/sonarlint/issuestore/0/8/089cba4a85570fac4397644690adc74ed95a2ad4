@@ -1,0 +1,8 @@
+
+Dsquid:S1068
+"-Remove this unused "startDate" private field.(­Ãé„
+]squid:UnusedPrivateMethodB"3Remove this unused private "computeRanking" method.(’û”¹úÿÿÿÿ
+Jsquid:S3252&"3Use static access with "java.util.Map" for "Entry".(•“ğÿ
+rsquid:S1450"VRemove the "endDate" field and declare it as a local variable in the relevant methods.(³ÁÎüşÿÿÿÿ
+Gsquid:S1068"+Remove this unused "endDate" private field.(³ÁÎüşÿÿÿÿ
+~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8±Ò‘­.
