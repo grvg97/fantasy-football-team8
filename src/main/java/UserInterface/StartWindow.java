@@ -10,14 +10,16 @@ import javafx.scene.layout.*; // Layout is how you want everything arranged on y
 public class StartWindow {
     private static Scene startScene;
     private static VBox layout = new VBox(20);
-    private static Button startButton = new Button("Start game");
+    private static Button loginButton = new Button("Login");
+    private static Button signupButton = new Button("Sign Up");
 
 
     public static void setScene(Stage primaryStage) {
-        startButton.setOnAction(event -> primaryStage.setScene(LoginWindow.getScene()));
+        loginButton.setOnAction(event -> primaryStage.setScene(LoginWindow.getScene()));
+        signupButton.setOnAction(event -> primaryStage.setScene(SignUpWindow.getScene()));
 
         Label label = new Label("Welcome to Fantasy football");
-        layout.getChildren().addAll(label, startButton);
+        layout.getChildren().addAll(label, loginButton, signupButton);
         layout.setAlignment(Pos.CENTER);
         startScene = new Scene(layout, 500, 500);
     }

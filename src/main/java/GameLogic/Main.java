@@ -10,6 +10,12 @@ import javafx.stage.Stage;  // The entire window is called the stage
 import java.io.IOException;
 
 
+/*
+                           /
+StartWindow -> LoginWindow
+*/
+
+
 // layout -> scene -> window
 
 // EventHandler<ActionEvent> is not needed when using lamba for event handling
