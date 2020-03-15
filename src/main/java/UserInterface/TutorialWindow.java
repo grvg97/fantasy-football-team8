@@ -1,19 +1,16 @@
 package UserInterface;
 
-import GameLogic.HandleApi;
-import GameLogic.MarketPlace;
-import GameLogic.Player;
+import GameLogic.*;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import javax.xml.soap.Text;
 import java.io.IOException;
@@ -22,68 +19,85 @@ import java.util.function.*;
 
 public class TutorialWindow {
     private static Scene tutorialScene;
-    private static Stage window = new Stage();
+    private static User user = SignUpWindow.getUser(); // TODO: This is null why????
 
-    public static void display() {
-        // Login.setOnAction(event -> window.setScene()); // Authenticate User
 
-        window.setWidth(200);
-        window.setScene(tutorialScene);
-        window.show();
-    }
-
-    public static ChoiceBox<String> constructPlayerChoices(List<Player> players, int position) {
-        ChoiceBox<String> playerChoices = new ChoiceBox<>();
+    private static ComboBox<Player> constructPlayerChoices(List<Player> players, int position) {
+        ComboBox<Player> playerChoices = new ComboBox<>();
         for (Player player: players) {
             if (player.getPosition() == position)
-                playerChoices.getItems().add(player.getFullName() + " C: " + player.getCost());
+                playerChoices.getItems().add(player);
         }
+        playerChoices.setConverter(new StringConverter<Player>() {
+            @Override
+            public String toString(Player object) {
+                return object.getFullName();
+            }
+
+            @Override
+            public Player fromString(String string) {
+                return playerChoices.getItems().stream().filter(player ->
+                        player.getFullName().equals(string)).findFirst().orElse(null);
+            }
+        });
         return playerChoices;
     }
 
-    public static void setScene() throws IOException {
+
+    public static void setScene(Stage primaryStage) throws IOException {
         MarketPlace marketPlace = HandleApi.getJsonObject();
         List<Player> players = marketPlace.getPlayers();
 
-        Label info = new Label("Welcome to the tutorial.\nPlease give your team a name and select 11 players");
+        Button nextButton = new Button("Next");
+        Label info = new Label("Welcome to the tutorial.\nPlease select 11 players");
 
         TextField teamName = new TextField(); teamName.setPromptText("team name");
         Button submit = new Button("Submit");
+        submit.setOnAction(event -> user.createTeam(teamName.getText())); // Initialize team
 
-        Label GK = new Label("Select 1 GK");
-        ChoiceBox<String> goalkeeperChoices = constructPlayerChoices(players, 1);
-        Label DEF = new Label("Select 4 DEF");
-        ChoiceBox<String> defenderChoices = constructPlayerChoices(players, 2);
-        Label MID = new Label("Select 3 MID");
-        ChoiceBox<String> midfielderChoices = constructPlayerChoices(players, 3);
-        Label FOR = new Label("Select 3 FOR");
-        ChoiceBox<String> forwardChoices = constructPlayerChoices(players, 4);
+        // TODO: Use ListView OR ComboBox instead of Choice box to select multiple elements with ObservableList
+        ComboBox<Player> goalkeeperChoices = constructPlayerChoices(players, 1);
+        goalkeeperChoices.setPromptText("Select " + SquadRestriction.GKCOUNT.getNumVal() + " GK");
+        goalkeeperChoices.setOnAction(event -> System.out.println(user == null));
+
+        ComboBox<Player> defenderChoices = constructPlayerChoices(players, 2);
+        defenderChoices.setPromptText("Select " + SquadRestriction.DEFCOUNT.getNumVal() + " DEF");
+        defenderChoices.setOnAction(event -> user.buyPlayer(defenderChoices.getValue()));
+
+        ComboBox<Player> midfielderChoices = constructPlayerChoices(players, 3);
+        midfielderChoices.setPromptText("Select " + SquadRestriction.MIDCOUNT.getNumVal() + " MID");
+        midfielderChoices.setOnAction(event -> user.buyPlayer(midfielderChoices.getValue()));
+
+        ComboBox<Player> forwardChoices = constructPlayerChoices(players, 4);
+        forwardChoices.setPromptText("Select " + SquadRestriction.FORCOUNT.getNumVal() + " FOR");
+        forwardChoices.setOnAction(event -> user.buyPlayer(forwardChoices.getValue()));
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(20, 20, 20, 20));
         grid.setAlignment(Pos.CENTER); grid.setVgap(10);
-        GridPane.setConstraints(GK, 0, 0);
-        GridPane.setConstraints(goalkeeperChoices, 0, 1);
-        GridPane.setConstraints(DEF, 0, 2);
+
+        GridPane.setConstraints(teamName, 0, 0);
+        GridPane.setConstraints(submit, 0, 1);
+        GridPane.setConstraints(goalkeeperChoices, 0, 2);
         GridPane.setConstraints(defenderChoices, 0, 3);
-        GridPane.setConstraints(MID, 0, 4);
-        GridPane.setConstraints(midfielderChoices, 0, 5);
-        GridPane.setConstraints(FOR, 0, 6);
-        GridPane.setConstraints(forwardChoices, 0, 7);
-        GridPane.setConstraints(submit, 0, 8);
+        GridPane.setConstraints(midfielderChoices, 0, 4);
+        GridPane.setConstraints(forwardChoices, 0, 5);
+        GridPane.setConstraints(nextButton, 0, 6);
 
         BorderPane border = new BorderPane();
         grid.getChildren().addAll(
-                GK, goalkeeperChoices, DEF, defenderChoices, MID, midfielderChoices, FOR, forwardChoices, submit
+                teamName, submit, goalkeeperChoices, defenderChoices, midfielderChoices, forwardChoices, nextButton
         );
 
         border.setTop(info);
         border.setCenter(grid);
 
         // If all conditions are met, submit info
-        submit.setOnAction(event -> {
+        nextButton.setOnAction(event -> {
 
         });
+
+        // Create scene with the 'border' layout
         tutorialScene = new Scene(border, 500, 500);
     }
 

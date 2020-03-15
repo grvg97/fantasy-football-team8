@@ -62,6 +62,7 @@ public class Player {
     }
 
     public HashMap<String, Integer> getStats() {
+
         HashMap<String, Integer> stats = new HashMap<>();
         // Construct the map and return it
         stats.put("totalPoints", totalPoints);

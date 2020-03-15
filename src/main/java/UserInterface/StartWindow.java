@@ -13,17 +13,13 @@ public class StartWindow {
     private static Button startButton = new Button("Start game");
 
 
-    public static void display(Scene loginScene, Stage primaryStage) {
-        startButton.setOnAction(event -> primaryStage.setScene(loginScene));
+    public static void setScene(Stage primaryStage) {
+        startButton.setOnAction(event -> primaryStage.setScene(LoginWindow.getScene()));
 
         Label label = new Label("Welcome to Fantasy football");
         layout.getChildren().addAll(label, startButton);
         layout.setAlignment(Pos.CENTER);
         startScene = new Scene(layout, 500, 500);
-
-        primaryStage.setTitle("Fantasy Football");
-        primaryStage.setScene(startScene);
-        primaryStage.show();
     }
 
     public static Scene getScene() {

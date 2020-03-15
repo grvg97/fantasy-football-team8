@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Date;
 
 public class User {
-    private int id;
+    private int id = 1;
     private String username;
     private String password;
     private Team team;
@@ -21,7 +21,6 @@ public class User {
     public String getUsername() {return this.username;}
     public String getPassword() {return this.password; }
     public String getTeamName() { return this.team.getName(); }
-
 
     public void createTeam(String name)   {
         this.team = new Team(name, this.id);

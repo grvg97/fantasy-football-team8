@@ -23,3 +23,9 @@ Q
 !src/main/java/GameLogic/Main.java,4/e/4e871907dd76875f43ff372bd72f049933b02b72
 \
 ,src/main/java/UserInterface/LoginWindow.java,e/0/e093ef83bbb28ec059c737fa02aba24946f9c506
+V
+&src/main/java/GameLogic/HandleApi.java,4/b/4bba01159de40f204c2f950d77a8a4fa8a50055a
+X
+(src/main/java/GameLogic/MarketPlace.java,9/4/946b338685ffda68704b5814ea1dd0d979ea6a97
+[
++src/main/java/UserInterface/UserWindow.java,f/0/f0a9e5c1c9ded053c2d5be5fe4d47ed562286b1d

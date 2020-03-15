@@ -1,12 +1,10 @@
 package GameLogic;
 
-import UserInterface.AlertBox;
-import UserInterface.LoginWindow;
-import UserInterface.StartWindow;
+import UserInterface.*;
 
-import UserInterface.TutorialWindow;
 import javafx.application.Application;
 import javafx.scene.control.Button; // The content inside the window is called the scene
+import javafx.scene.control.SingleSelectionModel;
 import javafx.stage.Stage;  // The entire window is called the stage
 
 import java.io.IOException;
@@ -32,10 +30,16 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Fantasy Football");
 
+        UserWindow.setScene();
+        SignUpWindow.setScene(primaryStage); // User is created inside this function and it's not null
+        TutorialWindow.setScene(primaryStage); // User is used inside this function
+        LoginWindow.setScene(primaryStage);
+        StartWindow.setScene(primaryStage);
 
-        TutorialWindow.setScene();
-        LoginWindow.setScene(TutorialWindow.getScene(), primaryStage);
-        StartWindow.display(LoginWindow.getScene(), primaryStage);
+
+        primaryStage.setTitle("Fantasy Football");
+        primaryStage.setScene(StartWindow.getScene());
+        primaryStage.show();
 
         // Called when the close button on the window is clicked
         primaryStage.setOnCloseRequest(event -> {
