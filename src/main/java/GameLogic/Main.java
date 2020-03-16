@@ -36,7 +36,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Fantasy Football");
 
-        UserWindow.setScene();
+        UserWindow.setScene(primaryStage);
         SignUpWindow.setScene(primaryStage); // User is created inside this function and it's not null
         TutorialWindow.setScene(primaryStage); // User is used inside this function
         LoginWindow.setScene(primaryStage);

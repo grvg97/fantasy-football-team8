@@ -19,7 +19,6 @@ import java.util.function.*;
 
 public class TutorialWindow {
     private static Scene tutorialScene;
-    private static User user = SignUpWindow.getUser(); // TODO: This is null why????
 
 
     private static ComboBox<Player> constructPlayerChoices(List<Player> players, int position) {
@@ -47,6 +46,7 @@ public class TutorialWindow {
     public static void setScene(Stage primaryStage) throws IOException {
         MarketPlace marketPlace = HandleApi.getJsonObject();
         List<Player> players = marketPlace.getPlayers();
+        User user = new User(SignUpWindow.getUsername(), SignUpWindow.getPassword());
 
         Button nextButton = new Button("Next");
         Label info = new Label("Welcome to the tutorial.\nPlease select 11 players");
@@ -54,8 +54,7 @@ public class TutorialWindow {
         TextField teamName = new TextField(); teamName.setPromptText("team name");
         Button submit = new Button("Submit");
         submit.setOnAction(event -> user.createTeam(teamName.getText())); // Initialize team
-
-        // TODO: Use ListView OR ComboBox instead of Choice box to select multiple elements with ObservableList
+        
         ComboBox<Player> goalkeeperChoices = constructPlayerChoices(players, 1);
         goalkeeperChoices.setPromptText("Select " + SquadRestriction.GKCOUNT.getNumVal() + " GK");
         goalkeeperChoices.setOnAction(event -> System.out.println(user == null));

@@ -19,9 +19,9 @@ public class SignUpWindow {
     private static String username;
     private static String password;
     private static Scene signupScene;
-    private static User user;
 
-    public static User setScene(Stage window) {
+
+    public static void setScene(Stage window) {
         Label label = new Label("Please enter a username and password");
 
         TextField usernameField = new TextField();
@@ -36,8 +36,7 @@ public class SignUpWindow {
         signupButton.setOnAction(event -> {
             username = usernameField.getText();
             password = passwordField.getText();
-            user = new User(username, password);
-            System.out.println(user == null);
+
             window.setScene(TutorialWindow.getScene());
         });
 
@@ -45,10 +44,10 @@ public class SignUpWindow {
         saveButton.setOnAction(event -> System.out.println("The game is saved"));
 
         GridPane grid = new GridPane();
-
         grid.setPadding(new Insets(30, 30, 30, 30));
         grid.setAlignment(Pos.CENTER);
         grid.setVgap(10);
+
         GridPane.setConstraints(label, 0, 0);
         GridPane.setConstraints(usernameField, 0, 1);
         GridPane.setConstraints(passwordField, 0, 2);
@@ -58,15 +57,11 @@ public class SignUpWindow {
         grid.getChildren().addAll(label, usernameField, passwordField, signupButton, saveButton);
 
         signupScene = new Scene(grid, 500, 500);
-        return user;
     }
 
 
     public static Scene getScene() {
         return signupScene;
-    }
-    public static User getUser() {
-        return user;
     }
 
     public static String getUsername() {
