@@ -20,7 +20,6 @@ import java.util.function.*;
 public class TutorialWindow {
     private static Scene tutorialScene;
 
-
     private static ComboBox<Player> constructPlayerBox(List<Player> players, int position) {
         ComboBox<Player> playerChoices = new ComboBox<>();
         for (Player player: players) {
@@ -46,23 +45,33 @@ public class TutorialWindow {
     private static ComboBox<Player> selectPlayers(User user, List<Player> players, int position, int positionCount, String Pos) {
         ComboBox<Player> playerBox = constructPlayerBox(players, position);
         playerBox.setPromptText("Select " + positionCount + " " + Pos);
-        playerBox.setOnAction(event -> user.buyPlayer(playerBox.getValue()));
-
+        playerBox.setOnAction(event -> {
+            if (user.hasTeam())
+                user.buyPlayer(playerBox.getValue());
+            else
+                HandleError.handleTeamExistence();
+        });
         return playerBox;
     }
 
-    public static void setScene(Stage primaryStage) throws IOException {
+    public static void setScene(Stage window) throws IOException {
         MarketPlace marketPlace = HandleApi.getJsonObject();
         List<Player> players = marketPlace.getPlayers();
         User user = new User(SignUpWindow.getUsername(), SignUpWindow.getPassword());
 
         Button nextButton = new Button("Next");
-        Label info = new Label("Welcome to the tutorial.\nPlease select 11 players");
+        Label info = new Label("Welcome to the tutorial. Please select 11 players");
 
         TextField teamName = new TextField(); teamName.setPromptText("team name");
         Button submit = new Button("Submit");
-        submit.setOnAction(event -> user.createTeam(teamName.getText())); // Initialize team
+        submit.setOnAction(event -> {
+            if (teamName.getText().equals(""))
+                HandleError.handleTeamName();
+            else
+                user.createTeam(teamName.getText());
+        });
 
+        // Init team
         ComboBox<Player> GKBox =
                 selectPlayers(user, players, Positions.GK.getPositionVal(), Formation.GKCOUNT.getValue(), "GK");
 
@@ -88,17 +97,22 @@ public class TutorialWindow {
         GridPane.setConstraints(FORBox, 0, 5);
         GridPane.setConstraints(nextButton, 0, 6);
 
-        BorderPane border = new BorderPane();
         grid.getChildren().addAll(
                 teamName, submit, GKBox, DEFBox, MIDBox, FORBox, nextButton
         );
 
+        // Set the configuration of the border
+        BorderPane border = new BorderPane();
         border.setTop(info);
         border.setCenter(grid);
 
         // If all conditions are met, submit info
         nextButton.setOnAction(event -> {
-
+            // If the team size is larger than 11, user can continue to the next scene of the game
+            if (user.getTeamSize() >= 11)
+                window.setScene(UserWindow.getScene());
+            else
+                HandleError.handleTeamSize(user.getTeamSize());
         });
 
         // Create scene with the 'border' layout

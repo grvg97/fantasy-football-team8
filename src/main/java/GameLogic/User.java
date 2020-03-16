@@ -89,6 +89,9 @@ public class User {
     // Add created league to the leagues that the user competes
     public League createLeague(String name, User manager, Date start) { return null; }
 
+    public int getTeamSize() {
+        return this.team.players.size();
+    }
     // League
     public void deleteLeague(League league) { }
 

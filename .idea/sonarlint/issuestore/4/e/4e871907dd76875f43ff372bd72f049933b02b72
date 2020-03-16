@@ -1,4 +1,4 @@
 
+csquid:UselessImportCheck"8Remove this unused import 'javafx.scene.control.Button'.(»øÕØ8Ë’‡°.
+vsquid:UselessImportCheck"FRemove this unused import 'javafx.scene.control.SingleSelectionModel'.(¾½ì¡ıÿÿÿÿ8ŠµÎ .
 ~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8ßÓ‘­.
-csquid:UselessImportCheck"3Remove this unused import 'UserInterface.AlertBox'.(ß½Î…ıÿÿÿÿ8Ë’‡°.
-csquid:UselessImportCheck	"8Remove this unused import 'javafx.scene.control.Button'.(»øÕØ8Ë’‡°.

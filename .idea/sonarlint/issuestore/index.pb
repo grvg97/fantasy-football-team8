@@ -29,3 +29,15 @@ X
 (src/main/java/GameLogic/MarketPlace.java,9/4/946b338685ffda68704b5814ea1dd0d979ea6a97
 [
 +src/main/java/UserInterface/UserWindow.java,f/0/f0a9e5c1c9ded053c2d5be5fe4d47ed562286b1d
+V
+&src/main/java/GameLogic/Positions.java,e/c/ec6ce2b438fc6c391c35dc4b7005cc6ef233c5d5
+V
+&src/main/java/GameLogic/Formation.java,d/3/d393ce4096d4e5facfe129be4c2a694ee3dab1f0
+S
+#src/main/java/GameLogic/Player.java,5/0/50a79d5933c04d2c6d00fa32e375222d42ecd427
+]
+-src/main/java/UserInterface/SignUpWindow.java,6/6/6641a5c4ae3de23a49ade7b986efa04b42843640
+Q
+!src/main/java/GameLogic/User.java,9/a/9af450873f6868658fb0c14af29b2df7362b5998
+\
+,src/main/java/UserInterface/HandleError.java,9/d/9d0ad34f8fb6d3d3dc2f49ede11a0f23ce7b3db5
