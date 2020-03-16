@@ -1,16 +1,16 @@
 package GameLogic;
 
-public enum SquadRestriction {
+public enum Formation {
     GKCOUNT(1), DEFCOUNT(4),
     MIDCOUNT(3), FORCOUNT(3);
 
     private int numVal;
 
-    SquadRestriction(int numVal) {
+    Formation(int numVal) {
         this.numVal = numVal;
     }
 
-    public int getNumVal() {
+    public int getValue() {
         return this.numVal;
     }
 

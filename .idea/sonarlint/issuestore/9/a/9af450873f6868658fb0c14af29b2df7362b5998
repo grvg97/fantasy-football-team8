@@ -1,0 +1,13 @@
+
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
+˜squid:S1186]"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ğşú“
+Nsquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ
+˜squid:S1186R"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ß˜Šó
+squid:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤ªôÙûÿÿÿÿ
+Bsquid:S1068`"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ
+squid:S1186V"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğã§‹ûÿÿÿÿ
+Bsquid:S1172Z"&Remove these unused method parameters.(Ôºçåúÿÿÿÿ
+vsquid:S1450f"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃıÿÿÿÿ
+Ksquid:S1068f"/Remove this unused "viceCaptain" private field.(ÎªÃıÿÿÿÿ
+msquid:S1450e"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ
+Bsquid:S1068e"+Remove this unused "captain" private field.(ìØœÀ

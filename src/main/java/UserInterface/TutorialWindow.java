@@ -21,7 +21,7 @@ public class TutorialWindow {
     private static Scene tutorialScene;
 
 
-    private static ComboBox<Player> constructPlayerChoices(List<Player> players, int position) {
+    private static ComboBox<Player> constructPlayerBox(List<Player> players, int position) {
         ComboBox<Player> playerChoices = new ComboBox<>();
         for (Player player: players) {
             if (player.getPosition() == position)
@@ -43,6 +43,14 @@ public class TutorialWindow {
     }
 
 
+    private static ComboBox<Player> selectPlayers(User user, List<Player> players, int position, int positionCount, String Pos) {
+        ComboBox<Player> playerBox = constructPlayerBox(players, position);
+        playerBox.setPromptText("Select " + positionCount + " " + Pos);
+        playerBox.setOnAction(event -> user.buyPlayer(playerBox.getValue()));
+
+        return playerBox;
+    }
+
     public static void setScene(Stage primaryStage) throws IOException {
         MarketPlace marketPlace = HandleApi.getJsonObject();
         List<Player> players = marketPlace.getPlayers();
@@ -54,22 +62,19 @@ public class TutorialWindow {
         TextField teamName = new TextField(); teamName.setPromptText("team name");
         Button submit = new Button("Submit");
         submit.setOnAction(event -> user.createTeam(teamName.getText())); // Initialize team
-        
-        ComboBox<Player> goalkeeperChoices = constructPlayerChoices(players, 1);
-        goalkeeperChoices.setPromptText("Select " + SquadRestriction.GKCOUNT.getNumVal() + " GK");
-        goalkeeperChoices.setOnAction(event -> System.out.println(user == null));
 
-        ComboBox<Player> defenderChoices = constructPlayerChoices(players, 2);
-        defenderChoices.setPromptText("Select " + SquadRestriction.DEFCOUNT.getNumVal() + " DEF");
-        defenderChoices.setOnAction(event -> user.buyPlayer(defenderChoices.getValue()));
+        ComboBox<Player> GKBox =
+                selectPlayers(user, players, Positions.GK.getPositionVal(), Formation.GKCOUNT.getValue(), "GK");
 
-        ComboBox<Player> midfielderChoices = constructPlayerChoices(players, 3);
-        midfielderChoices.setPromptText("Select " + SquadRestriction.MIDCOUNT.getNumVal() + " MID");
-        midfielderChoices.setOnAction(event -> user.buyPlayer(midfielderChoices.getValue()));
+        ComboBox<Player> DEFBox =
+                selectPlayers(user, players, Positions.DEF.getPositionVal(), Formation.DEFCOUNT.getValue(), "DEF");
 
-        ComboBox<Player> forwardChoices = constructPlayerChoices(players, 4);
-        forwardChoices.setPromptText("Select " + SquadRestriction.FORCOUNT.getNumVal() + " FOR");
-        forwardChoices.setOnAction(event -> user.buyPlayer(forwardChoices.getValue()));
+        ComboBox<Player> MIDBox =
+                selectPlayers(user, players, Positions.MID.getPositionVal(), Formation.MIDCOUNT.getValue(), "MID");
+
+        ComboBox<Player> FORBox =
+                selectPlayers(user, players, Positions.FOR.getPositionVal(), Formation.FORCOUNT.getValue(), "FOR");
+
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(20, 20, 20, 20));
@@ -77,15 +82,15 @@ public class TutorialWindow {
 
         GridPane.setConstraints(teamName, 0, 0);
         GridPane.setConstraints(submit, 0, 1);
-        GridPane.setConstraints(goalkeeperChoices, 0, 2);
-        GridPane.setConstraints(defenderChoices, 0, 3);
-        GridPane.setConstraints(midfielderChoices, 0, 4);
-        GridPane.setConstraints(forwardChoices, 0, 5);
+        GridPane.setConstraints(GKBox, 0, 2);
+        GridPane.setConstraints(DEFBox, 0, 3);
+        GridPane.setConstraints(MIDBox, 0, 4);
+        GridPane.setConstraints(FORBox, 0, 5);
         GridPane.setConstraints(nextButton, 0, 6);
 
         BorderPane border = new BorderPane();
         grid.getChildren().addAll(
-                teamName, submit, goalkeeperChoices, defenderChoices, midfielderChoices, forwardChoices, nextButton
+                teamName, submit, GKBox, DEFBox, MIDBox, FORBox, nextButton
         );
 
         border.setTop(info);
