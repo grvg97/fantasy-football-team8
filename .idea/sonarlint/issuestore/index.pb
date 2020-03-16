@@ -11,8 +11,6 @@ C
 DatabaseLeague.json,4/9/499208642cd52706ab51c0d4e56907852354953d
 \
 ,src/main/java/UserInterface/StartWindow.java,d/9/d96b6d2cea156f85a1808dd69c8c1f963b450469
-Y
-)src/main/java/UserInterface/AlertBox.java,e/3/e36140acb5866724684ffb4f44ef944781c0346a
 S
 #src/main/java/GameLogic/League.java,0/8/089cba4a85570fac4397644690adc74ed95a2ad4
 Q

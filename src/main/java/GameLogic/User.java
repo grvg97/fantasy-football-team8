@@ -92,6 +92,15 @@ public class User {
     public int getTeamSize() {
         return this.team.players.size();
     }
+
+    public int getTeamPositionCount(int position) {
+        int counter = 0;
+        for (Player player: this.team.players) {
+            if (player.getPosition() == position)
+                counter++;
+        }
+        return counter;
+    }
     // League
     public void deleteLeague(League league) { }
 

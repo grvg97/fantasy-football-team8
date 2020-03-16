@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -25,7 +26,7 @@ public class LoginWindow {
         Label label = new Label("This is the login page");
 
         TextField usernameField = new TextField();
-        TextField passwordField = new TextField();
+        PasswordField passwordField = new PasswordField();
         usernameField.setMaxWidth(150);
         passwordField.setMaxWidth(150);
         usernameField.setPromptText("username");
@@ -35,12 +36,14 @@ public class LoginWindow {
         loginButton.setOnAction(event -> {
             username = usernameField.getText();
             password = passwordField.getText();
-            // TODO: verify username and password
-            window.setScene(UserWindow.getScene()); // UserWindow
+
+            // TODO: verify username and password checking the database
+            // if username and password exists in userDatabase
+                window.setScene(UserWindow.getScene()); // UserWindow
         });
         signupButton.setOnAction(event -> window.setScene(SignUpWindow.getScene()));
-
-        // All about the layout of the scene
+        
+        // Construct the layout of the scene using the GridPane
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(30, 30, 30, 30));
         grid.setAlignment(Pos.CENTER); grid.setVgap(10);
@@ -58,12 +61,6 @@ public class LoginWindow {
 
     public static Scene getScene() {
         return loginScene;
-    }
-    public static String getUsername() {
-        return username;
-    }
-    public static String getPassword() {
-        return password;
     }
 
 }
