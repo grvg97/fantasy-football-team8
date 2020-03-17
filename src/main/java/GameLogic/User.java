@@ -93,6 +93,8 @@ public class User {
         return this.team.players.size();
     }
 
+
+    // This function returns the number of players from that position
     public int getTeamPositionCount(int position) {
         int counter = 0;
         for (Player player: this.team.players) {
@@ -101,6 +103,7 @@ public class User {
         }
         return counter;
     }
+
     // League
     public void deleteLeague(League league) { }
 
@@ -117,6 +120,7 @@ public class User {
             this.name = name;
             this.id = id;
         }
+
         public String getName() {
             return this.name;
         }

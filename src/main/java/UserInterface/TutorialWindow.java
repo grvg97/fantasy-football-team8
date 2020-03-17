@@ -71,7 +71,7 @@ public class TutorialWindow {
     public static void setScene(Stage window) throws IOException {
 
         // Get the json object and pass it to playerMarket
-        MarketPlace playerMarket = HandleApi.getJsonObject();
+        PlayerMarket playerMarket = HandleApi.getJsonObject();
         List<Player> players = playerMarket.getPlayers();
         User user = new User(SignUpWindow.getUsername(), SignUpWindow.getPassword());
 
@@ -84,6 +84,7 @@ public class TutorialWindow {
         // Don't accept the team name if it's blank
         Button createTeamButton = new Button("Create Team");
         createTeamButton.setOnAction(event -> {
+
             if (teamName.getText().equals(""))
                 HandleError.teamNameBlank();
             else

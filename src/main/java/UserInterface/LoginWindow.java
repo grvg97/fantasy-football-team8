@@ -42,7 +42,7 @@ public class LoginWindow {
                 window.setScene(UserWindow.getScene()); // UserWindow
         });
         signupButton.setOnAction(event -> window.setScene(SignUpWindow.getScene()));
-        
+
         // Construct the layout of the scene using the GridPane
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(30, 30, 30, 30));

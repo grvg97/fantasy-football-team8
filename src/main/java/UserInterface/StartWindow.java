@@ -14,9 +14,9 @@ public class StartWindow {
     private static Button signUpButton = new Button("Sign Up");
 
 
-    public static void setScene(Stage primaryStage) {
-        loginButton.setOnAction(event -> primaryStage.setScene(LoginWindow.getScene()));
-        signUpButton.setOnAction(event -> primaryStage.setScene(SignUpWindow.getScene()));
+    public static void setScene(Stage window) {
+        loginButton.setOnAction(event -> window.setScene(LoginWindow.getScene()));
+        signUpButton.setOnAction(event -> window.setScene(SignUpWindow.getScene()));
 
         Label label = new Label("Welcome to Fantasy football");
         layout.getChildren().addAll(label, loginButton, signUpButton);
@@ -24,9 +24,8 @@ public class StartWindow {
         startScene = new Scene(layout, 500, 500);
     }
 
+
     public static Scene getScene() {
         return startScene;
     }
-
-
 }

@@ -23,8 +23,6 @@ Q
 ,src/main/java/UserInterface/LoginWindow.java,e/0/e093ef83bbb28ec059c737fa02aba24946f9c506
 V
 &src/main/java/GameLogic/HandleApi.java,4/b/4bba01159de40f204c2f950d77a8a4fa8a50055a
-X
-(src/main/java/GameLogic/MarketPlace.java,9/4/946b338685ffda68704b5814ea1dd0d979ea6a97
 [
 +src/main/java/UserInterface/UserWindow.java,f/0/f0a9e5c1c9ded053c2d5be5fe4d47ed562286b1d
 V
@@ -39,3 +37,9 @@ Q
 !src/main/java/GameLogic/User.java,9/a/9af450873f6868658fb0c14af29b2df7362b5998
 \
 ,src/main/java/UserInterface/HandleError.java,9/d/9d0ad34f8fb6d3d3dc2f49ede11a0f23ce7b3db5
+[
++src/main/java/GameLogic/LeagueDatabase.java,5/3/53a85eba4a015fdc47d7cbde666c09c054fe7d02
+Y
+)src/main/java/GameLogic/UserDatabase.java,0/2/0229789956e6878bff34f146088bd6028c869cc7
+Y
+)src/main/java/GameLogic/PlayerMarket.java,2/f/2fefe0ac6cf44d70729269ef01e255340d504a46

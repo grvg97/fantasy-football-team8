@@ -1,8 +1,11 @@
 package GameLogic;
 
+// Formation: 4-3-3
 public enum Formation {
-    GKCOUNT(1), DEFCOUNT(4),
-    MIDCOUNT(3), FORCOUNT(3);
+    GKCOUNT(1),
+    DEFCOUNT(4),
+    MIDCOUNT(3),
+    FORCOUNT(3);
 
     private int numVal;
 

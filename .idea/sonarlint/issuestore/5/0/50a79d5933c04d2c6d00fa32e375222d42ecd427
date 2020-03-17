@@ -1,5 +1,5 @@
 
 „squid:S1319@"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ðèÏÒ
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
 csquid:HiddenFieldCheck."<Rename "position" which hides the field declared at line 10.(ü‡Œªøÿÿÿÿ
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
 P"squid:SwitchLastCaseIsDefaultCheck/""Add a default case to this switch.(ÑÜ¬²

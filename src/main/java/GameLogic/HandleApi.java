@@ -12,6 +12,7 @@ public class HandleApi {
 
 
     // This function handles the API call to get all the player data. Also for the bonus.
+    // This function gets json as string
     public static String getResponseBody(String apiURL) throws IOException {
         BufferedReader reader;
         String line;
@@ -28,8 +29,9 @@ public class HandleApi {
         return responseBody.toString();
     }
 
-    public static MarketPlace getJsonObject() throws IOException {
+    // Returns json string as an object
+    public static PlayerMarket getJsonObject() throws IOException {
         String api = "https://fantasy.premierleague.com/api/bootstrap-static/";
-        return new Gson().fromJson(getResponseBody(api), MarketPlace.class);
+        return new Gson().fromJson(getResponseBody(api), PlayerMarket.class);
     }
 }

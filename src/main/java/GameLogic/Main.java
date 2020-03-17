@@ -34,11 +34,11 @@ public class Main extends Application {
     // Our main javafx code
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Fantasy Football");
 
+        // Create scenes
         UserWindow.setScene(primaryStage);
-        SignUpWindow.setScene(primaryStage); // User is created inside this function and it's not null
-        TutorialWindow.setScene(primaryStage); // User is used inside this function
+        SignUpWindow.setScene(primaryStage);
+        TutorialWindow.setScene(primaryStage);
         LoginWindow.setScene(primaryStage);
         StartWindow.setScene(primaryStage);
 
@@ -49,10 +49,9 @@ public class Main extends Application {
 
         // Called when the close button on the window is clicked
         primaryStage.setOnCloseRequest(event -> {
-            System.out.println("Game is saved and closed");
+            System.out.println("Game is closed");
             closeProgram(primaryStage);
         });
-
     }
 
 }

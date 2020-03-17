@@ -1,13 +1,13 @@
 
-Psquid:S1068"2Remove this unused "leagueDatabase" private field.(‚Ğ—8â‰‘°.
-Ssquid:S1068"0Remove this unused "userDatabase" private field.(ÂØêÿÿÿÿÿ8â‰‘°.
-nsquid:CommentedOutCodeLine1"<This block of commented-out lines of code should be removed.(Ùò¡åûÿÿÿÿ8ã¬°.
 bsquid:UselessImportCheck"7Remove this unused import 'java.net.HttpURLConnection'.(¬¬˜­8ğıÚ¯.
 Ysquid:UselessImportCheck")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8ğıÚ¯.
 nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÚßËÈùÿÿÿÿ8èå¯.
+Ssquid:S1068"0Remove this unused "userDatabase" private field.(ÂØêÿÿÿÿÿ8â‰‘°.
 ~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8šÓ‘­.
 hsquid:CommentedOutCodeLinek"<This block of commented-out lines of code should be removed.(„½–/8â‰‘°.
+Psquid:S1068"2Remove this unused "leagueDatabase" private field.(‚Ğ—8â‰‘°.
+nsquid:CommentedOutCodeLineU"<This block of commented-out lines of code should be removed.(æ°üÈûÿÿÿÿ8çÑ°.
 Rsquid:S1068"/Remove this unused "marketPlace" private field.(Ü¢‹êıÿÿÿÿ8ã¬°.
 Isquid:S1068"+Remove this unused "scanner" private field.(©ñ®¯8â‰‘°.
-nsquid:CommentedOutCodeLineU"<This block of commented-out lines of code should be removed.(æ°üÈûÿÿÿÿ8çÑ°.
+nsquid:CommentedOutCodeLine1"<This block of commented-out lines of code should be removed.(Ùò¡åûÿÿÿÿ8ã¬°.
 nsquid:CommentedOutCodeLine;"<This block of commented-out lines of code should be removed.(ÆÎ‰±şÿÿÿÿ8ã¬°.

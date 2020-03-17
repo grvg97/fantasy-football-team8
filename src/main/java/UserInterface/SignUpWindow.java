@@ -29,6 +29,7 @@ public class SignUpWindow {
         TextField usernameField = new TextField();
         PasswordField passwordField = new PasswordField();
         PasswordField passwordField2 = new PasswordField();
+
         usernameField.setMaxWidth(150); usernameField.setPromptText("username");
         passwordField.setMaxWidth(150); passwordField.setPromptText("password");
         passwordField2.setMaxWidth(150); passwordField2.setPromptText("password");
