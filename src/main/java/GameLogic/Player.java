@@ -66,14 +66,14 @@ public class Player {
         HashMap<String, Integer> stats = new HashMap<>();
 
         // Construct the map and return it
-        stats.put("totalPoints", totalPoints);
-        stats.put("minutes", minutes);
-        stats.put("goalsScored", goalsScored);
+        stats.put("total points", totalPoints);
+        stats.put("minutes played", minutes);
+        stats.put("goals scored", goalsScored);
         stats.put("assists", assists);
-        stats.put("cleanSheets", cleanSheets);
-        stats.put("goalConceded", goalsConceded);
-        stats.put("yellowCards", yellowCards);
-        stats.put("redCards", redCards);
+        stats.put("clean sheets", cleanSheets);
+        stats.put("goals conceded", goalsConceded);
+        stats.put("yellow cards", yellowCards);
+        stats.put("red cards", redCards);
         stats.put("saves", saves);
         return stats;
     }

@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.sound.midi.SysexMessage;
+import java.io.IOException;
 import java.util.function.*;
 
 public class SignUpWindow {
@@ -24,6 +25,7 @@ public class SignUpWindow {
 
 
     public static void setScene(Stage window) {
+
         Label label = new Label("Please enter a username and password");
 
         TextField usernameField = new TextField();
@@ -51,8 +53,15 @@ public class SignUpWindow {
                 HandleError.passwordMismatch();
 
             // Passing the username and password after certain restrictions have been met
-            else
+            else {
+                User user = new User(SignUpWindow.getUsername(), SignUpWindow.getPassword());
+                try {
+                    TutorialWindow.setScene(window, user);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 window.setScene(TutorialWindow.getScene());
+            }
         });
 
         Button saveButton = new Button("Save and exit");

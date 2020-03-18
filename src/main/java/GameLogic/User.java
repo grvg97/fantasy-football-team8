@@ -104,6 +104,9 @@ public class User {
         return counter;
     }
 
+    public List<Player> getTeamPlayers() {
+        return this.team.players;
+    }
     // League
     public void deleteLeague(League league) { }
 

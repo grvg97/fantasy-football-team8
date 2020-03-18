@@ -13,8 +13,6 @@ C
 ,src/main/java/UserInterface/StartWindow.java,d/9/d96b6d2cea156f85a1808dd69c8c1f963b450469
 S
 #src/main/java/GameLogic/League.java,0/8/089cba4a85570fac4397644690adc74ed95a2ad4
-Q
-!src/main/java/GameLogic/Game.java,3/e/3eeb00e66dbe6d911aa74d930631d0de69a9d072
 _
 /src/main/java/UserInterface/TutorialWindow.java,1/c/1ceb13b1641901197f4695703238ebfeac14d265
 Q
@@ -37,9 +35,9 @@ Q
 !src/main/java/GameLogic/User.java,9/a/9af450873f6868658fb0c14af29b2df7362b5998
 \
 ,src/main/java/UserInterface/HandleError.java,9/d/9d0ad34f8fb6d3d3dc2f49ede11a0f23ce7b3db5
-[
-+src/main/java/GameLogic/LeagueDatabase.java,5/3/53a85eba4a015fdc47d7cbde666c09c054fe7d02
-Y
-)src/main/java/GameLogic/UserDatabase.java,0/2/0229789956e6878bff34f146088bd6028c869cc7
 Y
 )src/main/java/GameLogic/PlayerMarket.java,2/f/2fefe0ac6cf44d70729269ef01e255340d504a46
+U
+%src/main/java/UserInterface/style.css,4/4/44c982c2f72effeac6104c8f8f4b27da021b42b8
+U
+%src/main/java/GameLogic/Database.java,b/6/b60bf4b3f8ddcb643f838787502a2d4e5c23d8a2

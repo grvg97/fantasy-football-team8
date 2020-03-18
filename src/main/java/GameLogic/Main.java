@@ -35,10 +35,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        // Start -> SignUp -> Tutorial -> User
+        // Start -> Login -> User
+
         // Create scenes
-        UserWindow.setScene(primaryStage);
         SignUpWindow.setScene(primaryStage);
-        TutorialWindow.setScene(primaryStage);
         LoginWindow.setScene(primaryStage);
         StartWindow.setScene(primaryStage);
 

@@ -19,6 +19,7 @@ import java.util.function.*;
 
 public class TutorialWindow {
     private static Scene tutorialScene;
+    private static User user;
 
     // Constructs the ComboBox that contains players and displays them as strings
     private static ComboBox<Player> constructPlayerBox(List<Player> players, int position) {
@@ -68,12 +69,11 @@ public class TutorialWindow {
 
 
     // Sets the scene of the view 'TutorialWindow'
-    public static void setScene(Stage window) throws IOException {
+    public static void setScene(Stage window, User user) throws IOException {
 
         // Get the json object and pass it to playerMarket
         PlayerMarket playerMarket = HandleApi.getJsonObject();
         List<Player> players = playerMarket.getPlayers();
-        User user = new User(SignUpWindow.getUsername(), SignUpWindow.getPassword());
 
         // Create the button and label
         Button nextButton = new Button("Next");
@@ -129,10 +129,12 @@ public class TutorialWindow {
         // If all conditions are met, submit info
         nextButton.setOnAction(event -> {
             // TODO: save user to database
-
+            System.out.println(SignUpWindow.getUsername());
             // If the team size is larger than 11, user can continue to the next scene of the game
-            if (user.getTeamSize() >= 11)
+            if (user.getTeamSize() >= 11) {
+                UserWindow.setScene(window, user);
                 window.setScene(UserWindow.getScene());
+            }
             else
                 HandleError.teamSize(user.getTeamSize());
         });
@@ -145,4 +147,5 @@ public class TutorialWindow {
     public static Scene getScene() {
         return tutorialScene;
     }
+    public static User getUser() {return user;}
 }

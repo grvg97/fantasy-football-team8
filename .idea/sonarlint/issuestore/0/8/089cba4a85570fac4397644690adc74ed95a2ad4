@@ -1,7 +1,7 @@
 
+Gsquid:S1068"+Remove this unused "endDate" private field.(³ÁÎüşÿÿÿÿ
+~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8±Ò‘­.
+]squid:UnusedPrivateMethod;"3Remove this unused private "computeRanking" method.(’û”¹úÿÿÿÿ
 Dsquid:S1068
 "-Remove this unused "startDate" private field.(­Ãé„
 rsquid:S1450"VRemove the "endDate" field and declare it as a local variable in the relevant methods.(³ÁÎüşÿÿÿÿ
-~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8±Ò‘­.
-]squid:UnusedPrivateMethod;"3Remove this unused private "computeRanking" method.(’û”¹úÿÿÿÿ
-Gsquid:S1068"+Remove this unused "endDate" private field.(³ÁÎüşÿÿÿÿ
