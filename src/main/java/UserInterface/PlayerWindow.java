@@ -23,12 +23,10 @@ public class PlayerWindow {
     public static void setScene(Player player) {
         HashMap<String, Integer> stats =  player.getStats();
         ListView<String> statView = constructStatView(stats);
-        Label playerLabel = new Label(
-       player.getPositionName() + " " + player.getFullName() + "\nCost: " + player.getCost() + " Injured: " + player.isInjured()
-        );
+        Label label = new Label("Cost: " + player.getCost() + "\nInjured: " + player.isInjured());
 
         VBox view = new VBox(20);
-        view.getChildren().addAll(playerLabel, statView);
+        view.getChildren().addAll(label, statView);
         PlayerScene = new Scene(view);
 
     }

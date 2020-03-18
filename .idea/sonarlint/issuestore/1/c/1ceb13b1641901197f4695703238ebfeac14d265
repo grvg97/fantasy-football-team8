@@ -1,11 +1,11 @@
 
-[squid:UselessImportCheck"0Remove this unused import 'javax.xml.soap.Text'.(ŒşÄ™8 ©ÑÎ.
 psquid:S00117_"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áìÖé8•Ç´£.
+esquid:UselessImportCheck"5Remove this unused import 'javafx.scene.layout.VBox'.(íÆáÂùÿÿÿÿ8 ©ÑÎ.
+]squid:S1118":Add a private constructor to hide the implicit public one.(¨Ô¹ûÿÿÿÿ8‚¥Ï.
+nsquid:UselessImportCheck">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8 ©ÑÎ.
 osquid:S001170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÛ_8ó¤®£.
+usquid:S00117e"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¬·åÿÿÿÿÿ8¥ø¶£.
 osquid:S00117b"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šéä18¥ø¶£.
 usquid:S00117h"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ùóïÿÿÿÿÿ8¥ø¶£.
-]squid:S1118":Add a private constructor to hide the implicit public one.(¨Ô¹ûÿÿÿÿ8‚¥Ï.
+[squid:UselessImportCheck"0Remove this unused import 'javax.xml.soap.Text'.(ŒşÄ™8 ©ÑÎ.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀşÿÿÿÿ
-esquid:UselessImportCheck"5Remove this unused import 'javafx.scene.layout.VBox'.(íÆáÂùÿÿÿÿ8 ©ÑÎ.
-usquid:S00117e"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¬·åÿÿÿÿÿ8¥ø¶£.
-nsquid:UselessImportCheck">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8 ©ÑÎ.

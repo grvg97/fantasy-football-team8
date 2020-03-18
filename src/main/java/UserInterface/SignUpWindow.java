@@ -52,7 +52,7 @@ public class SignUpWindow {
             else if (!password.equals(password2))
                 HandleError.passwordMismatch();
 
-            // Passing the username and password after certain restrictions have been met
+            // after certain restrictions have been met User is created.
             else {
                 User user = new User(SignUpWindow.getUsername(), SignUpWindow.getPassword());
                 try {

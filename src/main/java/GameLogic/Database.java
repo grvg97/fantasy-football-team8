@@ -3,28 +3,35 @@ package GameLogic;
 import java.util.ArrayList;
 
 public class Database {
-    ArrayList<League> leagues = new ArrayList<>();
-    private ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<League> leagues = new ArrayList<>();
+    private static ArrayList<User> users = new ArrayList<>();
+    private static Database userDatabase;
+    private static Database leagueDatabase;
 
-    // This function adds a new League to the LeagueDatabase.
-    public League addLeague(League league) {
-        league.setId(leagues.size());
-        leagues.add(league);
-        return league;
-    }
 
     // This function returns the Global League, which is always at index 0 in our Database.
-    public League getGlobalLeague() {
-        return this.leagues.get(0);
+    public static League getGlobalLeague() {
+        return leagues.get(0);
     }
 
-    public User addUser(User user) {
+    public static void add(User user, League league) {
+        user.setId(users.size());
+        league.setId(leagues.size());
+        users.add(user);
+        leagues.add(league);
+    }
+
+    public static void add(League league) {
+        league.setId(leagues.size());
+        leagues.add(league);
+    }
+
+    public static void add(User user) {
         user.setId(users.size());
         users.add(user);
-        return user;
     }
 
-    public User authUser(String username, String password) {
+    public static User authUser(String username, String password) {
         for(User user : users) {
             if(user.getUsername().equals(username))
                 if(user.getPassword().equals(password))
@@ -34,4 +41,5 @@ public class Database {
         }
         return null;
     }
+
 }

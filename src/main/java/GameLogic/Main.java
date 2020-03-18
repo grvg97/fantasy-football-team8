@@ -31,12 +31,21 @@ public class Main extends Application {
     }
 
 
+    private void initGlobalLeague() {
+        League globalLeague = new League("Global League");
+        Database.add(globalLeague);
+    }
+
+
     // Our main javafx code
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         // Start -> SignUp -> Tutorial -> User
         // Start -> Login -> User
+
+        // Initialize global league
+        initGlobalLeague();
 
         // Create scenes
         SignUpWindow.setScene(primaryStage);

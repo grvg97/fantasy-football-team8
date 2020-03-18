@@ -35,7 +35,7 @@ public class UserWindow {
                 if (empty || player == null || player.getFullName() == null) {
                     setText(null);
                 } else {
-                    setText(player.getFullName());
+                    setText(player.getPosition() + " " + player.getFullName());
                 }
             }
         });
@@ -49,13 +49,18 @@ public class UserWindow {
         Label label = new Label("Welcome to your team and league page");
         Label username = new Label("Username: " + user.getUsername());
         Label teamName = new Label("Team name: " + user.getTeamName());
+
         Button playerInfo = new Button("Open player");
+        Button displayGlobalLeague = new Button("Global League");
+
+        displayGlobalLeague.setOnAction(event -> {
+            //
+        });
 
         playerInfo.setOnAction(event -> {
             Player selectedPlayer = teamView.getSelectionModel().getSelectedItem();
             Stage playerWindow = new Stage();
             PlayerWindow.setScene(selectedPlayer);
-            playerWindow.setScene(PlayerWindow.getScene());
             playerWindow.show();
         });
 

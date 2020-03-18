@@ -41,3 +41,5 @@ U
 %src/main/java/UserInterface/style.css,4/4/44c982c2f72effeac6104c8f8f4b27da021b42b8
 U
 %src/main/java/GameLogic/Database.java,b/6/b60bf4b3f8ddcb643f838787502a2d4e5c23d8a2
+]
+-src/main/java/UserInterface/PlayerWindow.java,8/9/89012f783ac464bb6b774136c4de45152c0f49a5

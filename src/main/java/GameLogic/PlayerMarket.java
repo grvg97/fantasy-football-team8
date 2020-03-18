@@ -1,23 +1,28 @@
 package GameLogic;
 
+import UserInterface.PlayerWindow;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
+
+// DESIGN PATTERN: SINGLETON: Prevents this class to be instantiated twice
 public class PlayerMarket {
     @SerializedName("elements") private List<Player> players;
 
-    public List<Player> getPlayers() {
-        return this.players;
+    private PlayerMarket() {}
+
+    private static class PlayerMarketHolder {
+        private static final PlayerMarket INSTANCE = new PlayerMarket();
     }
 
-    // For bench players
-    public Player getPlayer(int id) {
-        for (Player player : players)
-            if (player.getId() == id)
-                return player;
+    public static PlayerMarket getInstance() {
+        return PlayerMarketHolder.INSTANCE;
+    }
 
-        return null;
+    public List<Player> getPlayers() {
+        return new ArrayList<Player>(this.players);
     }
 
 }

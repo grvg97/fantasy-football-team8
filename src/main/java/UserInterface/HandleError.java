@@ -1,5 +1,6 @@
 package UserInterface;
 
+import GameLogic.Player;
 import javafx.scene.control.Alert;
 
 
@@ -43,7 +44,7 @@ public class HandleError {
     // Username or Password can't be left blank
     public static void signUpRestriction() {
         Alert error = new Alert(Alert.AlertType.ERROR);
-        error.setHeaderText("Invalid Username or Password");
+        error.setHeaderText("Invalid Username or Password!");
         error.setContentText("Username or Password can not be left blank");
         error.showAndWait();
     }
@@ -51,8 +52,16 @@ public class HandleError {
     // Passwords must match in the SignUpWindow
     public static void passwordMismatch() {
         Alert error = new Alert(Alert.AlertType.ERROR);
-        error.setHeaderText("Password mismatch");
+        error.setHeaderText("Password Mismatch!");
         error.setContentText("The passwords you have typed don't match.\nPlease rewrite your passwords.");
+        error.showAndWait();
+    }
+
+    // User can't add player to team if it already exists
+    public static void playerExists(Player player) {
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setHeaderText("Player Exists!");
+        error.setContentText(player.getFullName() + " already exists in the team.");
         error.showAndWait();
     }
 

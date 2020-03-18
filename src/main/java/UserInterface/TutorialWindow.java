@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
+import javax.xml.crypto.Data;
 import javax.xml.soap.Text;
 import java.io.IOException;
 import java.util.List;
@@ -53,27 +54,33 @@ public class TutorialWindow {
         // User can't buy player unless their is not team
         // User can't buy the player with the specific position if that position is full.
         playerBox.setOnAction(event -> {
-
+            Player selectedPlayer = playerBox.getValue();
             if (!user.hasTeam())
                 HandleError.teamMustExistence();
 
             else if (user.getTeamPositionCount(position) == positionCount)
                 HandleError.formationRestriction(position, positionCount);
 
+            else if (user.getTeamPlayers().contains(selectedPlayer))
+                HandleError.playerExists(selectedPlayer);
+
             else
-                user.buyPlayer(playerBox.getValue());
+                user.buyPlayer(selectedPlayer);
 
         });
         return playerBox;
     }
 
+    private static void addToDatabase(User user, League globalLeague) {
+        Database.add(user);
+        globalLeague.addUser(user);
+    }
 
     // Sets the scene of the view 'TutorialWindow'
     public static void setScene(Stage window, User user) throws IOException {
 
-        // Get the json object and pass it to playerMarket
-        PlayerMarket playerMarket = HandleApi.getJsonObject();
-        List<Player> players = playerMarket.getPlayers();
+        // Get the json object and the players from the player market
+        List<Player> players = HandleApi.getJsonObject().getPlayers();
 
         // Create the button and label
         Button nextButton = new Button("Next");
@@ -129,9 +136,11 @@ public class TutorialWindow {
         // If all conditions are met, submit info
         nextButton.setOnAction(event -> {
             // TODO: save user to database
-            System.out.println(SignUpWindow.getUsername());
-            // If the team size is larger than 11, user can continue to the next scene of the game
+            // If the team size is larger than 11, user will be add
+            // user can continue to the next scene of the game
             if (user.getTeamSize() >= 11) {
+                addToDatabase(user, Database.getGlobalLeague());
+
                 UserWindow.setScene(window, user);
                 window.setScene(UserWindow.getScene());
             }
