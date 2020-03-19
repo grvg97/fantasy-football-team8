@@ -29,6 +29,33 @@ For each application of any design pattern you have to provide a table conformin
 | **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
 | **Additional remarks**  | Optional, only if needed |
 
+| ID  | DP1  |
+|---|---|
+| **Design pattern**  | Iterator Behavioural Design Pattern |
+| **Problem**  | PlayerMarket class contains a list of available players that are retreived from the Premier League Fantasy Football website  |
+| **Solution**  | A paragraph describing why with the application of the design pattern you solve the identified problem |
+| **Intended use**  | A paragraph describing how you intend to use at run-time the objects involved in the applied design patterns (you can refer to small sequence diagrams here if you want to detail how the involved parties interact at run-time |
+| **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
+| **Additional remarks**  | Optional, only if needed |
+
+| ID  | DP2  |
+|---|---|
+| **Design pattern**  | Singleton Creational Design Pattern |
+| **Problem**  | A paragraph describing the problem you want to solve |
+| **Solution**  | A paragraph describing why with the application of the design pattern you solve the identified problem |
+| **Intended use**  | A paragraph describing how you intend to use at run-time the objects involved in the applied design patterns (you can refer to small sequence diagrams here if you want to detail how the involved parties interact at run-time |
+| **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
+| **Additional remarks**  | Optional, only if needed |
+
+| ID  | DP3  |
+|---|---|
+| **Design pattern**  | Name of the applied pattern |
+| **Problem**  | A paragraph describing the problem you want to solve |
+| **Solution**  | A paragraph describing why with the application of the design pattern you solve the identified problem |
+| **Intended use**  | A paragraph describing how you intend to use at run-time the objects involved in the applied design patterns (you can refer to small sequence diagrams here if you want to detail how the involved parties interact at run-time |
+| **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
+| **Additional remarks**  | Optional, only if needed |
+
 Maximum number of words for this section: 2000
 
 ## Class diagram									
