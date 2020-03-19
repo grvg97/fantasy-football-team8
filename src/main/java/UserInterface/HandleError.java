@@ -66,4 +66,11 @@ public class HandleError {
         error.showAndWait();
     }
 
+    public static void actionNotAuthorized(String manager) {
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setHeaderText("Not Authorized!");
+        error.setContentText("You are not authorized to delete this league");
+        error.showAndWait();
+    }
+
 }

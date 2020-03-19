@@ -55,7 +55,7 @@ public class UserWindow {
         Label teamName = new Label("Team name: " + user.getTeamName());
 
         Button playerInfo = new Button("Open player");
-
+        Button createLeague = new Button("Create League");
 
         playerInfo.setOnAction(event -> {
             Player selectedPlayer = teamView.getSelectionModel().getSelectedItem();
@@ -66,7 +66,11 @@ public class UserWindow {
             playerStage.show();
         });
 
-        layout.getChildren().addAll(label, username, teamName, teamView, playerInfo);
+        createLeague.setOnAction(event -> {
+
+        });
+
+        layout.getChildren().addAll(label, username, teamName, teamView, playerInfo, createLeague);
         userScene = new Scene(layout);
 
         // All the leagues and the team of the user are displayed here
@@ -75,5 +79,15 @@ public class UserWindow {
 
     public static Scene getScene() {
         return userScene;
+    }
+
+    /* */
+    private class TransferWindow {
+        public void setScene() {
+
+        }
+    }
+    private class LeaguesWindow {
+        private Scene LeagueScene;
     }
 }

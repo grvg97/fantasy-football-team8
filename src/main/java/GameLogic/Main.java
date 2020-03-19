@@ -50,12 +50,12 @@ public class Main extends Application {
         // Create scenes
         SignUpWindow.setScene(primaryStage);
         LoginWindow.setScene(primaryStage);
-        StartWindow.setScene(primaryStage);
 
 
         primaryStage.setTitle("Fantasy Football");
-        primaryStage.setScene(StartWindow.getScene());
+        primaryStage.setScene(LoginWindow.getScene());
         primaryStage.show();
+
 
         // Called when the close button on the window is clicked
         primaryStage.setOnCloseRequest(event -> {

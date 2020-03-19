@@ -1,5 +1,7 @@
 package GameLogic;
 
+import UserInterface.HandleError;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -12,6 +14,7 @@ public class User {
     private int credits = 1000;
     private Boolean hasTransferred = false;
 
+
     // Constructor
     public User(String username, String password) {
         this.username = username;
@@ -22,10 +25,15 @@ public class User {
     public String getPassword() {return this.password; }
     public String getTeamName() { return this.team.getName(); }
 
-    public void createTeam(String name)   {
+
+    public void createTeam(String name) {
         this.team = new Team(name, this.id);
     }
-    public boolean hasTeam() { return this.team != null; }
+
+    public boolean hasTeam() {
+        return this.team != null;
+    }
+
 
     public void deleteTeam() {
         // after this, if there is no reference to the object,
@@ -49,34 +57,47 @@ public class User {
         System.out.println("Credits: " + this.credits);
     }
 
+
     // This function handles the selling of players and removes it from the User's team.
     public void sellPlayer(Player player) {
         this.team.removePlayer(player);
         this.credits += player.getCost();
     }
 
+
     public void pickCaptains(Player captain, Player viceCaptain) {
         this.team.assignCaptains(captain, viceCaptain);
     }
 
-    public void setId(int id) {this.id = id;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
     // User can set the end date of any league as long as that user is
     // the manager of the specified league
     public void setEndOfLeague(Date endDate, League league) { }
 
+
     // User enters the specified league and,
     // Also adds that to it's own competed leagues
     public void joinLeague(League league) { }
+
 
     // User exits the specified league and,
     // Also removes that league from it's own competed leagues
     public void exitLeague(League league) { }
 
-    // Create a league and assign the user who created as the manager
+
+    // Create a league and assign the user's name who created as the manager
     // Add created league to the leagues that the user competes
-    public League createLeague(String name, User manager, Date start) { return null; }
+    public void createLeague(String name, Date start) {
+        League customLeague = new League(name, start, this.username);
+        customLeague.addUser(this);
+        Database.add(customLeague);
+    }
 
     public int getTeamSize() {
         return this.team.players.size();
@@ -96,8 +117,17 @@ public class User {
     public List<Player> getTeamPlayers() {
         return this.team.players;
     }
-    // League
-    public void deleteLeague(League league) { }
+
+
+    // Delete league if user is the manager
+    public void deleteLeague(League league) {
+        if (league.getManager().equals(this.username)) {
+            league = null;
+        }
+        else {
+            HandleError.actionNotAuthorized(league.getManager());
+        }
+    }
 
     private class Team {
         private int id;

@@ -23,7 +23,7 @@ public class LoginWindow {
         Button loginButton = new Button("Login");
         Button signupButton = new Button("Sign up");
 
-        Label label = new Label("Please enter your username and password");
+        Label label = new Label("Welcome to Fantasy Football.\nEnter username and password.");
         label.setStyle("-fx-font-size: 15px");
 
         TextField usernameField = new TextField();
