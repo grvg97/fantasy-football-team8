@@ -1,25 +1,23 @@
 package UserInterface;
 
 import GameLogic.*;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import javax.xml.crypto.Data;
-import javax.xml.soap.Text;
 import java.io.IOException;
 import java.util.List;
-import java.util.function.*;
+
 
 public class TutorialWindow {
     private static Scene tutorialScene;
+
+    private TutorialWindow() {}
 
     /* Constructs the ComboBox that contains players and displays them as strings */
     private static ComboBox<Player> constructPlayerBox(List<Player> players, Positions position) {

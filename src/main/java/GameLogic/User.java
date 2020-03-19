@@ -93,11 +93,12 @@ public class User {
 
     // Create a league and assign the user's name who created as the manager
     // Add created league to the leagues that the user competes
-    public void createLeague(String name, Date start) {
-        League customLeague = new League(name, start, this.username);
+    public void createLeague(String name) {
+        League customLeague = new League(name, this.username);
         customLeague.addUser(this);
         Database.add(customLeague);
     }
+
 
     public int getTeamSize() {
         return this.team.players.size();
@@ -114,6 +115,7 @@ public class User {
         return counter;
     }
 
+
     public List<Player> getTeamPlayers() {
         return this.team.players;
     }
@@ -129,6 +131,7 @@ public class User {
         }
     }
 
+
     private class Team {
         private int id;
         private List<Player> players = new ArrayList<>( 11); // Starters
@@ -138,14 +141,17 @@ public class User {
         private Player captain;
         private Player viceCaptain;
 
+
         Team (String name, int id) {
             this.name = name;
             this.id = id;
         }
 
+
         public String getName() {
             return this.name;
         }
+
 
         // Get all the 15 players total points
         public int getTotalPoints() {
@@ -158,10 +164,12 @@ public class User {
             return this.totalPoints;
         }
 
+
         public void assignCaptains(Player captain, Player viceCaptain) {
             this.captain = captain;
             this.viceCaptain = viceCaptain;
         }
+
 
         // Add to bench if starting lineup (11) already chosen
         public void addPlayer(Player player) {
@@ -171,9 +179,11 @@ public class User {
                 this.players.add(player);
         }
 
+
         public void removePlayer(Player player) {
             players.remove(player);
         }
+
 
         public void changeStartingLineup() {
             // TODO: Switch players from the starting lineup

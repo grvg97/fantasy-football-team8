@@ -32,7 +32,7 @@ public class Main extends Application {
 
 
     private void initGlobalLeague() {
-        League globalLeague = new League("Global League");
+        League globalLeague = new League("Global League", "System");
         Database.add(globalLeague);
     }
 

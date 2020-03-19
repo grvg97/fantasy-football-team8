@@ -13,17 +13,19 @@ public class League {
     private HashMap<String, Integer> teamPoints = new HashMap<>();
     private String manager;
 
-    // Constructor: For Global league
-    // NOTE: No manager because this league belongs to the game
-    public League(String name) {
+
+    // Constructor
+    public League(String name, String manager) {
         this.name = name;
+        this.manager = manager;
     }
 
-    // Second constructor
-    public League(String name, Date start, String manager) {
-        this.name = name;
-        this.startDate = start;
-        this.manager = manager;
+    public ArrayList<User> getCompetingUsers() {
+        return new ArrayList<>(this.competingUsers);
+    }
+
+    public HashMap<String, Integer> getTeamPoints() {
+        return new HashMap<>(this.teamPoints);
     }
 
     // When a new user enters the league, it will always start with 0 points

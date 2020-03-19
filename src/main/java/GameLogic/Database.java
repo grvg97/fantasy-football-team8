@@ -1,6 +1,7 @@
 package GameLogic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
     private static ArrayList<League> leagues = new ArrayList<>();
@@ -13,6 +14,11 @@ public class Database {
     public static League getGlobalLeague() {
         return leagues.get(0);
     }
+
+    public static ArrayList<League> getLeagues() {
+        return new ArrayList<>(leagues);
+    }
+
 
     public static void add(User user, League league) {
         user.setId(users.size());
