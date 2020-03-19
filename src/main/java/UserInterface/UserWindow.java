@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-// Displays users scene
+
 public class UserWindow {
     private static Scene userScene;
 
 
-    // Construct the ListView by adding the selected players
+    /* Construct the ListView by adding the selected players */
     private static ListView<Player> constructTeamView(List<Player> players) {
         ListView<Player> view = new ListView<>();
         for (Player player: players) {
@@ -24,8 +24,10 @@ public class UserWindow {
     }
 
 
-    // This function allows the ListView to store 'Player'
-    // objects and display them as strings
+    /*
+     * This function allows the ListView to store 'Player'
+     * objects and display them as strings
+    */
     private static void setViewToPlayerName(ListView<Player> teamView) {
         teamView.setCellFactory(param -> new ListCell<Player>() {
             @Override
@@ -35,12 +37,14 @@ public class UserWindow {
                 if (empty || player == null || player.getFullName() == null) {
                     setText(null);
                 } else {
-                    setText(player.getPosition() + " " + player.getFullName());
+                    setText(player.getPositionName() + " " + player.getFullName());
                 }
             }
         });
     }
-    public static void setScene(Stage window, User user) {
+
+
+    public static void setScene(User user) {
 
         ListView<Player> teamView = constructTeamView(user.getTeamPlayers());
         setViewToPlayerName(teamView);
@@ -51,17 +55,15 @@ public class UserWindow {
         Label teamName = new Label("Team name: " + user.getTeamName());
 
         Button playerInfo = new Button("Open player");
-        Button displayGlobalLeague = new Button("Global League");
 
-        displayGlobalLeague.setOnAction(event -> {
-            //
-        });
 
         playerInfo.setOnAction(event -> {
             Player selectedPlayer = teamView.getSelectionModel().getSelectedItem();
-            Stage playerWindow = new Stage();
             PlayerWindow.setScene(selectedPlayer);
-            playerWindow.show();
+
+            Stage playerStage = new Stage();
+            playerStage.setScene(PlayerWindow.getScene());
+            playerStage.show();
         });
 
         layout.getChildren().addAll(label, username, teamName, teamView, playerInfo);
@@ -69,6 +71,8 @@ public class UserWindow {
 
         // All the leagues and the team of the user are displayed here
     }
+
+
     public static Scene getScene() {
         return userScene;
     }

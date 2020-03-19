@@ -1,9 +1,9 @@
 
+ksquid:UselessImportCheck";Remove this unused import 'javafx.scene.layout.BorderPane'.(Ξξ¥όÿÿÿÿ8»ο.
 esquid:UselessImportCheck"5Remove this unused import 'javafx.scene.layout.VBox'.(νΖαΒωÿÿÿÿ8μ¬°.
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ιΖΐώÿÿÿÿ
 Xsquid:S1118":Add a private constructor to hide the implicit public one.(•κ¤Ύ8πΡΨ΅.
 usquid:S1450"WRemove the "username" field and declare it as a local variable in the relevant methods.(”§Ύ8ƒύν¬.
-Jsquid:S1068",Remove this unused "password" private field.(ςω8ƒύν¬.
-ksquid:UselessImportCheck";Remove this unused import 'javafx.scene.layout.BorderPane'.(Ξξ¥όÿÿÿÿ8»ο.
-usquid:S1450"WRemove the "password" field and declare it as a local variable in the relevant methods.(ςω8ƒύν¬.
 Jsquid:S1068",Remove this unused "username" private field.(”§Ύ8ƒύν¬.
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ιΖΐώÿÿÿÿ
+usquid:S1450"WRemove the "password" field and declare it as a local variable in the relevant methods.(ςω8ƒύν¬.
+Jsquid:S1068",Remove this unused "password" private field.(ςω8ƒύν¬.

@@ -20,10 +20,9 @@ import java.util.function.*;
 
 public class TutorialWindow {
     private static Scene tutorialScene;
-    private static User user;
 
-    // Constructs the ComboBox that contains players and displays them as strings
-    private static ComboBox<Player> constructPlayerBox(List<Player> players, int position) {
+    /* Constructs the ComboBox that contains players and displays them as strings */
+    private static ComboBox<Player> constructPlayerBox(List<Player> players, Positions position) {
         ComboBox<Player> playerChoices = new ComboBox<>();
         for (Player player: players) {
             if (player.getPosition() == position)
@@ -44,23 +43,27 @@ public class TutorialWindow {
         return playerChoices;
     }
 
-    // Selects the players for the team. Wraps the 'constructPlayerBox' function.
+
+    /* Selects the players for the team. Wraps the 'constructPlayerBox' function. */
     private static ComboBox<Player> selectPlayers (
-            User user, List<Player> players, int position, int positionCount, String Pos
+            User user, List<Player> players, Positions position, int positionCount, String Pos
     ) {
         ComboBox<Player> playerBox = constructPlayerBox(players, position);
         playerBox.setPromptText("Select " + positionCount + " " + Pos);
 
-        // User can't buy player unless their is not team
-        // User can't buy the player with the specific position if that position is full.
+
         playerBox.setOnAction(event -> {
             Player selectedPlayer = playerBox.getValue();
+
+            // User can't buy player unless their is not team
             if (!user.hasTeam())
                 HandleError.teamMustExistence();
 
+            // User can't buy the player with the specific position if that position is full.
             else if (user.getTeamPositionCount(position) == positionCount)
                 HandleError.formationRestriction(position, positionCount);
 
+            // If player is already in team, user can't buy it
             else if (user.getTeamPlayers().contains(selectedPlayer))
                 HandleError.playerExists(selectedPlayer);
 
@@ -71,12 +74,13 @@ public class TutorialWindow {
         return playerBox;
     }
 
+
     private static void addToDatabase(User user, League globalLeague) {
         Database.add(user);
         globalLeague.addUser(user);
     }
 
-    // Sets the scene of the view 'TutorialWindow'
+    /* Sets the scene of the view 'TutorialWindow' */
     public static void setScene(Stage window, User user) throws IOException {
 
         // Get the json object and the players from the player market
@@ -100,16 +104,16 @@ public class TutorialWindow {
 
         // Construct team
         ComboBox<Player> GKBox =
-                selectPlayers(user, players, Positions.GK.getPositionVal(), Formation.GKCOUNT.getValue(), "GK");
+                selectPlayers(user, players, Positions.GK, Formation.GKCOUNT.getValue(), "GK");
 
         ComboBox<Player> DEFBox =
-                selectPlayers(user, players, Positions.DEF.getPositionVal(), Formation.DEFCOUNT.getValue(), "DEF");
+                selectPlayers(user, players, Positions.DEF, Formation.DEFCOUNT.getValue(), "DEF");
 
         ComboBox<Player> MIDBox =
-                selectPlayers(user, players, Positions.MID.getPositionVal(), Formation.MIDCOUNT.getValue(), "MID");
+                selectPlayers(user, players, Positions.MID, Formation.MIDCOUNT.getValue(), "MID");
 
         ComboBox<Player> FORBox =
-                selectPlayers(user, players, Positions.FOR.getPositionVal(), Formation.FORCOUNT.getValue(), "FOR");
+                selectPlayers(user, players, Positions.FWD, Formation.FORCOUNT.getValue(), "FOR");
 
 
         // Create grid and add the elements to the grid
@@ -140,8 +144,7 @@ public class TutorialWindow {
             // user can continue to the next scene of the game
             if (user.getTeamSize() >= 11) {
                 addToDatabase(user, Database.getGlobalLeague());
-
-                UserWindow.setScene(window, user);
+                UserWindow.setScene(user);
                 window.setScene(UserWindow.getScene());
             }
             else
@@ -156,5 +159,4 @@ public class TutorialWindow {
     public static Scene getScene() {
         return tutorialScene;
     }
-    public static User getUser() {return user;}
 }

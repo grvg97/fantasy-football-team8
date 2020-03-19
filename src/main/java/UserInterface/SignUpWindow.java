@@ -18,13 +18,14 @@ import java.util.function.*;
 
 public class SignUpWindow {
 
-    private static String username;
-    private static String password;
-    private static String password2;
     private static Scene signUpScene;
 
 
     public static void setScene(Stage window) {
+
+        final String[] username = new String[1];
+        final String[] password = new String[1];
+        final String[] password2 = new String[1];
 
         Label label = new Label("Please enter a username and password");
 
@@ -40,26 +41,25 @@ public class SignUpWindow {
 
         // Assigns the username and password to the attributes when button clicked
         signupButton.setOnAction(event -> {
-            username = usernameField.getText();
-            password = passwordField.getText();
-            password2 = passwordField2.getText();
+            username[0] = usernameField.getText();
+            password[0] = passwordField.getText();
+            password2[0] = passwordField2.getText();
 
             // If username or password field is blank, don't enter the tutorial window scene
-            if (username.equals("") || password.equals(""))
+            if (username[0].equals("") || password[0].equals(""))
                 HandleError.signUpRestriction();
 
             // Password mismatch is not allowed
-            else if (!password.equals(password2))
+            else if (!password[0].equals(password2[0]))
                 HandleError.passwordMismatch();
 
             // after certain restrictions have been met User is created.
             else {
-                User user = new User(SignUpWindow.getUsername(), SignUpWindow.getPassword());
-                try {
-                    TutorialWindow.setScene(window, user);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                User user = new User(username[0], password[0]);
+
+                try { TutorialWindow.setScene(window, user); }
+                catch (IOException e) { e.printStackTrace(); }
+
                 window.setScene(TutorialWindow.getScene());
             }
         });
@@ -89,14 +89,6 @@ public class SignUpWindow {
 
     public static Scene getScene() {
         return signUpScene;
-    }
-
-    public static String getUsername() {
-        return username;
-    }
-
-    public static String getPassword() {
-        return password;
     }
 
 }

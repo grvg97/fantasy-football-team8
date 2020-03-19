@@ -1,6 +1,7 @@
 package UserInterface;
 
 import GameLogic.Player;
+import GameLogic.Positions;
 import javafx.scene.control.Alert;
 
 
@@ -34,7 +35,7 @@ public class HandleError {
     }
 
     // This function is used in TutorialWindow. It restricts the players from specific positions according to 4-3-3
-    public static void formationRestriction(int position, int positionCount) {
+    public static void formationRestriction(Positions position, int positionCount) {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setHeaderText("Formation Restriction!");
         error.setContentText("The position " + position + " must have exactly " + positionCount + " players.");

@@ -33,17 +33,6 @@ public class User {
         this.team = null;
     }
 
-    // This function shows a list of all players currently in the user's team.
-    public void displayTeam() {
-        System.out.println("Starting line up 4-3-3: ");
-        for(Player player : this.team.players)
-            System.out.println(player.getPositionName() + " - " + player.getFullName());
-        System.out.println("Bench: ");
-        for (Player player: this.team.bench) {
-            System.out.println(player.getPositionName() + " - " + player.getFullName());
-        }
-    }
-
     public int getTotalTeamPoints() {
         return this.team.getTotalPoints();
     }
@@ -70,7 +59,7 @@ public class User {
         this.team.assignCaptains(captain, viceCaptain);
     }
 
-    public void setId(int id) { this.id = id;}
+    public void setId(int id) {this.id = id;}
 
     // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
     // User can set the end date of any league as long as that user is
@@ -95,7 +84,7 @@ public class User {
 
 
     // This function returns the number of players from that position
-    public int getTeamPositionCount(int position) {
+    public int getTeamPositionCount(Positions position) {
         int counter = 0;
         for (Player player: this.team.players) {
             if (player.getPosition() == position)

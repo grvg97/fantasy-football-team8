@@ -1,5 +1,6 @@
 package UserInterface;
 
+import GameLogic.Database;
 import GameLogic.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,14 +17,12 @@ import java.util.function.*;
 
 public class LoginWindow {
     private static Scene loginScene;
-    private static Button loginButton = new Button("Login");
-    private static Button signupButton = new Button("Sign up");
-
-    private static String username;
-    private static String password;
 
 
     public static void setScene(Stage window) {
+        Button loginButton = new Button("Login");
+        Button signupButton = new Button("Sign up");
+
         Label label = new Label("Please enter your username and password");
         label.setStyle("-fx-font-size: 15px");
 
@@ -39,13 +38,16 @@ public class LoginWindow {
 
         // Assigns the username and password to the attributes when button clicked
         loginButton.setOnAction(event -> {
-            username = usernameField.getText();
-            password = passwordField.getText();
+            String username = usernameField.getText();
+            String password = passwordField.getText();
 
             // TODO: verify username and password checking the database
+            /* Database.authUser(username, password); */
+
             // if username and password exists in userDatabase
-                window.setScene(UserWindow.getScene()); // UserWindow
+            window.setScene(UserWindow.getScene()); // UserWindow
         });
+
         signupButton.setOnAction(event -> window.setScene(SignUpWindow.getScene()));
 
         // Construct the layout of the scene using the GridPane

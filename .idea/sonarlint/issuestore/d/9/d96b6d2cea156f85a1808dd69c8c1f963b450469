@@ -1,4 +1,6 @@
 
+bsquid:UselessImportCheck"2Remove this unused import 'javax.xml.crypto.Data'.(¦¿çˆıÿÿÿÿ8¼Õ™ú.
+Zsquid:UselessImportCheck"/Remove this unused import 'GameLogic.Database'.(÷êÍà8¿Ñ£ú.
+]squid:UselessImportCheck"-Remove this unused import 'GameLogic.League'.(‚‡Ö…ıÿÿÿÿ8Èû£ú.
+]squid:S1118":Add a private constructor to hide the implicit public one.(ğ·Şùÿÿÿÿ8¨ÒíúŒ.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀşÿÿÿÿ
-]squid:S1118
-":Add a private constructor to hide the implicit public one.(ğ·Şùÿÿÿÿ8¨ÒíúŒ.

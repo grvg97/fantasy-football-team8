@@ -20,6 +20,7 @@ public class PlayerWindow {
         }
         return statsView;
     }
+
     public static void setScene(Player player) {
         HashMap<String, Integer> stats =  player.getStats();
         ListView<String> statView = constructStatView(stats);

@@ -1,6 +1,8 @@
 package GameLogic;
 
 import com.google.gson.annotations.SerializedName;
+import javafx.geometry.Pos;
+
 import java.util.HashMap;
 
 public class Player {
@@ -35,8 +37,23 @@ public class Player {
     public String getFullName() {
         return (this.firstName + " " + this.lastName);
     }
-    public int getPosition() {
-        return this.position;
+    public Positions getPosition() {
+        Positions pos;
+
+        switch (this.position) {
+            case 1:
+                pos = Positions.GK;
+                break;
+            case 2:
+                pos = Positions.DEF;
+                break;
+            case 3:
+                pos = Positions.MID;
+                break;
+            default:
+                pos = Positions.FWD;
+        }
+        return pos;
     }
     public boolean isInjured() {
         return isAvailable.equals("i");
