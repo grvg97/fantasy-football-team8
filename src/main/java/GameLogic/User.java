@@ -96,7 +96,7 @@ public class User {
     public void createLeague(String name) {
         League customLeague = new League(name, this.username);
         customLeague.addUser(this);
-        Database.add(customLeague);
+        Database.getInstance().add(customLeague);
     }
 
 

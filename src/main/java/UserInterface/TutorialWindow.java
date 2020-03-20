@@ -74,7 +74,7 @@ public class TutorialWindow {
 
 
     private static void addToDatabase(User user, League globalLeague) {
-        Database.add(user);
+        Database.getInstance().add(user);
         globalLeague.addUser(user);
     }
 
@@ -82,7 +82,9 @@ public class TutorialWindow {
     public static void setScene(Stage window, User user) throws IOException {
 
         // Get the json object and the players from the player market
-        List<Player> players = HandleApi.getJsonObject().getPlayers();
+        HandleApi apiHandler = HandleApi.getInstance();
+        PlayerMarket playerMarket = apiHandler.getJsonObject();
+        List<Player> players = playerMarket.getPlayers();
 
         // Create the button and label
         Button nextButton = new Button("Next");
@@ -141,7 +143,7 @@ public class TutorialWindow {
             // If the team size is larger than 11, user will be add
             // user can continue to the next scene of the game
             if (user.getTeamSize() >= 11) {
-                addToDatabase(user, Database.getGlobalLeague());
+                addToDatabase(user, Database.getInstance().getGlobalLeague());
                 UserWindow.setScene(user);
                 window.setScene(UserWindow.getScene());
             }

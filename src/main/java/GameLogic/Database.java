@@ -4,40 +4,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
-    private static ArrayList<League> leagues = new ArrayList<>();
-    private static ArrayList<User> users = new ArrayList<>();
-    private static Database userDatabase;
-    private static Database leagueDatabase;
+    private ArrayList<League> leagues = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
+    private Database userDatabase;
+    private Database leagueDatabase;
+
+
+    private Database() {}
+
+    private static class DatabaseHolder {
+        private static final Database INSTANCE = new Database();
+    }
+
+    public static Database getInstance() {
+        return Database.DatabaseHolder.INSTANCE;
+    }
 
 
     // This function returns the Global League, which is always at index 0 in our Database.
-    public static League getGlobalLeague() {
-        return leagues.get(0);
+    public League getGlobalLeague() {
+        return this.leagues.get(0);
     }
 
-    public static ArrayList<League> getLeagues() {
-        return new ArrayList<>(leagues);
+    public ArrayList<League> getLeagues() {
+        return new ArrayList<>(this.leagues);
     }
 
 
-    public static void add(User user, League league) {
-        user.setId(users.size());
-        league.setId(leagues.size());
+    public void add(User user, League league) {
+        user.setId(this.users.size());
+        league.setId(this.leagues.size());
         users.add(user);
         leagues.add(league);
     }
 
-    public static void add(League league) {
+    public void add(League league) {
         league.setId(leagues.size());
         leagues.add(league);
     }
 
-    public static void add(User user) {
+    public void add(User user) {
         user.setId(users.size());
         users.add(user);
     }
 
-    public static User authUser(String username, String password) {
+    public User authUser(String username, String password) {
         for(User user : users) {
             if(user.getUsername().equals(username))
                 if(user.getPassword().equals(password))

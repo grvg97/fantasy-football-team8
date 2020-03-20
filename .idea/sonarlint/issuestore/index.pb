@@ -9,8 +9,6 @@ A
 DatabaseUser.json,0/9/09368edbe8da117efa89002afa5eeb5b741c258c
 C
 DatabaseLeague.json,4/9/499208642cd52706ab51c0d4e56907852354953d
-\
-,src/main/java/UserInterface/StartWindow.java,d/9/d96b6d2cea156f85a1808dd69c8c1f963b450469
 S
 #src/main/java/GameLogic/League.java,0/8/089cba4a85570fac4397644690adc74ed95a2ad4
 _

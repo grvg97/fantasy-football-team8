@@ -1,13 +1,12 @@
 
-squid:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤ªôÙûÿÿÿÿ
-Bsquid:S1172Z"&Remove these unused method parameters.(Ôºçåúÿÿÿÿ
-vsquid:S1450x"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃıÿÿÿÿ
-msquid:S1450w"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ
-Nsquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ
+usquid:S1450"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ8ÔëâŸ.
+squid:S1186Q"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤ªôÙûÿÿÿÿ
+Jsquid:S1068ˆ"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8ŸÆêŸ.
+Ssquid:S1068"/Remove this unused "viceCaptain" private field.(ÎªÃıÿÿÿÿ8ŸÆêŸ.
+˜squid:S1186V"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ß˜Šó
+]squid:S1854":Remove this useless assignment to local variable "league".(ŠŞä¶ùÿÿÿÿ8ÔëâŸ.
+Nsquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ
+~squid:S1450"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃıÿÿÿÿ8ŸÆêŸ.
+Jsquid:S1068"+Remove this unused "captain" private field.(ìØœÀ8ÔëâŸ.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
-Ksquid:S1068x"/Remove this unused "viceCaptain" private field.(ÎªÃıÿÿÿÿ
-squid:S1186V"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğã§‹ûÿÿÿÿ
-Bsquid:S1068w"+Remove this unused "captain" private field.(ìØœÀ
-˜squid:S1186R"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ß˜Šó
-Bsquid:S1068r"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ
-˜squid:S1186o"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ğşú“
+squid:S1186["€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğã§‹ûÿÿÿÿ

@@ -1,6 +1,9 @@
 
-Tsquid:S5261'"1Add explicit curly braces to avoid dangling else.(„¶áìøÿÿÿÿ8‹³Ûî.
-Ssquid:S1068"0Remove this unused "userDatabase" private field.(í¾ÿ•üÿÿÿÿ8ÄÍûù.
-]squid:S1118":Add a private constructor to hide the implicit public one.(Ñ°Ù®şÿÿÿÿ8ÄÍûù.
-Usquid:S1068	"2Remove this unused "leagueDatabase" private field.(òÕ²–ıÿÿÿÿ8ÄÍûù.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
+Tsquid:S5261-"1Add explicit curly braces to avoid dangling else.(„¶áìøÿÿÿÿ8‹³Ûî.
+]squid:S1118":Add a private constructor to hide the implicit public one.(Ñ°Ù®şÿÿÿÿ8ÄÍûù.
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8êñÊ£.
+squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ªşï:8êñÊ£.
+Usquid:S1068
+"2Remove this unused "leagueDatabase" private field.(òÕ²–ıÿÿÿÿ8ÄÍûù.
+Ssquid:S1068	"0Remove this unused "userDatabase" private field.(í¾ÿ•üÿÿÿÿ8ÄÍûù.

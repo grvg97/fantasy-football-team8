@@ -83,7 +83,7 @@ public class UserWindow {
         ListView<Player> teamView = constructTeamView(user.getTeamPlayers());
         setViewToPlayerName(teamView);
 
-        ListView<League> leagueView = constructLeagueView(Database.getLeagues());
+        ListView<League> leagueView = constructLeagueView(Database.getInstance().getLeagues());
         setViewToLeagueName(leagueView);
 
         Label label = new Label("Welcome to your team and league page");
