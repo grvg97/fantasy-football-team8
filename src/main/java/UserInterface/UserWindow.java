@@ -69,7 +69,7 @@ public class UserWindow {
     }
 
 
-    private static ListView<League> constructLeagueView(ArrayList<League> leagues) {
+    private static ListView<League> constructLeagueView(List<League> leagues) {
         ListView<League> leagueListView = new ListView<>();
         for (League league: leagues) {
             leagueListView.getItems().add(league);
@@ -97,8 +97,10 @@ public class UserWindow {
         playerInfo.setOnAction(event -> {
             Player selectedPlayer = teamView.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {
+
                 PlayerWindow.setScene(selectedPlayer);
                 Stage playerStage = new Stage();
+
                 playerStage.setScene(PlayerWindow.getScene());
                 playerStage.show();
             }

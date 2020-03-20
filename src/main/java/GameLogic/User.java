@@ -34,7 +34,6 @@ public class User {
         return this.team != null;
     }
 
-
     public void deleteTeam() {
         // after this, if there is no reference to the object,
         // it will be deleted by the garbage collector

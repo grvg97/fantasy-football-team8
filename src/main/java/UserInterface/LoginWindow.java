@@ -42,7 +42,8 @@ public class LoginWindow {
             String password = passwordField.getText();
 
             // TODO: verify username and password checking the database
-            /* Database.authUser(username, password); */
+            User user = Database.getInstance().authUser(username, password);
+            UserWindow.setScene(user);
 
             // if username and password exists in userDatabase
             window.setScene(UserWindow.getScene()); // UserWindow
