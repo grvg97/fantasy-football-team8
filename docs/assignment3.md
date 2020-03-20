@@ -20,19 +20,11 @@ Author(s): `name of the team member(s) responsible for this section`
 
 For each application of any design pattern you have to provide a table conforming to the template below.
 
-| ID  | DP1  |
-|---|---|
-| **Design pattern**  | Name of the applied pattern |
-| **Problem**  | A paragraph describing the problem you want to solve |
-| **Solution**  | A paragraph describing why with the application of the design pattern you solve the identified problem |
-| **Intended use**  | A paragraph describing how you intend to use at run-time the objects involved in the applied design patterns (you can refer to small sequence diagrams here if you want to detail how the involved parties interact at run-time |
-| **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
-| **Additional remarks**  | Optional, only if needed |
 
 | ID  | DP1  |
 |---|---|
 | **Design pattern**  | Iterator Behavioural Design Pattern |
-| **Problem**  | PlayerMarket class contains a list of available players that are retreived from the Premier League Fantasy Football website  |
+| **Problem**  | **PlayerMarket** class contains a list of available players that are retreived from the Premier League Fantasy Football website  |
 | **Solution**  | A paragraph describing why with the application of the design pattern you solve the identified problem |
 | **Intended use**  | A paragraph describing how you intend to use at run-time the objects involved in the applied design patterns (you can refer to small sequence diagrams here if you want to detail how the involved parties interact at run-time |
 | **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
@@ -41,9 +33,9 @@ For each application of any design pattern you have to provide a table conformin
 | ID  | DP2  |
 |---|---|
 | **Design pattern**  | Singleton Creational Design Pattern |
-| **Problem**  | A paragraph describing the problem you want to solve |
-| **Solution**  | A paragraph describing why with the application of the design pattern you solve the identified problem |
-| **Intended use**  | A paragraph describing how you intend to use at run-time the objects involved in the applied design patterns (you can refer to small sequence diagrams here if you want to detail how the involved parties interact at run-time |
+| **Problem**  | **Database** class being instantiated in userSignUpWindow class and in LoginWindow class for the use of its operations *userAut()* and *add()* where these operations acesses the **Database** Arraylist attributes *leagues* and *users*  |
+| **Solution**  | With the application of singleton creational design pattern, we are able to ensure that instead of creating a new instance of the **Database** class everytime we are acessing the attributes of the classs to check for exisiting users and to add new users, we are able to set up one global access to the class by encapsulating an instance of the class wihtin the class itself and creating a private contructor of the class to ensure that it can never be instantiated in other classes. This is highly crucial to our system due to the fact that whenever a user signs up , the *add(user)* method of the **Database** class is called and mutates the *users* array list of the class. When a user logs in the method *userAuth*  iterates through the *users* array list of the **Database** object, therefore ensuring that the two operations of the user class modifies and iterates from the same instance of the class is very important to avoid data loss.|
+| **Intended use**  | At run time when the class *loginWindow* is displayed ot the user,the user enters user name and password to the available text fields and the user activates an event handler for the login button, this event handler will get an instance of the **Database** class via an operation named getInstance() since the object itself is already instanitated within the glass. Through this global access point it will then access the public method *authUser()* of the **Database** class where it will return a **User** type object to the class *.|
 | **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
 | **Additional remarks**  | Optional, only if needed |
 
