@@ -139,12 +139,13 @@ public class TutorialWindow {
 
         // If all conditions are met, submit info
         nextButton.setOnAction(event -> {
+
             // TODO: save user to database
             // If the team size is larger than 11, user will be add
             // user can continue to the next scene of the game
             if (user.getTeamSize() >= 11) {
                 addToDatabase(user, Database.getInstance().getGlobalLeague());
-                UserWindow.setScene(user);
+                UserWindow.setScene(window, user);
                 window.setScene(UserWindow.getScene());
             }
             else

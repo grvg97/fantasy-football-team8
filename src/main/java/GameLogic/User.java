@@ -133,7 +133,7 @@ public class User {
 
     private class Team {
         private int id;
-        private List<Player> players = new ArrayList<>( 11); // Starters
+        private List<Player> players = new ArrayList<>(); // Starters
         private List<Player> bench = new ArrayList<>(4);
         private int totalPoints = 0;
         private String name;

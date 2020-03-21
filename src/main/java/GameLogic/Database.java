@@ -25,7 +25,10 @@ public class Database {
     }
 
 
-    // This function returns the Global League, which is always at index 0 in our Database.
+    /*
+      This function returns the Global League,
+      which is always at index 0 in our Database.
+    */
     public League getGlobalLeague() {
         return this.leagueIterator.getFirst();
     }
@@ -44,6 +47,8 @@ public class Database {
         users.add(user);
     }
 
+
+    /* Return the user from database and return it if found, else return null */
     public User authUser(String username, String password) {
         userIterator.first();
         while (!userIterator.isDone()) {
@@ -57,7 +62,7 @@ public class Database {
     }
 
 
-    /* ITERATOR DESIGN PATTERN */
+    /* ITERATOR DESIGN PATTERN for the user database*/
     private class UserIterator {
 
         private ArrayList<User> database;
@@ -90,6 +95,8 @@ public class Database {
         }
     }
 
+
+    /* ITERATOR DESIGN For the league database */
     private class LeagueIterator {
 
         private ArrayList<League> database;
@@ -104,7 +111,7 @@ public class Database {
             try {
                 value = (League)iterator.next();
             } catch (NoSuchElementException ex) {
-                value =  null;
+                value = null;
             }
         }
 

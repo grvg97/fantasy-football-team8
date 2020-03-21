@@ -10,13 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Map;
 import java.util.List;
 
 
 public class UserWindow {
+
     private static Scene userScene;
 
 
@@ -26,6 +26,7 @@ public class UserWindow {
         for (Player player: players) {
             view.getItems().add(player);
         }
+        setViewToPlayerName(view);
         return view;
     }
 
@@ -74,35 +75,29 @@ public class UserWindow {
         for (League league: leagues) {
             leagueListView.getItems().add(league);
         }
+        setViewToLeagueName(leagueListView);
         return leagueListView;
     }
 
 
-    public static void setScene(User user) {
+    public static void setScene(Stage window, User user) {
 
         ListView<Player> teamView = constructTeamView(user.getTeamPlayers());
-        setViewToPlayerName(teamView);
-
         ListView<League> leagueView = constructLeagueView(Database.getInstance().getLeagues());
-        setViewToLeagueName(leagueView);
 
-        Label label = new Label("Welcome to your team and league page");
+        Label userLabel = new Label("Welcome to your team and league page");
         Label username = new Label("Username: " + user.getUsername());
         Label teamName = new Label("Team name: " + user.getTeamName());
 
         Button playerInfo = new Button("Open player");
         Button leagueInfo = new Button("Open League");
+        Button tranferWindow = new Button("Transfer Window");
 
         // Display the selected player's stats
         playerInfo.setOnAction(event -> {
             Player selectedPlayer = teamView.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {
-
-                PlayerWindow.setScene(selectedPlayer);
-                Stage playerStage = new Stage();
-
-                playerStage.setScene(PlayerWindow.getScene());
-                playerStage.show();
+                PlayerWindow.display(selectedPlayer);
             }
 
         });
@@ -112,38 +107,44 @@ public class UserWindow {
             League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
             if (selectedLeague != null) {
                 LeagueWindow.setScene(selectedLeague);
-
                 Stage leagueStage = new Stage();
                 leagueStage.setScene(LeagueWindow.getScene());
                 leagueStage.show();
             }
         });
 
+        tranferWindow.setOnAction(event -> {
+            try { TransferWindow.display(user); }
+            catch (IOException e) { e.printStackTrace(); }
+        });
 
-        VBox pageTop = new VBox(10);
-        pageTop.getChildren().addAll(label, username, teamName, teamView, leagueView, leagueInfo, playerInfo);
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
-//        GridPane.setConstraints(teamView, 0, 0);
-//        GridPane.setConstraints(leagueView, 1, 0);
+        GridPane.setConstraints(userLabel, 1, 0);
+        GridPane.setConstraints(username, 0, 0);
+        GridPane.setConstraints(teamName, 0, 1);
+        GridPane.setConstraints(teamView, 0, 2);
+        GridPane.setConstraints(playerInfo, 0, 3);
+        GridPane.setConstraints(leagueView, 1, 2);
+        GridPane.setConstraints(leagueInfo, 1, 3);
+        GridPane.setConstraints(tranferWindow, 1, 4);
+
+        grid.getChildren().addAll(
+                userLabel, teamName, teamView, playerInfo, leagueInfo, tranferWindow, leagueView, username
+        );
 
 
-        userScene = new Scene(pageTop);
+        userScene = new Scene(grid);
 
         // All the leagues and the team of the user are displayed here
     }
+
 
     public static Scene getScene() {
         return userScene;
     }
 
-    /* */
-    private class TransferWindow {
-        public void setScene() {
-
-        }
-    }
 
     /* Private inner static class used to display the teams inside the league*/
     private static class LeagueWindow {

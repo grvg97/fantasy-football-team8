@@ -42,6 +42,14 @@ public class HandleError {
         error.showAndWait();
     }
 
+    // Used in Transfer Window
+    public static void generalFormationRestriction() {
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setHeaderText("General Formation Restriction!");
+        error.setContentText("The formation must be 4-3-3");
+        error.showAndWait();
+    }
+
     // Username or Password can't be left blank
     public static void signUpRestriction() {
         Alert error = new Alert(Alert.AlertType.ERROR);

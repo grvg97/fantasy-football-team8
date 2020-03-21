@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,5 +34,13 @@ public class PlayerWindow {
     }
     public static Scene getScene() {
         return PlayerScene;
+    }
+
+    public static void display(Player selectedPlayer) {
+        Stage playerStage = new Stage();
+        PlayerWindow.setScene(selectedPlayer);
+
+        playerStage.setScene(PlayerScene);
+        playerStage.show();
     }
 }
