@@ -14,8 +14,8 @@ public class Database {
     private ArrayList<League> leagues = new ArrayList<>();
     private ArrayList<User> users = new ArrayList<>();
 
-    UserIterator userIterator = new UserIterator(users);
-    LeagueIterator leagueIterator = new LeagueIterator(leagues);
+//    UserIterator userIterator = new UserIterator(users);
+//    LeagueIterator leagueIterator = new LeagueIterator(leagues);
 
 
     /*
@@ -23,7 +23,7 @@ public class Database {
       which is always at index 0 in our Database.
     */
     public League getGlobalLeague() {
-        return this.leagueIterator.getFirst();
+        return this.leagues.get(0);
     }
 
     public ArrayList<League> getLeagues() {
@@ -43,88 +43,12 @@ public class Database {
 
     /* Return the user from database and return it if found, else return null */
     public User authUser(String username, String password) {
-        userIterator.first();
-        while (!userIterator.isDone()) {
-            User user = userIterator.currentValue();
+        for (User user: this.users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user;
             }
-            userIterator.next();
         }
         return null;
     }
-
-    /* ITERATOR DESIGN PATTERN for the user database*/
-    private class UserIterator {
-
-        private ArrayList<User> database;
-        private java.util.Iterator iterator;
-        private User value;
-
-        public UserIterator(ArrayList<User> userData) {
-            this.database = userData;
-        }
-
-        public void next() {
-            try {
-                value = (User)iterator.next();
-            } catch (NoSuchElementException ex) {
-                value =  null;
-            }
-        }
-
-        public void first() {
-            iterator = database.iterator();
-            next();
-        }
-
-        public boolean isDone() {
-            return value == null;
-        }
-
-        public User currentValue() {
-            return value;
-        }
-    }
-
-
-    /* ITERATOR DESIGN For the league database */
-    private class LeagueIterator {
-
-        private ArrayList<League> database;
-        private java.util.Iterator iterator;
-        private League value;
-
-        public LeagueIterator(ArrayList<League> leagueData) {
-            this.database = leagueData;
-        }
-
-        public void next() {
-            try {
-                value = (League)iterator.next();
-            } catch (NoSuchElementException ex) {
-                value = null;
-            }
-        }
-
-        public void first() {
-            iterator = database.iterator();
-            next();
-        }
-
-        public League getFirst() {
-            return database.get(0);
-        }
-
-        public boolean isDone() {
-            return value == null;
-        }
-
-        public League currentValue() {
-            return value;
-        }
-
-    }
-
 
 }
