@@ -26,6 +26,7 @@ public class User {
     public String getPassword() {return this.password;}
     public String getTeamName() {return this.team.getName();}
 
+    public int getId() {return this.id;}
 
     public void createTeam(String name) {
         this.team = new Team(name, this.id);

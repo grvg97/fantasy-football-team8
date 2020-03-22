@@ -117,7 +117,7 @@ public class TransferWindow {
 
         backButton.setOnAction(event -> {
             if (formationRestrictionMet(user)) {
-                User refreshedUser = IOHandler.getInstance().getUserDB().authUser(user.getUsername(), user.getPassword());
+                User refreshedUser = IOHandler.getInstance().getUserDB().getUser(user.getId());
                 UserWindow.setScene(window, refreshedUser);
                 window.setScene(UserWindow.getScene());
             }

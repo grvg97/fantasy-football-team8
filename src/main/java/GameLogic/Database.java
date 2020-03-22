@@ -51,6 +51,14 @@ public class Database {
         return null;
     }
 
-
+    /* Fetching user from database to refresh the page*/
+    public User getUser(int id) {
+        for (User user: this.users) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
+    }
 
 }
