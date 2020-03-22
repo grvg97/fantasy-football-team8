@@ -21,6 +21,22 @@ public class SignUpWindow {
     private static Scene signUpScene;
 
 
+    private static boolean restrictionsMet(String username, String password, String password2) {
+        // If username or password field is blank, don't enter the tutorial window scene
+        if (username.equals("") || password.equals("")) {
+            HandleError.signUpRestriction();
+            return false;
+        }
+
+        // Password mismatch is not allowed
+        else if (!password.equals(password2)) {
+            HandleError.passwordMismatch();
+            return false;
+        }
+        return true;
+    }
+
+
     public static void setScene(Stage window) {
 
         final String[] username = new String[1];
@@ -45,27 +61,14 @@ public class SignUpWindow {
             password[0] = passwordField.getText();
             password2[0] = passwordField2.getText();
 
-            // If username or password field is blank, don't enter the tutorial window scene
-            if (username[0].equals("") || password[0].equals(""))
-                HandleError.signUpRestriction();
-
-            // Password mismatch is not allowed
-            else if (!password[0].equals(password2[0]))
-                HandleError.passwordMismatch();
-
-            // after certain restrictions have been met User is created.
-            else {
+            if (restrictionsMet(username[0], password[0], password2[0])) {
                 User user = new User(username[0], password[0]);
-
                 try { TutorialWindow.setScene(window, user); }
                 catch (IOException e) { e.printStackTrace(); }
 
                 window.setScene(TutorialWindow.getScene());
             }
         });
-
-        Button saveButton = new Button("Save and exit");
-        saveButton.setOnAction(event -> System.out.println("The game is saved"));
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(30, 30, 30, 30));
@@ -77,10 +80,9 @@ public class SignUpWindow {
         GridPane.setConstraints(passwordField, 0, 2);
         GridPane.setConstraints(passwordField2, 0, 3);
         GridPane.setConstraints(signupButton, 0, 4);
-        GridPane.setConstraints(saveButton, 0, 5);
 
         grid.getChildren().addAll(
-                label, usernameField, passwordField, passwordField2, signupButton, saveButton
+                label, usernameField, passwordField, passwordField2, signupButton
         );
 
         signUpScene = new Scene(grid, 500, 500);

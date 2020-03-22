@@ -38,25 +38,14 @@ public class TransferWindow {
 
 
     /* Constructs the listView*/
-    public static ListView<Player> constructPlayers(List<Player> players) {
+    private static ListView<Player> constructPlayers(List<Player> players) {
         ListView<Player> playersView = new ListView<>();
         for (Player player: players) {
             playersView.getItems().add(player);
         }
+        // Sets the view of the list from player objects the player name's strings
         setListViewToString(playersView);
         return playersView;
-    }
-
-
-    /* Buy player if certain restrictions are met*/
-    private static void buyPlayer(User user, Player selectedPlayer) {
-
-        // If player is already in team, user can't buy it
-        if (user.getTeamPlayers().contains(selectedPlayer))
-            HandleError.playerExists(selectedPlayer);
-
-        else
-            user.buyPlayer(selectedPlayer);
     }
 
 
@@ -77,15 +66,14 @@ public class TransferWindow {
     /* Set the scene */
     public static void setScene(Stage window, User user) throws IOException {
         List<Player> players = HandleApi.getInstance().getJsonObject().getPlayers();
+        List<Player> allTeamPlayers = user.getTeamPlayers();
+        allTeamPlayers.addAll(user.getTeamBench()); // Merge the bench and the players to construct whole team.
 
-        ListView<Player> userTeamView = constructPlayers(user.getTeamPlayers());
+        ListView<Player> userTeamView = constructPlayers(allTeamPlayers);
         ListView<Player> playerMarketView = constructPlayers(players);
-
-        Label transferLabel = new Label("The Transfer Window");
 
         Button buyButton = new Button("<< Buy");
         Button sellButton = new Button("Sell >>");
-        Button seeTransferButton = new Button("See Transfer");
         Button backButton = new Button("Back");
         Button playerInfoButton = new Button("Open Player");
 
@@ -98,16 +86,8 @@ public class TransferWindow {
         buyButton.setOnAction(event -> {
             Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
             if (selectedMarketPlayer != null)
-                buyPlayer(user, selectedMarketPlayer);
-        });
+                user.buyPlayer(selectedMarketPlayer);
 
-        sellButton.setOnAction(event -> {
-            Player selectedTeamPlayer = userTeamView.getSelectionModel().getSelectedItem();
-            if (selectedTeamPlayer != null)
-                sellPlayer(user, selectedTeamPlayer);
-        });
-
-        seeTransferButton.setOnAction(event -> {
             // When we set the scene of the window again, we see the changes.
             try {
                 setScene(window, user);
@@ -115,8 +95,21 @@ public class TransferWindow {
                 e.printStackTrace();
             }
             window.setScene(transferScene);
-
         });
+
+        sellButton.setOnAction(event -> {
+            Player selectedTeamPlayer = userTeamView.getSelectionModel().getSelectedItem();
+            if (selectedTeamPlayer != null)
+                sellPlayer(user, selectedTeamPlayer);
+            // When we set the scene of the window again, we see the changes.
+            try {
+                setScene(window, user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            window.setScene(transferScene);
+        });
+
 
         backButton.setOnAction(event -> {
             if (formationRestrictionMet(user))
@@ -134,25 +127,27 @@ public class TransferWindow {
 
         // Construct the layout using GridPane
         GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10));
-        GridPane.setConstraints(transferLabel, 1, 0);
         GridPane.setConstraints(userTeamView, 0, 1);
         GridPane.setConstraints(buyButton, 1, 2);
         GridPane.setConstraints(sellButton, 1, 3);
         GridPane.setConstraints(playerMarketView, 2, 1);
-        GridPane.setConstraints(seeTransferButton, 3,  3);
         GridPane.setConstraints(backButton, 3, 4);
         GridPane.setConstraints(playerInfoButton, 2, 2);
 
         grid.getChildren().addAll(
-                transferLabel, userTeamView, buyButton, sellButton,
-                playerMarketView, seeTransferButton, backButton,
+                userTeamView, buyButton, sellButton,
+                playerMarketView, backButton,
                 playerInfoButton
         );
 
         // Set the current constructed layout to the transfer scene
-        transferScene = new Scene(grid, 800, 800);
+        transferScene = new Scene(grid);
     }
 
+
+    public static Scene getScene() {
+        return transferScene;
+    }
 
     public static void display(User user) throws IOException {
         Stage window = new Stage();
@@ -162,7 +157,5 @@ public class TransferWindow {
         window.show();
 
     }
-    public static Scene getScene() {
-        return transferScene;
-    }
+
 }

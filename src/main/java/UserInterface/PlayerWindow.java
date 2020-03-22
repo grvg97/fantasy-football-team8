@@ -32,9 +32,6 @@ public class PlayerWindow {
         PlayerScene = new Scene(view);
 
     }
-    public static Scene getScene() {
-        return PlayerScene;
-    }
 
     public static void display(Player selectedPlayer) {
         Stage playerStage = new Stage();

@@ -7,6 +7,7 @@ import javafx.scene.control.Button; // The content inside the window is called t
 import javafx.scene.control.SingleSelectionModel;
 import javafx.stage.Stage;  // The entire window is called the stage
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 
 
@@ -45,7 +46,7 @@ public class Main extends Application {
         // Start -> Login -> User
 
         // Initialize global league
-        initGlobalLeague();
+        Database.getInstance().init();
 
         // Create scenes
         SignUpWindow.setScene(primaryStage);
@@ -59,7 +60,6 @@ public class Main extends Application {
 
         // Called when the close button on the window is clicked
         primaryStage.setOnCloseRequest(event -> {
-            System.out.println("Game is closed");
             closeProgram(primaryStage);
         });
     }

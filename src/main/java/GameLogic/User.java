@@ -2,6 +2,7 @@ package GameLogic;
 
 import UserInterface.HandleError;
 
+import javax.swing.text.html.ListView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -22,8 +23,8 @@ public class User {
     }
 
     public String getUsername() {return this.username;}
-    public String getPassword() {return this.password; }
-    public String getTeamName() { return this.team.getName(); }
+    public String getPassword() {return this.password;}
+    public String getTeamName() {return this.team.getName();}
 
 
     public void createTeam(String name) {
@@ -46,19 +47,29 @@ public class User {
 
     // This function handles the buying of players off the market. Credits may not go below 0.
     public void buyPlayer(Player player) {
-        if ((this.credits - player.getCost()) >= 0) {
+        int totalSize = this.team.players.size() + this.team.bench.size();
+
+        if (totalSize == 15)
+            HandleError.maxNumPlayers();
+
+        // Doesn't workkkk!!
+        else if (this.team.players.contains(player) || this.team.bench.contains(player))
+            HandleError.playerExists(player);
+
+        else if ((this.credits - player.getCost()) >= 0) {
             this.team.addPlayer(player);
             this.credits -= player.getCost();
         }
-        else {
-            System.out.println("Not enough credits to buy player");
-        }
-        System.out.println("Credits: " + this.credits);
+
+        else
+            HandleError.notEnoughCredits(this.credits, player.getFullName());
+
     }
 
 
     // This function handles the selling of players and removes it from the User's team.
     public void sellPlayer(Player player) {
+
         this.team.removePlayer(player);
         this.credits += player.getCost();
     }
@@ -116,9 +127,12 @@ public class User {
 
 
     public List<Player> getTeamPlayers() {
-        return this.team.players;
+        return new ArrayList<>(this.team.players);
     }
 
+    public List<Player> getTeamBench() {
+        return new ArrayList<>(this.team.bench);
+    }
 
     // Delete league if user is the manager
     public void deleteLeague(League league) {
@@ -133,7 +147,7 @@ public class User {
 
     private class Team {
         private int id;
-        private List<Player> players = new ArrayList<>(); // Starters
+        private List<Player> players = new ArrayList<>(11); // Starters
         private List<Player> bench = new ArrayList<>(4);
         private int totalPoints = 0;
         private String name;
@@ -179,8 +193,12 @@ public class User {
         }
 
 
-        public void removePlayer(Player player) {
-            players.remove(player);
+        public void removePlayer(Player selectedPlayer) {
+            if (this.players.contains(selectedPlayer))
+                this.players.remove(selectedPlayer);
+            else
+                this.bench.remove(selectedPlayer);
+
         }
 
 

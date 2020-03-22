@@ -18,6 +18,7 @@ import java.util.List;
 public class UserWindow {
 
     private static Scene userScene;
+    private static User myUser;
 
 
     /* Construct the ListView by adding the selected players */
@@ -43,7 +44,8 @@ public class UserWindow {
 
                 if (empty || player == null || player.getFullName() == null) {
                     setText(null);
-                } else {
+                }
+                else {
                     setText(player.getPositionName() + " " + player.getFullName());
                 }
             }
@@ -114,8 +116,12 @@ public class UserWindow {
         });
 
         tranferWindow.setOnAction(event -> {
-            try { TransferWindow.display(user); }
-            catch (IOException e) { e.printStackTrace(); }
+            try {
+                TransferWindow.setScene(window, user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            window.setScene(TransferWindow.getScene());
         });
 
 
@@ -134,12 +140,13 @@ public class UserWindow {
                 userLabel, teamName, teamView, playerInfo, leagueInfo, tranferWindow, leagueView, username
         );
 
-
         userScene = new Scene(grid);
-
-        // All the leagues and the team of the user are displayed here
+        myUser = user;
     }
 
+    public static User getUser() {
+        return myUser;
+    }
 
     public static Scene getScene() {
         return userScene;

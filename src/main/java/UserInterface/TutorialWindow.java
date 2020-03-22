@@ -141,6 +141,7 @@ public class TutorialWindow {
         nextButton.setOnAction(event -> {
 
             // TODO: save user to database
+            Database.getInstance().add(user);
             // If the team size is larger than 11, user will be add
             // user can continue to the next scene of the game
             if (user.getTeamSize() >= 11) {
