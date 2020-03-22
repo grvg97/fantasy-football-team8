@@ -4,7 +4,6 @@ import GameLogic.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
@@ -77,6 +76,7 @@ public class TransferWindow {
         Button backButton = new Button("Back");
         Button playerInfoButton = new Button("Open Player");
 
+
         /*
          * 'buyButton' buys the player based on restrictions
          * 'sellButton' sells the player and adds the credits
@@ -86,7 +86,12 @@ public class TransferWindow {
         buyButton.setOnAction(event -> {
             Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
             if (selectedMarketPlayer != null)
-                user.buyPlayer(selectedMarketPlayer);
+                if (user.getTeamPlayers().contains(selectedMarketPlayer) || user.getTeamBench().contains(selectedMarketPlayer)) {
+                    user.buyPlayer(selectedMarketPlayer);
+                }
+                else {
+                    HandleError.playerExists(selectedMarketPlayer);
+                }
 
             // When we set the scene of the window again, we see the changes.
             try {
@@ -110,10 +115,12 @@ public class TransferWindow {
             window.setScene(transferScene);
         });
 
-
         backButton.setOnAction(event -> {
-            if (formationRestrictionMet(user))
+            if (formationRestrictionMet(user)) {
+                User refreshedUser = IOHandler.getInstance().getUserDB().authUser(user.getUsername(), user.getPassword());
+                UserWindow.setScene(window, refreshedUser);
                 window.setScene(UserWindow.getScene());
+            }
             else
                 HandleError.generalFormationRestriction();
         });
@@ -133,6 +140,7 @@ public class TransferWindow {
         GridPane.setConstraints(playerMarketView, 2, 1);
         GridPane.setConstraints(backButton, 3, 4);
         GridPane.setConstraints(playerInfoButton, 2, 2);
+
 
         grid.getChildren().addAll(
                 userTeamView, buyButton, sellButton,

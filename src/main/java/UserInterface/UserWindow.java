@@ -1,9 +1,6 @@
 package UserInterface;
 
-import GameLogic.Database;
-import GameLogic.League;
-import GameLogic.Player;
-import GameLogic.User;
+import GameLogic.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -84,7 +81,9 @@ public class UserWindow {
 
     public static void setScene(Stage window, User user) {
 
-        ListView<Player> teamView = constructTeamView(user.getTeamPlayers());
+        List<Player> allPlayers = user.getTeamPlayers();
+        allPlayers.addAll(user.getTeamBench());
+        ListView<Player> teamView = constructTeamView(allPlayers);
         ListView<League> leagueView = constructLeagueView(new Database().getLeagues());
 
         Label userLabel = new Label("Welcome to your team and league page");
@@ -93,7 +92,7 @@ public class UserWindow {
 
         Button playerInfo = new Button("Open player");
         Button leagueInfo = new Button("Open League");
-        Button tranferWindow = new Button("Transfer Window");
+        Button transferWindow = new Button("Transfer Window");
 
         // Display the selected player's stats
         playerInfo.setOnAction(event -> {
@@ -115,7 +114,7 @@ public class UserWindow {
             }
         });
 
-        tranferWindow.setOnAction(event -> {
+        transferWindow.setOnAction(event -> {
             try {
                 TransferWindow.setScene(window, user);
             } catch (IOException e) {
@@ -134,19 +133,22 @@ public class UserWindow {
         GridPane.setConstraints(playerInfo, 0, 3);
         GridPane.setConstraints(leagueView, 1, 2);
         GridPane.setConstraints(leagueInfo, 1, 3);
-        GridPane.setConstraints(tranferWindow, 1, 4);
+        GridPane.setConstraints(transferWindow, 1, 4);
 
         grid.getChildren().addAll(
-                userLabel, teamName, teamView, playerInfo, leagueInfo, tranferWindow, leagueView, username
+                userLabel, teamName, teamView, playerInfo, leagueInfo, transferWindow, leagueView, username
         );
 
         userScene = new Scene(grid);
-        myUser = user;
+
+        // Save game upon closing it
+        window.setOnCloseRequest(event -> {
+            try { IOHandler.getInstance().save(); }
+            catch (IOException e) { e.printStackTrace(); }
+        });
     }
 
-    public static User getUser() {
-        return myUser;
-    }
+
 
     public static Scene getScene() {
         return userScene;

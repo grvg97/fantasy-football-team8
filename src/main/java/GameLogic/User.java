@@ -49,12 +49,12 @@ public class User {
     public void buyPlayer(Player player) {
         int totalSize = this.team.players.size() + this.team.bench.size();
 
-        if (totalSize == 15)
-            HandleError.maxNumPlayers();
-
         // Doesn't workkkk!!
-        else if (this.team.players.contains(player) || this.team.bench.contains(player))
+        if (this.getTeamPlayers().contains(player) || this.getTeamBench().contains(player))
             HandleError.playerExists(player);
+
+        else if (totalSize == 15)
+            HandleError.maxNumPlayers();
 
         else if ((this.credits - player.getCost()) >= 0) {
             this.team.addPlayer(player);
