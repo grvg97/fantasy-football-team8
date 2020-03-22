@@ -74,7 +74,7 @@ public class TutorialWindow {
 
 
     private static void addToDatabase(User user, League globalLeague) {
-        Database.getInstance().add(user);
+        IOHandler.getInstance().getLeagueDB().add(user);
         globalLeague.addUser(user);
     }
 
@@ -141,11 +141,18 @@ public class TutorialWindow {
         nextButton.setOnAction(event -> {
 
             // TODO: save user to database
-            Database.getInstance().add(user);
+            IOHandler.getInstance().getUserDB().add(user);
+
+            try {
+                IOHandler.getInstance().save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             // If the team size is larger than 11, user will be add
             // user can continue to the next scene of the game
             if (user.getTeamSize() >= 11) {
-                addToDatabase(user, Database.getInstance().getGlobalLeague());
+                addToDatabase(user, IOHandler.getInstance().getLeagueDB().getGlobalLeague());
                 UserWindow.setScene(window, user);
                 window.setScene(UserWindow.getScene());
             }

@@ -85,7 +85,7 @@ public class UserWindow {
     public static void setScene(Stage window, User user) {
 
         ListView<Player> teamView = constructTeamView(user.getTeamPlayers());
-        ListView<League> leagueView = constructLeagueView(Database.getInstance().getLeagues());
+        ListView<League> leagueView = constructLeagueView(new Database().getLeagues());
 
         Label userLabel = new Label("Welcome to your team and league page");
         Label username = new Label("Username: " + user.getUsername());

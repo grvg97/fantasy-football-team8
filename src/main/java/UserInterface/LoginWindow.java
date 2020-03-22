@@ -1,6 +1,7 @@
 package UserInterface;
 
 import GameLogic.Database;
+import GameLogic.IOHandler;
 import GameLogic.User;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -42,7 +43,7 @@ public class LoginWindow {
             String password = passwordField.getText();
 
             // TODO: verify username and password checking the database
-            User user = Database.getInstance().authUser(username, password);
+            User user = IOHandler.getInstance().getUserDB().authUser(username, password);
             if (user != null)
                 UserWindow.setScene(window, user);
             else

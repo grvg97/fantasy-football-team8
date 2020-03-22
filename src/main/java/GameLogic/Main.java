@@ -32,11 +32,6 @@ public class Main extends Application {
     }
 
 
-    private void initGlobalLeague() {
-        League globalLeague = new League("Global League", "System");
-        Database.getInstance().add(globalLeague);
-    }
-
 
     // Our main javafx code
     @Override
@@ -46,7 +41,7 @@ public class Main extends Application {
         // Start -> Login -> User
 
         // Initialize global league
-        Database.getInstance().init();
+        IOHandler.getInstance().init();
 
         // Create scenes
         SignUpWindow.setScene(primaryStage);
