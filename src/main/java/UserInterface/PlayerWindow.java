@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/* This window displays the stats and information about the player*/
 public class PlayerWindow {
 
     private static Scene PlayerScene;

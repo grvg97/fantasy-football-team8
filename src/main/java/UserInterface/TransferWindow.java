@@ -109,8 +109,7 @@ public class TransferWindow {
         backButton.setOnAction(event -> {
             if (formationRestrictionMet(user)) {
                 User refreshedUser = IOHandler.getInstance().getUser(user.getId());
-                UserWindow.setScene(window, refreshedUser);
-                window.setScene(UserWindow.getScene());
+                window.setScene(UserWindow.getScene(window, refreshedUser));
             }
             else
                 HandleError.generalFormationRestriction();
@@ -144,17 +143,8 @@ public class TransferWindow {
     }
 
 
-    public static Scene getScene() {
+    public static Scene getScene(Stage window, User user) throws IOException {
+        setScene(window, user);
         return transferScene;
     }
-
-    public static void display(User user) throws IOException {
-        Stage window = new Stage();
-        setScene(window, user);
-
-        window.setScene(transferScene);
-        window.show();
-
-    }
-
 }

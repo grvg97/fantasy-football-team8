@@ -63,10 +63,11 @@ public class SignUpWindow {
 
             if (restrictionsMet(username[0], password[0], password2[0])) {
                 User user = new User(username[0], password[0]);
-                try { TutorialWindow.setScene(window, user); }
-                catch (IOException e) { e.printStackTrace(); }
-
-                window.setScene(TutorialWindow.getScene());
+                try {
+                    window.setScene(TutorialWindow.getScene(window, user));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -85,11 +86,12 @@ public class SignUpWindow {
                 label, usernameField, passwordField, passwordField2, signupButton
         );
 
-        signUpScene = new Scene(grid, 500, 500);
+        signUpScene = new Scene(grid);
     }
 
 
-    public static Scene getScene() {
+    public static Scene getScene(Stage window) {
+        setScene(window);
         return signUpScene;
     }
 

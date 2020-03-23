@@ -42,9 +42,13 @@ public class LoginWindow {
             // Verifies username and password checking the database
             User user = IOHandler.getInstance().authUser(username, password);
 
+            // Empty the text field after logging in,
+            // so when logged out the text fields are empty
+            usernameField.setText("");
+            passwordField.setText("");
+
             if (user != null) {
-                UserWindow.setScene(window, user);
-                window.setScene(UserWindow.getScene());
+                window.setScene(UserWindow.getScene(window, user));
             }
             else {
                 HandleError.userDoesNotExist();
@@ -52,7 +56,7 @@ public class LoginWindow {
 
         });
 
-        signUpButton.setOnAction(event -> window.setScene(SignUpWindow.getScene()));
+        signUpButton.setOnAction(event -> window.setScene(SignUpWindow.getScene(window)));
 
         // Construct the layout of the scene using the GridPane
         GridPane grid = new GridPane();
@@ -65,10 +69,11 @@ public class LoginWindow {
         GridPane.setConstraints(signUpButton, 0, 5);
         grid.getChildren().addAll(label, usernameField, passwordField, loginButton, signUpButton);
 
-        loginScene = new Scene(grid, 500, 500);
+        loginScene = new Scene(grid);
     }
 
-    public static Scene getScene() {
+    public static Scene getScene(Stage window) {
+        setScene(window);
         return loginScene;
     }
 

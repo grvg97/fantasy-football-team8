@@ -43,13 +43,8 @@ public class Main extends Application {
         // Initialize global league
         IOHandler.getInstance().init();
 
-        // Create scenes
-        SignUpWindow.setScene(primaryStage);
-        LoginWindow.setScene(primaryStage);
-
-
         primaryStage.setTitle("Fantasy Football");
-        primaryStage.setScene(LoginWindow.getScene());
+        primaryStage.setScene(LoginWindow.getScene(primaryStage));
         primaryStage.show();
 
 

@@ -153,19 +153,19 @@ public class TutorialWindow {
             // user can continue to the next scene of the game
             if (user.getTeamSize() >= 11) {
                 addToDatabase(user, IOHandler.getInstance().getGlobalLeague());
-                UserWindow.setScene(window, user);
-                window.setScene(UserWindow.getScene());
+                window.setScene(UserWindow.getScene(window, user));
             }
             else
                 HandleError.teamSize(user.getTeamSize());
         });
 
         // Create scene with the 'border' layout
-        tutorialScene = new Scene(border, 500, 500);
+        tutorialScene = new Scene(border);
     }
 
 
-    public static Scene getScene() {
+    public static Scene getScene(Stage window, User user) throws IOException {
+        setScene(window, user);
         return tutorialScene;
     }
 }

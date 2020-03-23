@@ -87,6 +87,7 @@ public class UserWindow {
         Button playerInfo = new Button("Open player");
         Button leagueInfo = new Button("Open League");
         Button transferWindow = new Button("Transfer Window");
+        Button logoutButton = new Button("Logout");
 
         // Display the selected player's stats
         playerInfo.setOnAction(event -> {
@@ -109,11 +110,11 @@ public class UserWindow {
         });
 
         transferWindow.setOnAction(event -> {
-            try { TransferWindow.setScene(window, user);
-            } catch (IOException e) { e.printStackTrace(); }
-            window.setScene(TransferWindow.getScene());
+            try { window.setScene(TransferWindow.getScene(window, user)); }
+            catch (IOException e) { e.printStackTrace(); }
         });
 
+        logoutButton.setOnAction(event -> window.setScene(LoginWindow.getScene(window)));
 
         // Construct layout using GridPane
         GridPane grid = new GridPane();
@@ -126,9 +127,12 @@ public class UserWindow {
         GridPane.setConstraints(leagueView, 1, 2);
         GridPane.setConstraints(leagueInfo, 1, 3);
         GridPane.setConstraints(transferWindow, 1, 4);
+        GridPane.setConstraints(logoutButton, 0, 4);
 
         grid.getChildren().addAll(
-                userLabel, teamName, teamView, playerInfo, leagueInfo, transferWindow, leagueView, username
+                userLabel, teamName, teamView,
+                playerInfo, leagueInfo, transferWindow,
+                leagueView, username, logoutButton
         );
 
         userScene = new Scene(grid);
@@ -142,7 +146,8 @@ public class UserWindow {
 
 
 
-    public static Scene getScene() {
+    public static Scene getScene(Stage window, User user) {
+        setScene(window, user);
         return userScene;
     }
 
