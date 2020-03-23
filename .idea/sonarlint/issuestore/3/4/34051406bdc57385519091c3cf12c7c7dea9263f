@@ -1,0 +1,7 @@
+
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8÷ˆµÆ.
+_squid:S1126"AReplace this if-then-else statement by a single return statement.(ÏÂğ8÷ˆµÆ.
+qsquid:S2272"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(Ú÷Øüÿÿÿÿ8÷ˆµÆ.
+csquid:UselessImportCheck"3Remove this unused import 'java.lang.reflect.Type'.(‰ûÕñıÿÿÿÿ8÷ˆµÆ.
+[squid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8÷ˆµÆ.
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ

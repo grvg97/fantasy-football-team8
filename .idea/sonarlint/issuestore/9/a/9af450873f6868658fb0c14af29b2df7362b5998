@@ -1,12 +1,13 @@
 
-usquid:S1450"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ8ÔëâŸ.
-squid:S1186Q"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤ªôÙûÿÿÿÿ
-Jsquid:S1068ˆ"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8ŸÆêŸ.
-Ssquid:S1068"/Remove this unused "viceCaptain" private field.(ÎªÃıÿÿÿÿ8ŸÆêŸ.
-˜squid:S1186V"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ß˜Šó
-]squid:S1854":Remove this useless assignment to local variable "league".(ŠŞä¶ùÿÿÿÿ8ÔëâŸ.
-Nsquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ
-~squid:S1450"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃıÿÿÿÿ8ŸÆêŸ.
-Jsquid:S1068"+Remove this unused "captain" private field.(ìØœÀ8ÔëâŸ.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
-squid:S1186["€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğã§‹ûÿÿÿÿ
+Nsquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ
+fsquid:UselessImportCheck";Remove this unused import 'javax.swing.text.html.ListView'.(ºçß›8á¸¶˜.
+Ssquid:S1068œ"/Remove this unused "viceCaptain" private field.(ÎªÃıÿÿÿÿ8ŸÆêŸ.
+Jsquid:S1068›"+Remove this unused "captain" private field.(ìØœÀ8ÔëâŸ.
+^squid:S1854":Remove this useless assignment to local variable "league".(ŠŞä¶ùÿÿÿÿ8ÔëâŸ.
+˜squid:S1186a"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ß˜Šó
+squid:S1186\"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤ªôÙûÿÿÿÿ
+~squid:S1450œ"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃıÿÿÿÿ8ŸÆêŸ.
+squid:S1186f"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğã§‹ûÿÿÿÿ
+Jsquid:S1068–"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8ŸÆêŸ.
+usquid:S1450›"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ8ÔëâŸ.

@@ -84,7 +84,7 @@ public class UserWindow {
         List<Player> allPlayers = user.getTeamPlayers();
         allPlayers.addAll(user.getTeamBench());
         ListView<Player> teamView = constructTeamView(allPlayers);
-        ListView<League> leagueView = constructLeagueView(new Database().getLeagues());
+        ListView<League> leagueView = constructLeagueView(IOHandler.getInstance().getLeagues());
 
         Label userLabel = new Label("Welcome to your team and league page");
         Label username = new Label("Username: " + user.getUsername());

@@ -41,3 +41,9 @@ U
 %src/main/java/GameLogic/Database.java,b/6/b60bf4b3f8ddcb643f838787502a2d4e5c23d8a2
 ]
 -src/main/java/UserInterface/PlayerWindow.java,8/9/89012f783ac464bb6b774136c4de45152c0f49a5
+[
++src/main/java/GameLogic/LeagueIterator.java,3/4/34051406bdc57385519091c3cf12c7c7dea9263f
+V
+&src/main/java/GameLogic/IOHandler.java,e/8/e88c69521c145849bff1538b4607d317ffe9d9b9
+_
+/src/main/java/UserInterface/TransferWindow.java,b/a/baf60f3cfe69db33c464e0996feafbb1ed675dc1

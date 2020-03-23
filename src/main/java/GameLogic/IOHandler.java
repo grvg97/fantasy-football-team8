@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class IOHandler {
 
@@ -66,6 +67,78 @@ public class IOHandler {
         writer = new BufferedWriter(new FileWriter("DatabaseLeague.json"));
         writer.write(new Gson().toJson(this.leagueDatabase));
         writer.close();
+    }
+
+    /* Authenticates the user. Returns the user with the username and password,
+     * Else, returns null
+     */
+
+    public User authUser(String username, String password) {
+        return userDatabase.getAuthenticatedUser(username, password);
+    }
+    public User getUser(int id) {
+        return userDatabase.getUser(id);
+    }
+    public void add(League league) {
+        leagueDatabase.add(league);
+    }
+    public void add(User user) {
+        userDatabase.add(user);
+    }
+    public ArrayList<League> getLeagues() {
+        return leagueDatabase.getLeagues();
+    }
+    public League getGlobalLeague() {
+        return leagueDatabase.getGlobalLeague();
+    }
+
+    /* Private class to handle the storing for the IOHandler */
+    private class Database {
+        private ArrayList<League> leagues = new ArrayList<>();
+        private ArrayList<User> users = new ArrayList<>();
+
+        /*
+          This function returns the Global League,I
+          which is always at index 0 in our Database.
+        */
+        public League getGlobalLeague() {
+            return this.leagues.get(0);
+        }
+
+        public ArrayList<League> getLeagues() {
+            return new ArrayList<>(this.leagues);
+        }
+
+        public void add(League league) {
+            league.setId(leagues.size());
+            leagues.add(league);
+        }
+
+        public void add(User user) {
+            user.setId(users.size());
+            users.add(user);
+        }
+
+        /* Return the user from database and return it if found, else return null */
+        public User getAuthenticatedUser(String username, String password) {
+            for (User user: this.users) {
+                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        /* Fetching user again from database to refresh the page*/
+        public User getUser(int id) {
+            for (User user: this.users) {
+                if (user.getId() == id) {
+                    return user;
+                }
+            }
+            return null;
+        }
+
     }
 
 
