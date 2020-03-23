@@ -13,9 +13,7 @@ import java.util.List;
 
 
 public class UserWindow {
-
     private static Scene userScene;
-    private static User myUser;
 
 
     /* Construct the ListView by adding the selected players */
@@ -29,10 +27,7 @@ public class UserWindow {
     }
 
 
-    /*
-     * This function allows the ListView to store 'Player'
-     * objects and display them as strings
-    */
+    /* This function allows the ListView to store 'Player' objects and display them as strings */
     private static void setViewToPlayerName(ListView<Player> teamView) {
         teamView.setCellFactory(param -> new ListCell<Player>() {
             @Override
@@ -49,10 +44,8 @@ public class UserWindow {
         });
     }
 
-    /*
-     * This function allows the ListView to store 'Leagues'
-     * objects and display them as strings
-     */
+
+    /* This function allows the ListView to store league objects and display them as strings */
     private static void setViewToLeagueName(ListView<League> leaguesView) {
         leaguesView.setCellFactory(param -> new ListCell<League>() {
             @Override
@@ -69,6 +62,7 @@ public class UserWindow {
     }
 
 
+    /* Construct the ListView containing league objects and display them as strings */
     private static ListView<League> constructLeagueView(List<League> leagues) {
         ListView<League> leagueListView = new ListView<>();
         for (League league: leagues) {
@@ -115,15 +109,13 @@ public class UserWindow {
         });
 
         transferWindow.setOnAction(event -> {
-            try {
-                TransferWindow.setScene(window, user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            try { TransferWindow.setScene(window, user);
+            } catch (IOException e) { e.printStackTrace(); }
             window.setScene(TransferWindow.getScene());
         });
 
 
+        // Construct layout using GridPane
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         GridPane.setConstraints(userLabel, 1, 0);

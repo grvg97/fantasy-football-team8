@@ -1,5 +1,6 @@
 package GameLogic;
 
+import UserInterface.HandleError;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +9,6 @@ public class League {
     private int id;
     private String name;
     private Date startDate;
-    private Date endDate;
     private ArrayList<User> competingUsers = new ArrayList<>();
     private HashMap<String, Integer> teamPoints = new HashMap<>();
     private String manager;
@@ -41,23 +41,17 @@ public class League {
             this.teamPoints.remove(user.getTeamName());
         }
         else {
-            System.out.println("Specified user does not compete in this league");
+            HandleError.userDoesNotExist();
         }
     }
 
-    public String getManager() {
-        return this.manager;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-    public int getId() { return this.id; }
-    public void setId(int id) {this.id = id;}
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
     private void computeRanking() {
         // Compute ranking based on the points that the teams have
     }
+
+    public String getManager() {return this.manager;}
+    public String getName() {return this.name;}
+    public void setId(int id) {this.id = id;}
+    public int getId() {return this.id;}
+
 }

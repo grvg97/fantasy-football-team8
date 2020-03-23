@@ -9,19 +9,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.function.*;
 
+
+/* User can login using this window, or click the signUpButton to go to the SignUpWindow */
 public class LoginWindow {
     private static Scene loginScene;
 
-
     public static void setScene(Stage window) {
         Button loginButton = new Button("Login");
-        Button signupButton = new Button("Sign up");
+        Button signUpButton = new Button("Sign up");
 
         Label label = new Label("Welcome to Fantasy Football.\nEnter username and password.");
         label.setStyle("-fx-font-size: 15px");
@@ -34,25 +32,27 @@ public class LoginWindow {
         passwordField.setPromptText("password");
 
         loginButton.setMinWidth(120);
-        signupButton.setMinWidth(120);
+        signUpButton.setMinWidth(120);
 
         // Assigns the username and password to the attributes when button clicked
         loginButton.setOnAction(event -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
 
-            // TODO: verify username and password checking the database
+            // Verifies username and password checking the database
             User user = IOHandler.getInstance().authUser(username, password);
-            if (user != null)
-                UserWindow.setScene(window, user);
-            else
-                HandleError.userDoesNotExist();
 
-            // if username and password exists in userDatabase
-            window.setScene(UserWindow.getScene()); // UserWindow
+            if (user != null) {
+                UserWindow.setScene(window, user);
+                window.setScene(UserWindow.getScene());
+            }
+            else {
+                HandleError.userDoesNotExist();
+            }
+
         });
 
-        signupButton.setOnAction(event -> window.setScene(SignUpWindow.getScene()));
+        signUpButton.setOnAction(event -> window.setScene(SignUpWindow.getScene()));
 
         // Construct the layout of the scene using the GridPane
         GridPane grid = new GridPane();
@@ -62,12 +62,11 @@ public class LoginWindow {
         GridPane.setConstraints(usernameField, 0, 2);
         GridPane.setConstraints(passwordField, 0, 3);
         GridPane.setConstraints(loginButton, 0, 4);
-        GridPane.setConstraints(signupButton, 0, 5);
-        grid.getChildren().addAll(label, usernameField, passwordField, loginButton, signupButton);
+        GridPane.setConstraints(signUpButton, 0, 5);
+        grid.getChildren().addAll(label, usernameField, passwordField, loginButton, signUpButton);
 
         loginScene = new Scene(grid, 500, 500);
     }
-
 
     public static Scene getScene() {
         return loginScene;

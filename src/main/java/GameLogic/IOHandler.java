@@ -1,7 +1,9 @@
 package GameLogic;
 
 import com.google.gson.Gson;
+import javafx.scene.layout.BorderPane;
 
+import javax.sound.midi.SysexMessage;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -50,11 +52,11 @@ public class IOHandler {
 
         if (this.userDatabase == null)
             this.userDatabase = new Database();
-        if (this.leagueDatabase == null)
+        if (this.leagueDatabase == null) {
             this.leagueDatabase = new Database();
-
-        League globalLeague = new League("Global League", "System");
-        this.leagueDatabase.add(globalLeague);
+            League globalLeague = new League("Global League", "System");
+            this.leagueDatabase.add(globalLeague);
+        }
     }
 
 
@@ -74,7 +76,7 @@ public class IOHandler {
      */
 
     public User authUser(String username, String password) {
-        return userDatabase.getAuthenticatedUser(username, password);
+        return userDatabase.authenticateUser(username, password);
     }
     public User getUser(int id) {
         return userDatabase.getUser(id);
@@ -120,7 +122,7 @@ public class IOHandler {
         }
 
         /* Return the user from database and return it if found, else return null */
-        public User getAuthenticatedUser(String username, String password) {
+        public User authenticateUser(String username, String password) {
             for (User user: this.users) {
                 if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                     return user;

@@ -85,20 +85,14 @@ public class TransferWindow {
          */
         buyButton.setOnAction(event -> {
             Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
-            if (selectedMarketPlayer != null)
-                if (user.getTeamPlayers().contains(selectedMarketPlayer) || user.getTeamBench().contains(selectedMarketPlayer)) {
-                    user.buyPlayer(selectedMarketPlayer);
-                }
-                else {
-                    HandleError.playerExists(selectedMarketPlayer);
-                }
+            if (selectedMarketPlayer != null) // TODO: prevent user from buying duplicate players
+                user.buyPlayer(selectedMarketPlayer);
+            else
+                HandleError.playerExists(selectedMarketPlayer);
 
             // When we set the scene of the window again, we see the changes.
-            try {
-                setScene(window, user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            try { setScene(window, user); }
+            catch (IOException e) { e.printStackTrace(); }
             window.setScene(transferScene);
         });
 
@@ -106,12 +100,9 @@ public class TransferWindow {
             Player selectedTeamPlayer = userTeamView.getSelectionModel().getSelectedItem();
             if (selectedTeamPlayer != null)
                 sellPlayer(user, selectedTeamPlayer);
+
             // When we set the scene of the window again, we see the changes.
-            try {
-                setScene(window, user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            try { setScene(window, user); } catch (IOException e) { e.printStackTrace(); }
             window.setScene(transferScene);
         });
 
