@@ -96,20 +96,13 @@ public class IOHandler {
     }
 
     /* Private class to handle the storing for the IOHandler */
-    private class Database {
+    private static class Database {
         private League[] leagues;
         private User[] users;
 
-        /*
-          This function returns the Global League,I
-          which is always at index 0 in our Database.
-        */
+        /* This function returns the Global League, which is always at index 0 in our Database. */
         public League getGlobalLeague() {
             return LeagueIterator.getInstance(this.leagues).getFirst();
-        }
-
-        public List<League> getLeagues() {
-            return new ArrayList<>(Arrays.asList(this.leagues));
         }
 
         public void add(League league) {
@@ -144,84 +137,88 @@ public class IOHandler {
             return null;
         }
 
-    }
-
-    /* Private inner league iterator class to implement the ITERATOR DESIGN PATTERN */
-    private static class LeagueIterator implements Iterator<League> {
-
-        private static League[] database;
-        private int index = 0;
-
-        private LeagueIterator() {
+        public List<League> getLeagues() {
+            return new ArrayList<>(Arrays.asList(this.leagues));
         }
 
-        private static class LeagueIteratorHolder {
-            private static final LeagueIterator INSTANCE = new LeagueIterator();
-        }
+        /* Private inner league iterator class to implement the ITERATOR DESIGN PATTERN */
+        private static class LeagueIterator implements Iterator<League> {
 
-        public static LeagueIterator getInstance(League[] mydatabase) {
-            database = mydatabase;
-            return LeagueIterator.LeagueIteratorHolder.INSTANCE;
-        }
+            private static League[] database;
+            private int index = 0;
 
-
-        @Override
-        public boolean hasNext() {
-            if (database[index] == null) {
-                return false;
+            private LeagueIterator() {
             }
-            return true;
-        }
 
-        @Override
-        public League next() {
-            return database[index ++];
-        }
-
-        public League getFirst() {
-            return database[0];
-        }
-
-        public void add(League league) {
-            database[index] = league;
-        }
-
-    }
-
-    /* Private inner league iterator class to implement the ITERATOR DESIGN PATTERN */
-    private static class UserIterator implements Iterator<User> {
-
-        private static User[] database;
-        private int index = 0;
-
-        private UserIterator() {
-        }
-
-        private static class UserIteratorHolder {
-            private static final UserIterator INSTANCE = new UserIterator();
-        }
-
-        public static UserIterator getInstance(User[] mydatabase) {
-            database = mydatabase;
-            return UserIterator.UserIteratorHolder.INSTANCE;
-        }
-
-        @Override
-        public boolean hasNext() {
-            if (database[index] == null) {
-                return false;
+            private static class LeagueIteratorHolder {
+                private static final LeagueIterator INSTANCE = new LeagueIterator();
             }
-            return true;
+
+            public static LeagueIterator getInstance(League[] mydatabase) {
+                database = mydatabase;
+                return LeagueIterator.LeagueIteratorHolder.INSTANCE;
+            }
+
+
+            @Override
+            public boolean hasNext() {
+                if (database[index] == null) {
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            public League next() {
+                return database[index ++];
+            }
+
+            public League getFirst() {
+                return database[0];
+            }
+
+            public void add(League league) {
+                database[index] = league;
+            }
+
         }
 
-        @Override
-        public User next() {
-            return database[index ++];
+        /* Private inner User iterator class to implement the ITERATOR DESIGN PATTERN for the user */
+        private static class UserIterator implements Iterator<User> {
+
+            private static User[] database;
+            private int index = 0;
+
+            private UserIterator() {
+            }
+
+            private static class UserIteratorHolder {
+                private static final UserIterator INSTANCE = new UserIterator();
+            }
+
+            public static UserIterator getInstance(User[] mydatabase) {
+                database = mydatabase;
+                return UserIterator.UserIteratorHolder.INSTANCE;
+            }
+
+            @Override
+            public boolean hasNext() {
+                if (database[index] == null) {
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            public User next() {
+                return database[index ++];
+            }
+
+            public void add(User user) {
+                database[index] = user;
+            }
         }
 
-        public void add(User user) {
-            database[index] = user;
-        }
     }
 
 }
