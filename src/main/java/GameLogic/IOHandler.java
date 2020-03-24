@@ -1,14 +1,15 @@
 package GameLogic;
 
 import com.google.gson.Gson;
-import javafx.scene.layout.BorderPane;
-
-import javax.sound.midi.SysexMessage;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class IOHandler {
 
@@ -87,7 +88,7 @@ public class IOHandler {
     public void add(User user) {
         userDatabase.add(user);
     }
-    public ArrayList<League> getLeagues() {
+    public List<League> getLeagues() {
         return leagueDatabase.getLeagues();
     }
     public League getGlobalLeague() {
@@ -96,37 +97,39 @@ public class IOHandler {
 
     /* Private class to handle the storing for the IOHandler */
     private class Database {
-        private ArrayList<League> leagues = new ArrayList<>();
-        private ArrayList<User> users = new ArrayList<>();
+        private League[] leagues;
+        private User[] users;
 
         /*
           This function returns the Global League,I
           which is always at index 0 in our Database.
         */
         public League getGlobalLeague() {
-            return this.leagues.get(0);
+            return LeagueIterator.getInstance(this.leagues).getFirst();
         }
 
-        public ArrayList<League> getLeagues() {
-            return new ArrayList<>(this.leagues);
+        public List<League> getLeagues() {
+            return new ArrayList<>(Arrays.asList(this.leagues));
         }
 
         public void add(League league) {
-            league.setId(leagues.size());
-            leagues.add(league);
+            league.setId(leagues.length);
+            LeagueIterator.getInstance(this.leagues).add(league);
         }
 
         public void add(User user) {
-            user.setId(users.size());
-            users.add(user);
+            user.setId(users.length);
+            UserIterator.getInstance(this.users).add(user);
         }
 
         /* Return the user from database and return it if found, else return null */
         public User authenticateUser(String username, String password) {
-            for (User user: this.users) {
-                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            UserIterator userIterator = UserIterator.getInstance(this.users);
+
+            while (userIterator.hasNext()) {
+                User user = userIterator.next();
+                if (user.getUsername().equals(username) && user.getPassword().equals(password))
                     return user;
-                }
             }
             return null;
         }
@@ -143,5 +146,82 @@ public class IOHandler {
 
     }
 
+    /* Private inner league iterator class to implement the ITERATOR DESIGN PATTERN */
+    private static class LeagueIterator implements Iterator<League> {
+
+        private static League[] database;
+        private int index = 0;
+
+        private LeagueIterator() {
+        }
+
+        private static class LeagueIteratorHolder {
+            private static final LeagueIterator INSTANCE = new LeagueIterator();
+        }
+
+        public static LeagueIterator getInstance(League[] mydatabase) {
+            database = mydatabase;
+            return LeagueIterator.LeagueIteratorHolder.INSTANCE;
+        }
+
+
+        @Override
+        public boolean hasNext() {
+            if (database[index] == null) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public League next() {
+            return database[index ++];
+        }
+
+        public League getFirst() {
+            return database[0];
+        }
+
+        public void add(League league) {
+            database[index] = league;
+        }
+
+    }
+
+    /* Private inner league iterator class to implement the ITERATOR DESIGN PATTERN */
+    private static class UserIterator implements Iterator<User> {
+
+        private static User[] database;
+        private int index = 0;
+
+        private UserIterator() {
+        }
+
+        private static class UserIteratorHolder {
+            private static final UserIterator INSTANCE = new UserIterator();
+        }
+
+        public static UserIterator getInstance(User[] mydatabase) {
+            database = mydatabase;
+            return UserIterator.UserIteratorHolder.INSTANCE;
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (database[index] == null) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public User next() {
+            return database[index ++];
+        }
+
+        public void add(User user) {
+            database[index] = user;
+        }
+    }
 
 }

@@ -13,8 +13,8 @@ import java.util.List;
 
 
 public class UserWindow {
-    private static Scene userScene;
 
+    private static Scene userScene;
 
     /* Construct the ListView by adding the selected players */
     private static ListView<Player> constructTeamView(List<Player> players) {
@@ -73,11 +73,10 @@ public class UserWindow {
     }
 
 
-    public static void setScene(Stage window, User user) {
+    /* Construct the scene by adding certain elements to the layout: GridPane. Then, create the scene */
+    private static void setScene(Stage window, User user) {
 
-        List<Player> allPlayers = user.getTeamPlayers();
-        allPlayers.addAll(user.getTeamBench());
-        ListView<Player> teamView = constructTeamView(allPlayers);
+        ListView<Player> teamView = constructTeamView(user.getFullTeam());
         ListView<League> leagueView = constructLeagueView(IOHandler.getInstance().getLeagues());
 
         Label userLabel = new Label("Welcome to your team and league page");
@@ -88,6 +87,9 @@ public class UserWindow {
         Button leagueInfo = new Button("Open League");
         Button transferWindow = new Button("Transfer Window");
         Button logoutButton = new Button("Logout");
+        Button createLeagueButton = new Button("Create League");
+        Button joinLeagueButton = new Button("Join League");
+        Button exitLeagueButton = new Button("Exit League");
 
         // Display the selected player's stats
         playerInfo.setOnAction(event -> {
@@ -102,19 +104,23 @@ public class UserWindow {
         leagueInfo.setOnAction(event -> {
             League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
             if (selectedLeague != null) {
-                LeagueWindow.setScene(selectedLeague);
-                Stage leagueStage = new Stage();
-                leagueStage.setScene(LeagueWindow.getScene());
-                leagueStage.show();
+                LeagueWindow.display(selectedLeague);
             }
         });
 
+        // Open the transfer window
         transferWindow.setOnAction(event -> {
             try { window.setScene(TransferWindow.getScene(window, user)); }
             catch (IOException e) { e.printStackTrace(); }
         });
 
+        // Goes back to the login scene
         logoutButton.setOnAction(event -> window.setScene(LoginWindow.getScene(window)));
+
+        // Create a custom league and add to leagueView
+        createLeagueButton.setOnAction(event -> {
+//            user.createLeague();
+        });
 
         // Construct layout using GridPane
         GridPane grid = new GridPane();
@@ -142,35 +148,36 @@ public class UserWindow {
             try { IOHandler.getInstance().save(); }
             catch (IOException e) { e.printStackTrace(); }
         });
+
     }
 
-
-
+    /* Get scene after setting it */
     public static Scene getScene(Stage window, User user) {
         setScene(window, user);
         return userScene;
     }
 
 
-    /* Private inner static class used to display the teams inside the league*/
+    /* Private inner static class used to display the teams inside the league */
     private static class LeagueWindow {
 
         private static Scene leagueScene;
-
         private LeagueWindow() {}
 
+
+        /* Construct the ListView by adding strings to it */
         private static ListView<String> constructLeagueInfoView(League league) {
             ListView<String> teamListView = new ListView<>();
             for (Map.Entry mapElement : league.getTeamPoints().entrySet()) {
                 teamListView.getItems().add(
-                    "Team name: " + mapElement.getKey() + " --- Points: " + mapElement.getValue()
+                    "Team name: " + mapElement.getKey() + " : Points: " + mapElement.getValue()
                 );
             }
             return teamListView;
         }
 
-
-        public static void setScene(League league) {
+        /* Label, view added to -> layout(VBox) leads to -> Scene */
+        private static void setScene(League league) {
             ListView<String> leagueInfoView = constructLeagueInfoView(league);
             Label label = new Label("League name: " + league.getName() + "\nLeague manager: " + league.getManager());
 
@@ -179,8 +186,13 @@ public class UserWindow {
             leagueScene = new Scene(view);
         }
 
-        public static Scene getScene() {
-            return leagueScene;
+        /* This function displays the whole window as an extra window*/
+        public static void display(League league) {
+            Stage leagueStage = new Stage();
+            setScene(league);
+
+            leagueStage.setScene(leagueScene);
+            leagueStage.show();
         }
 
     }

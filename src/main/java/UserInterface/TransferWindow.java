@@ -65,7 +65,7 @@ public class TransferWindow {
     /* Set the scene */
     public static void setScene(Stage window, User user) throws IOException {
         List<Player> players = HandleApi.getInstance().getJsonObject().getPlayers();
-        List<Player> allTeamPlayers = user.getTeamPlayers();
+        List<Player> allTeamPlayers = user.getTeamStarters();
         allTeamPlayers.addAll(user.getTeamBench()); // Merge the bench and the players to construct whole team.
 
         ListView<Player> userTeamView = constructPlayers(allTeamPlayers);

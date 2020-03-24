@@ -2,7 +2,6 @@ package GameLogic;
 
 import UserInterface.HandleError;
 
-import javax.swing.text.html.ListView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -51,7 +50,7 @@ public class User {
         int totalSize = this.team.players.size() + this.team.bench.size();
 
         // Doesn't workkkk!!
-        if (this.getTeamPlayers().contains(player) || this.getTeamBench().contains(player))
+        if (this.getTeamStarters().contains(player) || this.getTeamBench().contains(player))
             HandleError.playerExists(player);
 
         else if (totalSize == 15)
@@ -127,12 +126,18 @@ public class User {
     }
 
 
-    public List<Player> getTeamPlayers() {
+    public List<Player> getTeamStarters() {
         return new ArrayList<>(this.team.players);
     }
 
     public List<Player> getTeamBench() {
         return new ArrayList<>(this.team.bench);
+    }
+
+    public List<Player> getFullTeam() {
+        List<Player> fullTeam = new ArrayList<>(this.team.players);
+        fullTeam.addAll(this.team.bench);
+        return fullTeam;
     }
 
     // Delete league if user is the manager

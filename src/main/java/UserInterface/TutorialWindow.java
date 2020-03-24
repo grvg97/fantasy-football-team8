@@ -62,7 +62,7 @@ public class TutorialWindow {
                 HandleError.formationRestriction(position, positionCount);
 
             // If player is already in team, user can't buy it
-            else if (user.getTeamPlayers().contains(selectedPlayer))
+            else if (user.getTeamStarters().contains(selectedPlayer))
                 HandleError.playerExists(selectedPlayer);
 
             else
