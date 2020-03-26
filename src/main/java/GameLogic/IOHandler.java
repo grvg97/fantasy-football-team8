@@ -100,6 +100,9 @@ public class IOHandler {
         private League[] leagues;
         private User[] users;
 
+        private int leagueIndex = 0;
+        private int userIndex = 0;
+
         /* This function returns the Global League, which is always at index 0 in our Database. */
         public League getGlobalLeague() {
             return LeagueIterator.getInstance(this.leagues).getFirst();
@@ -107,12 +110,12 @@ public class IOHandler {
 
         public void add(League league) {
             league.setId(leagues.length);
-            LeagueIterator.getInstance(this.leagues).add(league);
+            LeagueIterator.getInstance(this.leagues).add(league, leagueIndex);
         }
 
         public void add(User user) {
             user.setId(users.length);
-            UserIterator.getInstance(this.users).add(user);
+            UserIterator.getInstance(this.users).add(user, userIndex);
         }
 
         /* Return the user from database and return it if found, else return null */
@@ -162,7 +165,7 @@ public class IOHandler {
 
             @Override
             public boolean hasNext() {
-                if (database[index] == null) {
+                if (database.length == index) {
                     return false;
                 }
                 return true;
@@ -177,8 +180,8 @@ public class IOHandler {
                 return database[0];
             }
 
-            public void add(League league) {
-                database[index] = league;
+            public void add(League league, int leagueIndex) {
+                database[leagueIndex] = league;
             }
 
         }
@@ -203,7 +206,7 @@ public class IOHandler {
 
             @Override
             public boolean hasNext() {
-                if (database[index] == null) {
+                if (database.length == index) {
                     return false;
                 }
                 return true;
@@ -214,8 +217,8 @@ public class IOHandler {
                 return database[index ++];
             }
 
-            public void add(User user) {
-                database[index] = user;
+            public void add(User user, int userIndex) {
+                database[userIndex] = user;
             }
         }
 
