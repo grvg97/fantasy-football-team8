@@ -114,7 +114,7 @@ public class IOHandler {
         /* Return the user from database and return it if found, else return null */
         public User authenticateUser(String username, String password) {
             for (User user: this.users) {
-                if (user.getUsername().equals(username) && password.equals(password))
+                if (user.getUsername().equals(username) && user.getPassword().equals(password))
                     return user;
             }
             return null;
