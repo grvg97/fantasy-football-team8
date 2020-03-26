@@ -1,8 +1,8 @@
 
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀşÿÿÿÿ
-Gsquid:S1148•"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ãæ–˜.
-psquid:S00117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Ñ¯›8ÏÒÂ.
-usquid:S00117p"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¬·åÿÿÿÿÿ8¥ø¶£.
-osquid:S00117m"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šéä18¥ø¶£.
-psquid:S00117j"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áìÖé8•Ç´£.
-usquid:S00117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ùóïÿÿÿÿÿ8¥ø¶£.
+osquid:S00117m"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šéä18ºÎÈ‘‘.
+Gsquid:S1148•"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ºÎÈ‘‘.
+psquid:S00117j"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áìÖé8ºÎÈ‘‘.
+usquid:S00117p"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¬·åÿÿÿÿÿ8ºÎÈ‘‘.
+psquid:S00117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Ñ¯›8ºÎÈ‘‘.
+usquid:S00117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ùóïÿÿÿÿÿ8ºÎÈ‘‘.

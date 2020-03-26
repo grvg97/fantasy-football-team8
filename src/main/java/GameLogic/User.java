@@ -93,7 +93,9 @@ public class User {
 
     // User enters the specified league and,
     // Also adds that to it's own competed leagues
-    public void joinLeague(League league) { }
+    public void joinLeague(League league) {
+        league.addUser(this);
+    }
 
 
     // User exits the specified league and,

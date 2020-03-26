@@ -139,9 +139,11 @@ public class TutorialWindow {
 
         // If all conditions are met, submit info
         nextButton.setOnAction(event -> {
+            IOHandler handleIO = IOHandler.getInstance();
 
-            // Saves to userDatabase
-            IOHandler.getInstance().add(user);
+            // User joins to global league and saves the user to userDatabase
+            user.joinLeague(handleIO.getGlobalLeague());
+            handleIO.add(user);
 
             try {
                 IOHandler.getInstance().save();

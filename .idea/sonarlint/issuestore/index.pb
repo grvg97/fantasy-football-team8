@@ -35,8 +35,6 @@ Y
 )src/main/java/GameLogic/PlayerMarket.java,2/f/2fefe0ac6cf44d70729269ef01e255340d504a46
 ]
 -src/main/java/UserInterface/PlayerWindow.java,8/9/89012f783ac464bb6b774136c4de45152c0f49a5
-[
-+src/main/java/GameLogic/LeagueIterator.java,3/4/34051406bdc57385519091c3cf12c7c7dea9263f
 V
 &src/main/java/GameLogic/IOHandler.java,e/8/e88c69521c145849bff1538b4607d317ffe9d9b9
 _
