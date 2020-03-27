@@ -45,9 +45,9 @@ public class League {
         }
     }
 
-    private void computeRanking() {
+    //private List<User> showLeaderboards() {
         // Compute ranking based on the points that the teams have
-    }
+    //}
 
     public int getManager() {return this.manager;}
     public String getName() {return this.name;}
