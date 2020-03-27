@@ -92,18 +92,13 @@ public class TransferWindow {
             Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
 
             if (selectedMarketPlayer != null) {
-                if (user.getTeamBench().contains(selectedMarketPlayer) || user.getTeamStarters().contains(selectedMarketPlayer))
-                    HandleError.playerExists(selectedMarketPlayer);
-                else {
-                    user.buyPlayer(selectedMarketPlayer);
-                    userTeamView.getItems().add(selectedMarketPlayer);
-                    userTeamView.refresh();
-                    setListViewToString(userTeamView);
+                user.buyPlayer(selectedMarketPlayer);
+                userTeamView.getItems().add(selectedMarketPlayer);
+                userTeamView.refresh();
+                setListViewToString(userTeamView);
 
-                    creditLabel.setText("Credits = " + user.getCredits());
-                }
+                creditLabel.setText("Credits = " + user.getCredits());
             }
-
 
         });
 
