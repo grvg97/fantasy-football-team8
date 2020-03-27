@@ -72,6 +72,8 @@ public class TutorialWindow {
         List<Player> players = HandleApi.getInstance().getJsonObject().getPlayers();
 
         ListView<Player> playerMarketView = constructPlayers(players);
+        Label creditLabel = new Label();
+        creditLabel.setText("Credits = " + user.getCredits());
 
         Button buyButton = new Button("<< Buy");
         Button sellButton = new Button("Sell >>");
@@ -114,6 +116,8 @@ public class TutorialWindow {
                 userTeamView.getItems().add(selectedPlayer);
                 userTeamView.refresh();
                 setListViewToString(userTeamView);
+
+                creditLabel.setText("Credits = " + user.getCredits());
             }
 
         });
@@ -156,6 +160,7 @@ public class TutorialWindow {
         GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10));
         GridPane.setConstraints(teamHBox, 0, 0);
         GridPane.setConstraints(userTeamView, 0, 1);
+        GridPane.setConstraints(creditLabel, 0, 2);
         GridPane.setConstraints(buyButton, 1, 2);
         GridPane.setConstraints(sellButton, 1, 3);
         GridPane.setConstraints(playerMarketView, 2, 1);
@@ -166,7 +171,8 @@ public class TutorialWindow {
         grid.getChildren().addAll(
                 userTeamView, buyButton, sellButton,
                 playerMarketView, teamHBox,
-                playerInfoButton, nextButton
+                playerInfoButton, nextButton,
+                creditLabel
         );
 
         // Set the current constructed layout to the transfer scene

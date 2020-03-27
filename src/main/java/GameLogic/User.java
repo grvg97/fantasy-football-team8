@@ -82,6 +82,10 @@ public class User {
         this.id = id;
     }
 
+    public int getCredits() {
+        return this.credits;
+    }
+
 
 
     // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
