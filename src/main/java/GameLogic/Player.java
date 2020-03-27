@@ -106,13 +106,4 @@ public class Player {
         stats.put("saves", saves);
         return stats;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof Player) {
-            Player toCompare = (Player) obj;
-            return this.id == toCompare.getId();
-        }
-        return false;
-    }
 }
