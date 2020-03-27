@@ -1,11 +1,14 @@
 package GameLogic;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -13,8 +16,8 @@ import java.util.Iterator;
 
 public class IOHandler {
 
-    private Database userDatabase;
-    private Database leagueDatabase;
+    private Database<User> userDatabase;
+    private Database<League> leagueDatabase;
 
     private IOHandler() {}
 
@@ -25,8 +28,6 @@ public class IOHandler {
     public static IOHandler getInstance() {
         return IOHandler.IOHandlerHolder.INSTANCE;
     }
-
-
     /*
      * This function is called when the game is initialized
      */
@@ -35,10 +36,14 @@ public class IOHandler {
         String leagueFileName = "DatabaseLeague.json";
 
         try {
-            userDatabase = new Gson().fromJson(new FileReader(userFileName), Database.class);
-            leagueDatabase = new Gson().fromJson(new FileReader(leagueFileName), Database.class);
+            Type userType = new TypeToken<Database<User>>(){}.getType();
+            this.userDatabase = new Gson().fromJson(new FileReader(userFileName), userType);
+
+            Type leagueType = new TypeToken<Database<League>>(){}.getType();
+            this.leagueDatabase = new Gson().fromJson(new FileReader(leagueFileName), leagueType);
         }
         catch (Exception e) {
+            System.out.println(e.toString());
             BufferedWriter writer = new BufferedWriter(new FileWriter(userFileName));
             writer.close();
             writer = new BufferedWriter(new FileWriter(leagueFileName));
@@ -50,10 +55,9 @@ public class IOHandler {
         if (this.leagueDatabase == null) {
             this.leagueDatabase = new Database();
             League globalLeague = new League("Global League", "System");
+            globalLeague.setId(leagueDatabase.getSize());
             this.leagueDatabase.add(globalLeague);
         }
-
-
     }
 
 
@@ -71,68 +75,56 @@ public class IOHandler {
     /* Authenticates the user. Returns the user with the username and password,
      * Else, returns null
      */
-
     public User authUser(String username, String password) {
-        return userDatabase.authenticateUser(username, password);
+        Iterator<User> it = userDatabase.iterator();
+        while(it.hasNext()) {
+            User user = it.next();
+            if (user.getUsername().equals(username) && user.getPassword().equals(password))
+                return user;
+        }
+        return null;
     }
+
+    /* Fetching user again from database to refresh the page*/
     public User getUser(int id) {
-        return userDatabase.getUser(id);
+        Iterator<User> it = userDatabase.iterator();
+        while (it.hasNext()) {
+            User user = it.next();
+            if (user.getId() == id)
+                return user;
+        }
+        return null;
     }
     public void add(League league) {
-        leagueDatabase.add(league);
+        this.leagueDatabase.add(league);
     }
     public void add(User user) {
-        userDatabase.add(user);
+        this.userDatabase.add(user);
     }
     public List<League> getLeagues() {
-        return leagueDatabase.getLeagues();
+        return this.leagueDatabase.db;
     }
+
+    /* This function returns the Global League, which is always at index 0 in our Database. */
     public League getGlobalLeague() {
-        return leagueDatabase.getGlobalLeague();
+        return this.leagueDatabase.db.get(0);
     }
 
     /* Private class to handle the storing for the IOHandler */
-    private static class Database {
-        private ArrayList<League> leagues = new ArrayList<>();
-        private ArrayList<User> users = new ArrayList<>();
+    private static class Database<T> implements Iterable<T> {
+        private ArrayList<T> db = new ArrayList<T>();
 
-        /* This function returns the Global League, which is always at index 0 in our Database. */
-        public League getGlobalLeague() {
-            return leagues.get(0);
+        @Override
+        public Iterator<T> iterator() {
+            return this.db.iterator();
         }
 
-        public void add(League league) {
-            league.setId(this.leagues.size());
-            this.leagues.add(league);
+        public void add(T element) {
+            this.db.add(element);
         }
 
-        public void add(User user) {
-            user.setId(this.users.size());
-            this.users.add(user);
+        public int getSize() {
+            return this.db.size();
         }
-
-        /* Return the user from database and return it if found, else return null */
-        public User authenticateUser(String username, String password) {
-            for (User user: this.users) {
-                if (user.getUsername().equals(username) && user.getPassword().equals(password))
-                    return user;
-            }
-            return null;
-        }
-
-        /* Fetching user again from database to refresh the page*/
-        public User getUser(int id) {
-            for (User user: this.users) {
-                if (user.getId() == id)
-                    return user;
-            }
-            return null;
-        }
-
-        public List<League> getLeagues() {
-            return new ArrayList<>(this.leagues);
-        }
-
     }
-
 }
