@@ -12,6 +12,7 @@ public class User {
     private String password;
     private Team team;
     private int credits = 1000;
+    private List<Integer> leagues;
     private Boolean hasTransferred = false;
 
 
@@ -33,6 +34,10 @@ public class User {
 
     public boolean hasTeam() {
         return this.team != null;
+    }
+
+    public List<Integer> getLeagues() {
+        return this.leagues;
     }
 
     public void deleteTeam() {
@@ -90,27 +95,19 @@ public class User {
         return this.credits;
     }
 
-
-
-    // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
-    // User can set the end date of any league as long as that user is
-    // the manager of the specified league
-    public void setEndOfLeague(Date endDate, League league) { }
-
-
     // User enters the specified league and,
     // Also adds that to it's own competed leagues
     public void joinLeague(League league) {
         league.addUser(this);
     }
 
-
     // User exits the specified league and,
     // Also removes that league from it's own competed leagues
-    public void exitLeague(League league) { }
+    public void exitLeague(League league) {
+        league.removeUser(this);
+    }
 
-
-    // Create a league and assign the user's name who created as the manager
+    // Create a league and assign the user's id who created as the manager
     // Add created league to the leagues that the user competes
     public void createLeague(String name) {
         League customLeague = new League(name, this.id);
