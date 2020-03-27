@@ -25,7 +25,7 @@ public class HandleError {
     }
 
     // Player can't be added to team without team existing.
-    public static void teamMustExistence() {
+    public static void teamMustExist() {
         constructError("Team must be created!",
                 "User must first create team in order\nto add players to that team.");
 

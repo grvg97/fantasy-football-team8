@@ -104,7 +104,7 @@ public class TutorialWindow {
 
             // User can't buy player unless their is not team
             if (!user.hasTeam())
-                HandleError.teamMustExistence();
+                HandleError.teamMustExist();
 
             // If player is already in team, user can't buy it
             else if (user.getTeamStarters().contains(selectedPlayer))
