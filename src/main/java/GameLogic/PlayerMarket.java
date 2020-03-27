@@ -15,7 +15,7 @@ public class PlayerMarket implements Iterable {
     private PlayerMarket() {}
 
     @Override
-    public Iterator iterator() { return players.iterator(); }
+    public Iterator iterator() {return players.iterator();}
 
     private static class PlayerMarketHolder {
         private static final PlayerMarket INSTANCE = new PlayerMarket();
@@ -25,6 +25,6 @@ public class PlayerMarket implements Iterable {
         return PlayerMarketHolder.INSTANCE;
     }
 
-    public List<Player> getPlayers() { return new ArrayList<Player>(this.players); }
+    public List<Player> getPlayers() { return new ArrayList<>(this.players); }
 
 }

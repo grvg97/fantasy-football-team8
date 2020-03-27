@@ -7,162 +7,176 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class TutorialWindow {
+
     private static Scene tutorialScene;
 
-    private TutorialWindow() {}
+    private static ListView<Player> userTeamView = new ListView<>();
 
-    /* Constructs the ComboBox that contains players and displays them as strings */
-    private static ComboBox<Player> constructPlayerBox(List<Player> players, Positions position) {
-        ComboBox<Player> playerChoices = new ComboBox<>();
-        for (Player player: players) {
-            if (player.getPosition() == position)
-                playerChoices.getItems().add(player);
-        }
-        playerChoices.setConverter(new StringConverter<Player>() {
+    /*
+     * This function allows the ListView to store 'Leagues'
+     * objects and display them as strings
+     */
+    private static void setListViewToString(ListView<Player> playersView) {
+        playersView.setCellFactory(param -> new ListCell<Player>() {
             @Override
-            public String toString(Player object) {
-                return object.getFullName();
-            }
+            protected void updateItem(Player player, boolean empty) {
+                super.updateItem(player, empty);
 
-            @Override
-            public Player fromString(String string) {
-                return playerChoices.getItems().stream().filter(player ->
-                        player.getFullName().equals(string)).findFirst().orElse(null);
+                if (empty || player == null || player.getFullName() == null) {
+                    setText(null);
+                } else {
+                    setText(player.getPositionName() + " " + player.getFullName());
+                }
             }
         });
-        return playerChoices;
     }
 
 
-    /* Selects the players for the team. Wraps the 'constructPlayerBox' function. */
-    private static ComboBox<Player> selectPlayers (
-            User user, List<Player> players, Positions position, int positionCount, String Pos
-    ) {
-        ComboBox<Player> playerBox = constructPlayerBox(players, position);
-        playerBox.setPromptText("Select " + positionCount + " " + Pos);
+    /* Constructs the listView*/
+    private static ListView<Player> constructPlayers(List<Player> players) {
+        ListView<Player> playersView = new ListView<>();
+        Iterator<Player> it = players.iterator();
 
+        while (it.hasNext())
+            playersView.getItems().add(it.next());
 
-        playerBox.setOnAction(event -> {
-            Player selectedPlayer = playerBox.getValue();
-
-            // User can't buy player unless their is not team
-            if (!user.hasTeam())
-                HandleError.teamMustExistence();
-
-            // User can't buy the player with the specific position if that position is full.
-            else if (user.getTeamPositionCount(position) == positionCount)
-                HandleError.formationRestriction(position, positionCount);
-
-            // If player is already in team, user can't buy it
-            else if (user.getTeamStarters().contains(selectedPlayer))
-                HandleError.playerExists(selectedPlayer);
-
-            else
-                user.buyPlayer(selectedPlayer);
-
-        });
-        return playerBox;
+        // Sets the view of the list from player objects the player name's strings
+        setListViewToString(playersView);
+        return playersView;
     }
 
 
-    private static void addToDatabase(User user, League globalLeague) {
-        IOHandler.getInstance().add(user);
-        globalLeague.addUser(user);
+    private static boolean formationRestrictionMet(User user) {
+        return user.getTeamPositionCount(Positions.GK) == Formation.GKCOUNT.getValue()
+                && user.getTeamPositionCount(Positions.DEF) == Formation.DEFCOUNT.getValue()
+                && user.getTeamPositionCount(Positions.MID) == Formation.MIDCOUNT.getValue()
+                && user.getTeamPositionCount(Positions.FWD) == Formation.FORCOUNT.getValue();
     }
 
-    /* Sets the scene of the view 'TutorialWindow' */
+
+    /* Set the scene */
     public static void setScene(Stage window, User user) throws IOException {
+        List<Player> players = HandleApi.getInstance().getJsonObject().getPlayers();
 
-        // Get the json object and the players from the player market
-        HandleApi apiHandler = HandleApi.getInstance();
-        PlayerMarket playerMarket = apiHandler.getJsonObject();
-        List<Player> players = playerMarket.getPlayers();
+        ListView<Player> playerMarketView = constructPlayers(players);
+        Label creditLabel = new Label();
+        creditLabel.setText("Credits = " + user.getCredits());
 
-        // Create the button and label
+        Button buyButton = new Button("<< Buy");
+        Button sellButton = new Button("Sell >>");
+        Button playerInfoButton = new Button("Open Player");
         Button nextButton = new Button("Next");
-        Label info = new Label("Welcome to the tutorial. In this part of the game you will construct your team.");
-        info.setAlignment(Pos.CENTER);
         TextField teamName = new TextField(); teamName.setPromptText("team name");
+
 
         // Don't accept the team name if it's blank
         Button createTeamButton = new Button("Create Team");
-        createTeamButton.setOnAction(event -> {
-
+        createTeamButton.setOnAction(event ->
+        {
             if (teamName.getText().equals(""))
                 HandleError.teamNameBlank();
             else
                 user.createTeam(teamName.getText());
         });
 
-        // Construct team
-        ComboBox<Player> GKBox =
-                selectPlayers(user, players, Positions.GK, Formation.GKCOUNT.getValue(), "GK");
 
-        ComboBox<Player> DEFBox =
-                selectPlayers(user, players, Positions.DEF, Formation.DEFCOUNT.getValue(), "DEF");
+        /*
+         * 'buyButton' buys the player based on restrictions
+         * 'sellButton' sells the player and adds the credits
+         * 'finishButton' finished transfer iff the transfer is done according to rules
+         * 'backButton' Goes back
+         */
+        buyButton.setOnAction(event -> {
+            Player selectedPlayer = playerMarketView.getSelectionModel().getSelectedItem();
 
-        ComboBox<Player> MIDBox =
-                selectPlayers(user, players, Positions.MID, Formation.MIDCOUNT.getValue(), "MID");
+            // User can't buy player unless their is not team
+            if (!user.hasTeam())
+                HandleError.teamMustExistence();
 
-        ComboBox<Player> FORBox =
-                selectPlayers(user, players, Positions.FWD, Formation.FORCOUNT.getValue(), "FOR");
+            // If player is already in team, user can't buy it
+            else if (user.getTeamStarters().contains(selectedPlayer))
+                HandleError.playerExists(selectedPlayer);
 
+            // Buy the player and refresh the ListView to see the changes
+            else {
+                user.buyPlayer(selectedPlayer);
+                userTeamView.getItems().add(selectedPlayer);
+                userTeamView.refresh();
+                setListViewToString(userTeamView);
 
-        // Create grid and add the elements to the grid
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(20, 20, 20, 20));
-        grid.setAlignment(Pos.CENTER); grid.setVgap(15);
-        GridPane.setConstraints(teamName, 0, 0);
-        GridPane.setConstraints(createTeamButton, 0, 1);
-        GridPane.setConstraints(GKBox, 0, 3);
-        GridPane.setConstraints(DEFBox, 0, 4);
-        GridPane.setConstraints(MIDBox, 0, 5);
-        GridPane.setConstraints(FORBox, 0, 6);
-        GridPane.setConstraints(nextButton, 0, 7);
-
-        grid.getChildren().addAll(
-                teamName, createTeamButton, GKBox, DEFBox, MIDBox, FORBox, nextButton
-        );
-
-        // Set the configuration of the border
-        BorderPane border = new BorderPane();
-        border.setTop(info);
-        border.setCenter(grid);
-
-        // If all conditions are met, submit info
-        nextButton.setOnAction(event -> {
-            IOHandler handleIO = IOHandler.getInstance();
-
-            // User joins to global league and saves the user to userDatabase
-            user.joinLeague(handleIO.getGlobalLeague());
-            handleIO.add(user);
-
-            try {
-                IOHandler.getInstance().save();
-            } catch (IOException e) {
-                e.printStackTrace();
+                creditLabel.setText("Credits = " + user.getCredits());
             }
 
-            // If the team size is larger than 11, user will be add
-            // user can continue to the next scene of the game
-            if (user.getTeamSize() >= 11) {
-                addToDatabase(user, IOHandler.getInstance().getGlobalLeague());
+        });
+
+        // Sell the player and refresh the ListView to see the changes
+        sellButton.setOnAction(event -> {
+            Player selectedPlayer = userTeamView.getSelectionModel().getSelectedItem();
+            if (selectedPlayer != null)
+                user.sellPlayer(selectedPlayer);
+
+            userTeamView.getItems().remove(selectedPlayer);
+            userTeamView.refresh();
+        });
+
+
+        playerInfoButton.setOnAction(event -> {
+            Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
+            if (selectedMarketPlayer != null)
+                PlayerWindow.display(selectedMarketPlayer);
+        });
+
+        nextButton.setOnAction(event -> {
+            if (formationRestrictionMet(user)) {
+                IOHandler handleIO = IOHandler.getInstance();
+                handleIO.getGlobalLeague().addUser(user);
+                handleIO.add(user);
+
+                try { IOHandler.getInstance().save(); }
+                catch (IOException e) { e.printStackTrace(); }
                 window.setScene(UserWindow.getScene(window, user));
             }
             else
-                HandleError.teamSize(user.getTeamSize());
+                HandleError.generalFormationRestriction();
         });
 
-        // Create scene with the 'border' layout
-        tutorialScene = new Scene(border);
+        HBox teamHBox = new HBox(10);
+        teamHBox.getChildren().addAll(teamName, createTeamButton);
+
+        // Construct the layout using GridPane
+        GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10));
+        GridPane.setConstraints(teamHBox, 0, 0);
+        GridPane.setConstraints(userTeamView, 0, 1);
+        GridPane.setConstraints(creditLabel, 0, 2);
+        GridPane.setConstraints(buyButton, 1, 2);
+        GridPane.setConstraints(sellButton, 1, 3);
+        GridPane.setConstraints(playerMarketView, 2, 1);
+        GridPane.setConstraints(playerInfoButton, 2, 2);
+        GridPane.setConstraints(nextButton, 2, 3);
+
+
+        grid.getChildren().addAll(
+                userTeamView, buyButton, sellButton,
+                playerMarketView, teamHBox,
+                playerInfoButton, nextButton,
+                creditLabel
+        );
+
+        // Set the current constructed layout to the transfer scene
+        tutorialScene = new Scene(grid, 650, 500);
     }
 
 

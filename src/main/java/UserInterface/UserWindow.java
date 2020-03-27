@@ -122,7 +122,7 @@ public class UserWindow {
 
         // Create a custom league and add to leagueView
         createLeagueButton.setOnAction(event -> {
-//            user.createLeague();
+            // user.createLeague();
         });
 
         // Construct layout using GridPane

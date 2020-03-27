@@ -4,6 +4,7 @@ import GameLogic.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
@@ -78,6 +79,7 @@ public class TransferWindow {
         Button sellButton = new Button("Sell >>");
         Button backButton = new Button("Back");
         Button playerInfoButton = new Button("Open Player");
+        Label creditLabel = new Label("Credits = " + user.getCredits());
 
 
         /*
@@ -88,15 +90,16 @@ public class TransferWindow {
          */
         buyButton.setOnAction(event -> {
             Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
-            if (selectedMarketPlayer != null)
-                user.buyPlayer(selectedMarketPlayer);
-            else
-                HandleError.playerExists(selectedMarketPlayer);
 
-            // When we set the scene of the window again, we see the changes.
-            try { setScene(window, user); }
-            catch (IOException e) { e.printStackTrace(); }
-            window.setScene(transferScene);
+            if (selectedMarketPlayer != null) {
+                user.buyPlayer(selectedMarketPlayer);
+                userTeamView.getItems().add(selectedMarketPlayer);
+                userTeamView.refresh();
+                setListViewToString(userTeamView);
+
+                creditLabel.setText("Credits = " + user.getCredits());
+            }
+
         });
 
         sellButton.setOnAction(event -> {
@@ -104,9 +107,11 @@ public class TransferWindow {
             if (selectedTeamPlayer != null)
                 sellPlayer(user, selectedTeamPlayer);
 
-            // When we set the scene of the window again, we see the changes.
-            try { setScene(window, user); } catch (IOException e) { e.printStackTrace(); }
-            window.setScene(transferScene);
+            userTeamView.getItems().remove(selectedTeamPlayer);
+            userTeamView.refresh();
+            setListViewToString(userTeamView);
+
+            creditLabel.setText("Credits = " + user.getCredits());
         });
 
         backButton.setOnAction(event -> {
@@ -128,6 +133,7 @@ public class TransferWindow {
         // Construct the layout using GridPane
         GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10));
         GridPane.setConstraints(userTeamView, 0, 1);
+        GridPane.setConstraints(creditLabel, 0, 2);
         GridPane.setConstraints(buyButton, 1, 2);
         GridPane.setConstraints(sellButton, 1, 3);
         GridPane.setConstraints(playerMarketView, 2, 1);
@@ -138,7 +144,7 @@ public class TransferWindow {
         grid.getChildren().addAll(
                 userTeamView, buyButton, sellButton,
                 playerMarketView, backButton,
-                playerInfoButton
+                playerInfoButton, creditLabel
         );
 
         // Set the current constructed layout to the transfer scene

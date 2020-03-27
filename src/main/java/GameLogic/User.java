@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Date;
 
 public class User {
-    private int id;
+    private int id = 1;
     private String username;
     private String password;
     private Team team;
     private int credits = 1000;
     private Boolean hasTransferred = false;
+
 
     // Constructor
     public User(String username, String password) {
@@ -50,11 +51,13 @@ public class User {
 
         if (this.team.contains(player))
             HandleError.playerExists(player);
+
         else if (totalSize == 15)
             HandleError.maxNumPlayers();
-        else if ((this.credits - player.getCost()) < 0) {
+
+        else if ((this.credits - player.getCost()) < 0)
             HandleError.notEnoughCredits(this.credits, player.getFullName());
-        }
+
         else {
             this.team.addPlayer(player);
             this.credits -= player.getCost();
@@ -64,6 +67,7 @@ public class User {
 
     // This function handles the selling of players and removes it from the User's team.
     public void sellPlayer(Player player) {
+
         this.team.removePlayer(player);
         this.credits += player.getCost();
     }
@@ -77,6 +81,11 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getCredits() {
+        return this.credits;
+    }
+
 
 
     // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
@@ -100,7 +109,7 @@ public class User {
     // Create a league and assign the user's name who created as the manager
     // Add created league to the leagues that the user competes
     public void createLeague(String name) {
-        League customLeague = new League(name, this.id);
+        League customLeague = new League(name, this.username);
         customLeague.addUser(this);
         IOHandler.getInstance().add(customLeague);
     }
@@ -138,11 +147,11 @@ public class User {
 
     // Delete league if user is the manager
     public void deleteLeague(League league) {
-        if (league.getManager() == this.id) {
+        if (league.getManager().equals(this.username)) {
             league = null;
         }
         else {
-            HandleError.actionNotAuthorized(String.valueOf(league.getManager()));
+            HandleError.actionNotAuthorized(league.getManager());
         }
     }
 
@@ -200,6 +209,7 @@ public class User {
                 this.players.remove(selectedPlayer);
             else
                 this.bench.remove(selectedPlayer);
+
         }
 
         public boolean contains(Player player) {
@@ -214,6 +224,7 @@ public class User {
             }
             return false;
         }
+
 
         public void changeStartingLineup() {
             // TODO: Switch players from the starting lineup

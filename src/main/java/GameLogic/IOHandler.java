@@ -28,9 +28,7 @@ public class IOHandler {
     public static IOHandler getInstance() {
         return IOHandler.IOHandlerHolder.INSTANCE;
     }
-    /*
-     * This function is called when the game is initialized
-     */
+
     public void init() throws IOException {
         String userFileName = "DatabaseUser.json";
         String leagueFileName = "DatabaseLeague.json";
@@ -58,7 +56,6 @@ public class IOHandler {
         }
     }
 
-
     public void save() throws IOException {
         // At exit save userDB
         BufferedWriter writer = new BufferedWriter(new FileWriter("DatabaseUser.json"));
@@ -70,9 +67,7 @@ public class IOHandler {
         writer.close();
     }
 
-    /* Authenticates the user. Returns the user with the username and password,
-     * Else, returns null
-     */
+
     public User authUser(String username, String password) {
         Iterator<User> it = userDatabase.iterator();
         while(it.hasNext()) {
@@ -112,7 +107,7 @@ public class IOHandler {
 
     /* Private class to handle the storing for the IOHandler */
     private static class Database<T> implements Iterable<T> {
-        private ArrayList<T> db = new ArrayList<T>();
+        private ArrayList<T> db = new ArrayList<>();
 
         @Override
         public Iterator<T> iterator() {
