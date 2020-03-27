@@ -1,10 +1,10 @@
 
-bsquid:S1854\"DRemove this useless assignment to local variable "exitLeagueButton".(ÿÌ›½8ÍÈ‘‘.
-Ssquid:S1481["5Remove this unused "joinLeagueButton" local variable.(ù°¸¿8ÍÈ‘‘.
-nsquid:CommentedOutCodeLinez"<This block of commented-out lines of code should be removed.(„Öëşÿÿÿÿÿ8ÍÈ‘‘.
-Gsquid:S1148•"#Use a logger to log this exception.(„±‹¹øÿÿÿÿ8ÍÈ‘‘.
-bsquid:S1854["DRemove this useless assignment to local variable "joinLeagueButton".(ù°¸¿8ÍÈ‘‘.
-Ssquid:S1481\"5Remove this unused "exitLeagueButton" local variable.(ÿÌ›½8ÍÈ‘‘.
-Xsquid:S1118":Add a private constructor to hide the implicit public one.(ªœ¼Ä8ÍÈ‘‘.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀşÿÿÿÿ
-Fsquid:S1148r"#Use a logger to log this exception.(„±‹¹øÿÿÿÿ8ÍÈ‘‘.
+Xsquid:S1118":Add a private constructor to hide the implicit public one.(ªœ¼Ä8à’¯å‘.
+Gsquid:S1148˜"#Use a logger to log this exception.(„±‹¹øÿÿÿÿ8±çÛã‘.
+Ssquid:S1481^"5Remove this unused "joinLeagueButton" local variable.(ù°¸¿8±çÛã‘.
+Fsquid:S1148u"#Use a logger to log this exception.(„±‹¹øÿÿÿÿ8±çÛã‘.
+bsquid:S1854_"DRemove this useless assignment to local variable "exitLeagueButton".(ÿÌ›½8±çÛã‘.
+Ssquid:S1481_"5Remove this unused "exitLeagueButton" local variable.(ÿÌ›½8±çÛã‘.
+nsquid:CommentedOutCodeLine}"<This block of commented-out lines of code should be removed.(„Öëşÿÿÿÿÿ8±çÛã‘.
+bsquid:S1854^"DRemove this useless assignment to local variable "joinLeagueButton".(ù°¸¿8±çÛã‘.

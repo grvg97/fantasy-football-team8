@@ -1,6 +1,7 @@
 
-„squid:S1319Q"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ğèÏÒ
+„squid:S1319Z"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(ğèÏÒ
 P"squid:SwitchLastCaseIsDefaultCheck@""Add a default case to this switch.(ÑÜ¬²
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
 `squid:UselessImportCheck"0Remove this unused import 'javafx.geometry.Pos'.(ÌÆ÷Ùøÿÿÿÿ8æüûš.
 csquid:HiddenFieldCheck?"<Rename "position" which hides the field declared at line 12.(ü‡Œªøÿÿÿÿ
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
+nsquid:S1206R"PThis class overrides "equals()" and should therefore also override "hashCode()".(ÜÑã8¼ø”æ‘.

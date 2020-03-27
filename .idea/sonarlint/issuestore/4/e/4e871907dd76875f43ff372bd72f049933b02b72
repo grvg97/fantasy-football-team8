@@ -1,11 +1,7 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8‚·æâ‘.
-U
-java:S1128"8Remove this unused import 'javafx.scene.control.Button'.(»øÕØ8‚·æâ‘.
-h
-java:S1128"FRemove this unused import 'javafx.scene.control.SingleSelectionModel'.(¾½ì¡ıÿÿÿÿ8‚·æâ‘.
-T
-java:S1128
-"2Remove this unused import 'javax.xml.crypto.Data'.(¦¿çˆıÿÿÿÿ8‚·æâ‘.
-I
-java:S16024",Remove useless curly braces around statement(¯ı‹ª8‚·æâ‘.
+~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8ßÓ‘­.
+bsquid:UselessImportCheck
+"2Remove this unused import 'javax.xml.crypto.Data'.(¦¿çˆıÿÿÿÿ8ú¸¶˜.
+Jsquid:S16025",Remove useless curly braces around statement(¯ı‹ª8è¯š.
+csquid:UselessImportCheck"8Remove this unused import 'javafx.scene.control.Button'.(»øÕØ8ú¸¶˜.
+vsquid:UselessImportCheck"FRemove this unused import 'javafx.scene.control.SingleSelectionModel'.(¾½ì¡ıÿÿÿÿ8ú¸¶˜.

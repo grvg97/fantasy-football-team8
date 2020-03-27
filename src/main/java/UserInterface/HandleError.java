@@ -38,13 +38,6 @@ public class HandleError {
 
     }
 
-    // This function is used in TutorialWindow. It restricts the players from specific positions according to 4-3-3
-    public static void formationRestriction(Positions position, int positionCount) {
-        constructError("Formation Restriction!",
-                "The position " + position + " must have exactly " + positionCount + " players.");
-
-    }
-
     // Used in Transfer Window
     public static void generalFormationRestriction() {
         constructError("General Formation Restriction!",
@@ -71,7 +64,7 @@ public class HandleError {
 
     public static void actionNotAuthorized(String manager) {
         constructError("Not Authorized!",
-                "You are not authorized to delete this league");
+                "You are not authorized to delete this league, manager: " + manager);
 
     }
 
