@@ -37,6 +37,10 @@ public class Player {
     public String getFullName() {
         return (this.firstName + " " + this.lastName);
     }
+    public boolean isInjured() {
+        return isAvailable.equals("i");
+    }
+
     public Positions getPosition() {
         Positions pos;
 
@@ -54,9 +58,6 @@ public class Player {
                 pos = Positions.FWD;
         }
         return pos;
-    }
-    public boolean isInjured() {
-        return isAvailable.equals("i");
     }
 
     public String getPositionName() {
@@ -95,4 +96,12 @@ public class Player {
         return stats;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Player) {
+            Player toCompare = (Player) obj;
+            return this.id == toCompare.getId();
+        }
+        return false;
+    }
 }

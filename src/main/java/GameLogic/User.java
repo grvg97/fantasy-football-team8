@@ -14,7 +14,6 @@ public class User {
     private int credits = 1000;
     private Boolean hasTransferred = false;
 
-
     // Constructor
     public User(String username, String password) {
         this.username = username;
@@ -49,27 +48,22 @@ public class User {
     public void buyPlayer(Player player) {
         int totalSize = this.team.players.size() + this.team.bench.size();
 
-        // Doesn't workkkk!!
-        if (this.getTeamStarters().contains(player) || this.getTeamBench().contains(player))
+        if (this.team.contains(player))
             HandleError.playerExists(player);
-
         else if (totalSize == 15)
             HandleError.maxNumPlayers();
-
-        else if ((this.credits - player.getCost()) >= 0) {
+        else if ((this.credits - player.getCost()) < 0) {
+            HandleError.notEnoughCredits(this.credits, player.getFullName());
+        }
+        else {
             this.team.addPlayer(player);
             this.credits -= player.getCost();
         }
-
-        else
-            HandleError.notEnoughCredits(this.credits, player.getFullName());
-
     }
 
 
     // This function handles the selling of players and removes it from the User's team.
     public void sellPlayer(Player player) {
-
         this.team.removePlayer(player);
         this.credits += player.getCost();
     }
@@ -206,9 +200,20 @@ public class User {
                 this.players.remove(selectedPlayer);
             else
                 this.bench.remove(selectedPlayer);
-
         }
 
+        public boolean contains(Player player) {
+            for (Player p : players) {
+                if (p.equals(player))
+                    return true;
+            }
+
+            for (Player p : bench) {
+                if (p.equals(player))
+                    return true;
+            }
+            return false;
+        }
 
         public void changeStartingLineup() {
             // TODO: Switch players from the starting lineup

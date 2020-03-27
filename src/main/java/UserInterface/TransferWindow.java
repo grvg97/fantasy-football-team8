@@ -88,7 +88,7 @@ public class TransferWindow {
          */
         buyButton.setOnAction(event -> {
             Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
-            if (selectedMarketPlayer != null) // TODO: prevent user from buying duplicate players
+            if (selectedMarketPlayer != null)
                 user.buyPlayer(selectedMarketPlayer);
             else
                 HandleError.playerExists(selectedMarketPlayer);
