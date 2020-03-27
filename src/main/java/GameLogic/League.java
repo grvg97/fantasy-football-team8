@@ -46,7 +46,7 @@ public class League {
     }
 
     //private List<User> showLeaderboards() {
-        // Compute ranking based on the points that the teams have
+        // Compute ranking based on the points that the teams have/
     //}
 
     public int getManager() {return this.manager;}
