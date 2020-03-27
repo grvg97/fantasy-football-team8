@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Date;
 
 public class User {
-    private int id = 1;
+    private int id;
     private String username;
     private String password;
     private Team team;
@@ -100,7 +100,7 @@ public class User {
     // Create a league and assign the user's name who created as the manager
     // Add created league to the leagues that the user competes
     public void createLeague(String name) {
-        League customLeague = new League(name, this.username);
+        League customLeague = new League(name, this.id);
         customLeague.addUser(this);
         IOHandler.getInstance().add(customLeague);
     }
@@ -138,11 +138,11 @@ public class User {
 
     // Delete league if user is the manager
     public void deleteLeague(League league) {
-        if (league.getManager().equals(this.username)) {
+        if (league.getManager() == this.id) {
             league = null;
         }
         else {
-            HandleError.actionNotAuthorized(league.getManager());
+            HandleError.actionNotAuthorized(String.valueOf(league.getManager()));
         }
     }
 

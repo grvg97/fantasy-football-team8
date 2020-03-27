@@ -11,11 +11,11 @@ public class League {
     private Date startDate;
     private ArrayList<User> competingUsers = new ArrayList<>();
     private HashMap<String, Integer> teamPoints = new HashMap<>();
-    private String manager;
+    private int manager;
 
 
     // Constructor
-    public League(String name, String manager) {
+    public League(String name, int manager) {
         this.name = name;
         this.manager = manager;
     }
@@ -49,7 +49,7 @@ public class League {
         // Compute ranking based on the points that the teams have
     }
 
-    public String getManager() {return this.manager;}
+    public int getManager() {return this.manager;}
     public String getName() {return this.name;}
     public void setId(int id) {this.id = id;}
     public int getId() {return this.id;}
