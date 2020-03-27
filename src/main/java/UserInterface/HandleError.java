@@ -5,7 +5,7 @@ import GameLogic.Positions;
 import javafx.scene.control.Alert;
 
 
-// This class handles the restrictions of the game.
+/* This class handles the restrictions of the game. */
 public class HandleError {
 
     private HandleError() {} // Hides the implicit constructor

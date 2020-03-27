@@ -27,9 +27,7 @@ public class IOHandler {
     }
 
 
-    /*
-     * This function is called when the game is initialized
-     */
+    /* This function is called when the game is initialized */
     public void init() throws IOException {
         String userFileName = "DatabaseUser.json";
         String leagueFileName = "DatabaseLeague.json";
@@ -52,10 +50,7 @@ public class IOHandler {
             League globalLeague = new League("Global League", "System");
             this.leagueDatabase.add(globalLeague);
         }
-
-
     }
-
 
     public void save() throws IOException {
         // At exit save userDB
@@ -68,10 +63,8 @@ public class IOHandler {
         writer.close();
     }
 
-    /* Authenticates the user. Returns the user with the username and password,
-     * Else, returns null
-     */
 
+    /* Authenticates the user. Returns the user with the username and password, Else, returns null */
     public User authUser(String username, String password) {
         return userDatabase.authenticateUser(username, password);
     }
