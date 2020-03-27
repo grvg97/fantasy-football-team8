@@ -9,10 +9,13 @@ import java.util.List;
 
 
 // DESIGN PATTERN: SINGLETON: Prevents this class to be instantiated twice
-public class PlayerMarket {
+public class PlayerMarket implements Iterable {
     @SerializedName("elements") private List<Player> players;
 
     private PlayerMarket() {}
+
+    @Override
+    public Iterator iterator() { return players.iterator(); }
 
     private static class PlayerMarketHolder {
         private static final PlayerMarket INSTANCE = new PlayerMarket();
@@ -22,8 +25,6 @@ public class PlayerMarket {
         return PlayerMarketHolder.INSTANCE;
     }
 
-    public List<Player> getPlayers() {
-        return new ArrayList<Player>(this.players);
-    }
+    public List<Player> getPlayers() { return new ArrayList<Player>(this.players); }
 
 }

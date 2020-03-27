@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 public class TransferWindow {
@@ -39,9 +40,11 @@ public class TransferWindow {
     /* Constructs the listView*/
     private static ListView<Player> constructPlayers(List<Player> players) {
         ListView<Player> playersView = new ListView<>();
-        for (Player player: players) {
-            playersView.getItems().add(player);
-        }
+        Iterator<Player> it = players.iterator();
+
+        while (it.hasNext())
+            playersView.getItems().add(it.next());
+
         // Sets the view of the list from player objects the player name's strings
         setListViewToString(playersView);
         return playersView;
