@@ -4,18 +4,19 @@ import UserInterface.HandleError;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class League {
     private int id;
     private String name;
     private Date startDate;
     private ArrayList<User> competingUsers = new ArrayList<>();
-    private HashMap<String, Integer> teamPoints = new HashMap<>();
-    private String manager;
+    private HashMap<Integer, Integer> teamPoints = new HashMap<>();
+    private int manager;
 
 
     // Constructor
-    public League(String name, String manager) {
+    public League(String name, int manager) {
         this.name = name;
         this.manager = manager;
     }
@@ -24,14 +25,23 @@ public class League {
         return new ArrayList<>(this.competingUsers);
     }
 
-    public HashMap<String, Integer> getTeamPoints() {
-        return new HashMap<>(this.teamPoints);
+    public HashMap<Integer, Integer> getTeamPoints() {
+        return this.teamPoints;
+    }
+
+    public void updateRoundPoints() {
+        Iterator<User> it = competingUsers.iterator();
+        while (it.hasNext()) {
+            User user = it.next();
+            user.getTeamRoundPoints();
+            teamPoints.replace(user.getId(), this.teamPoints.get(user.getId()) + user.getTeamRoundPoints());
+        }
     }
 
     // When a new user enters the league, it will always start with 0 points
     public void addUser(User user) {
         competingUsers.add(user);
-        teamPoints.put(user.getTeamName(),0);
+        teamPoints.put(user.getId(),0);
     }
 
     // Removes user from the league and removes its team from the teamPoints map
@@ -45,11 +55,11 @@ public class League {
         }
     }
 
-    private void computeRanking() {
-        // Compute ranking based on the points that the teams have
+    public void showLeaderboards() {
+        // Compute ranking based on the points that the teams have/
     }
 
-    public String getManager() {return this.manager;}
+    public int getManager() {return this.manager;}
     public String getName() {return this.name;}
     public void setId(int id) {this.id = id;}
     public int getId() {return this.id;}

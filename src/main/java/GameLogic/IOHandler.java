@@ -51,7 +51,7 @@ public class IOHandler {
             this.userDatabase = new Database<>();
         if (this.leagueDatabase == null) {
             this.leagueDatabase = new Database<>();
-            League globalLeague = new League("Global League", "System");
+            League globalLeague = new League("Global League", 0);
             this.leagueDatabase.add(globalLeague);
         }
     }
@@ -93,6 +93,7 @@ public class IOHandler {
         this.leagueDatabase.add(league);
     }
     public void add(User user) {
+        user.setId(userDatabase.getSize() + 1);
         this.userDatabase.add(user);
     }
     public List<League> getLeagues() {

@@ -16,6 +16,7 @@ public class Player {
 
     // Player's stats
     @SerializedName("total_points")     private int totalPoints;
+    @SerializedName("event_points")     private int roundPoints;
     @SerializedName("minutes")          private int minutes;
     @SerializedName("goals")            private int goalsScored;
     @SerializedName("assists")          private int assists;
@@ -37,6 +38,11 @@ public class Player {
     public String getFullName() {
         return (this.firstName + " " + this.lastName);
     }
+    public int getRoundPoints() {return this.roundPoints; }
+    public boolean isInjured() {
+        return isAvailable.equals("i");
+    }
+
     public Positions getPosition() {
         Positions pos;
 
@@ -54,9 +60,6 @@ public class Player {
                 pos = Positions.FWD;
         }
         return pos;
-    }
-    public boolean isInjured() {
-        return isAvailable.equals("i");
     }
 
     public String getPositionName() {
@@ -103,5 +106,4 @@ public class Player {
         stats.put("saves", saves);
         return stats;
     }
-
 }

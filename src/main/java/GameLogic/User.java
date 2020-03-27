@@ -12,6 +12,7 @@ public class User {
     private String password;
     private Team team;
     private int credits = 1000;
+    private List<Integer> leagues;
     private Boolean hasTransferred = false;
 
 
@@ -35,6 +36,10 @@ public class User {
         return this.team != null;
     }
 
+    public List<Integer> getLeagues() {
+        return this.leagues;
+    }
+
     public void deleteTeam() {
         // after this, if there is no reference to the object,
         // it will be deleted by the garbage collector
@@ -43,6 +48,10 @@ public class User {
 
     public int getTotalTeamPoints() {
         return this.team.getTotalPoints();
+    }
+
+    public int getTeamRoundPoints() {
+        return this.team.getRoundPoints();
     }
 
     // This function handles the buying of players off the market. Credits may not go below 0.
@@ -86,30 +95,22 @@ public class User {
         return this.credits;
     }
 
-
-
-    // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
-    // User can set the end date of any league as long as that user is
-    // the manager of the specified league
-    public void setEndOfLeague(Date endDate, League league) { }
-
-
     // User enters the specified league and,
     // Also adds that to it's own competed leagues
     public void joinLeague(League league) {
         league.addUser(this);
     }
 
-
     // User exits the specified league and,
     // Also removes that league from it's own competed leagues
-    public void exitLeague(League league) { }
+    public void exitLeague(League league) {
+        league.removeUser(this);
+    }
 
-
-    // Create a league and assign the user's name who created as the manager
+    // Create a league and assign the user's id who created as the manager
     // Add created league to the leagues that the user competes
     public void createLeague(String name) {
-        League customLeague = new League(name, this.username);
+        League customLeague = new League(name, this.id);
         customLeague.addUser(this);
         IOHandler.getInstance().add(customLeague);
     }
@@ -147,11 +148,11 @@ public class User {
 
     // Delete league if user is the manager
     public void deleteLeague(League league) {
-        if (league.getManager().equals(this.username)) {
+        if (league.getManager() == (this.id)) {
             league = null;
         }
         else {
-            HandleError.actionNotAuthorized(league.getManager());
+            HandleError.actionNotAuthorized(String.valueOf(league.getManager()));
         }
     }
 
@@ -179,15 +180,30 @@ public class User {
 
         // Get all the 15 players total points
         public int getTotalPoints() {
+            this.totalPoints = 0;
+
             for (Player player: this.players) {
                 this.totalPoints += player.getTotalPoints();
             }
+
             for (Player benchPlayer: this.bench) {
                 this.totalPoints += benchPlayer.getTotalPoints();
             }
+
             return this.totalPoints;
         }
 
+        public int getRoundPoints() {
+            int roundPoints = 0;
+            for (Player player : this.players) {
+                roundPoints += player.getRoundPoints();
+            }
+            for (Player player : this.bench) {
+                roundPoints += player.getRoundPoints();
+            }
+
+            return roundPoints;
+        }
 
         public void assignCaptains(Player captain, Player viceCaptain) {
             this.captain = captain;
