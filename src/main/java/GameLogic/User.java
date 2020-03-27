@@ -45,6 +45,14 @@ public class User {
         return this.team.getTotalPoints();
     }
 
+    public int getTeamRoundPoints() {
+        return this.team.getRoundPoints();
+    }
+
+    public void setTeamRoundPoints() {
+        this.team.setRoundPoints();
+    }
+
     // This function handles the buying of players off the market. Credits may not go below 0.
     public void buyPlayer(Player player) {
         int totalSize = this.team.players.size() + this.team.bench.size();
@@ -161,6 +169,7 @@ public class User {
         private List<Player> players = new ArrayList<>(11); // Starters
         private List<Player> bench = new ArrayList<>(4);
         private int totalPoints = 0;
+        private int roundPoints = 0;
         private String name;
         private Player captain;
         private Player viceCaptain;
@@ -179,15 +188,29 @@ public class User {
 
         // Get all the 15 players total points
         public int getTotalPoints() {
+            this.totalPoints = 0;
+
             for (Player player: this.players) {
                 this.totalPoints += player.getTotalPoints();
             }
+
             for (Player benchPlayer: this.bench) {
                 this.totalPoints += benchPlayer.getTotalPoints();
             }
+
             return this.totalPoints;
         }
 
+        public int getRoundPoints() { return this.totalPoints; }
+
+        public void setRoundPoints() {
+            for (Player player : this.players) {
+                this.roundPoints += player.getRoundPoints();
+            }
+            for (Player player : this.bench) {
+                this.roundPoints += player.getRoundPoints();
+            }
+        }
 
         public void assignCaptains(Player captain, Player viceCaptain) {
             this.captain = captain;
