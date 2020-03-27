@@ -43,7 +43,6 @@ public class IOHandler {
             this.leagueDatabase = new Gson().fromJson(new FileReader(leagueFileName), leagueType);
         }
         catch (Exception e) {
-            System.out.println(e.toString());
             BufferedWriter writer = new BufferedWriter(new FileWriter(userFileName));
             writer.close();
             writer = new BufferedWriter(new FileWriter(leagueFileName));
@@ -51,11 +50,10 @@ public class IOHandler {
         }
 
         if (this.userDatabase == null)
-            this.userDatabase = new Database();
+            this.userDatabase = new Database<>();
         if (this.leagueDatabase == null) {
-            this.leagueDatabase = new Database();
+            this.leagueDatabase = new Database<>();
             League globalLeague = new League("Global League", "System");
-            globalLeague.setId(leagueDatabase.getSize());
             this.leagueDatabase.add(globalLeague);
         }
     }
@@ -96,6 +94,7 @@ public class IOHandler {
         return null;
     }
     public void add(League league) {
+        league.setId(this.leagueDatabase.getSize());
         this.leagueDatabase.add(league);
     }
     public void add(User user) {
