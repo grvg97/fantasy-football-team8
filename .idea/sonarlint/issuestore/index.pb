@@ -6,15 +6,15 @@
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 A
-DatabaseUser.json,0/9/09368edbe8da117efa89002afa5eeb5b741c258c
+DatabaseUser.json,0\9\09368edbe8da117efa89002afa5eeb5b741c258c
 C
-DatabaseLeague.json,4/9/499208642cd52706ab51c0d4e56907852354953d
+DatabaseLeague.json,4\9\499208642cd52706ab51c0d4e56907852354953d
 S
 #src/main/java/GameLogic/League.java,0/8/089cba4a85570fac4397644690adc74ed95a2ad4
 _
 /src/main/java/UserInterface/TutorialWindow.java,1/c/1ceb13b1641901197f4695703238ebfeac14d265
 Q
-!src/main/java/GameLogic/Main.java,4/e/4e871907dd76875f43ff372bd72f049933b02b72
+!src/main/java/GameLogic/Main.java,4\e\4e871907dd76875f43ff372bd72f049933b02b72
 \
 ,src/main/java/UserInterface/LoginWindow.java,e/0/e093ef83bbb28ec059c737fa02aba24946f9c506
 V
@@ -36,6 +36,6 @@ Y
 ]
 -src/main/java/UserInterface/PlayerWindow.java,8/9/89012f783ac464bb6b774136c4de45152c0f49a5
 V
-&src/main/java/GameLogic/IOHandler.java,e/8/e88c69521c145849bff1538b4607d317ffe9d9b9
+&src/main/java/GameLogic/IOHandler.java,e\8\e88c69521c145849bff1538b4607d317ffe9d9b9
 _
 /src/main/java/UserInterface/TransferWindow.java,b/a/baf60f3cfe69db33c464e0996feafbb1ed675dc1

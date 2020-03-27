@@ -136,8 +136,15 @@ public class TutorialWindow {
         });
 
         nextButton.setOnAction(event -> {
-            if (formationRestrictionMet(user))
+            if (formationRestrictionMet(user)) {
+                IOHandler handleIO = IOHandler.getInstance();
+                handleIO.getGlobalLeague().addUser(user);
+                handleIO.add(user);
+
+                try { IOHandler.getInstance().save(); }
+                catch (IOException e) { e.printStackTrace(); }
                 window.setScene(UserWindow.getScene(window, user));
+            }
             else
                 HandleError.generalFormationRestriction();
         });
@@ -163,7 +170,7 @@ public class TutorialWindow {
         );
 
         // Set the current constructed layout to the transfer scene
-        tutorialScene = new Scene(grid);
+        tutorialScene = new Scene(grid, 650, 500);
     }
 
 

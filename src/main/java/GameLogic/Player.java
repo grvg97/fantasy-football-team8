@@ -78,6 +78,15 @@ public class Player {
         return position;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Player) {
+            Player toCompare = (Player) obj;
+            return this.id == toCompare.getId();
+        }
+        return false;
+    }
+
     public HashMap<String, Integer> getStats() {
 
         HashMap<String, Integer> stats = new HashMap<>();

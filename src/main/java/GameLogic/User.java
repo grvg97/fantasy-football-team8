@@ -49,20 +49,19 @@ public class User {
     public void buyPlayer(Player player) {
         int totalSize = this.team.players.size() + this.team.bench.size();
 
-        if (totalSize == 15)
-            HandleError.maxNumPlayers();
-
-        else if (this.team.players.contains(player) || this.team.bench.contains(player))
+        if (this.team.contains(player))
             HandleError.playerExists(player);
 
-        else if ((this.credits - player.getCost()) >= 0) {
+        else if (totalSize == 15)
+            HandleError.maxNumPlayers();
+
+        else if ((this.credits - player.getCost()) < 0)
+            HandleError.notEnoughCredits(this.credits, player.getFullName());
+
+        else {
             this.team.addPlayer(player);
             this.credits -= player.getCost();
         }
-
-        else
-            HandleError.notEnoughCredits(this.credits, player.getFullName());
-
     }
 
 
@@ -82,6 +81,7 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
 
 
     // The following functions are not implemented (yet) but are here to be in line with our Class diagrams.
@@ -206,6 +206,19 @@ public class User {
             else
                 this.bench.remove(selectedPlayer);
 
+        }
+
+        public boolean contains(Player player) {
+            for (Player p : players) {
+                if (p.equals(player))
+                    return true;
+            }
+
+            for (Player p : bench) {
+                if (p.equals(player))
+                    return true;
+            }
+            return false;
         }
 
 

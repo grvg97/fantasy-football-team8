@@ -33,12 +33,13 @@ public class Main extends Application {
 
 
 
+    // Start -> SignUp -> Tutorial -> User -> Transfer
+    // Start -> Login -> User -> Transfer
+
     // Our main javafx code
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        // Start -> SignUp -> Tutorial -> User
-        // Start -> Login -> User
 
         // Initialize global league
         IOHandler.getInstance().init();

@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
 
@@ -19,9 +20,10 @@ public class UserWindow {
     /* Construct the ListView by adding the selected players */
     private static ListView<Player> constructTeamView(List<Player> players) {
         ListView<Player> view = new ListView<>();
-        for (Player player: players) {
-            view.getItems().add(player);
-        }
+        Iterator<Player> it = players.iterator();
+        while (it.hasNext())
+            view.getItems().add(it.next());
+
         setViewToPlayerName(view);
         return view;
     }
@@ -65,9 +67,10 @@ public class UserWindow {
     /* Construct the ListView containing league objects and display them as strings */
     private static ListView<League> constructLeagueView(List<League> leagues) {
         ListView<League> leagueListView = new ListView<>();
-        for (League league: leagues) {
-            leagueListView.getItems().add(league);
-        }
+        Iterator<League> it = leagues.iterator();
+        while (it.hasNext())
+            leagueListView.getItems().add(it.next());
+
         setViewToLeagueName(leagueListView);
         return leagueListView;
     }
@@ -119,7 +122,7 @@ public class UserWindow {
 
         // Create a custom league and add to leagueView
         createLeagueButton.setOnAction(event -> {
-//            user.createLeague();
+            // user.createLeague();
         });
 
         // Construct layout using GridPane
