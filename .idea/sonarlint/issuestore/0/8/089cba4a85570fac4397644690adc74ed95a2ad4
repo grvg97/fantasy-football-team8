@@ -1,6 +1,5 @@
 
-squid:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(Çü±øøÿÿÿÿ8ÍĞ¥.
+Ksquid:S1068"-Remove this unused "startDate" private field.(­Ãé„8¨Êí‘.
+squid:S1319"mThe return type of this method should be an interface such as "Map" rather than the implementation "HashMap".(Ô¤Œøÿÿÿÿ8¨Êí‘.
 ~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8±Ò‘­.
-Dsquid:S1068"-Remove this unused "startDate" private field.(­Ãé„
-]squid:UnusedPrivateMethod0"3Remove this unused private "computeRanking" method.(’û”¹úÿÿÿÿ
-squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¬´°¢8à€Á¤.
+squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¬´°¢8¨Êí‘.

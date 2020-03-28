@@ -32,9 +32,9 @@ public class HandleError {
     }
 
     // Team name can't be left blank. Team won't be created
-    public static void teamNameBlank() {
-        constructError("Team name can't be left blank!",
-                "Please give your team a name");
+    public static void textFieldBlank() {
+        constructError("Text Field can't be left blank!",
+                "Please give your Text Field a name");
 
     }
 

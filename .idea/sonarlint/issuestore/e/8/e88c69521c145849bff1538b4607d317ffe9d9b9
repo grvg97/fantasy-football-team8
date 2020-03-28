@@ -1,7 +1,7 @@
 
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
+]squid:UselessImportCheck"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8à‡°å‘.
 _squid:UselessImportCheck
 "4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8à‡°å‘.
-osquid:S2095A"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(å†Ÿ—ıÿÿÿÿ8à‡°å‘.
-]squid:UselessImportCheck"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8à‡°å‘.
-osquid:S2095="LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ö¹Ñÿÿÿÿÿ8à‡°å‘.
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
+osquid:S2095="LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ö¹Ñÿÿÿÿÿ8©œÊí‘.
+osquid:S2095A"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(å†Ÿ—ıÿÿÿÿ8©œÊí‘.

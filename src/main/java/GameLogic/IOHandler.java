@@ -51,7 +51,7 @@ public class IOHandler {
             this.userDatabase = new Database<>();
         if (this.leagueDatabase == null) {
             this.leagueDatabase = new Database<>();
-            League globalLeague = new League("Global League", 0);
+            League globalLeague = new League("Global League", "System", 0);
             this.leagueDatabase.add(globalLeague);
         }
     }
@@ -92,10 +92,17 @@ public class IOHandler {
         league.setId(this.leagueDatabase.getSize());
         this.leagueDatabase.add(league);
     }
+    public void remove(League league) {
+        this.leagueDatabase.remove(league);
+    }
     public void add(User user) {
         user.setId(userDatabase.getSize() + 1);
         this.userDatabase.add(user);
     }
+    public void remove(User user) {
+        this.userDatabase.remove(user);
+    }
+
     public List<League> getLeagues() {
         return this.leagueDatabase.db;
     }
@@ -117,6 +124,7 @@ public class IOHandler {
         public void add(T element) {
             this.db.add(element);
         }
+        public void remove(T element) {this.db.remove(element);}
 
         public int getSize() {
             return this.db.size();

@@ -87,7 +87,7 @@ public class TutorialWindow {
         createTeamButton.setOnAction(event ->
         {
             if (teamName.getText().equals(""))
-                HandleError.teamNameBlank();
+                HandleError.textFieldBlank();
             else
                 user.createTeam(teamName.getText());
         });
@@ -140,13 +140,13 @@ public class TutorialWindow {
         });
 
         nextButton.setOnAction(event -> {
-            if (formationRestrictionMet(user)) {
+            if (formationRestrictionMet(user))
+            {
+                // Add user to database and global league after creation
                 IOHandler handleIO = IOHandler.getInstance();
                 handleIO.getGlobalLeague().addUser(user);
                 handleIO.add(user);
 
-                try { IOHandler.getInstance().save(); }
-                catch (IOException e) { e.printStackTrace(); }
                 window.setScene(UserWindow.getScene(window, user));
             }
             else
@@ -175,8 +175,8 @@ public class TutorialWindow {
                 creditLabel
         );
 
-        // Set the current constructed layout to the transfer scene
-        tutorialScene = new Scene(grid, 650, 500);
+        // Set the current constructed layout to the tutorialScene
+        tutorialScene = new Scene(grid);
     }
 
 

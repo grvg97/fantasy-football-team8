@@ -2,6 +2,7 @@ package GameLogic;
 
 import UserInterface.HandleError;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -97,7 +98,7 @@ public class User {
 
     // User enters the specified league and,
     // Also adds that to it's own competed leagues
-    public void joinLeague(League league) {
+    public void joinLeague(League league){
         league.addUser(this);
     }
 
@@ -109,10 +110,23 @@ public class User {
 
     // Create a league and assign the user's id who created as the manager
     // Add created league to the leagues that the user competes
-    public void createLeague(String name) {
-        League customLeague = new League(name, this.id);
+    public League createLeague(String name) {
+        League customLeague = new League(name, this.getUsername(), this.id);
         customLeague.addUser(this);
         IOHandler.getInstance().add(customLeague);
+
+        return customLeague;
+    }
+
+    // Delete league if user is the manager
+    public void deleteLeague(League league) {
+        if (league.getManager().equals(this.username)) {
+            IOHandler.getInstance().remove(league);
+            league = null;
+        }
+        else {
+            HandleError.actionNotAuthorized(String.valueOf(league.getManager()));
+        }
     }
 
 
@@ -146,15 +160,6 @@ public class User {
         return fullTeam;
     }
 
-    // Delete league if user is the manager
-    public void deleteLeague(League league) {
-        if (league.getManager() == (this.id)) {
-            league = null;
-        }
-        else {
-            HandleError.actionNotAuthorized(String.valueOf(league.getManager()));
-        }
-    }
 
 
     private class Team {

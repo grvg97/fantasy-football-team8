@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -86,16 +87,17 @@ public class UserWindow {
         Label username = new Label("Username: " + user.getUsername());
         Label teamName = new Label("Team name: " + user.getTeamName());
 
-        Button playerInfo = new Button("Open player");
-        Button leagueInfo = new Button("Open League");
-        Button transferWindow = new Button("Transfer Window");
+        Button playerInfoButton = new Button("Open player");
+        Button leagueInfoButton = new Button("Open League");
+        Button transferWindowButton= new Button("Transfer Window");
         Button logoutButton = new Button("Logout");
         Button createLeagueButton = new Button("Create League");
         Button joinLeagueButton = new Button("Join League");
         Button exitLeagueButton = new Button("Exit League");
+        Button deleteLeagueButton = new Button("Delete League");
 
         // Display the selected player's stats
-        playerInfo.setOnAction(event -> {
+        playerInfoButton.setOnAction(event -> {
             Player selectedPlayer = teamView.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {
                 PlayerWindow.display(selectedPlayer);
@@ -104,7 +106,7 @@ public class UserWindow {
         });
 
         // Displays info about the selected league
-        leagueInfo.setOnAction(event -> {
+        leagueInfoButton.setOnAction(event -> {
             League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
             if (selectedLeague != null) {
                 LeagueWindow.display(selectedLeague);
@@ -112,7 +114,7 @@ public class UserWindow {
         });
 
         // Open the transfer window
-        transferWindow.setOnAction(event -> {
+        transferWindowButton.setOnAction(event -> {
             try { window.setScene(TransferWindow.getScene(window, user)); }
             catch (IOException e) { e.printStackTrace(); }
         });
@@ -121,27 +123,60 @@ public class UserWindow {
         logoutButton.setOnAction(event -> window.setScene(LoginWindow.getScene(window)));
 
         // Create a custom league and add to leagueView
+        // TODO: Trivial solution, find better one
         createLeagueButton.setOnAction(event -> {
-            // user.createLeague();
+            CreateLeagueWindow.display(user, leagueView);
         });
+
+        // Delete the league if you are the manager
+        deleteLeagueButton.setOnAction(event -> {
+            League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
+            if (selectedLeague != null) {
+                user.deleteLeague(selectedLeague);
+                leagueView.getItems().remove(selectedLeague);
+                leagueView.refresh();
+            }
+        });
+
+        // Join a league
+        joinLeagueButton.setOnAction(event -> {
+            League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
+            if (selectedLeague != null) {
+                user.joinLeague(selectedLeague);
+            }
+        });
+
+        // Exit the selected league
+        exitLeagueButton.setOnAction(event -> {
+            League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
+            if (selectedLeague != null)
+                user.exitLeague(selectedLeague);
+        });
+
+
+        VBox labels = new VBox(10);
+        labels.getChildren().addAll(userLabel, username, teamName);
+
+        HBox views = new HBox(5);
+        views.getChildren().addAll(teamView, leagueView);
+
+        HBox buttonsRow1 = new HBox(10);
+        buttonsRow1.getChildren().addAll(playerInfoButton, leagueInfoButton, transferWindowButton, deleteLeagueButton);
+
+        HBox buttonsRow2 = new HBox(10);
+        buttonsRow2.getChildren().addAll(createLeagueButton, joinLeagueButton, exitLeagueButton, logoutButton);
+
 
         // Construct layout using GridPane
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        GridPane.setConstraints(userLabel, 1, 0);
-        GridPane.setConstraints(username, 0, 0);
-        GridPane.setConstraints(teamName, 0, 1);
-        GridPane.setConstraints(teamView, 0, 2);
-        GridPane.setConstraints(playerInfo, 0, 3);
-        GridPane.setConstraints(leagueView, 1, 2);
-        GridPane.setConstraints(leagueInfo, 1, 3);
-        GridPane.setConstraints(transferWindow, 1, 4);
-        GridPane.setConstraints(logoutButton, 0, 4);
+        grid.setPadding(new Insets(10, 10, 10, 10)); grid.setVgap(10);
+        GridPane.setConstraints(labels, 0, 0);
+        GridPane.setConstraints(views, 0, 1);
+        GridPane.setConstraints(buttonsRow1, 0, 2);
+        GridPane.setConstraints(buttonsRow2,0, 3);
 
         grid.getChildren().addAll(
-                userLabel, teamName, teamView,
-                playerInfo, leagueInfo, transferWindow,
-                leagueView, username, logoutButton
+            labels, views, buttonsRow1, buttonsRow2
         );
 
         userScene = new Scene(grid);
@@ -163,10 +198,8 @@ public class UserWindow {
 
     /* Private inner static class used to display the teams inside the league */
     private static class LeagueWindow {
-
         private static Scene leagueScene;
         private LeagueWindow() {}
-
 
         /* Construct the ListView by adding strings to it */
         private static ListView<String> constructLeagueInfoView(League league) {
@@ -198,5 +231,46 @@ public class UserWindow {
             leagueStage.show();
         }
 
+    }
+
+    /* The window of this class pops up when the user clicks the createLeagueButton */
+    private static class CreateLeagueWindow {
+        private static Scene createLeagueScene;
+        private static String leagueName;
+        private static Stage newWindow = new Stage();
+
+
+        private static void setScene(User user, ListView<League> leagueView) {
+            TextField leagueNameField = new TextField("League Name");
+            Button submitButton = new Button("Submit");
+
+            submitButton.setOnAction(event -> {
+                if (leagueNameField.getText().equals(""))
+                    HandleError.textFieldBlank();
+                else {
+                    leagueName = leagueNameField.getText();
+                    League customLeague = user.createLeague(leagueName);
+                    leagueView.getItems().add(customLeague);
+                    leagueView.refresh();
+                    newWindow.close();
+                }
+            });
+
+            // Layout construction and building the scene
+            HBox createLeagueBox = new HBox(10);
+            createLeagueBox.getChildren().addAll(leagueNameField, submitButton);
+
+            createLeagueScene = new Scene(createLeagueBox);
+        }
+
+        public static void display(User user, ListView<League> leagueView) {
+            CreateLeagueWindow.setScene(user, leagueView);
+            newWindow.setScene(createLeagueScene);
+            newWindow.show();
+        }
+
+        public static String getLeagueName() {
+            return leagueName;
+        }
     }
 }

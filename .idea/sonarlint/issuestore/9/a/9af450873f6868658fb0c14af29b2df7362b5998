@@ -1,11 +1,11 @@
 
-Jsquid:S1068¥"+Remove this unused "captain" private field.(ìØœÀ8€™îá‘.
-~squid:S1450¦"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃıÿÿÿÿ8€™îá‘.
-Jsquid:S1068 "&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8€™îá‘.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
-Usquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ8€™îá‘.
-¤squid:S1186^"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤ªôÙûÿÿÿÿ8€™îá‘.
-usquid:S1450¥"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ8€™îá‘.
-^squid:S1854—":Remove this useless assignment to local variable "league".(ŠŞä¶ùÿÿÿÿ8€™îá‘.
-Ssquid:S1068¦"/Remove this unused "viceCaptain" private field.(ÎªÃıÿÿÿÿ8€™îá‘.
-¤squid:S1186j"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ğã§‹ûÿÿÿÿ8€™îá‘.
+Vsquid:UselessImportCheck"+Remove this unused import 'java.util.Date'.(¸…¼ü8 Êí‘.
+^squid:S1854˜":Remove this useless assignment to local variable "league".(ŠŞä¶ùÿÿÿÿ8 Êí‘.
+~squid:S1450¤"ZRemove the "totalPoints" field and declare it as a local variable in the relevant methods.(º¹Ÿ•ÿÿÿÿÿ8 Êí‘.
+usquid:S1450¦"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ8 Êí‘.
+~squid:S1450§"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃıÿÿÿÿ8 Êí‘.
+Usquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ8 Êí‘.
+Jsquid:S1068¡"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ8 Êí‘.
+Jsquid:S1068¦"+Remove this unused "captain" private field.(ìØœÀ8 Êí‘.
+Ssquid:S1068§"/Remove this unused "viceCaptain" private field.(ÎªÃıÿÿÿÿ8 Êí‘.
