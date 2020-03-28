@@ -98,7 +98,46 @@ The goal of your state machine diagrams is both descriptive and prescriptive, so
 Maximum number of words for this section: 4000
 
 ## Sequence diagrams									
-Author(s): `name of the team member(s) responsible for this section`
+Author(s): Gilbert Van Gerven &amp; Ricardo Burgos Lara
+
+### **Sequence Diagram: Team Creation**
+
+The following diagram depicts the process of creating a team and populating it with players from the market.
+
+![Image description](https://imgur.com/s2UHmLl.png)
+** **
+**Figure 5 -** Sequence diagram of the task *Team Creation*
+
+The sequence in Figure 5 shows the interaction between the game main class and the classes **User**, **Team**, **Market** and **Player** (represented by their corresponding lifelines).
+
+*Team creation and player selection:*
+
+After user successful login, an instance of the class User is created. The first action the user must perform is to create a new team by calling the *createTeam* method. An empty team is created for the user with no players and 1,000 initial credits are awarded to the newly created team; this team is stored as one of the User class attributes. To populate a team with players, a request message from the user to the team is executed (by calling *buyPlayer* method with the player&#39;s id as argument), a validation of the user&#39;s credits takes place and if the credit&#39;s are enough to buy the requested player (this is represented by the 'alt' combined fragment), then the transaction is granted; otherwise a message is returned to inform the user of insufficient credits (lower operand) and user state returns to idle.
+
+The transaction takes place between the classes **Team**, **Market** and **Player**. Once the transaction is validated, credits are deducted and the instance of Team sends a message to the Market class (*addPlayer*), which is populated with all the players from all teams in the league. From its side, the **Market** instance uses its method *getPlayer(playerID)* to retrieve the requested player based on its unique identification code from a list of available instances of the class **Player** which were automatically fetched from the Premier League&#39;s website API, this list is stored as an instance attribute list named &#39;players&#39;. The Market finally returns the requested player object to the team, where it is stored as one element in an array list of either active (on field) or bench players.
+
+*Team points collection:*
+
+Moreover, the user is also capable of requesting a total point count to the team (by adding player's points), by sending the message *getTeamTotalPoints()*. The team instance, in turn, forwards this message to all of its players (by iterating the players and bench Array Lists and asking them to report their points (using the getTotalPoints method) and adding them together. The result is returned back to the user from the team instance since it is the return value for the first called method *getTeamTotalPoints*.
+
+Lastly, the user can also delete their own team by calling the *deleteTeam()* method. The selected players and total points won by the team are lost.
+
+*GUI integration:*
+
+When the program is executed, a login screen appears asking for user name and password.
+If the user is already registered on the system, successful authentication will lead to the User Window; if
+authentication fails, the login screen appears again and if the users clicks on the sign up button the
+sign up window will show up, in which the user will create a new account by providing a user name and
+password.
+
+Next, after user account creation, the Tutorial Window is displayed. This is the GUI interface
+for team creation and players selection which is represented within the 'alt' combined fragment
+shown on Figure 6.
+
+Lastly, Tutorial and User Windows both shows the team's total points collected so far, and by selecting a player
+on the list will display player's statistics window which also display the total points collected by that specific player.
+
+
 
 This chapter contains the specification of at least 2 UML sequence diagrams of your system, together with a textual description of all its elements. Here you have to focus on specific situations you want to describe. For example, you can describe the interaction of player when performing a key part of the videogame, during a typical execution scenario, in a special case that may happen (e.g., an error situation), when finalizing a fantasy soccer game, etc.
 
