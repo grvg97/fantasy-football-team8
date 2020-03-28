@@ -5,7 +5,6 @@ import UserInterface.HandleError;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 public class User {
     private int id = 1;
@@ -13,7 +12,6 @@ public class User {
     private String password;
     private Team team;
     private int credits = 1000;
-    private List<Integer> leagues;
     private Boolean hasTransferred = false;
 
 
@@ -37,9 +35,6 @@ public class User {
         return this.team != null;
     }
 
-    public List<Integer> getLeagues() {
-        return this.leagues;
-    }
 
     public void deleteTeam() {
         // after this, if there is no reference to the object,

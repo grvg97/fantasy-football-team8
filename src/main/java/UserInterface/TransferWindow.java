@@ -152,14 +152,15 @@ public class TransferWindow {
 
         sellButton.setOnAction(event -> {
             Player selectedTeamPlayer = userTeamView.getSelectionModel().getSelectedItem();
-            if (selectedTeamPlayer != null)
+            if (selectedTeamPlayer != null) {
                 sellPlayer(user, selectedTeamPlayer);
 
-            userTeamView.getItems().remove(selectedTeamPlayer);
-            userTeamView.refresh();
-            setListViewToString(userTeamView);
+                userTeamView.getItems().remove(selectedTeamPlayer);
+                userTeamView.refresh();
+                setListViewToString(userTeamView);
 
-            creditLabel.setText("Credits = " + user.getCredits());
+                creditLabel.setText("Credits = " + user.getCredits());
+            }
         });
 
         backButton.setOnAction(event -> {
@@ -181,7 +182,7 @@ public class TransferWindow {
         // Construct the layout using GridPane
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10,10,10,10)); grid.setVgap(10);
-        
+
         GridPane.setConstraints(userTeamView, 0, 1);
         GridPane.setConstraints(creditLabel, 0, 2);
         GridPane.setConstraints(buyButton, 1, 2);
