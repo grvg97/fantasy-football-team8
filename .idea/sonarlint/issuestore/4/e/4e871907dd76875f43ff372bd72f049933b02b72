@@ -1,11 +1,13 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8‚·æâ‘.
-U
-java:S1128"8Remove this unused import 'javafx.scene.control.Button'.(»øÕØ8‚·æâ‘.
 h
 java:S1128"FRemove this unused import 'javafx.scene.control.SingleSelectionModel'.(¾½ì¡ýÿÿÿÿ8‚·æâ‘.
+‰
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø8¯æƒå‘.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8‚·æâ‘.
 T
 java:S1128
 "2Remove this unused import 'javax.xml.crypto.Data'.(¦¿çˆýÿÿÿÿ8‚·æâ‘.
 I
-java:S16024",Remove useless curly braces around statement(¯ý‹ª8‚·æâ‘.
+java:S16025",Remove useless curly braces around statement(¯ý‹ª8‚·æâ‘.
+U
+java:S1128"8Remove this unused import 'javafx.scene.control.Button'.(»øÕØ8‚·æâ‘.

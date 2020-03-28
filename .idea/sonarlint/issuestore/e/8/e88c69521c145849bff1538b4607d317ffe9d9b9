@@ -1,12 +1,11 @@
 
-n
-java:S2095B"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(å†Ÿ—ıÿÿÿÿ8ÿ¼æâ‘.
-n
-java:S2095>"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ö¹Ñÿÿÿÿÿ8ÿ¼æâ‘.
 Q
-java:S1128"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8ÿ¼æâ‘.
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8ÿ¼æâ‘.
-L
-java:S1128"/Remove this unused import 'java.util.Iterator'.(¥ÍòÕ8ÿ¼æâ‘.
+java:S1128
+"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8Û×‚å‘.
 O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8ÿ¼æâ‘.
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Û×‚å‘.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8Òªøµ‘.
+n
+java:S2095A"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(å†Ÿ—ıÿÿÿÿ8î¨Şì‘.
+n
+java:S2095="LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ö¹Ñÿÿÿÿÿ8î¨Şì‘.
