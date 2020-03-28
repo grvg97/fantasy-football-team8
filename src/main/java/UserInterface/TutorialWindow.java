@@ -221,7 +221,6 @@ public class TutorialWindow {
         GridPane.setConstraints(playerFilterBox, 2, 0);
         GridPane.setConstraints(playerMarketView, 2, 1);
         GridPane.setConstraints(playerInfoButton, 2, 2);
-        GridPane.setConstraints(playerFilterBox, 2, 0);
         GridPane.setConstraints(nextButton, 2, 3);
 
 
@@ -229,8 +228,7 @@ public class TutorialWindow {
                 userTeamView, buyButton, sellButton,
                 playerMarketView, teamHBox,
                 playerInfoButton, nextButton,
-                creditLabel, playerFilterBox,
-                playerFilterBox
+                creditLabel, playerFilterBox
         );
 
         // Set the current constructed layout to the tutorialScene
