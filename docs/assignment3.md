@@ -23,15 +23,15 @@ For each application of any design pattern you have to provide a table conformin
 | ID  | DP1  |
 |---|---|
 | **Design pattern**  | Iterator Behavioural Design Pattern |
-| **Problem**  | **PlayerMarket** class contains a list of available players (players:List<Players>) that are retreived from the Premier League Fantasy Football website through API calls.
-| |A classical way to iterate through the elements of this class is through a 'for' loop on the player's list, but since the number of elements this class handles is large, it makes sense to apply the Iterator behavioural design pattern.|
-| **Solution**  | PlayerMarket class now uses the 'Iterable' interface and contains an overriden iterator method which returns the iterable player list to the caller. |
+| **Problem**  | **PlayerMarket** class contains a list of available players (players : List\<Players\>) that are retreived from the Premier League Fantasy Football website through API calls.
+| |A traditional way to iterate through the elements of this list is through a 'for' loop on the player's list, but since the number of elements this class handles is large, it makes sense to apply the Iterator behavioural design pattern.|
+| **Solution**  | PlayerMarket class now uses the 'Iterable' java interface and contains an overriden iterator method which returns an iterable player list to the caller. |
 | **Intended use**  | Any instance of the PlayerMarket class can now use iterable methods (e.g. forEach). See the example code snippet below this table. |
 | |
-| **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
-| **Additional remarks**  | Optional, only if needed |
+| **Constraints**  | Application and implementation of the iterator java interface is pretty straightforward. |
+| **Additional remarks**  | No remarks |
 
-Example code:
+Example code for design pattern 1:
 ```java
 PlayerMarket playerList;
 // The following line will print all the names in playersList
