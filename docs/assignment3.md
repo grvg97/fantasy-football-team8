@@ -24,11 +24,13 @@ For each application of any design pattern you have to provide a table conformin
 | ID  | DP1  |
 |---|---|
 | **Design pattern**  | Iterator Behavioural Design Pattern |
-| **Problem**  | **PlayerMarket** class contains a list of available players that are retreived from the Premier League Fantasy Football website  |
-| **Solution**  | A paragraph describing why with the application of the design pattern you solve the identified problem |
-| **Intended use**  | A paragraph describing how you intend to use at run-time the objects involved in the applied design patterns (you can refer to small sequence diagrams here if you want to detail how the involved parties interact at run-time |
+| **Problem**  | **PlayerMarket** class contains a list of available players (players:List<Players>) that are retreived from the Premier League Fantasy Football website through API calls.
+| |A classical way to iterate through the elements of this class is through a 'for' loop on the player's list, but since the number of elements this class handles is large, it makes sense to apply the Iterator behavioural design pattern.|
+| **Solution**  | PlayerMarket class now uses the 'Iterable' interface and contains an overriden iterator method which returns the iterable player list to the caller. |
+| **Intended use**  | An instance of the PlayerMarket class can now use iterable methods (e.g. forEach) |
 | **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
 | **Additional remarks**  | Optional, only if needed |
+
 
 | ID  | DP2  |
 |---|---|
