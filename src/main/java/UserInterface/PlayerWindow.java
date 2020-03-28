@@ -32,7 +32,6 @@ public class PlayerWindow {
         VBox view = new VBox(20);
         view.getChildren().addAll(label, statView);
         PlayerScene = new Scene(view);
-
     }
 
     public static void display(Player selectedPlayer) {

@@ -104,8 +104,9 @@ public class User {
 
     // User exits the specified league and,
     // Also removes that league from it's own competed leagues
-    public void exitLeague(League league) {
+    public void exitLeague(League league) throws IOException {
         league.removeUser(this);
+        IOHandler.getInstance().save();
     }
 
     // Create a league and assign the user's id who created as the manager

@@ -3,10 +3,7 @@ package UserInterface;
 import GameLogic.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -21,7 +18,7 @@ public class TransferWindow {
     /*
      * This function allows the ListView to store 'Leagues'
      * objects and display them as strings
-    */
+     */
     private static void setListViewToString(ListView<Player> playersView) {
         playersView.setCellFactory(param -> new ListCell<Player>() {
             @Override
@@ -35,6 +32,50 @@ public class TransferWindow {
                 }
             }
         });
+    }
+
+
+
+    /* Filters the players based on the selected position */
+    private static void filterSelection(List<Player> players, ComboBox<String> cmbFilter, ListView<Player> lstLeftList) {
+        switch (cmbFilter.getValue()){
+            case "All":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> lstLeftList.getItems().add(player));
+                break;
+            case "GK":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.GK) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+            case "DEF":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.DEF) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+            case "MID":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.MID) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+            case "FWD":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.FWD) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+        }
     }
 
 
@@ -80,6 +121,13 @@ public class TransferWindow {
         Button backButton = new Button("Back");
         Button playerInfoButton = new Button("Open Player");
         Label creditLabel = new Label("Credits = " + user.getCredits());
+
+        // ComboBox is used to filter the players
+        ComboBox<String> playerFilterBox = new ComboBox<>();
+        playerFilterBox.getItems().addAll("All", "GK", "DEF", "MID", "FWD");
+        playerFilterBox.getSelectionModel().selectFirst();
+
+        playerFilterBox.setOnAction(event -> filterSelection(players, playerFilterBox, playerMarketView));
 
 
         /*
@@ -131,12 +179,15 @@ public class TransferWindow {
 
 
         // Construct the layout using GridPane
-        GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10));
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10,10,10,10)); grid.setVgap(10);
+        
         GridPane.setConstraints(userTeamView, 0, 1);
         GridPane.setConstraints(creditLabel, 0, 2);
         GridPane.setConstraints(buyButton, 1, 2);
         GridPane.setConstraints(sellButton, 1, 3);
         GridPane.setConstraints(playerMarketView, 2, 1);
+        GridPane.setConstraints(playerFilterBox, 2, 0);
         GridPane.setConstraints(backButton, 3, 4);
         GridPane.setConstraints(playerInfoButton, 2, 2);
 
@@ -144,7 +195,8 @@ public class TransferWindow {
         grid.getChildren().addAll(
                 userTeamView, buyButton, sellButton,
                 playerMarketView, backButton,
-                playerInfoButton, creditLabel
+                playerInfoButton, creditLabel,
+                playerFilterBox
         );
 
         // Set the current constructed layout to the transfer scene

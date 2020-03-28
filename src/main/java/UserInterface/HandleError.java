@@ -1,7 +1,6 @@
 package UserInterface;
 
 import GameLogic.Player;
-import GameLogic.Positions;
 import javafx.scene.control.Alert;
 
 
@@ -16,6 +15,10 @@ public class HandleError {
         error.setHeaderText(headerText);
         error.setContentText(contentText);
         error.showAndWait();
+    }
+    // Team size must be at least 11 in order for the team to be created and saved to database
+    public static void errorMessage(String header, String content) {
+        constructError(header, content);
     }
 
     // Team size must be at least 11 in order for the team to be created and saved to database

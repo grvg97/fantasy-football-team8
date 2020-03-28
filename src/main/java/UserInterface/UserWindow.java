@@ -133,8 +133,9 @@ public class UserWindow {
             League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
             if (selectedLeague != null) {
                 user.deleteLeague(selectedLeague);
-                leagueView.getItems().remove(selectedLeague);
-                leagueView.refresh();
+                if (selectedLeague.getManager() == user.getUsername())
+                    leagueView.getItems().remove(selectedLeague);
+                    leagueView.refresh();
             }
         });
 
@@ -149,8 +150,13 @@ public class UserWindow {
         // Exit the selected league
         exitLeagueButton.setOnAction(event -> {
             League selectedLeague = leagueView.getSelectionModel().getSelectedItem();
-            if (selectedLeague != null)
-                user.exitLeague(selectedLeague);
+            if (selectedLeague != null) {
+                try {
+                    user.exitLeague(selectedLeague);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
 
@@ -250,6 +256,7 @@ public class UserWindow {
                 else {
                     leagueName = leagueNameField.getText();
                     League customLeague = user.createLeague(leagueName);
+
                     leagueView.getItems().add(customLeague);
                     leagueView.refresh();
                     newWindow.close();

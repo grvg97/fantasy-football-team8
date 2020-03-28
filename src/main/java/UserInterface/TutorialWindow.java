@@ -66,6 +66,47 @@ public class TutorialWindow {
                 && user.getTeamPositionCount(Positions.FWD) == Formation.FORCOUNT.getValue();
     }
 
+    /* Filters the players based on the selected position */
+    private static void filterSelection(List<Player> players, ComboBox<String> cmbFilter, ListView<Player> lstLeftList) {
+        switch (cmbFilter.getValue()){
+            case "All":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> lstLeftList.getItems().add(player));
+                break;
+            case "GK":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.GK) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+            case "DEF":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.DEF) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+            case "MID":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.MID) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+            case "FWD":
+                lstLeftList.getItems().clear();
+                players.forEach(player -> {
+                    if (player.getPosition() == Positions.FWD) {
+                        lstLeftList.getItems().add(player);
+                    }
+                });
+                break;
+        }
+    }
 
     /* Set the scene */
     public static void setScene(Stage window, User user) throws IOException {
@@ -81,6 +122,11 @@ public class TutorialWindow {
         Button nextButton = new Button("Next");
         TextField teamName = new TextField(); teamName.setPromptText("team name");
 
+        ComboBox<String> playerFilterBox = new ComboBox<>();
+        playerFilterBox.getItems().addAll("All", "GK", "DEF", "MID", "FWD");
+        playerFilterBox.getSelectionModel().selectFirst();
+
+        playerFilterBox.setOnAction(event -> filterSelection(players, playerFilterBox, playerMarketView));
 
         // Don't accept the team name if it's blank
         Button createTeamButton = new Button("Create Team");
@@ -88,6 +134,8 @@ public class TutorialWindow {
         {
             if (teamName.getText().equals(""))
                 HandleError.textFieldBlank();
+            else if (user.hasTeam())
+                HandleError.errorMessage("Team Exists!", "You already have a team.");
             else
                 user.createTeam(teamName.getText());
         });
@@ -125,11 +173,13 @@ public class TutorialWindow {
         // Sell the player and refresh the ListView to see the changes
         sellButton.setOnAction(event -> {
             Player selectedPlayer = userTeamView.getSelectionModel().getSelectedItem();
-            if (selectedPlayer != null)
+            if (selectedPlayer != null) {
                 user.sellPlayer(selectedPlayer);
+                userTeamView.getItems().remove(selectedPlayer);
+                userTeamView.refresh();
 
-            userTeamView.getItems().remove(selectedPlayer);
-            userTeamView.refresh();
+                creditLabel.setText("Credits = " + user.getCredits());
+            }
         });
 
 
@@ -146,6 +196,11 @@ public class TutorialWindow {
                 IOHandler handleIO = IOHandler.getInstance();
                 handleIO.getGlobalLeague().addUser(user);
                 handleIO.add(user);
+                try {
+                    handleIO.save();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 window.setScene(UserWindow.getScene(window, user));
             }
@@ -157,14 +212,16 @@ public class TutorialWindow {
         teamHBox.getChildren().addAll(teamName, createTeamButton);
 
         // Construct the layout using GridPane
-        GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10));
+        GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10)); grid.setVgap(10);
         GridPane.setConstraints(teamHBox, 0, 0);
         GridPane.setConstraints(userTeamView, 0, 1);
         GridPane.setConstraints(creditLabel, 0, 2);
         GridPane.setConstraints(buyButton, 1, 2);
         GridPane.setConstraints(sellButton, 1, 3);
+        GridPane.setConstraints(playerFilterBox, 2, 0);
         GridPane.setConstraints(playerMarketView, 2, 1);
         GridPane.setConstraints(playerInfoButton, 2, 2);
+        GridPane.setConstraints(playerFilterBox, 2, 0);
         GridPane.setConstraints(nextButton, 2, 3);
 
 
@@ -172,7 +229,8 @@ public class TutorialWindow {
                 userTeamView, buyButton, sellButton,
                 playerMarketView, teamHBox,
                 playerInfoButton, nextButton,
-                creditLabel
+                creditLabel, playerFilterBox,
+                playerFilterBox
         );
 
         // Set the current constructed layout to the tutorialScene
