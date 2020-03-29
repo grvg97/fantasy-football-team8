@@ -145,7 +145,23 @@ shown on Figure 6.
 Lastly, Tutorial and User Windows both shows the team's total points collected so far, and by selecting a player
 on the list will display player's statistics window which also display the total points collected by that specific player.
 
+### **Sequence Diagram: League Competition**
 
+![Image description](https://imgur.com/OwbdXnB.png)
+
+
+**Figure 6 -** Sequence diagram of the task *League Competition*
+
+
+This sequence diagram represents the interaction between the classes **User**, **League**, **Team** and **Player** (represented by their corresponding lifelines). The user can join a specific league by providing the name of the league they want to join (This calls the method *joinLeague&* from **User** class). The **League** instance then executes its *addUser* method which stores the requesting user object in an ArrayList object attribute. In this way an user becomes a member of a league.
+
+Users can also start their own leagues by issuing the **User** class method *createLeague* which takes as arguments a string with the name of the league and an instance of the class **User** as league manager. A new instance of the class **League** is returned to the user for which he is the manager. The newly created **League** instance is stored in the *competedList* array list which is an attribute of the **User** class.
+
+The *computeRanking* method of the League class computes the League rankings based on the total points won by each team on the league. It relies on *getTotalPoints* method to retrieve the total team points. After the rankings are computed, they are reported to the user on display.
+
+Lastly, The user can issue the *exitLeague* with reference to the league name to be withdrawn from. Once the League instance receives this message, it executes the method named *removeUser* with an User object argument. This action will remove the specified User object from the array list attribute *users*.
+
+**DESCRIPTION**
 
 This chapter contains the specification of at least 2 UML sequence diagrams of your system, together with a textual description of all its elements. Here you have to focus on specific situations you want to describe. For example, you can describe the interaction of player when performing a key part of the videogame, during a typical execution scenario, in a special case that may happen (e.g., an error situation), when finalizing a fantasy soccer game, etc.
 
