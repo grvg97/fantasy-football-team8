@@ -100,8 +100,14 @@ public class User {
     // User exits the specified league and,
     // Also removes that league from it's own competed leagues
     public void exitLeague(League league) throws IOException {
-        league.removeUser(this);
-        IOHandler.getInstance().save();
+        // User can't exit global league
+        if (league.getManager().equals("System"))
+            HandleError.errorMessage("Can't Exit League!",
+                    "User can't exit Global League");
+        else {
+            league.removeUser(this);
+            IOHandler.getInstance().save();
+        }
     }
 
     // Create a league and assign the user's id who created as the manager
@@ -155,7 +161,6 @@ public class User {
         fullTeam.addAll(this.team.bench);
         return fullTeam;
     }
-
 
 
     private class Team {
