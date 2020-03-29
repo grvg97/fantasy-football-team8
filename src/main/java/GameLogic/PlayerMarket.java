@@ -16,5 +16,12 @@ public class PlayerMarket implements Iterable {
     public Iterator iterator() {return players.iterator();}
 
     public List<Player> getPlayers() { return new ArrayList<>(this.players); }
+    public Player getPlayer(int id) {
+        for (Player player : this.players) {
+            if (player.getId() == id)
+                return player;
+        }
 
+        return null;
+    }
 }

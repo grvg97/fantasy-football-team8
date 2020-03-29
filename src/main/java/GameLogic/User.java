@@ -4,6 +4,7 @@ import UserInterface.HandleError;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class User {
@@ -178,35 +179,32 @@ public class User {
             this.id = id;
         }
 
-
         public String getName() {
             return this.name;
         }
 
-
         // Get all the 15 players total points
-        public int getTotalPoints() {
-            this.totalPoints = 0;
+        public int getTotalPoints() { return this.totalPoints; }
 
-            for (Player player: this.players) {
-                this.totalPoints += player.getTotalPoints();
+        public void updateTeamAndBench(PlayerMarket playerMarket) {
+            List<Player> updatedPlayers = new ArrayList<>();
+            for (Player player : this.players) {
+                updatedPlayers.add(playerMarket.getPlayer(player.getId()));
             }
 
-            for (Player benchPlayer: this.bench) {
-                this.totalPoints += benchPlayer.getTotalPoints();
+            List<Player> updatedBench = new ArrayList<>();
+            for (Player player : this.bench) {
+                updatedBench.add(playerMarket.getPlayer(player.getId()));
             }
 
-            return this.totalPoints;
+            this.players = updatedPlayers;
+            this.bench = updatedBench;
         }
 
         public int getRoundPoints() {
             int roundPoints = 0;
-            for (Player player : this.players) {
-                roundPoints += player.getRoundPoints();
-            }
-            for (Player player : this.bench) {
-                roundPoints += player.getRoundPoints();
-            }
+            for (Player player : this.players) roundPoints += player.getRoundPoints();
+            for (Player player : this.bench) roundPoints += player.getRoundPoints() / 2;
 
             return roundPoints;
         }
@@ -215,7 +213,6 @@ public class User {
             this.captain = captain;
             this.viceCaptain = viceCaptain;
         }
-
 
         // Add to bench if starting lineup (11) already chosen
         public void addPlayer(Player player) {
@@ -248,8 +245,17 @@ public class User {
         }
 
 
-        public void changeStartingLineup() {
-            // TODO: Switch players from the starting lineup
+        public boolean changeStartingLineup(Player teamPlayer, Player benchPlayer) {
+            if (teamPlayer.getPosition() != benchPlayer.getPosition())
+                return false;
+
+            this.players.remove(teamPlayer);
+            this.bench.remove(benchPlayer);
+
+            this.players.add(benchPlayer);
+            this.bench.add(teamPlayer);
+
+            return true;
         }
 
         public boolean isComplete() {
