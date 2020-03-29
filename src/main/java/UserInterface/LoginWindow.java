@@ -50,6 +50,10 @@ public class LoginWindow {
             passwordField.setText("");
 
             if (user != null) {
+                // Every time you login: Update the player's stats via player market using the api call.
+                try { user.updatePlayers();}
+                catch (IOException e) { e.printStackTrace(); }
+                
                 window.setScene(UserWindow.getScene(window, user));
             }
             else {

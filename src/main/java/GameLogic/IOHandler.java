@@ -102,7 +102,6 @@ public class IOHandler {
     public void remove(User user) {
         this.userDatabase.remove(user);
     }
-
     public List<League> getLeagues() {
         return this.leagueDatabase.db;
     }
@@ -124,7 +123,9 @@ public class IOHandler {
         public void add(T element) {
             this.db.add(element);
         }
-        public void remove(T element) {this.db.remove(element);}
+        public void remove(T element) {
+            this.db.remove(element);
+        }
 
         public int getSize() {
             return this.db.size();

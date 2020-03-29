@@ -174,6 +174,11 @@ public class User {
         return this.team.viceCaptain;
     }
 
+    public void updatePlayers() throws IOException {
+        PlayerMarket playerMarket = HandleApi.getInstance().getJsonObject();
+        this.team.updateTeamAndBench(playerMarket);
+    }
+
 
     private class Team {
         private int id;

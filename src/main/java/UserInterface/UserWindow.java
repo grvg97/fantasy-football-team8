@@ -112,7 +112,7 @@ public class UserWindow {
         Button deleteLeagueButton = new Button("Delete League");
         Button pickCaptainButton = new Button("Pick Captain");
         Button pickViceCaptainButton = new Button("Pick Vice Captain");
-        Button refreshButton = new Button("Refresh");
+
 
         // Display the selected player's stats
         playerInfoButton.setOnAction(event -> {
@@ -196,15 +196,15 @@ public class UserWindow {
         VBox labels = new VBox(10);
         labels.getChildren().addAll(userLabel, username, teamName);
 
-        HBox topHBox = new HBox(10);
-        topHBox.getChildren().addAll(transferWindowButton);
+        VBox topHBox = new VBox(10);
+        topHBox.getChildren().addAll(transferWindowButton, logoutButton);
         topHBox.setAlignment(Pos.BASELINE_RIGHT);
 
         HBox teamButtons = new HBox(5);
         teamButtons.getChildren().addAll(playerInfoButton, leagueInfoButton);
 
         HBox teamButtons2 = new HBox(5);
-        teamButtons2.getChildren().addAll(pickCaptainButton, pickViceCaptainButton, refreshButton);
+        teamButtons2.getChildren().addAll(pickCaptainButton, pickViceCaptainButton);
 
         HBox leagueButtons = new HBox(5);
         leagueButtons.getChildren().addAll(joinLeagueButton, exitLeagueButton);
