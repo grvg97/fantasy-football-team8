@@ -26,9 +26,6 @@ public class Player {
     @SerializedName("red_cards")        private int redCards;
     @SerializedName("saves")            private int saves;
 
-    private boolean isCaptain = false;
-    private boolean isViceCaptain = false;
-
     public int getId() {
         return this.id;
     }
@@ -84,19 +81,6 @@ public class Player {
                 break;
         }
         return position;
-    }
-
-    public void setCaptain(boolean isCaptain) {
-        this.isCaptain = isCaptain;
-    }
-    public void setViceCaptain(boolean isViceCaptain) {
-        this.isViceCaptain = isViceCaptain;
-    }
-    public boolean isCaptain() {
-        return this.isCaptain;
-    }
-    public boolean isViceCaptain() {
-        return this.isViceCaptain;
     }
 
     @Override

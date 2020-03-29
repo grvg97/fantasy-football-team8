@@ -27,13 +27,12 @@ public class UserWindow {
         while (it.hasNext())
             view.getItems().add(it.next());
 
-        setViewToPlayerName(view);
         return view;
     }
 
 
     /* This function allows the ListView to store 'Player' objects and display them as strings */
-    private static void setViewToPlayerName(ListView<Player> teamView) {
+    private static void setViewToPlayerName(ListView<Player> teamView, User user) {
         teamView.setCellFactory(param -> new ListCell<Player>() {
             @Override
             protected void updateItem(Player player, boolean empty) {
@@ -44,11 +43,11 @@ public class UserWindow {
                 }
                 else {
                     // If player is vice or normal captain, put and indicator and make the text bold.
-                    if (player.isCaptain()) {
+                    if (player.getId() == user.getCaptainId()) {
                         super.setStyle("-fx-font-weight: bold");
                         setText("C: " + player.getPositionName() + " " + player.getFullName());
                     }
-                    else if (player.isViceCaptain()) {
+                    else if (player.getId() == user.getViceCaptainId()) {
                         super.setStyle("-fx-font-weight: bold");
                         setText("VC: " + player.getPositionName() + " " + player.getFullName());
                     }
@@ -97,6 +96,9 @@ public class UserWindow {
         ListView<Player> startersView = constructTeamView(user.getTeamStarters(), 300.0);
         ListView<Player> benchView = constructTeamView(user.getTeamBench(), 100.0);
         ListView<League> leagueView = constructLeagueView(IOHandler.getInstance().getLeagues());
+
+        setViewToPlayerName(benchView, user);
+        setViewToPlayerName(startersView, user);
 
         Label userLabel = new Label("Welcome to your team and league page");
         Label username = new Label("Username: " + user.getUsername());

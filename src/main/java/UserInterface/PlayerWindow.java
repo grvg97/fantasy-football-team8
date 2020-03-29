@@ -27,8 +27,7 @@ public class PlayerWindow {
     public static void setScene(Player player) {
         HashMap<String, Integer> stats =  player.getStats();
         ListView<String> statView = constructStatView(stats);
-        Label label = new Label("Cost: " + player.getCost() + "\nInjured: " + player.isInjured() +
-                "\nIS CAPTAIN: " + player.isCaptain() + "\n IS VICE CAPTAIN: " + player.isViceCaptain());
+        Label label = new Label("Cost: " + player.getCost() + "\nInjured: " + player.isInjured());
 
         VBox view = new VBox(20);
         view.getChildren().addAll(label, statView);

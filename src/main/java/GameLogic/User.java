@@ -80,10 +80,10 @@ public class User {
 
 
     public void pickCaptain(Player player) {
-        this.team.assignCaptain(player);
+        this.team.assignCaptainId(player);
     }
     public void pickViceCaptain(Player player) {
-        this.team.assignViceCaptain(player);
+        this.team.assignViceCaptainId(player);
     }
 
 
@@ -166,12 +166,12 @@ public class User {
         return fullTeam;
     }
 
-    public Player getCaptain() {
-        return this.team.captain;
+    public int getCaptainId() {
+        return this.team.captainId;
     }
 
-    public Player getViceCaptain() {
-        return this.team.viceCaptain;
+    public int getViceCaptainId() {
+        return this.team.viceCaptainId;
     }
 
     public void updatePlayers() throws IOException {
@@ -186,8 +186,8 @@ public class User {
         private List<Player> bench = new ArrayList<>(4);
         private int totalPoints = 0;
         private String name;
-        private Player captain;
-        private Player viceCaptain;
+        private int captainId;
+        private int viceCaptainId;
 
 
         Team (String name, int id) {
@@ -226,21 +226,11 @@ public class User {
         }
 
         // Assign player as captain and the rest as false for captain
-        public void assignCaptain(Player captain) {
-            captain.setCaptain(true);
-            for (Player player: this.players) {
-                if (player != captain)
-                    player.setCaptain(false);
-            }
-            this.captain = captain;
+        public void assignCaptainId(Player captain) {
+            this.captainId = captain.getId();
         }
-        public void assignViceCaptain(Player viceCaptain) {
-            viceCaptain.setViceCaptain(true);
-            for (Player player: this.players) {
-                if (player != viceCaptain)
-                    player.setViceCaptain(false);
-            }
-            this.viceCaptain = viceCaptain;
+        public void assignViceCaptainId(Player viceCaptain) {
+            this.viceCaptainId = viceCaptain.getId();
         }
 
         // Add to bench if starting lineup (11) already chosen
