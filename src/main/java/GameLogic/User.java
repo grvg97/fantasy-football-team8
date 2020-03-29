@@ -79,8 +79,11 @@ public class User {
     }
 
 
-    public void pickCaptains(Player captain, Player viceCaptain) {
-        this.team.assignCaptains(captain, viceCaptain);
+    public void pickCaptain(Player player) {
+        this.team.assignCaptain(player);
+    }
+    public void pickViceCaptain(Player player) {
+        this.team.assignViceCaptain(player);
     }
 
 
@@ -163,6 +166,14 @@ public class User {
         return fullTeam;
     }
 
+    public Player getCaptain() {
+        return this.team.captain;
+    }
+
+    public Player getViceCaptain() {
+        return this.team.viceCaptain;
+    }
+
 
     private class Team {
         private int id;
@@ -209,8 +220,21 @@ public class User {
             return roundPoints;
         }
 
-        public void assignCaptains(Player captain, Player viceCaptain) {
+        // Assign player as captain and the rest as false for captain
+        public void assignCaptain(Player captain) {
+            captain.setCaptain(true);
+            for (Player player: this.players) {
+                if (player != captain)
+                    player.setCaptain(false);
+            }
             this.captain = captain;
+        }
+        public void assignViceCaptain(Player viceCaptain) {
+            viceCaptain.setViceCaptain(true);
+            for (Player player: this.players) {
+                if (player != viceCaptain)
+                    player.setViceCaptain(false);
+            }
             this.viceCaptain = viceCaptain;
         }
 

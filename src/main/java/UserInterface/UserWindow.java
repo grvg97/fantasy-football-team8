@@ -2,6 +2,7 @@ package UserInterface;
 
 import GameLogic.*;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -19,8 +20,9 @@ public class UserWindow {
     private static Scene userScene;
 
     /* Construct the ListView by adding the selected players */
-    private static ListView<Player> constructTeamView(List<Player> players) {
+    private static ListView<Player> constructTeamView(List<Player> players, Double width) {
         ListView<Player> view = new ListView<>();
+        view.setMaxHeight(width);
         Iterator<Player> it = players.iterator();
         while (it.hasNext())
             view.getItems().add(it.next());
@@ -41,7 +43,19 @@ public class UserWindow {
                     setText(null);
                 }
                 else {
-                    setText(player.getPositionName() + " " + player.getFullName());
+                    // If player is vice or normal captain, put and indicator and make the text bold.
+                    if (player.isCaptain()) {
+                        super.setStyle("-fx-font-weight: bold");
+                        setText("C: " + player.getPositionName() + " " + player.getFullName());
+                    }
+                    else if (player.isViceCaptain()) {
+                        super.setStyle("-fx-font-weight: bold");
+                        setText("VC: " + player.getPositionName() + " " + player.getFullName());
+                    }
+                    else {
+                        super.setStyle("-fx-font-weight: light");
+                        setText(player.getPositionName() + " " + player.getFullName());
+                    }
                 }
             }
         });
@@ -80,7 +94,8 @@ public class UserWindow {
     /* Construct the scene by adding certain elements to the layout: GridPane. Then, create the scene */
     private static void setScene(Stage window, User user) {
 
-        ListView<Player> teamView = constructTeamView(user.getFullTeam());
+        ListView<Player> startersView = constructTeamView(user.getTeamStarters(), 300.0);
+        ListView<Player> benchView = constructTeamView(user.getTeamBench(), 100.0);
         ListView<League> leagueView = constructLeagueView(IOHandler.getInstance().getLeagues());
 
         Label userLabel = new Label("Welcome to your team and league page");
@@ -95,10 +110,13 @@ public class UserWindow {
         Button joinLeagueButton = new Button("Join League");
         Button exitLeagueButton = new Button("Exit League");
         Button deleteLeagueButton = new Button("Delete League");
+        Button pickCaptainButton = new Button("Pick Captain");
+        Button pickViceCaptainButton = new Button("Pick Vice Captain");
+        Button refreshButton = new Button("Refresh");
 
         // Display the selected player's stats
         playerInfoButton.setOnAction(event -> {
-            Player selectedPlayer = teamView.getSelectionModel().getSelectedItem();
+            Player selectedPlayer = startersView.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {
                 PlayerWindow.display(selectedPlayer);
             }
@@ -123,7 +141,6 @@ public class UserWindow {
         logoutButton.setOnAction(event -> window.setScene(LoginWindow.getScene(window)));
 
         // Create a custom league and add to leagueView
-        // TODO: Trivial solution, find better one
         createLeagueButton.setOnAction(event -> {
             CreateLeagueWindow.display(user, leagueView);
         });
@@ -159,30 +176,60 @@ public class UserWindow {
             }
         });
 
+        pickCaptainButton.setOnAction(event -> {
+            Player selectedPlayer = startersView.getSelectionModel().getSelectedItem();
+            if (selectedPlayer != null) {
+                user.pickCaptain(selectedPlayer);
+                startersView.refresh();
+            }
+        });
+
+        pickViceCaptainButton.setOnAction(event -> {
+            Player selectedPlayer = startersView.getSelectionModel().getSelectedItem();
+            if (selectedPlayer != null) {
+                user.pickViceCaptain(selectedPlayer);
+                startersView.refresh();
+            }
+        });
+
 
         VBox labels = new VBox(10);
         labels.getChildren().addAll(userLabel, username, teamName);
 
-        HBox views = new HBox(5);
-        views.getChildren().addAll(teamView, leagueView);
+        HBox topHBox = new HBox(10);
+        topHBox.getChildren().addAll(transferWindowButton);
+        topHBox.setAlignment(Pos.BASELINE_RIGHT);
 
-        HBox buttonsRow1 = new HBox(10);
-        buttonsRow1.getChildren().addAll(playerInfoButton, leagueInfoButton, transferWindowButton, deleteLeagueButton);
+        HBox teamButtons = new HBox(5);
+        teamButtons.getChildren().addAll(playerInfoButton, leagueInfoButton);
 
-        HBox buttonsRow2 = new HBox(10);
-        buttonsRow2.getChildren().addAll(createLeagueButton, joinLeagueButton, exitLeagueButton, logoutButton);
+        HBox teamButtons2 = new HBox(5);
+        teamButtons2.getChildren().addAll(pickCaptainButton, pickViceCaptainButton, refreshButton);
 
+        HBox leagueButtons = new HBox(5);
+        leagueButtons.getChildren().addAll(joinLeagueButton, exitLeagueButton);
+
+        HBox leagueButtons2 = new HBox(5);
+        leagueButtons.getChildren().addAll(createLeagueButton, deleteLeagueButton);
+
+
+        VBox teamVBox = new VBox(5);
+        teamVBox.getChildren().addAll(startersView, benchView, teamButtons, teamButtons2);
+
+        VBox leagueVBox = new VBox(5);
+        leagueVBox.getChildren().addAll(leagueView, leagueButtons, leagueButtons2);
 
         // Construct layout using GridPane
-        GridPane grid = new GridPane();
+        GridPane grid = new GridPane(); grid.setHgap(10);
         grid.setPadding(new Insets(10, 10, 10, 10)); grid.setVgap(10);
         GridPane.setConstraints(labels, 0, 0);
-        GridPane.setConstraints(views, 0, 1);
-        GridPane.setConstraints(buttonsRow1, 0, 2);
-        GridPane.setConstraints(buttonsRow2,0, 3);
+        GridPane.setConstraints(topHBox, 1, 0);
+        GridPane.setConstraints(teamVBox, 0, 1);
+        GridPane.setConstraints(leagueVBox, 1, 1);
+
 
         grid.getChildren().addAll(
-            labels, views, buttonsRow1, buttonsRow2
+            labels, teamVBox, leagueVBox, topHBox
         );
 
         userScene = new Scene(grid);
