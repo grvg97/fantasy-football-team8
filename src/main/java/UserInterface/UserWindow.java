@@ -53,7 +53,7 @@ public class UserWindow {
                         setText("VC: " + player.getPositionName() + " " + player.getFullName());
                     }
                     else {
-                        super.setStyle("-fx-font-weight: light");
+                        super.setStyle("<font-weight>: light");
                         setText(player.getPositionName() + " " + player.getFullName());
                     }
                 }
