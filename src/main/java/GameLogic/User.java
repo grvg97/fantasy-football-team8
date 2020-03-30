@@ -134,8 +134,7 @@ public class User {
 
     // Gets TEAM related information
     public String getTeamName() { return this.team.getName(); }
-    public int getTeamSize() { return this.team.players.size(); }
-    public int getTotalTeamPoints() { return this.team.getTotalPoints(); }
+    public int getTeamSize() { return (this.team.players.size() + this.team.bench.size()); }
     public int getTeamRoundPoints() { return this.team.getRoundPoints(); }
 
     /*
@@ -149,6 +148,7 @@ public class User {
             if (player.getPosition() == position)
                 counter++;
         }
+
         return counter;
     }
 
@@ -157,11 +157,6 @@ public class User {
     public List<Player> getTeamStarters() { return new ArrayList<>(this.team.players); }
     public List<Player> getTeamBench() { return new ArrayList<>(this.team.bench); }
 
-    public List<Player> getFullTeam() {
-        List<Player> fullTeam = new ArrayList<>(this.team.players);
-        fullTeam.addAll(this.team.bench);
-        return fullTeam;
-    }
 
     public int getCaptainId() { return this.team.captainId; }
     public int getViceCaptainId() { return this.team.viceCaptainId; }
@@ -225,12 +220,11 @@ public class User {
 
         // Add to bench if starting lineup (11) already chosen
         private void addPlayer(Player player) {
-            if (this.players.size() == 11)
-                this.bench.add(player);
-            else
+            if (this.players.size() < 11)
                 this.players.add(player);
+            else
+                this.bench.add(player);
         }
-
 
         private void removePlayer(Player selectedPlayer) {
             if (this.players.contains(selectedPlayer))
@@ -262,8 +256,5 @@ public class User {
             this.bench.add(starterPlayer);
         }
 
-        private boolean isComplete() {
-            return players.size() + bench.size() >= 11;
-        }
     }
 }

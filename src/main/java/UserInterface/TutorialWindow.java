@@ -161,8 +161,8 @@ public class TutorialWindow {
             else {
                 if (selectedPlayer != null && user.buyPlayer(selectedPlayer))
                 {
-                    if (user.getTeamStarters().size() >= 11) {
-                        userBenchView.getItems().addAll(selectedPlayer);
+                    if (user.getTeamSize() > 11) {
+                        userBenchView.getItems().add(selectedPlayer);
                         userBenchView.refresh();
                     }
                     else {
