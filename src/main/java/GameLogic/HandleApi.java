@@ -10,20 +10,10 @@ import java.net.URL;
 
 public class HandleApi {
 
-    private HandleApi() {}
-
-    private static class HandleApiHolder {
-        private static final HandleApi INSTANCE = new HandleApi();
-    }
-
-    public static HandleApi getInstance() {
-        return HandleApi.HandleApiHolder.INSTANCE;
-    }
-
 
     // This function handles the API call to get all the player data. Also for the bonus.
     // This function gets json as string
-    public String getResponseBody(String apiURL) throws IOException {
+    public static String getResponseBody(String apiURL) throws IOException {
         BufferedReader reader;
         String line;
         StringBuffer responseBody = new StringBuffer();
@@ -40,7 +30,7 @@ public class HandleApi {
     }
 
     // Returns json string as an object
-    public PlayerMarket getJsonObject() throws IOException {
+    public static PlayerMarket getJsonObject() throws IOException {
         String api = "https://fantasy.premierleague.com/api/bootstrap-static/";
         return new Gson().fromJson(getResponseBody(api), PlayerMarket.class);
     }

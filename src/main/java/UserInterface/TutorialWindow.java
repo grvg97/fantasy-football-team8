@@ -63,7 +63,7 @@ public class TutorialWindow {
         return user.getTeamPositionCount(Positions.GK) == Formation.GKCOUNT.getValue()
                 && user.getTeamPositionCount(Positions.DEF) == Formation.DEFCOUNT.getValue()
                 && user.getTeamPositionCount(Positions.MID) == Formation.MIDCOUNT.getValue()
-                && user.getTeamPositionCount(Positions.FWD) == Formation.FORCOUNT.getValue();
+                && user.getTeamPositionCount(Positions.FWD) == Formation.FWDCOUNT.getValue();
     }
 
     /* Filters the players based on the selected position */
@@ -110,7 +110,7 @@ public class TutorialWindow {
 
     /* Set the scene */
     public static void setScene(Stage window, User user) throws IOException {
-        List<Player> players = HandleApi.getInstance().getJsonObject().getPlayers();
+        List<Player> players = HandleApi.getJsonObject().getPlayers();
 
         ListView<Player> playerMarketView = constructPlayers(players);
         Label creditLabel = new Label();

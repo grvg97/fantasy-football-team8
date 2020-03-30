@@ -22,33 +22,18 @@ public class User {
         this.password = password;
     }
 
-    public String getUsername() {return this.username;}
-    public String getPassword() {return this.password;}
-    public String getTeamName() {return this.team.getName();}
-
-    public int getId() {return this.id;}
+    public boolean hasTeam() {
+        return this.team != null;
+    }
 
     public void createTeam(String name) {
         this.team = new Team(name, this.id);
     }
 
-    public boolean hasTeam() {
-        return this.team != null;
-    }
-
-
     public void deleteTeam() {
         // after this, if there is no reference to the object,
         // it will be deleted by the garbage collector
         this.team = null;
-    }
-
-    public int getTotalTeamPoints() {
-        return this.team.getTotalPoints();
-    }
-
-    public int getTeamRoundPoints() {
-        return this.team.getRoundPoints();
     }
 
     // This function handles the buying of players off the market. Credits may not go below 0.
@@ -70,29 +55,18 @@ public class User {
         }
     }
 
-
     // This function handles the selling of players and removes it from the User's team.
     public void sellPlayer(Player player) {
-
         this.team.removePlayer(player);
         this.credits += player.getCost();
     }
 
-
     public void pickCaptain(Player player) {
         this.team.assignCaptainId(player);
     }
+
     public void pickViceCaptain(Player player) {
         this.team.assignViceCaptainId(player);
-    }
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCredits() {
-        return this.credits;
     }
 
     // User enters the specified league and,
@@ -135,13 +109,31 @@ public class User {
         }
     }
 
-
-    public int getTeamSize() {
-        return this.team.players.size();
+    public void updatePlayers() throws IOException {
+        PlayerMarket playerMarket = HandleApi.getJsonObject();
+        this.team.updateTeamAndBench(playerMarket);
     }
 
 
-    // This function returns the number of players from that position
+    //GETTERS and SETTERS for USER:
+    public void setId(int id) { this.id = id; }
+    public int getId() {return this.id;}
+    public String getUsername() {return this.username;}
+    public String getPassword() {return this.password;}
+    public int getCredits() { return this.credits; }
+
+
+    // Gets TEAM related information
+    public String getTeamName() { return this.team.getName(); }
+    public int getTeamSize() { return this.team.players.size(); }
+    public int getTotalTeamPoints() { return this.team.getTotalPoints(); }
+    public int getTeamRoundPoints() { return this.team.getRoundPoints(); }
+
+    /*
+     * Keeps track of the number of players from the positions
+     * as mentioned in the Enumerator "Positions" and "Formation"
+     * (GK,DEF,MID,FWD)
+     */
     public int getTeamPositionCount(Positions position) {
         int counter = 0;
         for (Player player: this.team.players) {
@@ -152,13 +144,9 @@ public class User {
     }
 
 
-    public List<Player> getTeamStarters() {
-        return new ArrayList<>(this.team.players);
-    }
-
-    public List<Player> getTeamBench() {
-        return new ArrayList<>(this.team.bench);
-    }
+    //Gets Player related Information from team
+    public List<Player> getTeamStarters() { return new ArrayList<>(this.team.players); }
+    public List<Player> getTeamBench() { return new ArrayList<>(this.team.bench); }
 
     public List<Player> getFullTeam() {
         List<Player> fullTeam = new ArrayList<>(this.team.players);
@@ -166,21 +154,11 @@ public class User {
         return fullTeam;
     }
 
-    public int getCaptainId() {
-        return this.team.captainId;
-    }
+    public int getCaptainId() { return this.team.captainId; }
+    public int getViceCaptainId() { return this.team.viceCaptainId; }
 
-    public int getViceCaptainId() {
-        return this.team.viceCaptainId;
-    }
-
-    public void updatePlayers() throws IOException {
-        PlayerMarket playerMarket = HandleApi.getInstance().getJsonObject();
-        this.team.updateTeamAndBench(playerMarket);
-    }
-
-
-    private class Team {
+    //TEAM PRIVATE CLASS
+    private class Team{
         private int id;
         private List<Player> players = new ArrayList<>(11); // Starters
         private List<Player> bench = new ArrayList<>(4);
@@ -195,14 +173,15 @@ public class User {
             this.id = id;
         }
 
-        public String getName() {
+        private String getName() {
             return this.name;
         }
 
         // Get all the 15 players total points
-        public int getTotalPoints() { return this.totalPoints; }
+        private int getTotalPoints() { return this.totalPoints; }
 
-        public void updateTeamAndBench(PlayerMarket playerMarket) {
+        private void updateTeamAndBench(PlayerMarket playerMarket) {
+            Iterator<Player> it = playerMarket.iterator();
             List<Player> updatedPlayers = new ArrayList<>();
             for (Player player : this.players) {
                 updatedPlayers.add(playerMarket.getPlayer(player.getId()));
@@ -217,7 +196,7 @@ public class User {
             this.bench = updatedBench;
         }
 
-        public int getRoundPoints() {
+        private int getRoundPoints() {
             int roundPoints = 0;
             for (Player player : this.players) roundPoints += player.getRoundPoints();
             for (Player player : this.bench) roundPoints += player.getRoundPoints() / 2;
@@ -226,15 +205,15 @@ public class User {
         }
 
         // Assign player as captain and the rest as false for captain
-        public void assignCaptainId(Player captain) {
+        private void assignCaptainId(Player captain) {
             this.captainId = captain.getId();
         }
-        public void assignViceCaptainId(Player viceCaptain) {
+        private void assignViceCaptainId(Player viceCaptain) {
             this.viceCaptainId = viceCaptain.getId();
         }
 
         // Add to bench if starting lineup (11) already chosen
-        public void addPlayer(Player player) {
+        private void addPlayer(Player player) {
             if (this.players.size() == 11)
                 this.bench.add(player);
             else
@@ -242,7 +221,7 @@ public class User {
         }
 
 
-        public void removePlayer(Player selectedPlayer) {
+        private void removePlayer(Player selectedPlayer) {
             if (this.players.contains(selectedPlayer))
                 this.players.remove(selectedPlayer);
             else
@@ -250,7 +229,7 @@ public class User {
 
         }
 
-        public boolean contains(Player player) {
+        private boolean contains(Player player) {
             for (Player p : players) {
                 if (p.equals(player))
                     return true;
@@ -264,7 +243,7 @@ public class User {
         }
 
 
-        public boolean changeStartingLineup(Player teamPlayer, Player benchPlayer) {
+        private boolean changeStartingLineup(Player teamPlayer, Player benchPlayer) {
             if (teamPlayer.getPosition() != benchPlayer.getPosition())
                 return false;
 
@@ -277,7 +256,7 @@ public class User {
             return true;
         }
 
-        public boolean isComplete() {
+        private boolean isComplete() {
             return players.size() + bench.size() >= 11;
         }
     }

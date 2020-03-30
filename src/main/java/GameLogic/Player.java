@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import javafx.geometry.Pos;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Player {
     @SerializedName("id")               private int id;
@@ -77,7 +78,7 @@ public class Player {
                 position = "MID";
                 break;
             case 4:
-                position = "FOR";
+                position = "FWD";
                 break;
         }
         return position;

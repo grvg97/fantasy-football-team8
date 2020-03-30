@@ -78,7 +78,6 @@ public class TransferWindow {
         }
     }
 
-
     /* Constructs the listView*/
     private static ListView<Player> constructPlayers(List<Player> players) {
         ListView<Player> playersView = new ListView<>();
@@ -103,13 +102,13 @@ public class TransferWindow {
         return user.getTeamPositionCount(Positions.GK) == Formation.GKCOUNT.getValue()
                 && user.getTeamPositionCount(Positions.DEF) == Formation.DEFCOUNT.getValue()
                 && user.getTeamPositionCount(Positions.MID) == Formation.MIDCOUNT.getValue()
-                && user.getTeamPositionCount(Positions.FWD) == Formation.FORCOUNT.getValue();
+                && user.getTeamPositionCount(Positions.FWD) == Formation.FWDCOUNT.getValue();
     }
 
 
     /* Set the scene */
     public static void setScene(Stage window, User user) throws IOException {
-        List<Player> players = HandleApi.getInstance().getJsonObject().getPlayers();
+        List<Player> players = HandleApi.getJsonObject().getPlayers();
         List<Player> allTeamPlayers = user.getTeamStarters();
         allTeamPlayers.addAll(user.getTeamBench()); // Merge the bench and the players to construct whole team.
 

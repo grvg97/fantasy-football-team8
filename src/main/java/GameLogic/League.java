@@ -20,14 +20,8 @@ public class League {
         this.id = id;
     }
 
-    public ArrayList<User> getCompetingUsers() {
-        return new ArrayList<>(this.competingUsers);
-    }
 
-    public HashMap<String, Integer> getTeamPoints() {
-        return this.teamPoints;
-    }
-
+    //
     public void updateRoundPoints() {
         Iterator<User> it = competingUsers.iterator();
         while (it.hasNext()) {
@@ -58,9 +52,20 @@ public class League {
         // Compute ranking based on the points that the teams have/
     }
 
-    public String getManager() {return this.manager;}
+    // GETTERS and setters for LEAGUE :
     public String getName() {return this.name;}
+    public String getManager() {return this.manager;}
     public void setId(int id) {this.id = id;}
     public int getId() {return this.id;}
+
+    public ArrayList<User> getCompetingUsers() {
+        return new ArrayList<>(this.competingUsers);
+    }
+
+    public HashMap<String, Integer> getTeamPoints() {
+        return this.teamPoints;
+    }
+
+
 
 }
