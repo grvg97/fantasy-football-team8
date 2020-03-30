@@ -23,8 +23,6 @@ public class TutorialWindow {
 
     private static Scene tutorialScene;
 
-    private static ListView<Player> userTeamView = new ListView<>();
-
     /*
      * This function allows the ListView to store 'Leagues'
      * objects and display them as strings
@@ -46,9 +44,10 @@ public class TutorialWindow {
 
 
     /* Constructs the listView*/
-    private static ListView<Player> constructPlayers(List<Player> players) {
+    private static ListView<Player> constructPlayers(List<Player> players, Double height) {
         ListView<Player> playersView = new ListView<>();
         Iterator<Player> it = players.iterator();
+        playersView.setMaxHeight(height);
 
         while (it.hasNext())
             playersView.getItems().add(it.next());
@@ -112,10 +111,11 @@ public class TutorialWindow {
     public static void setScene(Stage window, User user) throws IOException {
         List<Player> players = HandleApi.getJsonObject().getPlayers();
 
-        ListView<Player> playerMarketView = constructPlayers(players);
-        Label creditLabel = new Label();
-        creditLabel.setText("Credits = " + user.getCredits());
+        ListView<Player> userTeamView = new ListView<>(); userTeamView.setMaxHeight(300.0);
+        ListView<Player> userBenchView = new ListView<>(); userBenchView.setMaxHeight(100.0);
+        ListView<Player> playerMarketView = constructPlayers(players, 400.0);
 
+        Label creditLabel = new Label("Credits = " + user.getCredits());
         Button buyButton = new Button("<< Buy");
         Button sellButton = new Button("Sell >>");
         Button playerInfoButton = new Button("Open Player");
@@ -157,19 +157,23 @@ public class TutorialWindow {
                 HandleError.errorMessage("Team Must Exist!",
                         "You must have a team to buy players");
 
-            // If player is already in team, user can't buy it
-            else if (user.getTeamStarters().contains(selectedPlayer))
-                HandleError.errorMessage("Player Exists!",
-                        "Player already exists in team");
-
             // Buy the player and refresh the ListView to see the changes
             else {
-                user.buyPlayer(selectedPlayer);
-                userTeamView.getItems().add(selectedPlayer);
-                userTeamView.refresh();
-                setListViewToString(userTeamView);
+                if (selectedPlayer != null && user.buyPlayer(selectedPlayer))
+                {
+                    if (user.getTeamStarters().size() >= 11) {
+                        userBenchView.getItems().addAll(selectedPlayer);
+                        userBenchView.refresh();
+                    }
+                    else {
+                        userTeamView.getItems().add(selectedPlayer);
+                        userTeamView.refresh();
+                    }
+                    setListViewToString(userTeamView);
+                    setListViewToString(userBenchView);
 
-                creditLabel.setText("Credits = " + user.getCredits());
+                    creditLabel.setText("Credits = " + user.getCredits());
+                }
             }
 
         });
@@ -213,28 +217,29 @@ public class TutorialWindow {
                         "The formation must be 4-3-3.");
         });
 
+        /* Layout construction using VBox, HBox, GridPane */
+
         HBox teamHBox = new HBox(10);
         teamHBox.getChildren().addAll(teamName, createTeamButton);
 
-        // Construct the layout using GridPane
-        GridPane grid = new GridPane(); grid.setPadding(new Insets(10,10,10,10)); grid.setVgap(10);
-        GridPane.setConstraints(teamHBox, 0, 0);
-        GridPane.setConstraints(userTeamView, 0, 1);
-        GridPane.setConstraints(creditLabel, 0, 2);
-        GridPane.setConstraints(buyButton, 1, 2);
-        GridPane.setConstraints(sellButton, 1, 3);
-        GridPane.setConstraints(playerFilterBox, 2, 0);
-        GridPane.setConstraints(playerMarketView, 2, 1);
-        GridPane.setConstraints(playerInfoButton, 2, 2);
-        GridPane.setConstraints(nextButton, 2, 3);
+        VBox teamVBox = new VBox(5);
+        teamVBox.getChildren().addAll(teamHBox, userTeamView, userBenchView, creditLabel);
 
+        HBox marketButtons = new HBox(5);
+        marketButtons.getChildren().addAll(playerInfoButton, nextButton);
 
-        grid.getChildren().addAll(
-                userTeamView, buyButton, sellButton,
-                playerMarketView, teamHBox,
-                playerInfoButton, nextButton,
-                creditLabel, playerFilterBox
-        );
+        VBox marketVBox = new VBox(5);
+        marketVBox.getChildren().addAll(playerFilterBox, playerMarketView, marketButtons);
+
+        VBox operationButtons = new VBox(5); operationButtons.setAlignment(Pos.CENTER);
+        operationButtons.getChildren().addAll(buyButton, sellButton);
+
+        HBox layout = new HBox(5);
+        layout.getChildren().addAll(teamVBox, operationButtons, marketVBox);
+
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10,10,10,10));
+        grid.getChildren().addAll(layout);
 
         // Set the current constructed layout to the tutorialScene
         tutorialScene = new Scene(grid);

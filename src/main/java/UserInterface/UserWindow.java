@@ -230,6 +230,8 @@ public class UserWindow {
             }
         });
 
+        /* Layout construction using VBox, HBox, GridPane */
+
         VBox labels = new VBox(10);
         labels.getChildren().addAll(userLabel, username, teamName);
 

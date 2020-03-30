@@ -142,23 +142,22 @@ public class TransferWindow {
          * 'backButton' Goes back
          */
         buyButton.setOnAction(event -> {
-            Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
+            Player selectedPlayer = playerMarketView.getSelectionModel().getSelectedItem();
 
-            if (selectedMarketPlayer != null) {
-                if (user.buyPlayer(selectedMarketPlayer)) {
-                    if (user.getTeamStarters().size() >= 11) {
-                        userBenchView.getItems().addAll(selectedMarketPlayer);
-                        userBenchView.refresh();
-                    }
-                    else {
-                        userTeamView.getItems().add(selectedMarketPlayer);
-                        userTeamView.refresh();
-                    }
-                    setListViewToString(userTeamView);
-                    setListViewToString(userBenchView);
-
-                    creditLabel.setText("Credits = " + user.getCredits());
+            if (selectedPlayer != null && user.buyPlayer(selectedPlayer))
+            {
+                if (user.getTeamStarters().size() >= 11) {
+                    userBenchView.getItems().addAll(selectedPlayer);
+                    userBenchView.refresh();
                 }
+                else {
+                    userTeamView.getItems().add(selectedPlayer);
+                    userTeamView.refresh();
+                }
+                setListViewToString(userTeamView);
+                setListViewToString(userBenchView);
+
+                creditLabel.setText("Credits = " + user.getCredits());
             }
 
         });
@@ -208,6 +207,7 @@ public class TransferWindow {
                 PlayerWindow.display(selectedMarketPlayer);
         });
 
+        /* Layout construction using VBox, HBox, GridPane */
         VBox teamVBox = new VBox(5);
         teamVBox.getChildren().addAll(creditLabel, userTeamView, userBenchView);
 
