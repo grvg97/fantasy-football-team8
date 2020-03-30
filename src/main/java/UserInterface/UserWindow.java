@@ -1,6 +1,7 @@
 package UserInterface;
 
 import GameLogic.*;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -122,6 +123,7 @@ public class UserWindow {
         Button pickCaptainButton = new Button("Pick Captain");
         Button pickViceCaptainButton = new Button("Pick Vice Captain");
         Button changePlayerButton = new Button("Change Player");
+        Button updatePointsButton = new Button("Update Points");
 
 
         // Display the selected player's stats
@@ -186,6 +188,7 @@ public class UserWindow {
             }
         });
 
+        // Select Captain
         pickCaptainButton.setOnAction(event -> {
             Player selectedPlayer = startersView.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {
@@ -194,6 +197,7 @@ public class UserWindow {
             }
         });
 
+        // Select Vice Captain
         pickViceCaptainButton.setOnAction(event -> {
             Player selectedPlayer = startersView.getSelectionModel().getSelectedItem();
             if (selectedPlayer != null) {
@@ -202,6 +206,7 @@ public class UserWindow {
             }
         });
 
+        // Change the player from the starting lineup with the bench
         changePlayerButton.setOnAction(event -> {
             Player starterPlayer = startersView.getSelectionModel().getSelectedItem();
 
@@ -213,6 +218,17 @@ public class UserWindow {
 
         });
 
+        // user can update the weekly round points if he/she is the sysadmin(id == 0)
+        updatePointsButton.setOnAction(event -> {
+            if (user.getId() == 0) {
+                ObservableList<League> leagues = leagueView.getItems();
+                leagues.forEach(league -> league.updateRoundPoints());
+            }
+            else {
+                HandleError.errorMessage("You Are Not Authorized!",
+                        "Only the System Admin can update the points");
+            }
+        });
 
         VBox labels = new VBox(10);
         labels.getChildren().addAll(userLabel, username, teamName);
@@ -228,10 +244,10 @@ public class UserWindow {
         teamButtons2.getChildren().addAll(pickCaptainButton, pickViceCaptainButton);
 
         HBox leagueButtons = new HBox(5);
-        leagueButtons.getChildren().addAll(joinLeagueButton, exitLeagueButton);
+        leagueButtons.getChildren().addAll(joinLeagueButton, exitLeagueButton, updatePointsButton);
 
-        HBox leagueButtons2 = new HBox(5);
-        leagueButtons.getChildren().addAll(leagueInfoButton, createLeagueButton, deleteLeagueButton);
+        HBox leagueButtons2 = new HBox(5); leagueButtons.setAlignment(Pos.CENTER);
+        leagueButtons2.getChildren().addAll(leagueInfoButton, createLeagueButton, deleteLeagueButton);
 
         VBox leagueVBox = new VBox(5);
         leagueVBox.getChildren().addAll(leagueView, leagueButtons, leagueButtons2);
