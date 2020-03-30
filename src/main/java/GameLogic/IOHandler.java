@@ -92,13 +92,13 @@ public class IOHandler {
         this.leagueDatabase.add(league);
     }
 
-    public void remove(League league) {
-        this.leagueDatabase.remove(league);
+    public void add(User user) {
+        user.setId(userDatabase.getSize());
+        this.userDatabase.add(user);
     }
 
-    public void add(User user) {
-        user.setId(userDatabase.getSize() + 1);
-        this.userDatabase.add(user);
+    public void remove(League league) {
+        this.leagueDatabase.remove(league);
     }
 
     public void remove(User user) {

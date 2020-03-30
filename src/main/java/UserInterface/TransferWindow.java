@@ -159,7 +159,6 @@ public class TransferWindow {
 
                 creditLabel.setText("Credits = " + user.getCredits());
             }
-
         });
 
         sellButton.setOnAction(event -> {
