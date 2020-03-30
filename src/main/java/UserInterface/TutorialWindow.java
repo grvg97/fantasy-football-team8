@@ -133,9 +133,11 @@ public class TutorialWindow {
         createTeamButton.setOnAction(event ->
         {
             if (teamName.getText().equals(""))
-                HandleError.textFieldBlank();
+                HandleError.errorMessage("Give Team Name!",
+                        "Please give your team a name");
             else if (user.hasTeam())
-                HandleError.errorMessage("Team Exists!", "You already have a team.");
+                HandleError.errorMessage("Team Exists!",
+                        "You already have a team.");
             else
                 user.createTeam(teamName.getText());
         });
@@ -152,11 +154,13 @@ public class TutorialWindow {
 
             // User can't buy player unless their is not team
             if (!user.hasTeam())
-                HandleError.teamMustExist();
+                HandleError.errorMessage("Team Must Exist!",
+                        "You must have a team to buy players");
 
             // If player is already in team, user can't buy it
             else if (user.getTeamStarters().contains(selectedPlayer))
-                HandleError.playerExists(selectedPlayer);
+                HandleError.errorMessage("Player Exists!",
+                        "Player already exists in team");
 
             // Buy the player and refresh the ListView to see the changes
             else {
@@ -205,7 +209,8 @@ public class TutorialWindow {
                 window.setScene(UserWindow.getScene(window, user));
             }
             else
-                HandleError.generalFormationRestriction();
+                HandleError.errorMessage("Formation Restriction!",
+                        "The formation must be 4-3-3.");
         });
 
         HBox teamHBox = new HBox(10);

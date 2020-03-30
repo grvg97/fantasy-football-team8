@@ -74,7 +74,7 @@ public class IOHandler {
         writer.close();
     }
 
-    /* User Authorisation by iterating throught the User database
+    /* User Authorisation by iterating through the User database
      * to check for equality between all username, password and the parameters entered
      * Using Iterator to iterate throught he User database */
     public User authUser(String username, String password) {

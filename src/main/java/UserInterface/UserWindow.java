@@ -9,6 +9,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+
+import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
@@ -18,6 +21,9 @@ import java.util.List;
 public class UserWindow {
 
     private static Scene userScene;
+
+    private static ListView<Player> startersView = new ListView<>();
+    private static ListView<Player> benchView = new ListView<>();
 
     /* Construct the ListView by adding the selected players */
     private static ListView<Player> constructTeamView(List<Player> players, Double width) {
@@ -43,11 +49,12 @@ public class UserWindow {
                 }
                 else {
                     // If player is vice or normal captain, put and indicator and make the text bold.
-                    if (player.getId() == user.getCaptainId()) {
+                    // Player can only be captain if he is a starter
+                    if (player.getId() == user.getCaptainId() && user.getTeamStarters().contains(player)) {
                         super.setStyle("-fx-font-weight: bold");
                         setText("C: " + player.getPositionName() + " " + player.getFullName());
                     }
-                    else if (player.getId() == user.getViceCaptainId()) {
+                    else if (player.getId() == user.getViceCaptainId() && user.getTeamStarters().contains(player)) {
                         super.setStyle("-fx-font-weight: bold");
                         setText("VC: " + player.getPositionName() + " " + player.getFullName());
                     }
@@ -93,8 +100,8 @@ public class UserWindow {
     /* Construct the scene by adding certain elements to the layout: GridPane. Then, create the scene */
     private static void setScene(Stage window, User user) {
 
-        ListView<Player> startersView = constructTeamView(user.getTeamStarters(), 300.0);
-        ListView<Player> benchView = constructTeamView(user.getTeamBench(), 100.0);
+        startersView = constructTeamView(user.getTeamStarters(), 300.0);
+        benchView = constructTeamView(user.getTeamBench(), 100.0);
         ListView<League> leagueView = constructLeagueView(IOHandler.getInstance().getLeagues());
 
         setViewToPlayerName(benchView, user);
@@ -114,6 +121,7 @@ public class UserWindow {
         Button deleteLeagueButton = new Button("Delete League");
         Button pickCaptainButton = new Button("Pick Captain");
         Button pickViceCaptainButton = new Button("Pick Vice Captain");
+        Button changePlayerButton = new Button("Change Player");
 
 
         // Display the selected player's stats
@@ -194,6 +202,17 @@ public class UserWindow {
             }
         });
 
+        changePlayerButton.setOnAction(event -> {
+            Player starterPlayer = startersView.getSelectionModel().getSelectedItem();
+
+            if (starterPlayer != null) {
+                ChangePlayerWindow.display(user.getTeamBench(), starterPlayer, user);
+                user.getTeamBench().forEach(e -> System.out.println(e.getFullName()));
+                System.out.println("\n");
+            }
+
+        });
+
 
         VBox labels = new VBox(10);
         labels.getChildren().addAll(userLabel, username, teamName);
@@ -203,7 +222,7 @@ public class UserWindow {
         topHBox.setAlignment(Pos.BASELINE_RIGHT);
 
         HBox teamButtons = new HBox(5);
-        teamButtons.getChildren().addAll(playerInfoButton, leagueInfoButton);
+        teamButtons.getChildren().addAll(playerInfoButton, changePlayerButton);
 
         HBox teamButtons2 = new HBox(5);
         teamButtons2.getChildren().addAll(pickCaptainButton, pickViceCaptainButton);
@@ -212,14 +231,13 @@ public class UserWindow {
         leagueButtons.getChildren().addAll(joinLeagueButton, exitLeagueButton);
 
         HBox leagueButtons2 = new HBox(5);
-        leagueButtons.getChildren().addAll(createLeagueButton, deleteLeagueButton);
-
-
-        VBox teamVBox = new VBox(5);
-        teamVBox.getChildren().addAll(startersView, benchView, teamButtons, teamButtons2);
+        leagueButtons.getChildren().addAll(leagueInfoButton, createLeagueButton, deleteLeagueButton);
 
         VBox leagueVBox = new VBox(5);
         leagueVBox.getChildren().addAll(leagueView, leagueButtons, leagueButtons2);
+
+        VBox teamVBox = new VBox(5);
+        teamVBox.getChildren().addAll(startersView, benchView, teamButtons, teamButtons2);
 
         // Construct layout using GridPane
         GridPane grid = new GridPane(); grid.setHgap(10);
@@ -231,7 +249,7 @@ public class UserWindow {
 
 
         grid.getChildren().addAll(
-            labels, teamVBox, leagueVBox, topHBox
+            labels, topHBox, teamVBox, leagueVBox
         );
 
         userScene = new Scene(grid);
@@ -261,7 +279,7 @@ public class UserWindow {
             ListView<String> teamListView = new ListView<>();
             for (Map.Entry mapElement : league.getTeamPoints().entrySet()) {
                 teamListView.getItems().add(
-                    "Team name: " + mapElement.getKey() + " : Points: " + mapElement.getValue()
+                    "Team name: " + mapElement.getKey() + "\nPoints: " + mapElement.getValue()
                 );
             }
             return teamListView;
@@ -301,7 +319,8 @@ public class UserWindow {
 
             submitButton.setOnAction(event -> {
                 if (leagueNameField.getText().equals(""))
-                    HandleError.textFieldBlank();
+                    HandleError.errorMessage("Give League Name",
+                            "Please give your league a name");
                 else {
                     leagueName = leagueNameField.getText();
                     League customLeague = user.createLeague(leagueName);
@@ -313,10 +332,12 @@ public class UserWindow {
             });
 
             // Layout construction and building the scene
-            HBox createLeagueBox = new HBox(10);
-            createLeagueBox.getChildren().addAll(leagueNameField, submitButton);
+            GridPane grid = new GridPane();
+            grid.setPadding(new Insets(20, 20, 20, 20));
+            GridPane.setConstraints(leagueNameField, 0, 0);
+            GridPane.setConstraints(submitButton, 0, 1);
 
-            createLeagueScene = new Scene(createLeagueBox);
+            createLeagueScene = new Scene(grid);
         }
 
         public static void display(User user, ListView<League> leagueView) {
@@ -325,8 +346,71 @@ public class UserWindow {
             newWindow.show();
         }
 
-        public static String getLeagueName() {
-            return leagueName;
+    }
+
+    private static class ChangePlayerWindow {
+        private static Scene PlayersScene;
+        private static Stage newWindow = new Stage();
+
+        private static ComboBox<Player> constructComboBox(List<Player> players) {
+            ComboBox<Player> playerComboBox = new ComboBox<>();
+            for (Player player: players) {
+                playerComboBox.getItems().add(player);
+            }
+            playerComboBox.setConverter(new StringConverter<Player>() {
+                @Override
+                public String toString(Player object) {
+                    return object.getFullName();
+                }
+
+                @Override
+                public Player fromString(String string) {
+                    return playerComboBox.getItems().stream().filter(player ->
+                            player.getFullName().equals(string)).findFirst().orElse(null);
+                }
+            });
+            return playerComboBox;
+        }
+
+        private static void setScene(List<Player> players, Player starterPlayer, User user) {
+            ComboBox<Player> playersBox = constructComboBox(players);
+
+            playersBox.setOnAction(event ->
+            {
+                Player benchPlayer = playersBox.getValue();
+                if (benchPlayer.getPosition() != starterPlayer.getPosition())
+                    HandleError.errorMessage("Can Not Change Player!",
+                            "The player that you want to change should be from the same position");
+                else {
+                    user.changePlayers(benchPlayer, starterPlayer);
+
+                    startersView.getItems().remove(starterPlayer);
+                    startersView.getItems().add(benchPlayer);
+
+                    benchView.getItems().remove(benchPlayer);
+                    benchView.getItems().add(starterPlayer);
+
+                    startersView.refresh(); benchView.refresh();
+                    newWindow.close();
+                }
+            });
+
+            Label label = new Label("Select the player\nyou want to change");
+            GridPane grid = new GridPane();
+            grid.setPadding(new Insets(20, 20, 20, 20));
+            GridPane.setConstraints(label, 0, 0);
+            GridPane.setConstraints(playersBox, 0, 1);
+
+            grid.getChildren().addAll(label, playersBox);
+
+            PlayersScene = new Scene(grid);
+        }
+
+        private static void display(List<Player> players, Player changingPlayer, User user) {
+            setScene(players, changingPlayer, user);
+
+            newWindow.setScene(PlayersScene);
+            newWindow.show();
         }
     }
 }

@@ -2,11 +2,17 @@ package UserInterface;
 
 import GameLogic.*;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -79,10 +85,11 @@ public class TransferWindow {
     }
 
     /* Constructs the listView*/
-    private static ListView<Player> constructPlayers(List<Player> players) {
+    private static ListView<Player> constructPlayers(List<Player> players, Double height) {
         ListView<Player> playersView = new ListView<>();
-        Iterator<Player> it = players.iterator();
+        playersView.setMaxHeight(height);
 
+        Iterator<Player> it = players.iterator();
         while (it.hasNext())
             playersView.getItems().add(it.next());
 
@@ -109,11 +116,10 @@ public class TransferWindow {
     /* Set the scene */
     public static void setScene(Stage window, User user) throws IOException {
         List<Player> players = HandleApi.getJsonObject().getPlayers();
-        List<Player> allTeamPlayers = user.getTeamStarters();
-        allTeamPlayers.addAll(user.getTeamBench()); // Merge the bench and the players to construct whole team.
 
-        ListView<Player> userTeamView = constructPlayers(allTeamPlayers);
-        ListView<Player> playerMarketView = constructPlayers(players);
+        ListView<Player> userTeamView = constructPlayers(user.getTeamStarters(), 300.0);
+        ListView<Player> userBenchView = constructPlayers(user.getTeamBench(), 100.0);
+        ListView<Player> playerMarketView = constructPlayers(players, 400.0);
 
         Button buyButton = new Button("<< Buy");
         Button sellButton = new Button("Sell >>");
@@ -139,24 +145,48 @@ public class TransferWindow {
             Player selectedMarketPlayer = playerMarketView.getSelectionModel().getSelectedItem();
 
             if (selectedMarketPlayer != null) {
-                user.buyPlayer(selectedMarketPlayer);
-                userTeamView.getItems().add(selectedMarketPlayer);
+                if (user.buyPlayer(selectedMarketPlayer)) {
+                    if (user.getTeamStarters().size() >= 11) {
+                        userBenchView.getItems().addAll(selectedMarketPlayer);
+                        userBenchView.refresh();
+                    }
+                    else {
+                        userTeamView.getItems().add(selectedMarketPlayer);
+                        userTeamView.refresh();
+                    }
+                    setListViewToString(userTeamView);
+                    setListViewToString(userBenchView);
+
+                    creditLabel.setText("Credits = " + user.getCredits());
+                }
+            }
+
+        });
+
+        sellButton.setOnAction(event -> {
+            Player starterPlayer = userTeamView.getSelectionModel().getSelectedItem();
+            Player benchPlayer = userBenchView.getSelectionModel().getSelectedItem();
+
+            // Sell the starter player and make benchPlayer null to also not sell it
+            if (starterPlayer != null) {
+                benchPlayer = null;
+                sellPlayer(user, starterPlayer);
+
+                userTeamView.getItems().remove(starterPlayer);
                 userTeamView.refresh();
                 setListViewToString(userTeamView);
 
                 creditLabel.setText("Credits = " + user.getCredits());
             }
 
-        });
+            // Sell the bench player and make startPlayer null to also not sell it
+            else if (benchPlayer != null) {
+                starterPlayer = null;
+                sellPlayer(user, benchPlayer);
 
-        sellButton.setOnAction(event -> {
-            Player selectedTeamPlayer = userTeamView.getSelectionModel().getSelectedItem();
-            if (selectedTeamPlayer != null) {
-                sellPlayer(user, selectedTeamPlayer);
-
-                userTeamView.getItems().remove(selectedTeamPlayer);
-                userTeamView.refresh();
-                setListViewToString(userTeamView);
+                userBenchView.getItems().remove(benchPlayer);
+                userBenchView.refresh();
+                setListViewToString(userBenchView);
 
                 creditLabel.setText("Credits = " + user.getCredits());
             }
@@ -168,7 +198,8 @@ public class TransferWindow {
                 window.setScene(UserWindow.getScene(window, refreshedUser));
             }
             else
-                HandleError.generalFormationRestriction();
+                HandleError.errorMessage("Formation Restriction!",
+                        "The formation must be 4-3-3.");
         });
 
         playerInfoButton.setOnAction(event -> {
@@ -177,27 +208,29 @@ public class TransferWindow {
                 PlayerWindow.display(selectedMarketPlayer);
         });
 
+        VBox teamVBox = new VBox(5);
+        teamVBox.getChildren().addAll(creditLabel, userTeamView, userBenchView);
+
+        VBox marketVBox = new VBox(5);
+        marketVBox.getChildren().addAll(playerFilterBox, playerMarketView);
+
+        VBox operationButtons = new VBox(5); operationButtons.setAlignment(Pos.CENTER);
+        operationButtons.getChildren().addAll(buyButton, sellButton);
+
+        HBox viewsBox = new HBox(5);
+        viewsBox.getChildren().addAll(teamVBox, operationButtons, marketVBox);
+
+        HBox buttonBox = new HBox(5);
+        buttonBox.getChildren().addAll(playerInfoButton, backButton);
 
         // Construct the layout using GridPane
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10,10,10,10)); grid.setVgap(10);
 
-        GridPane.setConstraints(userTeamView, 0, 1);
-        GridPane.setConstraints(creditLabel, 0, 2);
-        GridPane.setConstraints(buyButton, 1, 2);
-        GridPane.setConstraints(sellButton, 1, 3);
-        GridPane.setConstraints(playerMarketView, 2, 1);
-        GridPane.setConstraints(playerFilterBox, 2, 0);
-        GridPane.setConstraints(backButton, 3, 4);
-        GridPane.setConstraints(playerInfoButton, 2, 2);
+        GridPane.setConstraints(viewsBox, 0, 0);
+        GridPane.setConstraints(buttonBox, 0, 1);
 
-
-        grid.getChildren().addAll(
-                userTeamView, buyButton, sellButton,
-                playerMarketView, backButton,
-                playerInfoButton, creditLabel,
-                playerFilterBox
-        );
+        grid.getChildren().addAll(viewsBox, buttonBox);
 
         // Set the current constructed layout to the transfer scene
         transferScene = new Scene(grid);

@@ -19,7 +19,7 @@ import java.io.IOException;
 public class LoginWindow {
     private static Scene loginScene;
 
-    public static void setScene(Stage window) {
+    private static void setScene(Stage window) {
         Button loginButton = new Button("Login");
         Button signUpButton = new Button("Sign up");
 
@@ -51,11 +51,14 @@ public class LoginWindow {
 
             if (user != null) {
                 // Every time you login: Update the player's stats via player market using the api call.
+                try { user.updatePlayers(); }
+                catch (IOException e) { e.printStackTrace(); }
 
                 window.setScene(UserWindow.getScene(window, user));
             }
             else {
-                HandleError.userDoesNotExist();
+                HandleError.errorMessage("User Does Not Exist!",
+                        "The username and password are incorrect");
             }
 
         });
@@ -90,13 +93,15 @@ public class LoginWindow {
         private static boolean restrictionsMet(String username, String password, String password2) {
             // If username or password field is blank, don't enter the tutorial window scene
             if (username.equals("") || password.equals("")) {
-                HandleError.signUpRestriction();
+                HandleError.errorMessage("SignUp Restriction",
+                        "Username of password field can't be left blank");
                 return false;
             }
 
             // Password mismatch is not allowed
             else if (!password.equals(password2)) {
-                HandleError.passwordMismatch();
+                HandleError.errorMessage("Password Mismatch!",
+                        "The passwords you are typing don't match");
                 return false;
             }
             return true;

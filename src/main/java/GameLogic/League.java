@@ -21,7 +21,7 @@ public class League {
     }
 
 
-    //
+    // Update the round (weekly) points using this function
     public void updateRoundPoints() {
         Iterator<User> it = competingUsers.iterator();
         while (it.hasNext()) {
@@ -44,7 +44,8 @@ public class League {
             this.teamPoints.remove(user.getTeamName());
         }
         else {
-            HandleError.userDoesNotExist();
+            HandleError.errorMessage("User Does Not Exists!",
+                    user.getUsername() + " doesn't exist in the league");
         }
     }
 

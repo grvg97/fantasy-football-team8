@@ -22,16 +22,9 @@ StartWindow -> LoginWindow
 // EventHandler<ActionEvent> is not needed when using lamba for event handling
 public class Main extends Application {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         launch(args);
     }
-
-
-    private void closeProgram(Stage window) {
-        window.close();
-    }
-
-
 
     // Start -> SignUp -> Tutorial -> User -> Transfer
     // Start -> Login -> User -> Transfer
@@ -39,7 +32,6 @@ public class Main extends Application {
     // Our main javafx code
     @Override
     public void start(Stage primaryStage) throws Exception {
-
 
         // Initialize global league
         IOHandler.getInstance().init();
@@ -51,7 +43,7 @@ public class Main extends Application {
 
         // Called when the close button on the window is clicked
         primaryStage.setOnCloseRequest(event -> {
-            closeProgram(primaryStage);
+
         });
     }
 

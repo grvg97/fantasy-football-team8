@@ -30,28 +30,33 @@ public class User {
         this.team = new Team(name, this.id);
     }
 
-    public void deleteTeam() {
-        // after this, if there is no reference to the object,
-        // it will be deleted by the garbage collector
-        this.team = null;
-    }
 
     // This function handles the buying of players off the market. Credits may not go below 0.
-    public void buyPlayer(Player player) {
+    public boolean buyPlayer(Player player) {
         int totalSize = this.team.players.size() + this.team.bench.size();
 
-        if (this.team.contains(player))
-            HandleError.playerExists(player);
+        if (this.team.contains(player)) {
+            HandleError.errorMessage("Player Exists!",
+                    player.getFullName() + " already exists in the team.");
+            return false;
+        }
 
-        else if (totalSize == 15)
-            HandleError.maxNumPlayers();
+        else if (totalSize >= 15) {
+            HandleError.errorMessage("Max Number Reached!",
+                    "The number of players in the team can't exceed 15");
+            return false;
+        }
 
-        else if ((this.credits - player.getCost()) < 0)
-            HandleError.notEnoughCredits(this.credits, player.getFullName());
+        else if ((this.credits - player.getCost()) < 0) {
+            HandleError.errorMessage("Not Enough Credits",
+                    this.credits + " left, " + " not enough to buy " + player.getFullName());
+            return false;
+        }
 
         else {
             this.team.addPlayer(player);
             this.credits -= player.getCost();
+            return true;
         }
     }
 
@@ -105,7 +110,8 @@ public class User {
             league = null;
         }
         else {
-            HandleError.actionNotAuthorized(String.valueOf(league.getManager()));
+            HandleError.errorMessage("Action Not Authorized" ,
+                    String.valueOf(league.getManager()) + " is the manager of the league");
         }
     }
 
@@ -114,8 +120,16 @@ public class User {
         this.team.updateTeamAndBench(playerMarket);
     }
 
+    public void changePlayers(Player benchPlayer, Player starterPlayer) {
+        this.team.players.remove(starterPlayer);
+        this.team.bench.remove(benchPlayer);
 
-    //GETTERS and SETTERS for USER:
+        this.team.players.add(benchPlayer);
+        this.team.bench.add(starterPlayer);
+
+    }
+
+    // GETTERS and SETTERS for USER:
     public void setId(int id) { this.id = id; }
     public int getId() {return this.id;}
     public String getUsername() {return this.username;}
@@ -144,7 +158,7 @@ public class User {
     }
 
 
-    //Gets Player related Information from team
+    // Gets Player related Information from team
     public List<Player> getTeamStarters() { return new ArrayList<>(this.team.players); }
     public List<Player> getTeamBench() { return new ArrayList<>(this.team.bench); }
 
@@ -196,6 +210,7 @@ public class User {
             this.bench = updatedBench;
         }
 
+        // Bench players receive half the round points.
         private int getRoundPoints() {
             int roundPoints = 0;
             for (Player player : this.players) roundPoints += player.getRoundPoints();

@@ -16,73 +16,10 @@ public class HandleError {
         error.setContentText(contentText);
         error.showAndWait();
     }
-    // Team size must be at least 11 in order for the team to be created and saved to database
+
+    // Construct the error based on the message you want to give to the user
     public static void errorMessage(String header, String content) {
         constructError(header, content);
     }
 
-    // Team size must be at least 11 in order for the team to be created and saved to database
-    public static void teamSize(int teamSize) {
-        constructError("Team size must be at least 11!",
-                "The size of the team is " + teamSize);
-    }
-
-    // Player can't be added to team without team existing.
-    public static void teamMustExist() {
-        constructError("Team must be created!",
-                "User must first create team in order\nto add players to that team.");
-
-    }
-
-    // Team name can't be left blank. Team won't be created
-    public static void textFieldBlank() {
-        constructError("Text Field can't be left blank!",
-                "Please give your Text Field a name");
-
-    }
-
-    // Used in Transfer Window
-    public static void generalFormationRestriction() {
-        constructError("General Formation Restriction!",
-                "The formation must be 4-3-3");
-    }
-
-    // Username or Password can't be left blank
-    public static void signUpRestriction() {
-        constructError("Invalid Username or Password!",
-                "Username or Password can not be left blank");
-    }
-
-    // Passwords must match in the SignUpWindow
-    public static void passwordMismatch() {
-        constructError("Password Mismatch!",
-                "The passwords you have typed don't match.\nPlease rewrite your passwords.");
-    }
-
-    // User can't add player to team if it already exists
-    public static void playerExists(Player player) {
-        constructError("Player Exists!",
-                player.getFullName() + " already exists in the team.");
-    }
-
-    public static void actionNotAuthorized(String manager) {
-        constructError("Not Authorized!",
-                "You are not authorized to delete this league, manager: " + manager);
-
-    }
-
-    public static void maxNumPlayers() {
-        constructError("Player Amount Exceeds!",
-                "Maximum number of players reached");
-    }
-
-    public static void notEnoughCredits(int credits, String player) {
-        constructError("Not enough credits!",
-                credits + " credits left. Not enough to buy " + player);
-    }
-
-    public static void userDoesNotExist() {
-        constructError("User Doesn't Exists!",
-                "The following username or password is incorrect.");
-    }
 }
