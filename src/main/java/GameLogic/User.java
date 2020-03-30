@@ -121,12 +121,7 @@ public class User {
     }
 
     public void changePlayers(Player benchPlayer, Player starterPlayer) {
-        this.team.players.remove(starterPlayer);
-        this.team.bench.remove(benchPlayer);
-
-        this.team.players.add(benchPlayer);
-        this.team.bench.add(starterPlayer);
-
+        this.team.changeStartingLineup(benchPlayer, starterPlayer);
     }
 
     // GETTERS and SETTERS for USER:
@@ -258,17 +253,12 @@ public class User {
         }
 
 
-        private boolean changeStartingLineup(Player teamPlayer, Player benchPlayer) {
-            if (teamPlayer.getPosition() != benchPlayer.getPosition())
-                return false;
-
-            this.players.remove(teamPlayer);
+        private void changeStartingLineup(Player benchPlayer, Player starterPlayer) {
+            this.players.remove(starterPlayer);
             this.bench.remove(benchPlayer);
 
             this.players.add(benchPlayer);
-            this.bench.add(teamPlayer);
-
-            return true;
+            this.bench.add(starterPlayer);
         }
 
         private boolean isComplete() {
