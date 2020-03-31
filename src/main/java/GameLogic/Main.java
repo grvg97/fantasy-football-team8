@@ -15,12 +15,12 @@ import java.io.IOException;
                            /
 StartWindow -> LoginWindow
 */
+public class Main extends Application {
 
 
 // layout -> scene -> window
 
 // EventHandler<ActionEvent> is not needed when using lamba for event handling
-public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);

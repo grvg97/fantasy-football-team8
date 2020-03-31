@@ -133,7 +133,6 @@ public class TransferWindow {
 
         playerFilterBox.setOnAction(event -> filterSelection(players, playerFilterBox, playerMarketView));
 
-
         /*
          * 'buyButton' buys the player based on restrictions
          * 'sellButton' sells the player and adds the credits
@@ -166,7 +165,6 @@ public class TransferWindow {
 
             // Sell the bench player and make startPlayer null to also not sell it
             if (benchPlayer != null) {
-                starterPlayer = null;
                 user.sellPlayer(benchPlayer);
 
                 userBenchView.getItems().remove(benchPlayer);
@@ -181,7 +179,6 @@ public class TransferWindow {
                             "Sell the bench players first.");
                 }
                 else {
-                    benchPlayer = null;
                     user.sellPlayer(starterPlayer);
 
                     userTeamView.getItems().remove(starterPlayer);
