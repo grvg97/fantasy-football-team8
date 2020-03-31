@@ -15,7 +15,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-/* User can login using this window, or click the signUpButton to go to the SignUpWindow */
+/* This class represents the Login window
+ * User will enter username and password and login to his account
+ * if the inputted username and password are correct
+ * User can also navigate to the sign up page if he/she doesn't have an account
+*/
 public class LoginWindow {
     private static Scene loginScene;
 

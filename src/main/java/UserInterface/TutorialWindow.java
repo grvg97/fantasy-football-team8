@@ -5,20 +5,24 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 
+/*
+ * This class represents the Tutorial window.
+ * This window is the part where the user creates a team consisting of
+ * at least 11, at most 15 players.
+ * The User can't advance to the next phase(User Window of the game if his
+ * team doesn't correspond to the restrictions of the game,
+ * such as the 4-3-3 formation restriction.
+ */
 public class TutorialWindow {
 
     private static Scene tutorialScene;
