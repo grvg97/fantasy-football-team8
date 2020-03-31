@@ -280,7 +280,7 @@ public class UserWindow {
         // Info message to the user about COVID 19
         HandleError.infoMessage("Can Not Update Players",
                 "Dear player, due to COVID 19 the weekly football games have been canceled.\n" +
-                        "Therefore, we can't update the stats for the players. #StaySafe&Home");
+                        "Therefore, there is no restrictions for transferring players." + "Also, we can't update the stats for the players. #StaySafe&Home");
 
         // Save game upon closing it
         window.setOnCloseRequest(event -> {

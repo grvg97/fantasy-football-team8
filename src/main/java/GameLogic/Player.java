@@ -30,9 +30,6 @@ public class Player {
     public int getId() {
         return this.id;
     }
-    public int getTotalPoints() {
-        return this.totalPoints;
-    }
     public int getCost() {
         return this.cost;
     }

@@ -20,7 +20,7 @@ public class HandleError {
     // This function is an exception and it is used in only one place
     public static void infoMessage(String headerText, String contentText) {
         Alert info = new Alert(Alert.AlertType.INFORMATION);
-        info.setHeight(200.0);
+        info.setHeight(250.0);
         info.setHeaderText(headerText);
         info.setContentText(contentText);
         info.showAndWait();
