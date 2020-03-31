@@ -426,7 +426,7 @@ The figure above shows the UserWindow class from which the user can perform oper
 
 
 ## Implementation									
-Author(s): `name of the team member(s) responsible for this section`
+Author(s): Mehmet Cetin, Sunny Dairam, Gilbert van Gerven, Ricardo Burgos
 
 In this chapter you will describe the following aspects of your project:
 - the strategy that you followed when moving from the UML models to the implementation code;
