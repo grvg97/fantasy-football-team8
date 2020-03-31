@@ -374,10 +374,68 @@ Lastly, The user can issue the *exitLeague* with reference to the league name to
 
 The figure above shows the UserWindow class from which the user can perform operations over leagues (opening, creation and deletion).
 
+## **Implementation**
 
+Author(s): Mehmet Cetin, Sunny Dairam
 
-## Implementation									
-Author(s): Mehmet Cetin, Sunny Dairam, Gilbert van Gerven, Ricardo Burgos
+- the strategy that you followed when moving from the UML models to the implementation code;
+- the key solutions that you applied when implementing your system (for example, how you implemented the syntax highlighting feature of your code snippet manager, how you manage fantasy soccer matches, etc.);
+- the location of the main Java class needed for executing your system in your source code;
+- the location of the Jar file for directly executing your system;
+- the 30-seconds video showing the execution of your system (you can embed the video directly in your md file on GitHub).
+
+In this chapter you will describe the following aspects of your project:
+
+### **The strategy we followed when moving the UML models to the implementation code**
+
+We started off making the models of the classes and the associated class diagram. We then implemented them in Java adjusting our models iteratively along the way.
+
+**Class User**
+
+We implemented the class user first and added all the attributes and operations that were already in the class diagram. After that we implemented the operations that were connected in order to implement the feature that was given from the first assignment (feature 2). After that we implemented the features in the order of 6, 11.1, 12 and 1. The implemented features were connected to each other.
+
+**Class League:** We have coded the private class league inside the user class.
+
+**Class MarketPlace**
+
+We coded the MarketPlace class and added the attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We have also converted the json string to a json object and stored it in the marketplace class in the &quot;players&quot; list. We used that list for the user to store
+
+**Class League**
+
+The League class was implemented by adding attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We add users to the global league using the addUser() function which is one of the core functions that we have used when implementing the features.
+
+### **Key solutions applied when implementing the system**
+
+### **Logging in/ registering the user**
+
+The user can login and register by inputting a username and password. If the username is not presented in the User Database the user instead gets added and registered. This problem was solved by the _key solution_ of converting an object to a json file using the fromJson() from the **Gson** library and storing that file locally inside the database directory.
+
+In a class called **Game**, a classs with the main purpose of launching all the necessary class operations in order, when the user enters the game for the first time, a new Json file is instantiated in a specific directory. In order to identify someone as a new user we have a class under the name of **UserDatabase** which contains a setter and getter method *addUser(user)* and *authUser(String Username,String Password)*, *authUser* will attempt to get a an entry in the Json file with the matching User name and password, as it finds out that no such entry exists, the *addUser()* method will be run and adds a User object in Json form to Json object that is in a specified path (created dynamically at the first runtime of the system). If the user have already logged in previously, it will authenticate the user upon the confirmation of an existing (user,password) entry in the created Json file.
+
+### **Getting the list of Premier League Players from the API**
+
+We get all the players and their stats from the API link: [https://fantasy.premierleague.com/api/bootstrap-static/](https://fantasy.premierleague.com/api/bootstrap-static/)
+
+We fetched the json string using a get request from the HttpUrlConnection library from java.net. After getting the json string, we used the Gson library&#39;s fromJson function to convert the given json string to a json object; which in this case is the MarketPlace class.
+
+### **User creating the team**
+
+The user is able to create a team apon registering himself. While the team is being constructed the user is asked for a team name and then gets a list of players presented to him. Then, the user can choose between the players based on their position which is in the order of goalkeeper, defender, midfielder and forwards. After the user creates its team, the team will be added to the global league automatically.
+
+### **The League and User Databases**
+
+We have 2 separate databases in our system. The purpose of this is for the information of the game to be maintainable. This makes the game a local multiplayer game so keeping track of all users and leagues is a must. In the user database we store a list of all users that are registered which are using our system. In the league database we store all created leagues of the system including the global league, which is initially inside the league database file
+
+**The location of the main Java class needed for executing our system is found at:**
+
+fantasy-football-team8\src\main\java\Main.java
+
+**The location of the jar file to directly execute the system :**
+fantasy-football-team8\out\artifacts\software\_design\_vu\_2020\_jar\software-design-vu-2020.jar
+
+**A 30-second video showing the execution of our system:**
+
+[https://www.youtube.com/watch?v=MtKv0an2e7c](https://www.youtube.com/watch?v=MtKv0an2e7c)
 
 
 
