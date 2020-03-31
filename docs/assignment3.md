@@ -71,24 +71,8 @@ The UML class Diagram we have included in this document is the closest represent
 Much like the object diagram and unlike the sequence and state-machine diagrams, the class diagram is a static representation of the system, it does not show how states of objects change but shows which classes have the rights to alter the states of another and the dependencies between all parts of the system, meaning that if one part of a system changes state, the parts dependent on it will do so as well.   
 
   
-
-Moreover, within our class diagrams we have included *associations*, which represents whether one class has access to another class's attributes or operations. Some *associations* will be unidirectional indicated with an arrow pointing to one side of the member, this means that the class that the *association* is pointing to does not have access to the attributes and operations of the class at the other end of the *association*.  
-
-  
-
-In addition, we have also included *aggregations* denoted by a black filled diamond or a white unfilled diamond with an edge coming out of the diamond which connects to another class. The black filled diamond denotes that there is a *composition* relationship between one class to another, the white unfilled diamond represents a *shared aggregation* relationship, the end of the member with the diamond represents the member that is composed of the member of the other end. Included in these relationships are the multiplicities of the classes.   
-
-  
-
-Interface realizations (denoted by dashed line and white arrowhead) were also included in the diagram in order for us to represent the design patterns that we have included in our implementation of the system. We have also added dependencies that we deem essential in order to convey the implementation of the Graphical User interface of our system as well as the design patterns.   
-
-  
-
 Please note that we have not included a class **HandleError** since it is seen as a helper class to our Graphical user interface in order to display error messages upon certain conditions of the games. We understand that for the sake of consistency in our diagrams, it is better to include classes that will be referred further in the following UML diagrams. However, with the case of **HandleError**, the class just provides an explicit way to write an error message which need not to be referred explicitly in all of our UML diagrams. As advised by our supervisors we have also omitted getters and setters that does not contain much functionality. Through this we want to ensure that we do not transfer the complexity of our codes to the Class Diagram that is supposed to be the closest abstraction to the actual representation of our code. **In our system, for everytime a an outside class would like to retrieve an attribute of another class it is done so through a public getter method.** 
 
-  
-
-  
 
 ![Imgur](https://i.imgur.com/oRAEidq.png?1) 
 
@@ -124,13 +108,13 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 ### **Team Operations:**  
 
-<br>1. *-Team(name: String, id: int)* - private constructor for the class **Team** since the class is a private inner class within the **User** class, an instant of this class can only be created within the **User** or **Team** class, the parameters represent the name that the user has chosen for the team and the id of the team (assigned same value as id of User). Making this constructor private makes sense as a Team can only exist within the User class. Since a Team cannot exist without a user (entity who instantiates the **Team** object). </br>
+<br>1. *-Team(name: String, id: int)* - private constructor for the class **Team** since the class is a private inner class within the **User** class, an instant of this class can only be created within the **User**  class, the parameters represent the name that the user has chosen for the team and the id of the team. Making this constructor private makes sense as a Team can only exist within the User class. Since a **Team** cannot exist without a **User**. </br>
 
-<br>2. *-UpdateTeamAndBench(playerMarket: PlayerMarket)* - Updates the statistics of every player in the team by invoking a method from the **PlayerMarket** class *getPlayers()* which will ensure that the statistics of the players within the team is consistent with the statistics of the same players in **PlayerMarket** which is in direct relation to the API. This method takes a **PlayerMarket** object as a parameter in order to invoke its method. This method is very essential in order for the game to progress and for players to receive the points that players have gained or lost which is connected to the following method below. 
+<br>2. *-UpdateTeamAndBench(playerMarket: PlayerMarket)* - Updates the statistics of every player in the team by invoking a method from the **PlayerMarket** class (method parameter) *getPlayers()* which will ensure that the statistics of the players within the team is consistent with the statistics of the same players in **PlayerMarket** which is in direct relation to the API. 
 
 <br>3. *-getRoundPoints()* - Collects the points that every player in the team have collected after every weekly game have been played in realtime, this collected points will be displayed as the team's accumulated points for the season. 
 
-<br>4. *-addPlayer(player: Player)* - Invoked by the **User** method *buyPlayer()*, this method handles the adding of the player into either the team's *players* list attribute (starting lineup), or the team's *bench* list attribute (bench of team) if the starting lineup is full, once a player is purchased from the *PlayerMarket* by the **User** method *buyPlayer()* which handles the deduction of the credits accordingly form the **User** class. We have separated the two tasks from two classes under the consideration of good seperation of concern, since the **credits** attribute belongs to the **User** and the **Ployer** objects are stored within the **Team** class, we wanted to make sure that both classes are only altering their own attributes. Having the method in *User* class invoke this method allows for the task altering the contents of the team and the credits of the user to be done concurrently while separating the implementation, thus providing a simpler interface. 
+<br>4. *-addPlayer(player: Player)* - Invoked by the **User** method *buyPlayer()*, this method handles the adding of the player into either the team's *players* list attribute (starting lineup), or the team's *bench* list attribute (bench of team) if the starting lineup is full, once a player is purchased from the *PlayerMarket* by the **User** method *buyPlayer()* which handles the deduction of the credits accordingly form the **User** class. We have separated the two tasks from two classes under the consideration of good seperation of concern, since the **credits** attribute belongs to the **User** and the **Player** objects are stored within the **Team** class, we wanted to make sure that both classes are only altering their own attributes. 
 
 <br>5. *-removePlayer(player: Player)* -Invoked by the **User** method *sellPlayer()*. This method handles the removal of players from either the team's *players* or *bench* list attributes, once a player is sold. For the same reason as *addPlayer()* we have seperated the removal of the players from the team and the return of  *User* credits once a player is sold off to the market (managed by *sellPlayer()*) to 2 different methods.   
 
@@ -138,7 +122,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>7. *-assignViceCaptainId(in viceCaptain: Player)* - Assigns the selected *Player* as the captain of the team by fetching the *Player* specified in the method parameter, this player will become the captain in the case that the captain is injured. This method is invoked by the **User** method *pickViceCaptain()* for the same reason as the method above  
 
-<br>8. *-contains(player: Player): boolean* - Invoked when the **User** method *buyPlayer()* is invoked, this method handles the checking of existing players within the team in comparison to the parameter of *buyPlayer()*, this ensures that no duplicates are allowed to be in the same Team, which is an essential part of the game. We have implemented this in the *Team* class rather than in the method *buyPlayer()* to ensure that the encapsulation of the *Team* class attributes are not broken by a public method of another class . This method return a boolean with the value true if the same player from the parameter of the *buyPlayer()* method exists in the team, thus not procceeding purchase, otherwise will return false and proceeds with purchasing the player.
+<br>8. *-contains(player: Player): boolean* - Invoked when the **User** method *buyPlayer()* is invoked, this method handles the checking of existing players within the team in comparison to the parameter of *buyPlayer()*, this ensures that no duplicates are allowed to be in the same Team. We have implemented this in the *Team* class rather than in the method *buyPlayer()* to ensure that the encapsulation of the *Team* class attributes are not broken by a public method of another class . This method return a boolean with the value true if the same player from the parameter of the *buyPlayer()* method exists in the team, blocking the purchase and false otherwise.
 
 <br>9. *-changeStartingLineup(benchPlayer: Player, starterPlayer: Player )* - Handles the physical switching of a starting players and a bench player given as specified in the parameter of the methods. The user will invoke this method through the method *changePlayers()* in the **User** class. 
 
@@ -156,11 +140,11 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>3. *-password : String* - Represents the password that a **User** has assigned to itself while signing up to the game. This is the second attribute used to authenticate the user during logging in. 
 
-<br>4. *-team: Team* - Holds a in instant of a *Team* class, this object represents the team that the User has created and now owns, if the user has yet to create a team, this object variable will hold a null value. This variable holds attributes that embodies the information of a Team (Players, points, captain, viceCaptain etc.), we have decided to store the Team object in this class to represent that it is owned by the user and the user is authorized to modify this object. 
+<br>4. *-team: Team* - Holds a in instant of a *Team* class, this object represents the team that the User has created and now owns, if the user has yet to create a team, this object variable will hold a null value. 
 
 <br>6. *-credits: int* - Represents the credits of the user, once signed up, upon the creation of a new **User** object, the user is assigned with 1000 initial credits with which they are able to purchase players from the **PlayerMarket**. 
 
-<br>7. *-hasTransferred: boolean* - Attribute represents whether the user has performed a once every week limit transferring of players (selling player from team and buying a different player from the market). Initially set to false, if the boolean is set to true, the user will not be able to buy or sell any players to and from the **PlayerMarker** (accessed via **TransferWindow**).
+<br>7. *-hasTransferred: boolean* - Attribute represents whether the user has performed a once every week limit transferring of players (selling player from team and buying a different player from the market). Initially set to false.
 
 
 
@@ -194,108 +178,117 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>13. *+updatePlayers* - Updates the statistics of the players that are in the team. This was implemented to enable the collection of points based on new statistics of the players . Done by invoking **PlayerMarket** method *getPlayers()* and **Team** method *updateTeamAndBench()*.
 
-<br>14. *+changePlayers(benchPlayer: Player, teamPlayer: player)*-  Switches a bench player with a starting player by invoking the  **Team** method *changeStartingLineup()*
+<br>14. *+changePlayers(benchPlayer: Player, teamPlayer: player)*-  Switches a bench player with a starting player by invoking the  **Team** method *changeStartingLineup()*.
  
 
 
 ### **Class:**
 
-**PlayerMarket** - This class stores the players fetched from the api using Gson. It enables the user to buy and add the players to its team by showing the players with certain specifications.
+**PlayerMarket** - This class acts as a container for all the players fetched from the API. The responsibility of this class is to convert the players fetched from the API by the **HandleAPI** class from JSON to **Player** object format and store it for further reference to the contents. The buying, selling, adding, removing of every players by the **Team** and **User** is done by referencing to this class. Previously, we did not have a **HandleAPI** class and did the API handling from this class too. However, due to poor seperation of concerns we have seperated the 2 tasks as we did not want all the other classes who are referring to **Player** objects to be aware of the API implementation. 
 
 ### **PlayerMarket Attributes:**
 
-1. *players: Player[\*]* - This stores the players fetched, using a get request, from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) using Gson. 
+<br>1. *players: Player[ ]* - This stores the players that were converted from JSON (fetched by **HandleAPI**) to **Player** object in a list of **Player** type. 
 
 ### **PlayerMarket Operations:**
+<br>1. *+iterator()* - returns an *iterator()* for the *players* attribute (explanation in Design Pattern section). Enabling the use of **Iterator** interface methods *hasNext()* and *next()*.
 
-1. *showPlayers()* - This operation displays the players no matter which position they are from. This function is specifically used when constructing the bench players because the bench players don&#39;t have any restrictions for positions.
-
-2. *showPlayersWithPosition (position : int)* = This operation only displays the players with the specified position. 
-
-3. *getPlayer (id: int)* - This operation loops through all the players and returns the player with the specified id. 
-
-
+<br>2. *+getPlayers()* - gets players that were fetched by the **HandleApi**, returned by **HandleApi** method *getJsonObject* as a type of this class and returns it as a list of **Player** objects. Enables other classes to retrieve players from an object of **PlayerMarket** type. This design enables for the updating of players statistics, buying players, selling players, adding players to teams, removing players from the team. All operations involving **Player** objects begins with this single method. 
 
 
 ### **Class:**
 
-**League:** - This class represents a league that holds the different users who are competing in the league with their teams. Within the league class, the points of each Teams that every user owns is stored. Through this we are able to compute the ranking and display every user (manager) involved in the league in order of the total points they have attained in between the time they have joined the league to the end date of the league. 
+**League:** - This class represents a league which consists of every user who have joined the league (custom league) or have signed up to the game (global league). This class will represent the displaying of the ranking of each user's teams based on points they have gained within the league.
 
 
 ### **League Attributes:**
 
-1. *id*: int = Stores the id of the league and allows the created leagues to be unique. 
+<br>1. *-id*: int = Stores the id of the league and allows the created leagues to have a unique method of reference, ensures that methods accessing the attributes refer to one unique instant of the object. 
 
-2. *name: String* - This attribute holds the name of the league. It is assigned when the league is created via a constructor. 
+<br>2. *-name: String* - Stores the name of the league which is set through the constructor of this class.
 
-3. *manager: User* - This attribute stores the manager of the league. The manager has the ability to delete and modify the end date of this league. 
+<br>3. *-competingUsers: User[\*]* - Stores all users competing within a particular league represented by **User** objects within a list. This attribute is the main determiner of the rankings within a league since this is how the class make reference to the attributes of a **User** in order to get the points of their team.
 
-4. *teamPoints:HashMap<String,Integer>* - This stores the team names as keys and the total points of the team as values. It is used when displaying the league ranking. 
+<br>4. *-teamPoints:HashMap<String,Integer>* - This stores the team names as keys to the amount of poi
 
-5. *competingUsers: User[\*]* - Stores the users that are participating/competing in the league. 
+<br>5. *-manager: String* - Stores the name of the manager of the league. This attribute is used to verify if a user is the manager of the league or not when attempting to perform modifications on the league. This is set to the name of the user who have created the league. 
 
 
 ### **League Operations:**
 
-1. *addUser(In user: User)* - This operation adds the user to the &quot;competingUsers&quot; list and adds the user&#39;s team and team points to the teamPoints HashMap. 
+<br>1. *+League(name: String, manager: String)* - Constructor for the class, invoked by **User** method *createLeague* and receives its parameters from the method. Sets the *name* of the league to what the creator have inputted and the *manager* as the *name* attribute of the **User** that invoked the constructor. This constructor is public and is necessary for users to create a custom league. This constructor is not invoked upon the creation of the global league, since the global league is initialized with the system launch.  
 
-2. *removeUser(In user: User)* - This operation removes the user (if the user exists in the league) from the &quot;competingUsers&quot; list and removes the user&#39;s team and team points to the teamPoints HashMap.  
+<br>2. *+updateRoundPoints* - Uses an iterator to iterate through the *competingUsers* list and invokes the **User** method *getTeamRoundPoints* in order to collect the number of points every **User** has gained with their team during the week. Increments the *teamPoints* attribute in accordance to each team names with the number of points that the team gained during each week. This is necessary to update the leader board of the league.
 
-3. *howRanking()* - This function displays the ranking of the teams by printing the team name and the points of that team. 
+<br>3. *+addUser(user: User)* - Adds a user (**User** object) requesting to join the league into the attribute *competingUsers*, this method is invoked and gets the value of its parameter by the **User** method *joinLeague()*. The method also adds an entry for the joined user's team and an initial value of 0 points into the **teamPoints** attribute (ensure fairness to all users).
 
-4. *setEndDate(endDate: Date)* - This function sets the end date of the league based on the desire of the league manager. 
+<br>4. *+removeUser(In user: User)* - Removes user from the *competingUsers* list and deletes the entry of their team from the *teamPoints* hashMap. This method is invoked by the **User** method *exitLeague()*, representing a user exiting a league that they have joined. This method is designed in a way that a user can only exit a league that they have joined (parameter to the method exists).  
 
-
+<br>5. *+showLeaderBoard()* - displays the *teamPoints* in an ordered manner in order to show the ranking of each teams based on the points that they have in the referred league.
 
 
 ### **Class:**
 
-**Player** - This class represents a player. A player has many attributes and stats based on football games played every week. All of the player attributes are fetched from the [api](https://fantasy.premierleague.com/api/bootstrap-static/) and dependent on live games. 
+**Player** - This class represents the a player and its statistics that is fetched from the API by the **PlayerMarket** class (return type). Also stores all the attributes of a player which is necessary in order for teams to gain points. All of the methods in this class are getters and is unnecessary to represent most of them withing the class diagram as they do not provide much functionality but only gives refference to the attributes of this class. The attributes are are the main purpose of this class. 
 
 
 ### **Player Attributes:**
 
-1. *id: int* - A unique integer is assigned to this attribute with the data that was fetched from the api.
+<br>1. *-id: int* - unique id of the player that was fetched from the api.
 
-2. *firstName: String, lastName: String* - A real life player&#39;s first name  and last name is assigned to this attribute with the data that was fetched from the api. 
+<br>2. *-firstName: String, lastName: String* - First and last name of a real life football player. 
 
-3. *position: int* - Represents position of the player. Attribute type refers to positions indicated in the enumerator "Positions" (1= GK, 2= DEF, 3 = MID, 4 = FWD). 
+<br>3. *-position: int* - Represents position of the player. Attribute  refers to positions indicated in the enumerator "Positions" (1= GK, 2= DEF, 3 = MID, 4 = FWD). 
 
-4. *isAvailable: String* - Stores if the player is available -\&gt; &quot;a&quot; or not available(injured) -\&gt; &quot;i&quot;. An injured player can&#39;t play in a game. Therefore the injured player can&#39;t obtain points. 
+<br>4. *-cost: float* - the cost of the player. Used to deduct or return credits to **User** when purhcasing or selling player.
 
-5. *realLifeTeam: int* - Stores the team(one of the teams in the English Premier League) of the player in real life.
+<br>5. *-realLifeTeam: int* - Stores the team(one of the teams in the English Premier League) of the player in real life.
 
-6. *statistics: String, int* - The statistics are the attributes that are fetched from the api and assigned to the attributes. All of them are private and almost all of them are used in the &quot;getStats()&quot; function. 
+<br>6. *-isAvailable: boolean* - False if user is injured or penalized. This attribute determines wheter a player can collect points for the team or not.
+
+<br>7. *-totalPoints: int* - Total points of a player accumulated in the duration of the whole season. 
+
+<br>8. *-roundPoints: int* - Weekly points of a player, this attribute changes state every week, used to increment the *totalPoints* attribute of a **Team** and the *teamPoints* attribute of a **League**
+
+<br>9. *-minutes: int* - Minutes played by a player in the duration of the season. 
+
+<br>10. *-goalsScored: int* - Number of goals scored by player in the duration of the season.  
+
+<br>11. *- assists: int* - Number of goals assist by a player in the duration of the season.
+
+<br>12. *-cleanSheets: int* - Number of clean sheets by a player (GK and DEF) in the duration of the season.
+
+<br>13. *-goalsConceded: int* - Number of conceded goals by a player (GK and DEF) in the duration of the season.
+
+<br>14. *-yellowCards: int* - Number of yellow cards committed by a player in the duration of the season. 1 yellow card = -1 point 
+
+<br>15. *redCards: int* - Number of red cards commited by a player in the duration of the season. 1 red card = -3 points
+
+<br>16. *saves: int* - Number of saves made by a player (GK).
+
 
 
 ### **Player Operations:**
 
-*getStats(): HashMap \&lt; String, Integer\&gt;* = This function allows the client code to retrieve the statistics of the player in a structural manner. These stats can be used to calculate the points that the player has obtained so far. 
-
-
-
-
- 
-
-
+*getStats(): HashMap <String, Integer>* - This method stores the statistics numbered 7 to 16 into a hashMap and gets it organized to the name of the attribute and the value of each statistics. This is the only getter function worth mentioning as the attributes it stores are the attributes that affects the number of points a player will receive after each week, thus the number of wekly points a team will receive. This method is used in **PlayerWindow** to represent these statistics of a player in an odered fashion.
 
 
 
 ### **Associations:**
 
-1. *Directed Association from User class to League class:*
+<br>1. *Directed Association from User class to League class:*
 
 This  directed association signifies that the **User** class can access the attributes and operations of the **League** class. This is necessary due to the fact that the user will be the one creating and managing a league as shown by the operations *createLeague()* and *deleteLeague().* Moreover, the **User** must be able to access the operations of **League** because when *createLeague()* is executed, it will need to access *setEndDate()* of the **League** class in order for a user to set the duration of the league tournament that they have created. Moreover, since the user is the manager of the league as shown by the *manager* attribute of the type **User** in league, the user must be able to add and kick other users who are also participating in the league, thus strengthening the justification of this chosen association between the two classes.
 
-2. *Team composite to User:*
+<br>2. *Team composite to User:*
 
 This association between the **User** and **Team** class signifies that a team in our game cannot exist without a user. Therefore the **User** class will have access to all the operations and attributes of the **Team** class and a **Team** type object cannot exist without a **User** object. We have shown this in our implementation by placing **Team**  as a private class of the class **User.** Similarly to the first association mentioned, it is important for this association to be a composite as auser should be the one who creates a team, deletes a team and  manages the team in which they are a manager of.
 
-3. *Shared aggregation between Team and Player:*
+<br>3. *Shared aggregation between Team and Player:*
 
 This association between the **Team** and **Player** class signifies that a player may exist without a team (not in a team) and that a team may exist without any players. This is shown by the fact that when the **User** class calls the operation *createTeam()* an instant of the **Team** is created and that instant has yet to contain any players . Moreover, a justification for this association to exist would be the fact that when a **Player** object is in the attribut *players* or *bench* in the **Team** class (signifying players being part of a squad in a team or a bench in the team), the **Team** must access the statistics of all of its players in order for *totalPoints* to be computed as well as in order for the team to recognize which players are injured and which players they have as captain; this is shown through the attributes of the **Player** class.
 
-4. *Directed association from MarketPlace to player:*
+<br>4. *Directed association from MarketPlace to player:*
 
 This association signifies that the **MarketPlace** class has access to all the attributes and operations of the **Player** class. This is very important due to the fact that a market place within our game must display all of the available players and their stats in order for a **User** to purchase (*buyPLayer()* operation)  the player once they are satisfied with the statistics of the player.
 
@@ -303,7 +296,7 @@ The significance of this association is shown by the operations of the **MarketP
 
 
 
-5. *Directed association from MarketPlace to GSON library:*
+<br>5. *Directed association from MarketPlace to GSON library:*
 
 The directed association means that the **MarketPlace** class has access to the json object which is provided by the **Gson** library. The **Gson** library parses the response, provided by the function fromJson() inside the **Gson** library, received from the api.
 
