@@ -401,32 +401,29 @@ on the list will display player's statistics window which also display the total
 
 ### **Sequence Diagram: League Competition**
 
-![Image description](https://imgur.com/OwbdXnB.png)
+![Image description](https://imgur.com/HnTAWbJ.png)
 
 
 **Figure 6 -** Sequence diagram of the task *League Competition*
 
 
-This sequence diagram represents the interaction between the classes **User**, **League**, **Team** and **Player** (represented by their corresponding lifelines). The user can join a specific league by providing the name of the league they want to join (This calls the method *joinLeague&* from **User** class). The **League** instance then executes its *addUser* method which stores the requesting user object in an ArrayList object attribute. In this way an user becomes a member of a league.
+This sequence diagram represents the interaction between the classes **User**, **League**, **Team** and **Player** (represented by their corresponding lifelines). The user can join a specific league (created already) by providing the name of the league they want to join (This calls the method *joinLeague* from **User** class). The **League** instance then executes its *addUser* method which stores the requesting user object in an ArrayList object attribute. In this way an user becomes a member of a league.
 
-Users can also start their own leagues by issuing the **User** class method *createLeague* which takes as arguments a string with the name of the league and an instance of the class **User** as league manager. A new instance of the class **League** is returned to the user for which he is the manager. The newly created **League** instance is stored in the *competedList* array list which is an attribute of the **User** class.
+Users can also start their own league by issuing the **User** class' method *createLeague* which takes as argument a string with the name of the league; a new instance of the class **League** is returned to the user for which he/she is the manager. The newly created **League** instance is stored in the *competedList* array list which is an attribute of the **User** class.
 
 The *computeRanking* method of the League class computes the League rankings based on the total points won by each team on the league. It relies on *getTotalPoints* method to retrieve the total team points. After the rankings are computed, they are reported to the user on display.
 
 Lastly, The user can issue the *exitLeague* with reference to the league name to be withdrawn from. Once the League instance receives this message, it executes the method named *removeUser* with an User object argument. This action will remove the specified User object from the array list attribute *users*.
 
-**DESCRIPTION**
+*GUI integration:*
 
-This chapter contains the specification of at least 2 UML sequence diagrams of your system, together with a textual description of all its elements. Here you have to focus on specific situations you want to describe. For example, you can describe the interaction of player when performing a key part of the videogame, during a typical execution scenario, in a special case that may happen (e.g., an error situation), when finalizing a fantasy soccer game, etc.
+![Image description](https://i.imgur.com/u0TXyPh.png)
 
-For each sequence diagram you have to provide:
-- a title representing the specific situation you want to describe;
-- a figure representing the sequence diagram;
-- a textual description of all its elements in a narrative manner (you do not need to structure your description into tables in this case). We expect a detailed description of all the interaction partners, their exchanged messages, and the fragments of interaction where they are involved. For each sequence diagram we expect a description of about 300-500 words.
+**Figure 7 -** GUI screen showing available leagues (right pane) and options
 
-The goal of your sequence diagrams is both descriptive and prescriptive, so put the needed level of detail here, finding the right trade-off between understandability of the models and their precision.
+The figure above shows the UserWindow class from which the user can perform operations over leagues (opening, creation and deletion).
 
-Maximum number of words for this section: 4000
+
 
 ## Implementation									
 Author(s): `name of the team member(s) responsible for this section`
