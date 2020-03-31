@@ -134,7 +134,8 @@ public class User {
 
     // Gets TEAM related information
     public String getTeamName() { return this.team.getName(); }
-    public int getTeamSize() { return (this.team.players.size() + this.team.bench.size()); }
+    public int getTeamStarterSize() {return this.team.players.size();}
+    public int getTeamBenchSize() {return this.team.bench.size(); }
     public int getTeamRoundPoints() { return this.team.getRoundPoints(); }
 
     /*
@@ -156,7 +157,6 @@ public class User {
     // Gets Player related Information from team
     public List<Player> getTeamStarters() { return new ArrayList<>(this.team.players); }
     public List<Player> getTeamBench() { return new ArrayList<>(this.team.bench); }
-
 
     public int getCaptainId() { return this.team.captainId; }
     public int getViceCaptainId() { return this.team.viceCaptainId; }

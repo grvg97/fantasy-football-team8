@@ -161,7 +161,7 @@ public class TutorialWindow {
             else {
                 if (selectedPlayer != null && user.buyPlayer(selectedPlayer))
                 {
-                    if (user.getTeamSize() > 11) {
+                    if (user.getTeamStarterSize() == 11 && userTeamView.getItems().size() == 11) {
                         userBenchView.getItems().add(selectedPlayer);
                         userBenchView.refresh();
                     }
@@ -180,13 +180,35 @@ public class TutorialWindow {
 
         // Sell the player and refresh the ListView to see the changes
         sellButton.setOnAction(event -> {
-            Player selectedPlayer = userTeamView.getSelectionModel().getSelectedItem();
-            if (selectedPlayer != null) {
-                user.sellPlayer(selectedPlayer);
-                userTeamView.getItems().remove(selectedPlayer);
-                userTeamView.refresh();
+            Player starterPlayer = userTeamView.getSelectionModel().getSelectedItem();
+            Player benchPlayer = userBenchView.getSelectionModel().getSelectedItem();
+
+            // Sell the bench player and make startPlayer null to also not sell it
+            if (benchPlayer != null) {
+                starterPlayer = null;
+                user.sellPlayer(benchPlayer);
+
+                userBenchView.getItems().remove(benchPlayer);
+                userBenchView.refresh();
+                setListViewToString(userBenchView);
 
                 creditLabel.setText("Credits = " + user.getCredits());
+            }
+            else if (starterPlayer != null) {
+                if (user.getTeamBenchSize() > 0) {
+                    HandleError.errorMessage("Sell Bench First!",
+                            "Sell the bench players first.");
+                }
+                else {
+                    benchPlayer = null;
+                    user.sellPlayer(starterPlayer);
+
+                    userTeamView.getItems().remove(starterPlayer);
+                    userTeamView.refresh();
+                    setListViewToString(userTeamView);
+
+                    creditLabel.setText("Credits = " + user.getCredits());
+                }
             }
         });
 

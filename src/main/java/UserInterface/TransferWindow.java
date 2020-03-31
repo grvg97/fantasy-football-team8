@@ -99,12 +99,6 @@ public class TransferWindow {
     }
 
 
-    /* Sells the player and adds the cost of credits to the user's credits*/
-    private static void sellPlayer(User user, Player selectedPlayer) {
-        user.sellPlayer(selectedPlayer);
-    }
-
-
     private static boolean formationRestrictionMet(User user) {
         return user.getTeamPositionCount(Positions.GK) == Formation.GKCOUNT.getValue()
                 && user.getTeamPositionCount(Positions.DEF) == Formation.DEFCOUNT.getValue()
@@ -146,7 +140,7 @@ public class TransferWindow {
 
             if (selectedPlayer != null && user.buyPlayer(selectedPlayer))
             {
-                if (user.getTeamSize() > 11) {
+                if (user.getTeamStarterSize() == 11 && userTeamView.getItems().size() == 11) {
                     userBenchView.getItems().add(selectedPlayer);
                     userBenchView.refresh();
                 }
@@ -165,28 +159,32 @@ public class TransferWindow {
             Player starterPlayer = userTeamView.getSelectionModel().getSelectedItem();
             Player benchPlayer = userBenchView.getSelectionModel().getSelectedItem();
 
-            // Sell the starter player and make benchPlayer null to also not sell it
-            if (starterPlayer != null) {
-                benchPlayer = null;
-                sellPlayer(user, starterPlayer);
-
-                userTeamView.getItems().remove(starterPlayer);
-                userTeamView.refresh();
-                setListViewToString(userTeamView);
-
-                creditLabel.setText("Credits = " + user.getCredits());
-            }
-
             // Sell the bench player and make startPlayer null to also not sell it
-            else if (benchPlayer != null) {
+            if (benchPlayer != null) {
                 starterPlayer = null;
-                sellPlayer(user, benchPlayer);
+                user.sellPlayer(benchPlayer);
 
                 userBenchView.getItems().remove(benchPlayer);
                 userBenchView.refresh();
                 setListViewToString(userBenchView);
 
                 creditLabel.setText("Credits = " + user.getCredits());
+            }
+            else if (starterPlayer != null) {
+                if (user.getTeamBenchSize() > 0) {
+                    HandleError.errorMessage("Sell Bench First!",
+                            "Sell the bench players first.");
+                }
+                else {
+                    benchPlayer = null;
+                    user.sellPlayer(starterPlayer);
+
+                    userTeamView.getItems().remove(starterPlayer);
+                    userTeamView.refresh();
+                    setListViewToString(userTeamView);
+
+                    creditLabel.setText("Credits = " + user.getCredits());
+                }
             }
         });
 
