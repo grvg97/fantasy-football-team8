@@ -441,4 +441,6 @@ Maximum number of words for this section: 2000
 
 ## References
 
-References, if needed.
+[1] "UML @ Classroom: An introduction to Object-Oriented Modeling"; Seidel/Scholz/Huemer/Kappel; Springer; 2012.
+
+[2] Course slides for Software Design 2019-2020; I. Malavolta; VU Amsterdam; 2020.
