@@ -14,9 +14,7 @@ Provide a bullet list summarizing all the changes you performed in Assignment 2 
 Maximum number of words for this section: 1000
 
 ### Application of design patterns
-Author(s): `name of the team member(s) responsible for this section`
-
-`Figure representing the UML class diagram in which all the applied design patterns are highlighted graphically (for example with a red rectangle/circle with a reference to the ID of the applied design pattern`
+Author(s): Mehmet Cetin, Sunny Diaram
 
 For each application of any design pattern you have to provide a table conforming to the template below.
 
@@ -31,17 +29,11 @@ For each application of any design pattern you have to provide a table conformin
 | **Constraints**  | Application and implementation of the iterator java interface is pretty straightforward. |
 | **Additional remarks**  | No remarks |
 
-Example code for design pattern 1:
-```java
-PlayerMarket playerList;
-// The following line will print all the names in playersList
-playerList.forEach(e -> System.out.prinln(e.getFullName));
-```
 
 | ID  | DP2  |
 |---|---|
 | **Design pattern**  | Singleton Creational Design Pattern |
-| **Problem**  | **Database** class being instantiated in userSignUpWindow class and in LoginWindow class for the use of its operations *userAut()* and *add()* where these operations acesses the **Database** Arraylist attributes *leagues* and *users*  |
+| **Problem**  | **Database** class being instantiated in userSignUpWindow class and in LoginWindow class for the use of its operations *userAuth()* and *add()* where these operations acesses the **Database** Arraylist attributes *leagues* and *users*  |
 | **Solution**  | With the application of singleton creational design pattern, we are able to ensure that instead of creating a new instance of the **Database** class everytime we are acessing the attributes of the classs to check for exisiting users and to add new users, we are able to set up one global access to the class by encapsulating an instance of the class wihtin the class itself and creating a private contructor of the class to ensure that it can never be instantiated in other classes. This is highly crucial to our system due to the fact that whenever a user signs up , the *add(user)* method of the **Database** class is called and mutates the *users* array list of the class. When a user logs in the method *userAuth*  iterates through the *users* array list of the **Database** object, therefore ensuring that the two operations of the user class modifies and iterates from the same instance of the class is very important to avoid data loss.|
 | **Intended use**  | At run time when the class *loginWindow* is displayed ot the user,the user enters user name and password to the available text fields and the user activates an event handler for the login button, this event handler will get an instance of the **Database** class via an operation named getInstance() since the object itself is already instanitated within the glass. Through this global access point it will then access the public method *authUser()* of the **Database** class where it will return a **User** type object to the class *.|
 | **Constraints**  | Any additional constraints that the application of the design pattern is imposing, if any |
@@ -143,10 +135,6 @@ Please note that we have not included a class **HandleError** since it is seen a
 <br>4. *-team: Team* - Holds a in instant of a *Team* class, this object represents the team that the User has created and now owns, if the user has yet to create a team, this object variable will hold a null value. 
 
 <br>6. *-credits: int* - Represents the credits of the user, once signed up, upon the creation of a new **User** object, the user is assigned with 1000 initial credits with which they are able to purchase players from the **PlayerMarket**. 
-
-<br>7. *-hasTransferred: boolean* - Attribute represents whether the user has performed a once every week limit transferring of players (selling player from team and buying a different player from the market). Initially set to false.
-
-
 
 ### **User Operations:**
 
@@ -332,33 +320,6 @@ There is also a relation between the market object and the players object. The m
 
 The market object receives the players from the api using the method of the **Gson** class. The link between the gson object and the market object specifies that the gson links the players fetched from the api call to the &quot;player&quot; list using the fromJson() method.
 
-
-## Object diagrams								
-Author(s): `name of the team member(s) responsible for this section`
-
-This chapter contains the description of a "snapshot" of the status of your system during its execution. 
-This chapter is composed of a UML object diagram of your system, together with a textual description of its key elements.
-
-`Figure representing the UML class diagram`
-  
-`Textual description`
-
-Maximum number of words for this section: 1000
-
-## State machine diagrams									
-Author(s): `name of the team member(s) responsible for this section`
-
-This chapter contains the specification of at least 2 UML state machines of your system, together with a textual description of all their elements. Also, remember that classes the describe only data structures (e.g., Coordinate, Position) do not need to have an associated state machine since they can be seen as simple "data containers" without behaviour (they have only stateless objects).
-
-For each state machine you have to provide:
-- the name of the class for which you are representing the internal behavior;
-- a figure representing the part of state machine;
-- a textual description of all its states, transitions, activities, etc. in a narrative manner (you do not need to structure your description into tables in this case). We expect 3-4 lines of text for describing trivial or very simple state machines (e.g., those with one to three states), whereas you will provide longer descriptions (e.g., ~500 words) when describing more complex state machines.
-
-The goal of your state machine diagrams is both descriptive and prescriptive, so put the needed level of detail here, finding the right trade-off between understandability of the models and their precision.
-
-Maximum number of words for this section: 4000
-
 ## Sequence diagrams									
 Author(s): Gilbert Van Gerven &amp; Ricardo Burgos Lara
 
@@ -428,16 +389,7 @@ The figure above shows the UserWindow class from which the user can perform oper
 ## Implementation									
 Author(s): Mehmet Cetin, Sunny Dairam, Gilbert van Gerven, Ricardo Burgos
 
-In this chapter you will describe the following aspects of your project:
-- the strategy that you followed when moving from the UML models to the implementation code;
-- the key solutions that you applied when implementing your system (for example, how you implemented the syntax highlighting feature of your code snippet manager, how you manage fantasy soccer matches, etc.);
-- the location of the main Java class needed for executing your system in your source code;
-- the location of the Jar file for directly executing your system;
-- the 30-seconds video showing the execution of your system (you can embed the video directly in your md file on GitHub).
 
-IMPORTANT: remember that your implementation must be consistent with your UML models. Also, your implementation must run without the need from any other external software or tool. Failing to meet this requirement means 0 points for the implementation part of your project.
-
-Maximum number of words for this section: 2000
 
 ## References
 
