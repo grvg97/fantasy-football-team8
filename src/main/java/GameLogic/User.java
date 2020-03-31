@@ -83,7 +83,7 @@ public class User {
     // Also removes that league from it's own competed leagues
     public void exitLeague(League league) throws IOException {
         // User can't exit global league
-        if (league.getManager().equals("System"))
+        if (league.getName() == "Global League")
             HandleError.errorMessage("Can't Exit League!",
                     "User can't exit Global League");
         else {
@@ -164,7 +164,6 @@ public class User {
         private int id;
         private List<Player> players = new ArrayList<>(11); // Starters
         private List<Player> bench = new ArrayList<>(4);
-        private int totalPoints = 0;
         private String name;
         private int captainId;
         private int viceCaptainId;

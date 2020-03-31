@@ -49,10 +49,6 @@ public class League {
         }
     }
 
-    public void showLeaderboards() {
-        // Compute ranking based on the points that the teams have/
-    }
-
     // GETTERS and setters for LEAGUE :
     public String getName() {return this.name;}
     public String getManager() {return this.manager;}
