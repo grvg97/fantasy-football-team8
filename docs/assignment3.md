@@ -42,18 +42,16 @@ For each application of any design pattern you have to provide a table conformin
 
 
 ## Class diagram									
-
+								
 Authors: Mehmet Cetin, Gilbert van Gerven, Sunny Dairam
 
 ### **Introduction:**
 
 The UML class Diagram we have included in this document is the closest representation of the codes that we have implemented to create our system. The class diagram is the most crucial diagram in terms of setting the standards for consistency between all UML diagrams and representing the structure of our classes, their attributes and their methods. 
   
-
 Much like the object diagram and unlike the sequence and state-machine diagrams, the class diagram is a static representation of the system, it does not show how states of objects change but shows which classes have the rights to alter the states of another and the dependencies between all parts of the system, meaning that if one part of a system changes state, the parts dependent on it will do so as well.   
 
-  
-Please note that we have not included a class **HandleError** since it is seen as a helper class to our Graphical user interface in order to display error messages upon certain conditions of the games. We understand that for the sake of consistency in our diagrams, it is better to include classes that will be referred further in the following UML diagrams. However, with the case of **HandleError**, the class just provides an explicit way to write an error message which need not to be referred explicitly in all of our UML diagrams. As advised by our supervisors we have also omitted getters and setters that does not contain much functionality. Through this we want to ensure that we do not transfer the complexity of our codes to the Class Diagram that is supposed to be the closest abstraction to the actual representation of our code. **In our system, for everytime a an outside class would like to retrieve an attribute of another class it is done so through a public getter method.** 
+Please note that we have not included a class **HandleError** since it is seen as a helper class to our Graphical user interface in order to display error messages upon certain conditions of the games . Through this we want to ensure that we do not transfer the complexity of our codes to the Class Diagram that is supposed to be the closest abstraction to the actual representation of our code. 
 
 
 ![Imgur](https://i.imgur.com/oRAEidq.png?1) 
@@ -126,6 +124,10 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>6. *-credits: int* - Represents the credits of the user, once signed up, upon the creation of a new **User** object, the user is assigned with 1000 initial credits with which they are able to purchase players from the **PlayerMarket**. 
 
+<br>7. *-hasTransferred: boolean* - Attribute represents whether the user has performed a once every week limit transferring of players (selling player from team and buying a different player from the market). Initially set to false.
+
+
+
 ### **User Operations:**
 
 <br>1. *+User(username: String, password: String)*- Constructor for the to instantiate a *User* object, this constructor will only be used when a user successfully signs up to the game. The parameters of the contructor indicates a *username* and *password* that the user has chosen by entering and submitting into the textfields of **SignUpWindow**. Given that their inputs meets the system restrictions to be considered valid.
@@ -149,7 +151,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>10. *+exitLeague(league: League)* - Allows the user to exit a selected joined league (from the parameter). The method will invoke the method *removeUser()* of the **League** object selected and passes the this **User** object as a parameter to the method. 
 
-<br>11. *+createLeague( name: String, manager: User, start: Date): League* - This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. Done so by invoking the constructor of the **League**. The method also adds the league to the *leagueDatabase* of the **IOHandler** class (database of system).
+<br>11. *+createLeague( name: String, manager: User, start: Date): League* - This operation allows the user to create a custom league where the creator of the league(user) will be assigned as the manager of the league. Done so by invoking the constructor of the **League**. The method also adds the league to the *leagueDatabase* of the **IOHandler** class (database of system). Returns **League** object and passed to parameter **IOHandler** Method *add*.
 
 <br>12. *+deleteLeague(league: League)* - Allows the user to delete a league if they are the manager. Done so by invoking **IOHandler** method *remove()*. removing the league from the database.
  
@@ -172,6 +174,16 @@ Please note that we have not included a class **HandleError** since it is seen a
 <br>1. *+iterator()* - returns an *iterator()* for the *players* attribute (explanation in Design Pattern section). Enabling the use of **Iterator** interface methods *hasNext()* and *next()*.
 
 <br>2. *+getPlayers()* - gets players that were fetched by the **HandleApi**, returned by **HandleApi** method *getJsonObject* as a type of this class and returns it as a list of **Player** objects. Enables other classes to retrieve players from an object of **PlayerMarket** type. This design enables for the updating of players statistics, buying players, selling players, adding players to teams, removing players from the team. All operations involving **Player** objects begins with this single method. 
+
+
+### **Class:**
+
+**HandleAPI** - This class is responsible for connecting and fetching the data of players from the API [api](https://fantasy.premierleague.com/api/bootstrap-static/) using the GSON library. Without this class we are unable to get the lates statistics of all players in real time. This class is related to teh **PlayerMarker** class as it provides data for the player market to distribute to the rest of the outside classes requesting for players. The methods of this class are static as this class need not to be instantiated but just to seperate the handling of the API from the rest of the system as we do not see the point of every class being aware of the implementation of this class.
+
+### **HandleAPI Operations:**
+<br>1. *+getResponseBody(apiURL : String) : String* - This method sends a get request to the API (Url in the parameter) and fetches the JSON file from the API where information for the players of the English Premier League are stored. Then proceeds to convert the JSON to string format for further processing by the following method in this class. 
+
+<br>2. *+getJsonObject() : playerMarket * - Invokes *getResponseBody()* and converts the return of the method to a **PlayerMarket** object, we have seperated the fetching and conversion implementation to maintain a good seperation of concern. Once returned as a **PlayerMarket ** object the **PlayerMarket** method *getPlayers* will be able to extract the seperate entries of the players and instantiate them as **Player** objects. 
 
 
 ### **Class:**
@@ -216,7 +228,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>2. *-firstName: String, lastName: String* - First and last name of a real life football player. 
 
-<br>3. *-position: Positions* - Represents position of the player. Attribute  refers to positions indicated in the enumerator "Positions" (GK, DEF, MID, FWD). 
+<br>3. *-position: int* - Represents position of the player. Attribute  refers to positions indicated in the enumerator "Positions" (1= GK, 2= DEF, 3 = MID, 4 = FWD). 
 
 <br>4. *-cost: float* - the cost of the player. Used to deduct or return credits to **User** when purhcasing or selling player.
 
@@ -250,33 +262,89 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 *getStats(): HashMap <String, Integer>* - This method stores the statistics numbered 7 to 16 into a hashMap and gets it organized to the name of the attribute and the value of each statistics. This is the only getter function worth mentioning as the attributes it stores are the attributes that affects the number of points a player will receive after each week, thus the number of wekly points a team will receive. This method is used in **PlayerWindow** to represent these statistics of a player in an odered fashion.
 
+### **Class:** 
 
+**IOHandler** - Handles the creation of the databases which keeps track of leagues that have been created by a user and keeps track of the users who have signed up to the game, the class connects user input from the GUI classes to the logic classes (user logging in, signing up, creating league, joining league etc. ). We have applied singleton Design pattern on this class (Explanation in design pattern section). We have designed this class as it is due to the need to be able to take inputs from the text field of the GUI classes when users sign up and create a league. The methods of this class invokes the methods of a private inner **Database** class in order to encapsulate it from the client code as it stores sensitive information (username, password). 
+
+  
+### **IOHandler Attributes:** 
+
+<br>1. *-userDatabase: Database <User> * - Stores a **Database** object of **User** type, meaning that the **ArrayList** type attribute in the **Database** private class will store a list of **Users**. This stores all users that have signed up to the league. Value is null at the first ever launch of system. 
+  
+
+<br>2. *-leagueDatabase: Database <League>* - Same purpose as *userDatabase* but since **Database** class is a generalization, we have changed the datatype in the parameter to fit **League** type objects. Keeps track Leagues created by user (always has Global league inside). 
+
+  
+
+### **IOHandler Operations:** 
+
+<br>1. *+IOHandler()* - private constructor for the class, implemented for Singleton so that the class instant will not be instantiated. 
+
+<br>2. *+getInstance()* - Accessor method, acts as the global access point to the class (part of singleton), enables outer classes to invoke the methods of this class.  
+
+<br>3. *+init()* - Instantiates *userDatabase* and *leagueDatabase* attributes at the first launch of the game, and adds global league to *leagueDatabase* (by invoking **Database** method *add()*), otherwise reads the **Database** type attributes to utilize in system.  
+
+<br>4. *+save()* - Saves the state of the *leagueDatabase* and *userDatabase* by wiriting a JSON file into a directory this file will be loaded by *init()* in the next system launch. Enables to save the state of the game (**User** attributes and **League** Attributes) since their objects are stored and their attributes determine who wins the game. 
+
+<br>5. *+authUser(username : String, password : String)* - iterates through *userDatabase* (using iterator from **Database** class), to check if both parameters match to a **User** object stored. Represents authorizing user who is trying ot log in from the GUI class **LoginWindow** 
+
+<br>6. *+add(user: User/ league: League)* - adds a **User** or **League** into the according **Database** attributes via overloading parameters. This method invokes the **Database** method *add()* which does the actual storing of the objects into the lists.  
+
+<br>7. *+remove(user: User/ league: League)* - remove a **User** or **League** from the according **Database** attributes via overloading parameters. This method evokes the **Database** method *remove()* which does the actual removal of the objects from. 
+
+
+### **Player Operations:**
+
+*getStats(): HashMap <String, Integer>* - This method stores the statistics numbered 7 to 16 into a hashMap and gets it organized to the name of the attribute and the value of each statistics. This is the only getter function worth mentioning as the attributes it stores are the attributes that affects the number of points a player will receive after each week, thus the number of wekly points a team will receive. This method is used in **PlayerWindow** to represent these statistics of a player in an odered fashion.
+
+### **Class:** 
+
+**-Database** - This classs (Generalised) handles the physical storing of **User** and **League** objects when a user has signed up or created a league. This class is a private inner class of the **IOHandler** class. Its methods does the actual modifications to the attributes when invoked by **IOHandler** and the class type is used in the **IOHandler** class to act as a container due to its ArrayList type attribute. We have seperated thhem as we did not want the client code to break encapsulation gain access to the attributes of this class , since they store sensitive information. This class implements the **Iterable** interface, enabling it to return an iterator for itself, and enabling access to iterator methods (explanation in design pattern section).
+
+  
+### **Database Attributes:** 
+
+<br>1. *-db: ArrayList*  - Used to store **League** and **User** object, representing the users who have singed up and leagues that have been created. The typing of this attribute is generalized to fit any datatype that is specified in the paramter. This attribute is the most crucial element of **IOHandler** and **Database** since it acts as the lowest level container that stores sensitive information.
+
+  
+
+### **Database Operations:** 
+
+<br>1. *+iterator()* - returns an iterator for this class, enables the use of iterator methods next() and hasNext(), providing a standardised way of iterating through objects inside the *db* attribute (used by **IOHandler**) . 
+
+<br>2. *-add()* - adds **User** or **League** object to the *db* attribute, this method is invoked by the **IOHandler** *add()* method implying a user has signed up to the game or a league has been created.  
+
+<br> 3. *-remove()* -  removes either **User** or **League** class  from the *db* attribute, implying a User has de-registered from a game or a league has been deleted by its manager
+
+
+
+### **GUI classes**
+
+<br>**LoginWindow** - Where user signs up (private SignUpWindow) and logs into the game, this class is dependent on **IOHandler** (via global access) since it invokes the methods *userAuth()* when a user logs in and *add()** when a user signs up.
+
+<br>**TutorialWindow** - Where users who dont have a team will create a team and pruchase players to add to the team, dependent on **IOHandler**  **PlayerMarket** and **User** since it invokes methods in those classes to view players in market, add player to the global league (stored in **IOHandler *leagueDatabase*) and to add players to the user's team.
+
+<br>**UserWindow** - Where users view the inside of their team and create and view the leagues they manage (private **LeagueWindow** and **CreateLeague** window)). Dependent on **IOHandler**, **User** and **League** since it invokes methods to add a created league to *leagueDatabase*, fetch corresponding user from **userDatabse**, and getters to get information on a user's team and leagues a user is part of or manages.
+
+<br>**TransferWindow** - Where users sell or buy players after passing the **TutorialWindow** stage. This class is dependent **IOHandler** to get access to corresponding **User**, dependent on **PlayerMarket** to view players in market and **User** to add or remove players from a user's team when they are bought or sold.
+
+<br>**PlayerWindow** - Views the statistics of a selected player dependent on **Player** since it invokes *getStats* to view that values of a player's statistics stored in the  hash map.
 
 ### **Associations:**
 
 <br>1. *Directed Association from User class to League class:*
 
-This  directed association signifies that the **User** class can access the attributes and operations of the **League** class. This is necessary due to the fact that the user will be the one creating and managing a league as shown by the operations *createLeague()* and *deleteLeague().* Moreover, the **User** must be able to access the operations of **League** because when *createLeague()* is executed, it will need to access *setEndDate()* of the **League** class in order for a user to set the duration of the league tournament that they have created. Moreover, since the user is the manager of the league as shown by the *manager* attribute of the type **User** in league, the user must be able to add and kick other users who are also participating in the league, thus strengthening the justification of this chosen association between the two classes.
 
-<br>2. *Team composite to User:*
+<br>2. *User directed composite of Team:* - this relationship between **Team** and **User** shows that teams cannot exist without a user since the user creates a team through the method **createTeam**. Also denoting that **Team** is a private class within ** User**, the navigability at the **Team** end shows that **User** has access to the methods of teams and may return an object of **Team** type in one of its methods. The reasoning behind this design is to ensure that a user can only create one team and that a team belongs to the user who created it. Moreover, creates a strong relationship between a team and the user that creates it. The multiplicity shows that a User may have 0 to 1 teams but 1 team maximum can be owned by a user.
 
-This association between the **User** and **Team** class signifies that a team in our game cannot exist without a user. Therefore the **User** class will have access to all the operations and attributes of the **Team** class and a **Team** type object cannot exist without a **User** object. We have shown this in our implementation by placing **Team**  as a private class of the class **User.** Similarly to the first association mentioned, it is important for this association to be a composite as auser should be the one who creates a team, deletes a team and  manages the team in which they are a manager of.
+<br>3. *Directed Shared aggregation between Team and Player:* - Indicates that a team may exists withouth players and a player may exist without a team since players exists as entities extracted from the **PlayerMarket** class and that every player in a team is just a reference to the same player from the **PlayerMarket**. The navigability at the **Player** end of the relationship shows that **Team** can access the methods and attributes of the **Player** class, this is necessary since  a player is stored as **Player** objects within the **Team** class. The multiplicity shows that 0 to a maximum of 15 players can be a part of any number of teams and that any number of teams may contain 0 to 15 maximum players. (Enumerator **Formation** keeps track of the count of the starters of 11 players). 
 
-<br>3. *Shared aggregation between Team and Player:*
-
-This association between the **Team** and **Player** class signifies that a player may exist without a team (not in a team) and that a team may exist without any players. This is shown by the fact that when the **User** class calls the operation *createTeam()* an instant of the **Team** is created and that instant has yet to contain any players . Moreover, a justification for this association to exist would be the fact that when a **Player** object is in the attribut *players* or *bench* in the **Team** class (signifying players being part of a squad in a team or a bench in the team), the **Team** must access the statistics of all of its players in order for *totalPoints* to be computed as well as in order for the team to recognize which players are injured and which players they have as captain; this is shown through the attributes of the **Player** class.
-
-<br>4. *Directed association from MarketPlace to player:*
-
-This association signifies that the **MarketPlace** class has access to all the attributes and operations of the **Player** class. This is very important due to the fact that a market place within our game must display all of the available players and their stats in order for a **User** to purchase (*buyPLayer()* operation)  the player once they are satisfied with the statistics of the player.
-
-The significance of this association is shown by the operations of the **MarketPlace** class and by the fact that it stores instants of the **Player** class in a list in its attribute. A necessary step in order to display all of the available players to the user of the game.
-
+<br>4. *Directed association from MarketPlace to player:* - 
 
 
 <br>5. *Directed association from MarketPlace to GSON library:*
 
-The directed association means that the **MarketPlace** class has access to the json object which is provided by the **Gson** library. The **Gson** library parses the response, provided by the function fromJson() inside the **Gson** library, received from the api.
+
 
 
 ### **Object diagram**
