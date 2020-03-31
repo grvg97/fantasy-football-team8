@@ -11,7 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/* This window displays the stats and information about the player*/
+
+/*
+ * This class represents the Player window.
+ * This window displays the stats and information about the player.
+ * The user can select any player from his squad and open it to display the stats
+ */
 public class PlayerWindow {
 
     private static Scene PlayerScene;

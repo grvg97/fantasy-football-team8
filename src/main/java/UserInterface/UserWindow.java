@@ -11,14 +11,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-
-import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
 
 
+/*
+ * This class represents the User window.
+    * It allows to navigate to the transfer market to buy and sell players.
+    * It allows the user the create, delete, exit and join leagues.
+    * The User can open the details of his players or the leagues that are already created.
+    * This window also allows the user to pick the captain and vice captain of the team.
+*/
 public class UserWindow {
 
     private static Scene userScene;
@@ -272,6 +277,11 @@ public class UserWindow {
 
         userScene = new Scene(grid);
 
+        // Info message to the user about COVID 19
+        HandleError.infoMessage("Can Not Update Players",
+                "Dear player, due to COVID 19 the weekly football games have been canceled.\n" +
+                        "Therefore, there is no restrictions for transferring players." + "Also, we can't update the stats for the players. #StaySafe&Home");
+
         // Save game upon closing it
         window.setOnCloseRequest(event -> {
             try { IOHandler.getInstance().save(); }
@@ -287,7 +297,10 @@ public class UserWindow {
     }
 
 
-    /* Private inner static class used to display the teams inside the league */
+    /*
+       * Private inner static class used to display the teams inside the league.
+       * It allows the user to see the points and the participants of the selected league.
+    */
     private static class LeagueWindow {
         private static Scene leagueScene;
         private LeagueWindow() {}
@@ -324,7 +337,10 @@ public class UserWindow {
 
     }
 
-    /* The window of this class pops up when the user clicks the createLeagueButton */
+    /*
+       * The window of this class pops up when the user clicks the createLeagueButton
+       * It allows the user to create any league he/she wants with a preferred name
+    */
     private static class CreateLeagueWindow {
         private static Scene createLeagueScene;
         private static String leagueName;
@@ -350,7 +366,7 @@ public class UserWindow {
             });
 
             // Layout construction and building the scene
-            GridPane grid = new GridPane();
+            GridPane grid = new GridPane(); grid.setVgap(10);
             grid.setPadding(new Insets(20, 20, 20, 20));
             GridPane.setConstraints(leagueNameField, 0, 0);
             GridPane.setConstraints(submitButton, 0, 1);
@@ -367,6 +383,10 @@ public class UserWindow {
 
     }
 
+    /*
+       * This class enables the user to change players from the starting lineup
+       * by selecting a player from the starting lineup and changing it with the bench
+    */
     private static class ChangePlayerWindow {
         private static Scene PlayersScene;
         private static Stage newWindow = new Stage();
@@ -420,7 +440,7 @@ public class UserWindow {
             GridPane.setConstraints(label, 0, 0);
             GridPane.setConstraints(playersBox, 0, 1);
 
-            grid.getChildren().addAll(label, playersBox);
+            grid.getChildren().addAll(label, playersBox)    ;
 
             PlayersScene = new Scene(grid);
         }

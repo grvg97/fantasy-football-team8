@@ -10,16 +10,19 @@ public class HandleError {
     private HandleError() {} // Hides the implicit constructor
 
     // Function to construct errors by passing the header and the content
-    private static void constructError(String headerText, String contentText) {
+    public static void errorMessage(String headerText, String contentText) {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setHeaderText(headerText);
         error.setContentText(contentText);
         error.showAndWait();
     }
 
-    // Construct the error based on the message you want to give to the user
-    public static void errorMessage(String header, String content) {
-        constructError(header, content);
+    // This function is an exception and it is used in only one place
+    public static void infoMessage(String headerText, String contentText) {
+        Alert info = new Alert(Alert.AlertType.INFORMATION);
+        info.setHeight(250.0);
+        info.setHeaderText(headerText);
+        info.setContentText(contentText);
+        info.showAndWait();
     }
-
 }

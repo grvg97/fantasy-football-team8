@@ -13,7 +13,6 @@ public class User {
     private String password;
     private Team team;
     private int credits = 1000;
-    private Boolean hasTransferred = false;
 
 
     // Constructor
@@ -176,13 +175,9 @@ public class User {
             this.id = id;
         }
 
-        public int getId() { return id; }
         private String getName() {
             return this.name;
         }
-
-        // Get all the 15 players total points
-        private int getTotalPoints() { return this.totalPoints; }
 
         private void updateTeamAndBench(PlayerMarket playerMarket) {
             List<Player> updatedPlayers = new ArrayList<>();
@@ -202,8 +197,8 @@ public class User {
         // Bench players receive half the round points.
         private int getRoundPoints() {
             int roundPoints = 0;
-            for (Player player : this.players) roundPoints += player.getRoundPoints();
-            for (Player player : this.bench) roundPoints += player.getRoundPoints() / 2;
+            for (Player player : this.players) roundPoints += player.getWeeklyPoints();
+            for (Player player : this.bench) roundPoints += player.getWeeklyPoints() / 2;
 
             return roundPoints;
         }

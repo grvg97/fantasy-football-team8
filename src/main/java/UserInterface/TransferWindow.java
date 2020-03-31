@@ -11,15 +11,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.awt.*;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+
+
+/*
+ * This class represents the Transfer window.
+ * It allows to navigate through the players for buying and selling them.
+ * Certain restrictions have to be met, such as preserving 4-3-3 formation,
+ * for the user to go back to the start screen upon finishing the transfer.
+ */
 public class TransferWindow {
     private static Scene transferScene;
-
 
     /*
      * This function allows the ListView to store 'Leagues'
@@ -117,7 +122,7 @@ public class TransferWindow {
 
         Button buyButton = new Button("<< Buy");
         Button sellButton = new Button("Sell >>");
-        Button backButton = new Button("Back");
+        Button backButton = new Button("Done");
         Button playerInfoButton = new Button("Open Player");
         Label creditLabel = new Label("Credits = " + user.getCredits());
 
@@ -231,6 +236,12 @@ public class TransferWindow {
 
         // Set the current constructed layout to the transfer scene
         transferScene = new Scene(grid);
+
+        window.setOnCloseRequest(event -> {
+            HandleError.errorMessage("Can Not Close!",
+                    "User can't close this window without completing transfer.");
+            event.consume(); // Prevents user from closing the window
+        });
     }
 
 
