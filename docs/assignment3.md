@@ -282,7 +282,7 @@ The directed association means that the **MarketPlace** class has access to the 
 ### **Object diagram**
 
 Author(s): Mehmet Cetin, Sunny Dairam
-![Image description](https://i.imgur.com/M7tLq29.png)
+[Imgur](https://imgur.com/knA7qxx)
 
 **Figure2 -** Fantasy Football Object Diagram
 
