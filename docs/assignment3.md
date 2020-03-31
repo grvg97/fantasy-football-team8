@@ -171,7 +171,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
   
 
-8. *-contains(player: Player) : boolean - this method is invoked when the **User** method *buyPlayer()* is invoked, this method handles the checking of existing players within the team in comparison to the parameter of *buyPlayer()*, this ensures that no duplicates are allowed to be in the same Team, which is an essential part of the game. We have implemented this in the *Team* class rather than in the method *buyPlayer()* to ensure that the encapsulation of the *Team* class attributes are not broken by a public method of another class 
+8. *-contains(player: Player): boolean* - this method is invoked when the **User** method *buyPlayer()* is invoked, this method handles the checking of existing players within the team in comparison to the parameter of *buyPlayer()*, this ensures that no duplicates are allowed to be in the same Team, which is an essential part of the game. We have implemented this in the *Team* class rather than in the method *buyPlayer()* to ensure that the encapsulation of the *Team* class attributes are not broken by a public method of another class 
 
   
 
@@ -200,7 +200,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 7. *credits: int* - The user will have initially 1000 credits. The user will use these credits to buy players while creating a team at the beginning of the game. 
 
 
-###**User Operations:**
+### **User Operations:**
 
 1. *createTeam(): Team* - This operation allows the user to create a new team, given that the _team_ array in the user object is empty. Indicating that the user does not already have a team. Returns an object of type **Team.**
 
