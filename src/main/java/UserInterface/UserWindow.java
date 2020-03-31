@@ -354,6 +354,7 @@ public class UserWindow {
             grid.setPadding(new Insets(20, 20, 20, 20));
             GridPane.setConstraints(leagueNameField, 0, 0);
             GridPane.setConstraints(submitButton, 0, 1);
+            grid.getChildren().addAll(leagueNameField, submitButton);
 
             createLeagueScene = new Scene(grid);
         }
