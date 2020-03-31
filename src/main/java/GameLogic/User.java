@@ -107,11 +107,10 @@ public class User {
     public void deleteLeague(League league) {
         if (league.getManager().equals(this.username)) {
             IOHandler.getInstance().remove(league);
-            league = null;
         }
         else {
             HandleError.errorMessage("Action Not Authorized" ,
-                    String.valueOf(league.getManager()) + " is the manager of the league");
+                    league.getManager() + " is the manager of the league");
         }
     }
 
@@ -186,7 +185,6 @@ public class User {
         private int getTotalPoints() { return this.totalPoints; }
 
         private void updateTeamAndBench(PlayerMarket playerMarket) {
-            Iterator<Player> it = playerMarket.iterator();
             List<Player> updatedPlayers = new ArrayList<>();
             for (Player player : this.players) {
                 updatedPlayers.add(playerMarket.getPlayer(player.getId()));
