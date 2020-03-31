@@ -13,7 +13,6 @@ public class User {
     private String password;
     private Team team;
     private int credits = 1000;
-    private Boolean hasTransferred = false;
 
 
     // Constructor
@@ -177,16 +176,11 @@ public class User {
             this.id = id;
         }
 
-        public int getId() { return id; }
         private String getName() {
             return this.name;
         }
 
-        // Get all the 15 players total points
-        private int getTotalPoints() { return this.totalPoints; }
-
         private void updateTeamAndBench(PlayerMarket playerMarket) {
-            Iterator<Player> it = playerMarket.iterator();
             List<Player> updatedPlayers = new ArrayList<>();
             for (Player player : this.players) {
                 updatedPlayers.add(playerMarket.getPlayer(player.getId()));
