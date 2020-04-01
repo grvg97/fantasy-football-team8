@@ -71,7 +71,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 ### **Class:** 
 
-  
+ 
 
 **-Team:** This class is a private class inside the User class. The client code can&#39;t access or edit the team class without calling public methods from the User class. We have made all of the attributes and operations of this class private encapsulated as well in order to ensure that the class is decoupled from the client code as much as possible. By doing this, we have hidden the implementation of an entire class to the user, decreasing the complexity of our code significantly and allowing the module of the system that is responsible for the greatest amount of functionalities that is given to the user to be deep. Due to the fact that this part of the system is the one that the user of the system interact with (**User** class providing link to deeper functionalities hidden in a private class **Team** ), we strived on building a simple User interface with deep functionalities as reflected in the **Team** class Implementation. 
 
@@ -571,7 +571,7 @@ fantasy-football-team8\out\artifacts\software\_design\_vu\_2020\_jar\software-de
 
 **A 30-second video showing the execution of our system:**
 
-[https://www.youtube.com/watch?v=MtKv0an2e7c](https://www.youtube.com/watch?v=MtKv0an2e7c)
+[https://www.youtube.com/watch?v=3i73DpzInhc](https://www.youtube.com/watch?v=3i73DpzInhc)
 
 
 
