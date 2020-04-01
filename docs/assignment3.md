@@ -235,7 +235,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>2. *-firstName: String, lastName: String* - First and last name of a real life football player. 
 
-<br>3. *-position: int* - Represents position of the player. Attribute  refers to positions indicated in the enumerator "Positions" (1= GK, 2= DEF, 3 = MID, 4 = FWD). 
+<br>3. *-position: int* - Represents position of the player. Attribute  refers to positions indicated in the enumerator "Positions" (GK, DEF, MID, FWD). 
 
 <br>4. *-cost: float* - the cost of the player. Used to deduct or return credits to **User** when purhcasing or selling player.
 
