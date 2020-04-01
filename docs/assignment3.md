@@ -365,7 +365,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 Author(s): Mehmet Cetin, Sunny Dairam
 
-![imgur](https://i.imgur.com/knA7qxx.png)
+![imgur](https://i.imgur.com/458Gijw.png)
 
 **Figure2 -** Fantasy Football Object Diagram
 
