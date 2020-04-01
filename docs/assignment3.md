@@ -530,20 +530,6 @@ In this chapter you will describe the following aspects of your project:
 
 We started off making the models of the classes and the associated class diagram. We then implemented them in Java adjusting our models iteratively along the way.
 
-**Class User**
-
-We implemented the class user first and added all the attributes and operations that were already in the class diagram. After that we implemented the operations that were connected in order to implement the feature that was given from the first assignment (feature 2). After that we implemented the features in the order of 6, 11.1, 12 and 1. The implemented features were connected to each other.
-
-**Class League:** We have coded the private class league inside the user class.
-
-**Class PlayerMarket**
-
-We coded the PlayerMarket class and added the attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We have also converted the json string to a json object and stored it in the marketplace class in the &quot;players&quot; list. We used that list for the user to store
-
-**Class League**
-
-The League class was implemented by adding attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We add users to the global league using the addUser() function which is one of the core functions that we have used when implementing the features.
-
 ### **Key solutions applied when implementing the system**
 
 ### **Logging in/ registering the user**
@@ -566,8 +552,27 @@ The user is able to create a team upon registering himself. While the team is be
 
 We have 2 separate databases in our system. The purpose of this is for the information of the game to be maintainable. This makes the game a local multiplayer game so keeping track of all users and leagues is a must. In the user database we store a list of all users that are registered which are using our system. In the league database we store all created leagues of the system including the global league, which is initially inside the league database file
 
+### **The functionalities and representations of the classes**
+
+### **GameLogic**
+
+**User**
+
+We implemented the class user first and added all the attributes and operations that were already in the class diagram. After that we implemented the operations that were connected in order to implement the feature that was given from the first assignment (feature 2). After that we implemented the features in the order of 6, 11.1, 12 and 1. The implemented features were connected to each other.
+
+**League:** We have coded the private class league inside the user class.
+
+**PlayerMarket**
+
+We coded the PlayerMarket class and added the attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We have also converted the json string to a json object and stored it in the marketplace class in the &quot;players&quot; list. We used that list for the user to store
+
+**League**
+
+The League class was implemented by adding attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We add users to the global league using the addUser() function which is one of the core functions that we have used when implementing the features.
+
 ### **UserInterface**
 We made a simple GUI with JavaFX.
+
 #### **LoginWindow**
 The LoginWindow is the entrance view of the game. There are two text fields in the scene, enabling 
 the user to type in a username and password. If the user doesn't have  an account, 
