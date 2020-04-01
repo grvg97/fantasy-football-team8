@@ -11,17 +11,17 @@ Author(s): Gilbert van Gerven, Ricardo Burgos, Mehmet Cetin, Sunny Diaram.
 
 The following changes were implemented based on the feedback received for the second milestone:
 
-* Two packages: GameLogic and UserInterface, now splits functionalities for business logic and GUI handling respectively.
+* The implementation now consists of two packages: GameLogic and UserInterface packages now splits functionalities for business logic and GUI handling respectively. This allows consistence among classes and improves encapsulation.
 * Multiple users can join and leave an existing league, but only the league administrator is able to delete a league created
-by him.
-* IO and API handling is now implemented through the IOHandler and HandleAPI classes in the GameLogic package respectively.
+by him. This fixed the multiplicity error the feedback highlighted.
+* IO and API handling is now implemented through the IOHandler and HandleAPI classes in the GameLogic package respectively. These two classes belongs to GameLogic package and splits file and API handling to new exclusive classes.
 * Multiple enumerations were implemented to handle data efficiently: Positions and Formation classes in GameLogic package.
 * Updated UML diagrams: Class (1), Object (1), State-Machine (2) and Sequence (2).
 * Since no comments were made to Team Creation sequence diagram, it was just slightly improved.
 * Sequence diagram for league competition now clearly shows the relationship with classes Team and Player.
 * Sequence diagram for league competition now shows API data source as found message.
 * Sequence diagram for league competition now shows a loop for adding players to fill the team.
-* Game class was deprecated, its functionality is now distributed to other suitable classes, more specific to their roles as recommended.
+* Game class was deprecated, its functionality is now assumed by other suitable classes, more specific to their roles as recommended.
 
 ### Application of design patterns
 Author(s): Mehmet Cetin, Sunny Diaram
