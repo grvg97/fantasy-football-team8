@@ -395,59 +395,125 @@ There is also a relation between the market object and the players object. The m
 
 The playerMarket object receives the players from the api using the methods of the **HandleApi** class. The link between the handleApi object and the playerMarket object specifies that the players of the playerMarket are obtained from an api call, which is handled accordingly inside the handleApi object to deliver the required data from the json string.
 
+## **State machine diagrams** 
 
-## **State machine diagrams**
+  
 
-Author(s): Ricardo Burgos Lara, Gilbert van Gerven
+Author(s): Ricardo Burgos Lara, Gilbert van Gerven 
 
-### **User Behavior:**
+  
 
-![Imgur](https://i.imgur.com/0A5CKMH.png)
-** **
+### **User Behavior:** 
 
-**Figure 3 -** User Behavioural State-Machine Diagram
+  
 
+![Imgur](https://i.imgur.com/QvPulFG.png) 
 
-The Following state machine diagram represents the different states that a **User** class object can take during the tasks of creating a new team and a new league. For this state machine we have emphasized more on the states that the **User** object can take when a new user has joined the game and creates a new team. Thus, the user object essentially represents a stakeholder of our system (the user). This is due to the fact that this is a required feature for our first minimal implementation of the Fantasy Soccer Game. The entry activity of this User state machine is to show the main menu of the game as well as load the values of the attributes of the **User** type object, where the user will be displayed with the choice of buttons linked to the operations *createLeague()* , *createTeam()*, *displayTeam()* and *deleteTeam()*  as well as having the attribute values loaded or initialized if the **User** object is new. However, due to technical issues related to the papyrus software, we were unable to display the Entry, Do and Exit activities of the state machine we represent.
+** ** 
 
-To begin assuming that the **User** object has already been created. The initial state of the object leads straight away to a transition to an idle state. This idle state essentially is the process of waiting for an event to be executed by the user object. Since we are emphasizing the initial stage of the game, we will include states linked to the event caused by operations *createTeam()*,*createLeague()* and *displayTeam()*.
+  
 
-As soon as the *createTeam()* operation is executed it creates a transition to a *Team not created* a state where the user is asked for an input to set the name of the team. a decision node that utilizes 2 guards that checks whether a user already has a team or not. If the user does not yet have a team, the **User** object will transit to the *Team Creation* composite state. Within the *Team Creation* state, the entry activity displays the team set up page where a user is prompted to enter a name for the team, if the user chooses to cancel, the event *cancel button pressed* will trigger a transition out of the *Team Creation* state and back into the idle state of the user object without saving any progress. However, through the event of *confirm button pressed*. There is a transition in which the input that the user has given is checked, for the purpose of abstraction we did not go into detail of the input validation process where we check if the user has typed an input of a *teamName* that does not yet belong to another team. If the input is rejected, a transition via decision node back to *Team Not Created state* occurs. Otherwise, a transition to *Team Created* occurs, where the user&#39;s input is used in the constructor *new Team (teamName,manager)*. This state instantiates the **Team** class, which is a private class in the **User** class. The constructor parameters will set the input that the user has given as the name of the team and the user itself as the manager. Upon reaching the final state, a **Team** object is created, therefore a team is created, the team creation view is closed via Exit activity and a transition to the *Team Management* state occurs. 
+**Figure 3 -** User Behavioral State-Machine Diagram 
 
-The *Team Management* composite statecan be accessed via the transition events of finishing the *Team Creation* state as well as via the operation *displayTeam().* Due to the **Team** class being a private class inside **User,** this state involves operators and attributes of both classes, thus the complexity of the composite state requires it to be represented as another state machine, we have left it on external view in this state machine, we will explore the internal transitions infigure 4.
+  
 
-Finally from the *idle state,* the even *createLeague()* will trigger a transition to the *League Creation* compositestate. This state, similarly to the *Team Creation* state, is responsible for asking the user for an input on the name of the league they wish to create as well as validating the name, and the creation of a new custom league via the constructor, as shown in its sub-state *League Created.*
+  
 
-Overall, the **User** state machine is responsible for the initial steps that a user must take in order to reach eligibility in participating in the Fantasy Soccer game. As shown through creation of a Team and the optional step of creating a custom league. Moreover, the **User** state machine provides a platform for the user to make further modifications to the team as shown when the Userobject enters the *Team Management* state via the event *displayTeam()*.
+The Following state machine diagram represents the different states that a **User** class object can take during the tasks of creating a new team and a new league. For this state machine we have emphasized more on the states that the **User** object can take when a new user has joined the game and creates a new team. Thus, the user object essentially represents a stakeholder of our system (the user). This is due to the fact that this is a required feature for our first minimal implementation of the Fantasy Soccer Game. The entry activity of this User state machine is to show the main menu of the game as well as load the values of the attributes of the **User** type object, where the user will be displayed with the choice of buttons linked to the operations *createLeague()* , *createTeam()*, *displayTeam()* and *deleteTeam()*  as well as having the attribute values loaded or initialized if the **User** object is new. However, due to technical issues related to the papyrus software, we were unable to display the Entry, Do and Exit activities of the state machine we represent. 
 
-### **Team Management Behavior:**
+  
 
-![Imgur](https://i.imgur.com/NHARq59.png)
-** **
+To begin assuming that the **User** object has already been created. The initial state of the object leads straight away to a transition to an IDLE state. This IDLE state essentially is the process of waiting for an event to be executed by the user object. Since we are emphasizing the initial stage of the game, we will include states linked to the event caused by operations *createTeam()* and *createLeague()*. 
 
-**Figure 4 -** Team management Behavioural State-Machine Diagram
+  
 
+As soon as the *createTeam()* operation is executed it creates a transition to a *Team not created* a state where the user is asked for an input to set the name of the team. a decision node that utilizes 2 guards that checks whether a user already has a team or not. If the user does not yet have a team, the **User** object will transit to the *TEAM CREATION* composite state. Within the TEAM CREATION state, the entry activity displays the team set up page where a user is prompted to enter a name for the team, if the user chooses to cancel, the event *cancel button pressed* will trigger a transition out of the  TEAM CREATION state and back into the IDLE state of the user object without saving any progress. However, through the event of *confirm button pressed*. There is a transition in which the input that the user has given is checked, for the purpose of abstraction we did not go into detail of the input validation process where we check if the user has typed an input of a *teamName* that does not yet belong to another team. If the input is rejected, a transition via decision node back to *Team Not Created state* occurs. Otherwise, a transition to TEAM CREATED occurs, where the user&#39;s input is used in the constructor *new Team (teamName,manager)*. This state instantiates the **Team** class, which is a private class in the **User** class. The constructor parameters will set the input that the user has given as the name of the team and the user itself as the manager. Upon reaching the final state, a **Team** object is created, therefore a team is created, the TEAM CREATION view is closed via Exit activity and a transition to the *Team Management* state occurs.  
 
+  
 
-The **Team Management** behavioral state-machine represents the **Team** class that is a private class inside the **User** class. This state-machine is responsible for the steps of filling a team with players of appropriate positions and in accordance with the conditions that creates an eligible team as mentioned in **Feature 7** of our **Feature Requirements.** Moreover, the state-machine is responsible for the deduction or addition of points when a player is purchased or sold.  When a player is sold, this state machine will do the necessary steps to remove the player from a team and when a player is successfully purchased; to add the player accordingly into the team.
+The *Team Management* composite state can be accessed via the transition events of finishing the TEAM CREATION state as well as via the operation *displayTeam().* Due to the **Team** class being a private class inside **User,** this state involves operators and attributes of both classes, thus the complexity of the composite state requires it to be represented as another state machine, we have left it on external view in this state machine, we will explore the internal transitions in figure 4. 
 
-To enter this state machine, the event *displayTeam()* must have occurred, this can occur from the idle state (through pressing a button) or through the *Team Creation* state when the state reaches the final state. The *Entry* activity of the **Team Management**  state machine is to display the team view, which shows details about a team that the user have created from the **User** state machine; such as players, the manager name, the captain of the team etc . The *Exit* activity is to close the team view and save the progress of the user&#39;s modification of the team (save the values of the **Team** Attributes and **User** object credits). Due to technical difficulties with papyrus we were only able to display the Entry and Exit activities via the external view of the state machine as shown in **Figure 3.**
+  
 
-As the **User** object enters the state machine *Team Management* The initial state immediately transitions to the *Initialize* state, where an entry activity involving the retrieval of the **User** object&#39;s *credits* attribute value and all the values of the **Team** object&#39;s attributes is performed. The completion of the Entry activities creates a completion event that causes a transition via a decision node to *Team Complete* and *Team not Complete* states. The guards of the transition edges of the decision node checks whether the number of total players in the team has reached 15 or not. The state *Team Complete* represents a state in which a **Team** has less exactly 15 players, disabling the transition to *Player Purchase* composite state. The *Team not complete* state represents a state in which a **Team** has less than 15 total players, enabling a transition to *Player Purchase* state. The reason why we have included these states is to set the *complete* attribute of a **Team** object accordingly as this Boolean attribute represents whether a team is eligible to collect points (participate) in the playing phase of the game.
+Finally from the IDLE state, the even *createLeague()* will trigger a transition to the LEAGUE CREATION composite state. This state, similarly to the *TEAM CREATION* state, is responsible for asking the user for an input on the name of the league they wish to create as well as validating the name, and the creation of a new custom league via the constructor, as shown in its sub-state LEAGUE CREATED. 
 
-Once the *Entry* Activities of the *Team Complete* and *Team* not complete states are completed, the completion event will cause a transition to the *Idle* state, where we wait for the events *buyPlayer()* and *sellPlayer()* to occur, upon the command of the user of the system or the event *exit button pressed* where a user exits the team view and the **Team Management** state.
+  
 
-Upon the event *buyPlayer()* the transition to the *Player Purchase*  composite state occurs. This transition is protected by a guard that checks whether the team is full or not; preventing the transition if so. The *Player Purchase* state represents the state of the **Team Management** state machine where the cost of the player is deducted from the user&#39;s credits and where the player is added to the **Team&#39;s** players or bench attributes. Once the state is entered the activities *get player info* is executed, which enables the *buyPlayer()* operations to get the cost of the player and perform the necessary deduction of **User** credits. The initial pseudostate of this composite state leads to a transition involving 2 decision nodes to check if the player cost is lower than the amount of credits the user has and to check if there are too many players of the same position as represented by the guards. These guards will prevent or allow for the transition to *Player Purchased* state to occur, where a *do* activity of the state will deduct the cost of the player being purchased from the credits attribute of the **User** object.  Upon prevention, a transition will occur where an error message is shown when the user does not have enough credits or there are too many instances of the player with the same position inside a team. This transition will exit the *Player Purchase composite* state via an exit point, leading to the *idle* state.
+Overall, the **User** state machine is responsible for the initial steps that a user must take in order to reach eligibility in participating in the Fantasy Soccer game. As shown through creation of a Team and the optional step of creating a custom league. Moreover, the **User** state machine provides a platform for the user to make further modifications to the team as shown when the User object enters the *Team Management* state via the completion event of TEAM CREATION. 
 
-Once the activity of the *Player Purchased* state is done, the completion event will execute the event *addPlayer()* which is an operation of the **Team** private class. This event leads to a decision node with 2 possible transitions as outputs with guards that checks whether the bench or starters spot of a team is full, since the team cannot be complete in order to enter the composite state in the first place, this transition will lead to one of the states: *Player Added to Starters* or *Player Added to Bench*. These 2 sub-states will either add the purchased player to the starting sport or bench spot of a team. Denoted by appending a **Player** object to the *players* attribute of the **Team** object or to the *bench* attribute of the **Team** object. The completion state of either these 2 states will lead to a transition to the final state of the composite state. *Exit* activity will close the market display as the purchase is successful and a transition back to the *Initialize* state occurs.
+  
 
-The event *sellPlayer()* does not require a guard as the operation involved must have a player that is in either the *bench* or *players* attribute of the **Team** object in order to execute. The event leads to a transition to the composite state *Player Sale*.This composite state is responsible for adding credits back to the **User&#39;s** credit attribute when their player is sold and removing the player accordingly from either the *bench* or players attribute.
+### **Team Management Behavior:** 
 
-Entering the *Player Sale* state will perform the *Entry*activity of getting the info of theplayer involved from the **Team** object. This enables the **User** object to fetch the cost of the player when executing the *sellPlayer()* operation. Furthermore, the initial state immediately leads to a transition to the *Player Sold* sub-state where a do activity of adding points based on the **Player** cost back to the *credits*attribute of the **User** performed. The completion event of this state leads to the transition involving the event *removePlayer()*
+  
 
-*removePlayer()* leads to a decision node with guards that checks if the player involved is a captain or not. If the player is a captain, a transition to the sub-state *Vice Captain Promoted* occurs, where the captain attribute of the **Team** object is assigned with the value of the *viceCaptain* attribute. The completion event of this state leads to the state *Player Removed* where the player is removed from the team. If the player is not a captain , the transition of the decision node will lead straight to the *Player Removed State* . The completion event of this state will then lead to a transition to the final state of the *Player Sale* composite state, leading to a transition out of the composite state and back to *Initialize* state.
+![Imgur](https://i.imgur.com/UTBj3hl.png) 
 
-Notice that the *Initialize* state of this state-machine is very essential as the values of the *credits* attribute of a **User** object and the values of the *bench or team* attributes of the **Team** object will be changed by either of the composite states in the state-machine upon completing either of their internal states. Therefore it is necessary to retrieve the value of the **Team** attributes and the **User** credit attribute to  re-evaluate the boolean *complete* so that upon eventually reaching the *idle* state again, the events *buyPlayer()* and *sellPlayer()* will occur with the correct conditions in place and the credit values will always be computed correctly.
+** ** 
+
+  
+
+**Figure 4 -** Team management Behavioral State-Machine Diagram 
+
+  
+
+The **Team Management** behavioral state-machine represents the **Team** class that is a private class inside the **User** class. This state-machine is responsible for the steps of filling a team with players of appropriate positions and in accordance with the conditions that creates an eligible team as mentioned in **Feature 7** of our **Feature Requirements.** This task has been separated from the **User** behavior as we wanted to have good separations of concern. Having the **User** class perform the credits calculations on purchasing or selling a player as well as directly accessing the **Team** attributes in order to add or remove a player would increase the complexity of the module as the Interface would increase in complexity without much gain from the functionality end.  
+
+  
+
+To enter this state machine, the user must access either the **UserWindow**, **TransferWindow** or **TutorialWindow** GUI classes where we are able to view the contents of a team or the players listed on the market with the help of the Iterator design pattern. The beginning of this state machine involves checking for the contents of the players in the **Team** of the **User** to determine the states TEAM COMPLETE or TEAM NOT COMPLETE, these 2 states corresponds to the ability in progressing from TEAM CREATION to league competition as denoted figure 5. We have represented as such in the state diagrams due to the fact that if a user does try to progress to the next stage of the game without those conditions met, they would be blocked by an error handler and are unable to progress until the conditions are met. 
+
+  
+
+The second stage of this state machine would be the IDLE state, where we wait for an input command to buy or sell a player denoted by buttons with the names "buy" and "sell" within. The progression to the state PLAYER PURCHASE is triggered by the event *buyPlayer()* and PLAYER SALE by *sellPlayer()*. PLAYER PURCHASE can only be entered if the player that is selected is yet to be inside of the **Team** and if the **Team** does not have 15 players yet in order to adhere to the multiplicities stated in the class diagram. Within the PLAYER PURHCASE state, we check for conditions such as credits, space in the team and the formation conditions (as stated in the **Position** Enumerator. If these conditions are met the deduction of the credits can be made accordingly and we can proceed to the physical addition of the players to the team which leads us to the final pseudo state (given that the conditions are met). As mentioned previously we wanted to sperate the task of credits handling to the **User** class and the **Team** handling to the **Team** class itself as we do not want to expose the implementation of the team class and increase the complexity of the interface. 
+
+  
+
+Similarly, the PLAYER SALE state performs the return of the **User** credits first in accordance to the cost of the player that it tries to sell. Once the credit handling is done, the state machine checks if the **Player** being removed from the team is the captain of the team or not, if so they will automatically assign the id of the vice captain to the **captain** attribute of team before the physical removal of the **Player** object from the team.  
+
+  
+
+Overall, this state machine is necessary for us to determine the logic behind purchasing and selling players from the **PlayerMarket** class. Through this diagram we saw the underlying conditions required in order to complete the actions selling and buying a player as well as getting a grasp of the overall complexity of our proposed solution before implementing it in code.  
+
+  
+
+  
+
+### **Game (overall System) Behavior:** 
+
+  
+
+![Imgur](https://i.imgur.com/Lvm8Veu.png) 
+
+  
+
+**Figure 5 -** Overall System Behavior 
+
+  
+
+This state machine describes the overall behavior of our game and shows how a stakeholder can participate in the game by displaying the possible states that the system can take while a user joins the game, signs up , goes through the TUTORIAL phase of the game and participate in LEAGUE COMPETITION. This state machine is the highest level of abstraction we have on our system and helped us mostly on the design of our GUIs and the necessary logics to get a user to reach a state of active participation in the game.  
+
+  
+
+The State Machine begins with the initialization of the user and league databases (shown as *IOHandler.getInstance().init()) in the main class of the system. This will load or create the **Database** required to store **User** and **League** objects for when a user is signed up or a league is created. Furthermore, we progress to the first state of the game which is the MAIN PAGE state, shown as the **LoginWindow** in our system. 
+
+  
+
+From the MAIN PAGE state we can proceed to the SIGN UP STATE (triggered by clicking sign up button) or the LEAGUE COMPETITION state (triggered by login button ) given that a *username* and *password* match is found, meaning that a user has passed the TUTORIAL state in previous login attempts. In the SIGN UP state the **SignUpWindow** is displayed and the inputs that the user has typed into the text fields will be submitted and verified in a following decision phase, given the guard conditions are met  the machine progresses to the CREATING USER state where the username and password entered as input are taken in to the parameter of a **User** constructor to be used as the parameters to instantiate the **User** where the machine then proceeds to create a new user with the given parameters and progresses ot the **TUTORIAL** state of the GAME state machine.  
+
+  
+
+Upon entering the TUTORIAL state, the ENTRY activity sets the initial values for the created **User's** attributes, the DO activity waits for inputs from the user (to create a team, by players or proceed to the next state of the game) and the EXIT activity adds the **User** to the *userDatabase* of the system. Note that the EXIT activity means that if a user were to exit the game at the TUTORIAL state their created account will not be saved in the database of the system and the **User** object will be deleted by the JVM garbagecollector. For this state we did not want to show the selling of the players as doing so will transfer the complexity of our code into our UML diagram, we saw that the buying players logic is enough to show the progression to the LEAGUE COMPETITION state since a user must fill up a team with at least 11 starting players that meets the formation conditions in order to proceed as shown by the guards of the decision phase after the event *next button click* occurs. Overall the description of the buying phase of this game is exactly the same as the one shown in figure 4 in the PLAYER PURCHASE state since the underlying conditions are the same.  
+
+  
+
+Once the underlying conditions are met to be able to move to proceed to the next state via the *next button click* event (Conditions fulfillment represented as the state TEAM COMPLETE in Team Management state machine). We may now proceed to the LEAGUE COMPETITION state. This state starts off by adding the **User's** team to the glob league, this will be done to every user who has completed the TUTORIAL state and denotes that a team will be collecting points at the end of every week. Since a team is always a part of a global league, the USER'S TEAM COMPETING state within the composite state LEAGUE COMPETITION denotes the natural state that a team will enter after finishing all the other states (LEAGUE CREATION, JOINING LEAGUE, TRANSFERING etc.) obviously showing all of these states will tremendously increase the complexity of this diagram so we did not.   
+
+  
+
+Once the initials pseudo state of the LEAGUE COMPETITION STATE leads us to the USER'S TEAM COMPETING composite state, at the end of every match week the points of the players within the league (represented by **Lague** hashMap sttribute **TeamPoints**) gets updated and the teams that contains these players will have their points incremented accordingly to the performance of their players. This state can be exited by the events such as *joinLeague()* but will always lead back to the state. Similarly, if a successfully logs in, they will be led automatically to the USER's TEAM COMPETING composite state. 
+
+ 
 
 ## Sequence diagrams									
 Author(s): Gilbert Van Gerven &amp; Ricardo Burgos Lara
