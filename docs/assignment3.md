@@ -618,7 +618,7 @@ fantasy-football-team8\out\artifacts\software\_design\_vu\_2020\_jar\software-de
 
 **A 30-second video showing the execution of our system:**
 
-[https://www.youtube.com/watch?v=3i73DpzInhc](https://www.youtube.com/watch?v=MtKv0an2e7c)
+[Video](https://www.youtube.com/watch?v=3i73DpzInhc)
 
 
 ## References
