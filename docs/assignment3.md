@@ -21,7 +21,7 @@ by him.
 * Sequence diagram for league competition now clearly shows the relationship with classes Team and Player.
 * Sequence diagram for league competition now shows API data source as found message.
 * Sequence diagram for league competition now shows a loop for adding players to fill the team.
-* Game class was deprecated, its functionality is now distributed to other suitable classes, more specific to their roles as recomended.
+* Game class was deprecated, its functionality is now distributed to other suitable classes, more specific to their roles as recommended.
 
 ### Application of design patterns
 Author(s): Mehmet Cetin, Sunny Diaram
