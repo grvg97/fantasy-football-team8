@@ -7,11 +7,19 @@ Maximum number of words for this document: 18000
 **Format**: establish formatting conventions when describing your models in this document. For example, you style the name of each class in bold, whereas the attributes, operations, and associations as underlined text, objects are in italic, etc.
 
 ### Summary of changes of Assignment 2
-Author(s): `name of the team member(s) responsible for this section`
+Author(s): Gilbert Van Gerben, Ricardo Burgos, Mehmet Cetin, Sunny Diaram.
 
-Provide a bullet list summarizing all the changes you performed in Assignment 2 for addressing our feedback.
+The following changes were implemented based on the feedback received for the second milestone:
 
-Maximum number of words for this section: 1000
+* Two packages: GameLogic and UserInterface, now splits functionalities for business logic and GUI handling respectively.
+* Multiple users can join and leave an existing league, but only the league administrator is able to delete a league created
+by him.
+* IO and API handling is now implemented through the IOHandler and HandleAPI classes in the GameLogic package respectively.
+* Multiple enumerations were implemented to handle data efficiently: Positions and Formation classes in GameLogic package.
+* Updated UML diagrams: Class (1), Object (1), State-Machine (2) and Sequence (2).
+* Sequence diagram for league competition now clearly shows the relationship with classes Team and Player.
+* Sequence diagram for league competition now shows API data source as found message.
+* Sequence diagram for league competition now shows a loop for adding players to fill the team.
 
 ### Application of design patterns
 Author(s): Mehmet Cetin, Sunny Diaram
