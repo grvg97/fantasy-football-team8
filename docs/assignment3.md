@@ -369,7 +369,7 @@ Author(s): Mehmet Cetin, Sunny Dairam
 
 **Figure2 -** Fantasy Football Object Diagram
 
-This diagram represents some of the instances of the classes in the runtime of the program. The object diagram is much bigger in terms of quantity for the reason that
+This diagram represents some of the instances of the classes in the runtime of the program. 
 
 From the **User** class we are showing two user objects(user1, user2) with different ids, usernames, passwords, teams and competing leagues. Each user owns a team and that team can only be accessed by that user. Since every user has a team, the number of teams is equal to the number of users. Therefore, two objects(team1, team2) have been instantiated from the **Team** class. These object&#39;s attributes are assigned by the user through public functions, which makes the team object immutable to client code except for the team&#39;s user.
 
@@ -377,9 +377,11 @@ In the rules of the game, every team should have initially 15 players consisting
 
 From the **League** class we are depicting three league objects of which one of them is the global league. The other two are the custom leagues created by the user. The number of leagues in the runtime of the game is at least one and there is no upper limit because the number of custom leagues is dependent on the users since every user has the ability to create a league.
 
-The **MarketPlace** class has only one object because in the runtime we also have one market and in the real game there is also one market. The market object serves as a pool of players where the user can purchase any player desired if he/she has enough credits to buy the player. The user can also sell players to the market and gain credits based on the sold player&#39;s cost. Moreover, player costs can change based on their real life performances in the EPL. If a player performs well, his cost will increase and vice versa is also possible.
+The **PlayerMarket** class has only one object because in the runtime we also have one market and in the real game there is also one market. The market object serves as a pool of players where the user can purchase any player desired if he/she has enough credits to buy the player. The user can also sell players to the market and gain credits based on the sold player&#39;s cost. Moreover, player costs can change based on their real life performances in the EPL. If a player performs well, his cost will increase and vice versa is also possible.
 
-There is one instance from the **Gson** class and within that instance the fromJson() method is used to get the responseBody and return the the **MarketPlace** class
+Based on the feedback given in the second assignment, we have made a seperate class named HandleApi. There is one instance from the **HandleApi** class and within that instance the fromJson() method is used to fetch the json string and the getResponseBody method is used to get the json object and return as the **MarketPlace** class.
+
+To handle the IO and storing operations, we have made a singleton class named **HandleIO**. The HandleIO class being singleton leads to just one object from the that class. This object handles the input and output to the game and stores the game related information inside two different **Database** classes, namely **userDatabase** and **leagueDatabase**. The userDatabase stores data of the user whereas the leagueDatabase stores data of the leaugues in the game.
 
 The lines in the object diagram are the **instance specification** links between the objects have certain meanings and below we describe briefly what they mean.
 
@@ -391,7 +393,8 @@ Every user competes in at least one league. The link between the user object and
 
 There is also a relation between the market object and the players object. The meaning of the link is that the market can access all the players because the &quot;players&quot; list inside the market stores all the players that have been fetched from the api.
 
-The market object receives the players from the api using the method of the **Gson** class. The link between the gson object and the market object specifies that the gson links the players fetched from the api call to the &quot;player&quot; list using the fromJson() method.
+The playerMarket object receives the players from the api using the methods of the **HandleApi** class. The link between the handleApi object and the playerMarket object specifies that the players of the playerMarket are obtained from an api call, which is handled accordingly inside the handleApi object to deliver the required data from the json string.
+
 
 ## **State machine diagrams**
 
