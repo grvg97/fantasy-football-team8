@@ -448,7 +448,7 @@ The figure above shows the UserWindow class from which the user can perform oper
 
 ## **Implementation**
 
-Author(s): Mehmet Cetin, Sunny Dairam
+Author(s): Mehmet Cetin, Sunny Dairam, Ricardo Burgos Lara
 
 - the strategy that you followed when moving from the UML models to the implementation code;
 - the key solutions that you applied when implementing your system (for example, how you implemented the syntax highlighting feature of your code snippet manager, how you manage fantasy soccer matches, etc.);
