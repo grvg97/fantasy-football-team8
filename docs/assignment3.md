@@ -93,7 +93,7 @@ Please note that we have not included a class **HandleError** since it is seen a
 
 <br>2. *-UpdateTeamAndBench(playerMarket: PlayerMarket)* - Updates the statistics of every player in the team by invoking a method from the **PlayerMarket** class (method parameter) *getPlayers()* which will ensure that the statistics of the players within the team is consistent with the statistics of the same players in **PlayerMarket** which is in direct relation to the API. 
 
-<br>3. *-getRoundPoints()* - Collects the points that every player in the team have collected after every weekly game have been played in realtime, this collected points will be displayed as the team's accumulated points for the season. 
+<br>3. *-getRoundPoints()* - Collects the points that every player inthe team have collected after every weekly game have been played in realtime, this collected points will be displayed as the team's accumulated points for the season. 
 
 <br>4. *-addPlayer(player: Player)* - Invoked by the **User** method *buyPlayer()*, this method handles the adding of the player into either the team's *players* list attribute (starting lineup), or the team's *bench* list attribute (bench of team) if the starting lineup is full, once a player is purchased from the *PlayerMarket* by the **User** method *buyPlayer()* which handles the deduction of the credits accordingly form the **User** class. We have separated the two tasks from two classes under the consideration of good seperation of concern, since the **credits** attribute belongs to the **User** and the **Player** objects are stored within the **Team** class, we wanted to make sure that both classes are only altering their own attributes. 
 
@@ -593,7 +593,7 @@ We implemented the class user first and added all the attributes and operations 
 
 **PlayerMarket**
 
-We coded the PlayerMarket class and added the attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We have also converted the json string to a json object and stored it in the marketplace class in the &quot;players&quot; list. We used that list for the user to store
+We coded the PlayerMarket class and added the attributes and the operations that were already in the class diagram. After that, we have implemented the operations that were connected with feature 2 and the other functions that we have implemented. We have also converted the json string to a json object and stored it in the playerMarket class in the &quot;players&quot; list. We used that list for the user to store
 
 **League**
 
