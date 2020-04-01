@@ -1,2 +1,9 @@
 
+<<<<<<< HEAD
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀþÿÿÿÿ
+[squid:UselessImportCheck"0Remove this unused import 'GameLogic.Positions'.(Åæâ“8ºë£ç‘.
+=======
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀþÿÿÿÿ8ÎØƒå‘.
+K
+java:S1172H".Remove this unused method parameter "manager".(åü²ô8ÎØƒå‘.
+>>>>>>> e93bff9410d2abb3971df52eebb053bb5b74db42

@@ -1,7 +1,10 @@
 package GameLogic;
 
 import com.google.gson.annotations.SerializedName;
+import javafx.geometry.Pos;
+
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Player {
     @SerializedName("id")               private int id;
@@ -14,6 +17,7 @@ public class Player {
 
     // Player's stats
     @SerializedName("total_points")     private int totalPoints;
+    @SerializedName("event_points")     private int weeklyPoints; // Weekly points the player gains.
     @SerializedName("minutes")          private int minutes;
     @SerializedName("goals")            private int goalsScored;
     @SerializedName("assists")          private int assists;
@@ -26,20 +30,36 @@ public class Player {
     public int getId() {
         return this.id;
     }
-    public int getTotalPoints() {
-        return this.totalPoints;
-    }
     public int getCost() {
         return this.cost;
     }
     public String getFullName() {
         return (this.firstName + " " + this.lastName);
     }
-    public int getPosition() {
-        return this.position;
+    public int getWeeklyPoints() {
+        return this.weeklyPoints;
     }
     public boolean isInjured() {
         return isAvailable.equals("i");
+    }
+
+    public Positions getPosition() {
+        Positions pos;
+
+        switch (this.position) {
+            case 1:
+                pos = Positions.GK;
+                break;
+            case 2:
+                pos = Positions.DEF;
+                break;
+            case 3:
+                pos = Positions.MID;
+                break;
+            default:
+                pos = Positions.FWD;
+        }
+        return pos;
     }
 
     public String getPositionName() {
@@ -55,10 +75,19 @@ public class Player {
                 position = "MID";
                 break;
             case 4:
-                position = "FOR";
+                position = "FWD";
                 break;
         }
         return position;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Player) {
+            Player toCompare = (Player) obj;
+            return this.id == toCompare.getId();
+        }
+        return false;
     }
 
     public HashMap<String, Integer> getStats() {
@@ -66,16 +95,15 @@ public class Player {
         HashMap<String, Integer> stats = new HashMap<>();
 
         // Construct the map and return it
-        stats.put("totalPoints", totalPoints);
-        stats.put("minutes", minutes);
-        stats.put("goalsScored", goalsScored);
+        stats.put("total points", totalPoints);
+        stats.put("minutes played", minutes);
+        stats.put("goals scored", goalsScored);
         stats.put("assists", assists);
-        stats.put("cleanSheets", cleanSheets);
-        stats.put("goalConceded", goalsConceded);
-        stats.put("yellowCards", yellowCards);
-        stats.put("redCards", redCards);
+        stats.put("clean sheets", cleanSheets);
+        stats.put("goals conceded", goalsConceded);
+        stats.put("yellow cards", yellowCards);
+        stats.put("red cards", redCards);
         stats.put("saves", saves);
         return stats;
     }
-
 }

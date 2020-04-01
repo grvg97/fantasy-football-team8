@@ -1,11 +1,34 @@
 
-osquid:S00117a"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šéä18¥ø¶£.
+<<<<<<< HEAD
+ksquid:UselessImportCheck";Remove this unused import 'javafx.scene.layout.BorderPane'.(Îî¥üÿÿÿÿ8Á€İã‘.
+[squid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8âç©â‘.
+esquid:UselessImportCheck"5Remove this unused import 'javafx.scene.layout.VBox'.(íÆáÂùÿÿÿÿ8Á€İã‘.
+]squid:S1118":Add a private constructor to hide the implicit public one.(¨Ô¹ûÿÿÿÿ8´îªä‘.
+`squid:UselessImportCheck"0Remove this unused import 'javafx.geometry.Pos'.(ÌÆ÷Ùøÿÿÿÿ8Á€İã‘.
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀşÿÿÿÿ
-nsquid:UselessImportCheck">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8„ù£¤.
-osquid:S00117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÛ_8ó¤®£.
-]squid:S1118":Add a private constructor to hide the implicit public one.(¨Ô¹ûÿÿÿÿ8˜šô«.
-usquid:S00117g"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ùóïÿÿÿÿÿ8¥ø¶£.
-[squid:UselessImportCheck"0Remove this unused import 'javax.xml.soap.Text'.(ŒşÄ™8„ù£¤.
-esquid:UselessImportCheck"5Remove this unused import 'javafx.scene.layout.VBox'.(íÆáÂùÿÿÿÿ8„ù£¤.
-psquid:S00117^"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áìÖé8•Ç´£.
-usquid:S00117d"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¬·åÿÿÿÿÿ8¥ø¶£.
+Gsquid:S1148•"#Use a logger to log this exception.(„±‹¹øÿÿÿÿ8ë®Âå‘.
+csquid:UselessImportCheck"8Remove this unused import 'javafx.util.StringConverter'.(ûóŠ×8Á€İã‘.
+_squid:UselessImportCheck"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8•¦©â‘.
+usquid:S3776G"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(³‚¡¿ùÿÿÿÿ8ë®Âå‘.
+=======
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀşÿÿÿÿ8Õªøµ‘.
+F
+java:S1148•"#Use a logger to log this exception.(„±‹¹øÿÿÿÿ8ø–èæ‘.
+]	java:S110!"<This class has 9 parents which is greater than 5 authorized.(Úšğÿÿÿÿÿ8ø–èæ‘.
+Q
+java:S1128"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8ø–èæ‘.
+]
+java:S1128";Remove this unused import 'javafx.scene.layout.BorderPane'.(Îî¥üÿÿÿÿ8ø–èæ‘.
+R
+java:S1128"0Remove this unused import 'javafx.geometry.Pos'.(ÌÆ÷Ùøÿÿÿÿ8ø–èæ‘.
+t
+java:S3776G"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(³‚¡¿ùÿÿÿÿ8ø–èæ‘.
+\
+java:S1118":Add a private constructor to hide the implicit public one.(¨Ô¹ûÿÿÿÿ8ø–èæ‘.
+U
+java:S1128"8Remove this unused import 'javafx.util.StringConverter'.(ûóŠ×8ø–èæ‘.
+W
+java:S1128"5Remove this unused import 'javafx.scene.layout.VBox'.(íÆáÂùÿÿÿÿ8ø–èæ‘.
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ø–èæ‘.
+>>>>>>> e93bff9410d2abb3971df52eebb053bb5b74db42

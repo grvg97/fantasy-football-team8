@@ -1,23 +1,27 @@
 package GameLogic;
 
+import UserInterface.PlayerWindow;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class PlayerMarket {
+
+// DESIGN PATTERN: Iterator, creates a uniform way to iterate through list of players
+public class PlayerMarket implements Iterable {
     @SerializedName("elements") private List<Player> players;
 
-    public List<Player> getPlayers() {
-        return this.players;
-    }
+    @Override
+    public Iterator iterator() {return players.iterator();}
 
-    // For bench players
+    public List<Player> getPlayers() { return new ArrayList<>(this.players); }
     public Player getPlayer(int id) {
-        for (Player player : players)
+        for (Player player : this.players) {
             if (player.getId() == id)
                 return player;
+        }
 
         return null;
     }
-
 }
