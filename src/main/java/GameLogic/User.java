@@ -25,10 +25,10 @@ public class User {
         return this.team != null;
     }
 
+    // User and user's team have the same id
     public void createTeam(String name) {
         this.team = new Team(name, this.id);
     }
-
 
     // This function handles the buying of players off the market. Credits may not go below 0.
     public boolean buyPlayer(Player player) {
@@ -239,7 +239,6 @@ public class User {
             return false;
         }
 
-
         private void changeStartingLineup(Player benchPlayer, Player starterPlayer) {
             this.players.remove(starterPlayer);
             this.bench.remove(benchPlayer);
@@ -247,6 +246,5 @@ public class User {
             this.players.add(benchPlayer);
             this.bench.add(starterPlayer);
         }
-
     }
 }
