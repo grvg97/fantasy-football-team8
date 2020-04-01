@@ -24,7 +24,7 @@ by him. This fixed the multiplicity error the feedback highlighted.
 * **Game** class was deprecated, its functionality is now assumed by other suitable classes, more specific to their roles as recommended.
 
 ### Application of design patterns
-Author(s): Mehmet Cetin, Sunny Diaram
+Author(s): Mehmet Cetin, Sunny Dairam
 
 
 | ID  | DP1  | 
@@ -456,7 +456,7 @@ Author(s): Gilbert Van Gerven &amp; Ricardo Burgos Lara
 
 The following diagram depicts the process of creating a team and populating it with players from the market.
 
-![Image description](https://imgur.com/s2UHmLl.png)
+![Imgur](https://i.imgur.com/HH17vzR.png)
 ** **
 **Figure 5 -** Sequence diagram of the task *Team Creation*
 
@@ -491,7 +491,7 @@ on the list will display player's statistics window which also display the total
 
 ### **Sequence Diagram: League Competition**
 
-![Image description](https://imgur.com/HnTAWbJ.png)
+![Imgur](https://i.imgur.com/gsgKkQD.png)
 
 
 **Figure 6 -** Sequence diagram of the task *League Competition*
