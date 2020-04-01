@@ -605,8 +605,7 @@ The user is able to create a team upon registering himself. While the team is be
 
 ### **The League and User Databases**
 
-We have 2 separate databases in our system. The purpose of this is for the information of the game to be maintainable. This makes the game a local multiplayer game so keeping track of all users and leagues is a must. In the user database we store a list of all users that are registered which are using our system. In the league database we store all created leagues of the system including the global league, which is initially inside the league database file
-
+We have 2 separate databases in our system embedded inside the HandleIO class. We achieve this by converting the userDatabase and leagueDatabase to a json object and store it in a local json file. The purpose of this is for the information of the game to be maintainable. This makes the game a local multiplayer game so keeping track of all users and leagues is a must. In the user database we store a list of all users that are registered which are using our system. In the league database we store all created leagues of the system including the global league, which is initially inside the league database file. 
 
 
 **The location of the main Java class needed for executing our system is found at:**
