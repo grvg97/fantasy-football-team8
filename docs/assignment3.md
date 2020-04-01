@@ -518,40 +518,9 @@ The figure above shows the UserWindow class from which the user can perform oper
 
 Author(s): Mehmet Cetin, Sunny Dairam, Ricardo Burgos Lara 
 
-- the strategy that you followed when moving from the UML models to the implementation code;
-- the key solutions that you applied when implementing your system (for example, how you implemented the syntax highlighting feature of your code snippet manager, how you manage fantasy soccer matches, etc.);
-- the location of the main Java class needed for executing your system in your source code;
-- the location of the Jar file for directly executing your system;
-- the 30-seconds video showing the execution of your system (you can embed the video directly in your md file on GitHub).
-
-In this chapter you will describe the following aspects of your project:
-
 ### **The strategy we followed when moving the UML models to the implementation code**
 
 We started off making the models of the classes and the associated class diagram. We then implemented them in Java adjusting our models iteratively along the way.
-
-### **Key solutions applied when implementing the system**
-
-### **Logging in/ registering the user**
-
-The user can login and register by inputting a username and password. If the username is not presented in the User Database the user instead gets added and registered. This problem was solved by the _key solution_ of converting an object to a json file using the fromJson() from the **Gson** library and storing that file locally inside the database directory.
-
-In a class called **Game**, a classs with the main purpose of launching all the necessary class operations in order, when the user enters the game for the first time, a new Json file is instantiated in a specific directory. In order to identify someone as a new user we have a class under the name of **UserDatabase** which contains a setter and getter method *addUser(user)* and *authUser(String Username,String Password)*, *authUser* will attempt to get a an entry in the Json file with the matching User name and password, as it finds out that no such entry exists, the *addUser()* method will be run and adds a User object in Json form to Json object that is in a specified path (created dynamically at the first runtime of the system). If the user have already logged in previously, it will authenticate the user upon the confirmation of an existing (user,password) entry in the created Json file.
-
-### **Getting the list of Premier League Players from the API**
-
-We get all the players and their stats from the API link: [https://fantasy.premierleague.com/api/bootstrap-static/](https://fantasy.premierleague.com/api/bootstrap-static/)
-
-We fetched the json string using a get request from the HttpUrlConnection library from java.net. After getting the json string, we used the Gson library&#39;s fromJson function to convert the given json string to a json object; which in this case is the PlayerMarket class.
-
-### **User creating the team**
-
-The user is able to create a team upon registering himself. While the team is being constructed the user is asked for a team name and then gets a list of players presented to him. Then, the user can choose between the players based on their position which is in the order of goalkeeper, defender, midfielder and forwards. After the user creates its team, the team will be added to the global league automatically.
-
-### **The League and User Databases**
-
-We have 2 separate databases in our system. The purpose of this is for the information of the game to be maintainable. This makes the game a local multiplayer game so keeping track of all users and leagues is a must. In the user database we store a list of all users that are registered which are using our system. In the league database we store all created leagues of the system including the global league, which is initially inside the league database file
-
 ### **The functionalities and representations of the classes**
 
 ### **GameLogic**
@@ -560,7 +529,7 @@ We have 2 separate databases in our system. The purpose of this is for the infor
 
 We implemented the class user first and added all the attributes and operations that were already in the class diagram. After that we implemented the operations that were connected in order to implement the feature that was given from the first assignment (feature 2). After that we implemented the features in the order of 6, 11.1, 12 and 1. The implemented features were connected to each other.
 
-**League:** We have coded the private class league inside the user class.
+**Team:** We have coded the private class team inside the user class. The motive for this action is that we wanted only the user to be able to make changes to the team to prevent information leakage. The Team class can only be accessed via the User.  
 
 **PlayerMarket**
 
@@ -591,6 +560,7 @@ specific player's stats and create and join leagues. The user can keep track of 
 is participating and check out the points his/her team has obtained so far. Based on the points, the user can make changes 
 in his/her team by making transfers. The user can  make transfers by entering the TransferWindow
 via the "Transfer Window" button.
+
 ##### **TransferWindow**
 This window is the GUI representation of the class PlayerMarket. The Transfer window has all the players in the premier league, 
 which gives the user the option to select any available player as long as the user has sufficient credits. 
@@ -599,23 +569,44 @@ of the player. The user has to sell his bench players first before selling the p
 After completing the transfer, the user can navigate back to the UserWindow using "Done" button. 
 However, the user can only go back to the UserWindow if the team preserves the 4-3-3 formation, which is a restriction of 
 the game. Speaking of restrictions, there is a HandleError class that handles the restrictions of the game.
+
 ##### **HandleError**
 The functions of this class are used in various places of the program. 
 This class restricts the game to cheat or exceed the boundaries of the game, which enables fair play.
+
 ##### **PlayerWindow**
 This window pops up when the user clicks the "Open Player" button inside the UserWindow or TransferWindow to 
 get information and stats about the player. The User can decide whether to change this player, sell it or bench it based on 
 the information provided in the Player window.
-##### **System admin updating points**
-* Only System admin (first user created in the system) can update points. Should do it every week. Automatic updating points
-is not doable because the system does not run 24/7.
-* Button.
 
 #### **IOHandler**
 This class is responsible for loading the saved data and saving the current data with the help of the inner private 
 Database class. Inside the HandleIO class, we have two Database class named userDatabase and leagueDatabase. 
 The userDatabase stores the users, including the admin user(has the ability to update the points of the teams), and the 
 leagueDatabase stores the leagues inside the games, including the Global League.
+
+### **Key solutions applied when implementing the system**
+
+### **Logging in/ registering the user**
+
+The user can login and register by inputting a username and password. If the username is not presented in the User Database the user instead gets added and registered. This problem was solved by the _key solution_ of converting an object to a json file using the fromJson() from the **Gson** library and storing that file locally inside the database directory.
+
+In a class called **Game**, a classs with the main purpose of launching all the necessary class operations in order, when the user enters the game for the first time, a new Json file is instantiated in a specific directory. In order to identify someone as a new user we have a class under the name of **UserDatabase** which contains a setter and getter method *addUser(user)* and *authUser(String Username,String Password)*, *authUser* will attempt to get a an entry in the Json file with the matching User name and password, as it finds out that no such entry exists, the *addUser()* method will be run and adds a User object in Json form to Json object that is in a specified path (created dynamically at the first runtime of the system). If the user have already logged in previously, it will authenticate the user upon the confirmation of an existing (user,password) entry in the created Json file.
+
+### **Getting the list of Premier League Players from the API**
+
+We get all the players and their stats from the API link: [https://fantasy.premierleague.com/api/bootstrap-static/](https://fantasy.premierleague.com/api/bootstrap-static/)
+
+We fetched the json string using a get request from the HttpUrlConnection library from java.net. After getting the json string, we used the Gson library&#39;s fromJson function to convert the given json string to a json object; which in this case is the PlayerMarket class.
+
+### **User creating the team**
+
+The user is able to create a team upon registering himself. While the team is being constructed the user is asked for a team name and then gets a list of players presented to him. Then, the user can choose between the players based on their position which is in the order of goalkeeper, defender, midfielder and forwards. After the user creates its team, the team will be added to the global league automatically.
+
+### **The League and User Databases**
+
+We have 2 separate databases in our system. The purpose of this is for the information of the game to be maintainable. This makes the game a local multiplayer game so keeping track of all users and leagues is a must. In the user database we store a list of all users that are registered which are using our system. In the league database we store all created leagues of the system including the global league, which is initially inside the league database file
+
 
 
 **The location of the main Java class needed for executing our system is found at:**
