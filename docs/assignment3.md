@@ -61,7 +61,7 @@ Much like the object diagram and unlike the sequence and state-machine diagrams,
 Please note that we have not included a class **HandleError** since it is seen as a helper class to our Graphical user interface in order to display error messages upon certain conditions of the games . Through this we want to ensure that we do not transfer the complexity of our codes to the Class Diagram that is supposed to be the closest abstraction to the actual representation of our code. 
 
 
-![Imgur](https://i.imgur.com/OIhzdFr.png?1)
+![Imgur](https://i.imgur.com/6QDlmxL.png?1)
 
   
 
