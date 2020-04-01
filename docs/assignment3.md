@@ -373,7 +373,7 @@ From the **League** class we are depicting three league objects of which one of 
 
 The **PlayerMarket** class has only one object because in the runtime we also have one market and in the real game there is also one market. The market object serves as a pool of players where the user can purchase any player desired if he/she has enough credits to buy the player. The user can also sell players to the market and gain credits based on the sold player&#39;s cost. Moreover, player costs can change based on their real life performances in the EPL. If a player performs well, his cost will increase and vice versa is also possible.
 
-Based on the feedback given in the second assignment, we have made a seperate class named HandleApi. There is one instance from the **HandleApi** class and within that instance the fromJson() method is used to fetch the json string and the getResponseBody method is used to get the json object and return as the **MarketPlace** class.
+Based on the feedback given in the second assignment, we have made a seperate class named HandleApi. There is one instance from the **HandleApi** class and within that instance the fromJson() method is used to fetch the json string and the getResponseBody method is used to get the json object and return as the **PlayerMarket** class.
 
 To handle the IO and storing operations, we have made a singleton class named **HandleIO**. The HandleIO class being singleton leads to just one object from the that class. This object handles the input and output to the game and stores the game related information inside two different **Database** classes, namely **userDatabase** and **leagueDatabase**. The userDatabase stores data of the user whereas the leagueDatabase stores data of the leaugues in the game.
 
