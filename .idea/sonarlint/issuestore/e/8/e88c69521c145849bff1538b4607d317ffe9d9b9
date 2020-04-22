@@ -1,0 +1,20 @@
+
+<<<<<<< HEAD
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
+]squid:UselessImportCheck"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8à‡°å‘.
+_squid:UselessImportCheck
+"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8à‡°å‘.
+osquid:S2095="LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ö¹Ñÿÿÿÿÿ8©œÊí‘.
+osquid:S2095A"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(å†Ÿ—ýÿÿÿÿ8©œÊí‘.
+=======
+Q
+java:S1128
+"4Remove this unused import 'java.lang.reflect.Array'.(‡¡É˜8Û×‚å‘.
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Û×‚å‘.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8Òªøµ‘.
+n
+java:S2095A"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(å†Ÿ—ýÿÿÿÿ8î¨Þì‘.
+n
+java:S2095="LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ö¹Ñÿÿÿÿÿ8î¨Þì‘.
+>>>>>>> e93bff9410d2abb3971df52eebb053bb5b74db42

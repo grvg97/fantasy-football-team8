@@ -1,0 +1,12 @@
+
+<<<<<<< HEAD
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀþÿÿÿÿ
+]squid:S1118":Add a private constructor to hide the implicit public one.(Ûè¡Ëþÿÿÿÿ8¤ÌÈ‘‘.
+ysquid:S3008"VRename this field "PlayerScene" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(å¥áåþÿÿÿÿ8¤ÌÈ‘‘.
+=======
+x
+java:S3008"VRename this field "PlayerScene" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(å¥áåþÿÿÿÿ8ÔìšÒ‘.
+\
+java:S1118":Add a private constructor to hide the implicit public one.(Ûè¡Ëþÿÿÿÿ8ÔìšÒ‘.
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀþÿÿÿÿ8ÔìšÒ‘.
+>>>>>>> e93bff9410d2abb3971df52eebb053bb5b74db42

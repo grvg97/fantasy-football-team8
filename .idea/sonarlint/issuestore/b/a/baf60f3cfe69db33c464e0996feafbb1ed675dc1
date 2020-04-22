@@ -1,0 +1,13 @@
+
+<<<<<<< HEAD
+nsquid:S1192R"KDefine a constant instead of duplicating this literal "Credits = " 3 times.(îœ•‡þÿÿÿÿ8É‚Îæ‘.
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀþÿÿÿÿ
+]squid:S1118":Add a private constructor to hide the implicit public one.(ªïÛøÿÿÿÿ8‚ÿïá‘.
+=======
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜éÆÀþÿÿÿÿ8Òªøµ‘.
+m
+java:S1192R"KDefine a constant instead of duplicating this literal "Credits = " 3 times.(îœ•‡þÿÿÿÿ8¸•èæ‘.
+\
+java:S1118":Add a private constructor to hide the implicit public one.(ªïÛøÿÿÿÿ8¸•èæ‘.
+]	java:S110"<This class has 9 parents which is greater than 5 authorized.(ŽÚšðÿÿÿÿÿ8¸•èæ‘.
+>>>>>>> e93bff9410d2abb3971df52eebb053bb5b74db42

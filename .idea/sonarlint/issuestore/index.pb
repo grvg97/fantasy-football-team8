@@ -1,13 +1,47 @@
 
 9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-N
-src/main/java/MarketPlace.java,2\1\218849da6fdabb8107e473fc39bd830211399790
-I
-src/main/java/Player.java,6\e\6e82b9511465c9772497936644008abf2f008450
-O
-src/main/java/UserDatabase.java,5\c\5c2b2b170b213475deaf301c4379372aee5cefa8
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 <
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
+A
+DatabaseUser.json,0/9/09368edbe8da117efa89002afa5eeb5b741c258c
+C
+DatabaseLeague.json,4/9/499208642cd52706ab51c0d4e56907852354953d
+S
+#src/main/java/GameLogic/League.java,0\8\089cba4a85570fac4397644690adc74ed95a2ad4
+_
+/src/main/java/UserInterface/TutorialWindow.java,1\c\1ceb13b1641901197f4695703238ebfeac14d265
+Q
+!src/main/java/GameLogic/Main.java,4/e/4e871907dd76875f43ff372bd72f049933b02b72
+\
+,src/main/java/UserInterface/LoginWindow.java,e\0\e093ef83bbb28ec059c737fa02aba24946f9c506
+V
+&src/main/java/GameLogic/HandleApi.java,4\b\4bba01159de40f204c2f950d77a8a4fa8a50055a
+[
++src/main/java/UserInterface/UserWindow.java,f\0\f0a9e5c1c9ded053c2d5be5fe4d47ed562286b1d
+V
+&src/main/java/GameLogic/Positions.java,e\c\ec6ce2b438fc6c391c35dc4b7005cc6ef233c5d5
+V
+&src/main/java/GameLogic/Formation.java,d\3\d393ce4096d4e5facfe129be4c2a694ee3dab1f0
+S
+#src/main/java/GameLogic/Player.java,5\0\50a79d5933c04d2c6d00fa32e375222d42ecd427
+Q
+!src/main/java/GameLogic/User.java,9\a\9af450873f6868658fb0c14af29b2df7362b5998
+\
+,src/main/java/UserInterface/HandleError.java,9\d\9d0ad34f8fb6d3d3dc2f49ede11a0f23ce7b3db5
+Y
+)src/main/java/GameLogic/PlayerMarket.java,2\f\2fefe0ac6cf44d70729269ef01e255340d504a46
+]
+-src/main/java/UserInterface/PlayerWindow.java,8\9\89012f783ac464bb6b774136c4de45152c0f49a5
+V
+&src/main/java/GameLogic/IOHandler.java,e/8/e88c69521c145849bff1538b4607d317ffe9d9b9
+_
+<<<<<<< HEAD
+/src/main/java/UserInterface/TransferWindow.java,b/a/baf60f3cfe69db33c464e0996feafbb1ed675dc1
+7
+gradlew,5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9
+=======
+/src/main/java/UserInterface/TransferWindow.java,b\a\baf60f3cfe69db33c464e0996feafbb1ed675dc1
+>>>>>>> e93bff9410d2abb3971df52eebb053bb5b74db42

@@ -1,0 +1,35 @@
+
+<<<<<<< HEAD
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ
+Vsquid:UselessImportCheck"+Remove this unused import 'java.util.Date'.(¸…¼ü8 žÊí‘.
+^squid:S1854˜":Remove this useless assignment to local variable "league".(ŠÞä¶ùÿÿÿÿ8 žÊí‘.
+~squid:S1450¤"ZRemove the "totalPoints" field and declare it as a local variable in the relevant methods.(º¹Ÿ•ÿÿÿÿÿ8 žÊí‘.
+usquid:S1450¦"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ8 žÊí‘.
+~squid:S1450§"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃžýÿÿÿÿ8 žÊí‘.
+Usquid:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ8 žÊí‘.
+Jsquid:S1068¡"&Remove this unused "id" private field.(ôç¼Óþÿÿÿÿ8 žÊí‘.
+Jsquid:S1068¦"+Remove this unused "captain" private field.(ìØœÀ8 žÊí‘.
+Ssquid:S1068§"/Remove this unused "viceCaptain" private field.(ÎªÃžýÿÿÿÿ8 žÊí‘.
+=======
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(““»åüÿÿÿÿ8ÌÈ ¶‘.
+P
+java:S1135ö"2Complete the task associated to this TODO comment.(ð§‰‰8É¬õá‘.
+H
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8¼§Þì‘.
+]
+java:S1854˜":Remove this useless assignment to local variable "league".(ŠÞä¶ùÿÿÿÿ8¼§Þì‘.
+t
+java:S1450¦"VRemove the "captain" field and declare it as a local variable in the relevant methods.(ìØœÀ8¼§Þì‘.
+}
+java:S1450¤"ZRemove the "totalPoints" field and declare it as a local variable in the relevant methods.(º¹Ÿ•ÿÿÿÿÿ8¼§Þì‘.
+}
+java:S1450§"ZRemove the "viceCaptain" field and declare it as a local variable in the relevant methods.(ÎªÃžýÿÿÿÿ8¼§Þì‘.
+T
+java:S1068"2Remove this unused "hasTransferred" private field.(û¶±Ìûÿÿÿÿ8¼§Þì‘.
+I
+java:S1068¡"&Remove this unused "id" private field.(ôç¼Óþÿÿÿÿ8¼§Þì‘.
+I
+java:S1068¦"+Remove this unused "captain" private field.(ìØœÀ8¼§Þì‘.
+R
+java:S1068§"/Remove this unused "viceCaptain" private field.(ÎªÃžýÿÿÿÿ8¼§Þì‘.
+>>>>>>> e93bff9410d2abb3971df52eebb053bb5b74db42
